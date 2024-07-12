@@ -1,0 +1,25 @@
+<div class="relative">
+  <block-note-side-menu [editor]="editor">
+    <block-note-add-block-btn [editor]="editor" />
+    <block-note-drag-handle-menu-btn [editor]="editor" />
+  </block-note-side-menu>
+
+  <block-note-view [editor]="editor" class="block margin-icons" />
+  <block-node-suggestions-menu
+    [editor]="editor"
+    class="z-index-3"
+    style="background: red; padding: 10px"
+  >
+    <div class="suggestions-menu d-flex flex-column">
+      @for ( slashMenuItem of slashMenuItems; track slashMenuItem.title){
+      <button
+        (mousedown)="slashMenuItem.onItemClick()"
+        class="btn btn-transparent"
+        type="button"
+      >
+        {{ slashMenuItem.title }}
+      </button>
+      }
+    </div>
+  </block-node-suggestions-menu>
+</div>
