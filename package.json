@@ -8,6 +8,10 @@
     "test": "nx test"
   },
   "private": true,
+  "engines": {
+    "node": "20",
+    "npm": "10"
+  },
   "dependencies": {
     "@angular/animations": "~18.0.0",
     "@angular/cdk": "^18.1.0",
