@@ -22,7 +22,9 @@
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      ".github/workflows/*.yml"
+    ]
   },
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
