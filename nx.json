@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "defaultBase": "main",
+  "defaultBase": "origin/main",
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
@@ -22,10 +22,7 @@
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "sharedGlobals": [
-      "{projectRoot}/.github/**/*.yml",
-      "{projectRoot}/nx.json"
-    ]
+    "sharedGlobals": []
   },
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
