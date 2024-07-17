@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: lint
-        run: npx nx affected -t lint --base=b63e48bff6fc27fcb4084e5a725f739693641428 --head=main
+        run: npx nx affected -t lint
 
       - name: test
-        run: npx nx affected -t test --base=b63e48bff6fc27fcb4084e5a725f739693641428 --head=main
+        run: npx nx affected -t test
