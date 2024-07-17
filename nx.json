@@ -23,7 +23,7 @@
       "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": [
-      ".github/workflows/*.yml"
+      "{projectRoot}/.github/**/*.yml"
     ]
   },
   "targetDefaults": {
