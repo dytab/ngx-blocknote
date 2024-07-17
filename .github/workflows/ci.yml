@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        # with:
-        #   fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -22,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: lint
-        run: npx nx affected -t lint
+        run: npx nx affected -t lint --base=main~1 --head=main
 
       - name: test
-        run: npx nx affected -t test
+        run: npx nx affected -t test --base=main~1 --head=main
