@@ -7,6 +7,9 @@ on:
 
 jobs:
   lint-test:
+    permissions:
+      actions: read
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,8 +24,10 @@ jobs:
       - name: install npm
         run: npm ci
 
+      - uses: nrwl/nx-set-shas@v4
+
       - name: lint
-        run: npx nx affected -t lint --base=HEAD~1
+        run: npx nx affected -t lint
 
       - name: test
-        run: npx nx affected -t test --base=HEAD~1
+        run: npx nx affected -t test
