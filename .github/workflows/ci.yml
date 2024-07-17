@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
   lint-test:
@@ -19,5 +18,8 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - run: npm ci
-      - run: npx nx affected -t lint test
+      - name: install npm
+        run: npm ci
+
+      - name: lint & test
+        run: npx nx affected -t lint test
