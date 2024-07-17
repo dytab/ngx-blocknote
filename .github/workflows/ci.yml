@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: lint
-        run: npx nx affected -t lint
+        run: npx nx affected -t lint --base=HEAD~1
 
       - name: test
-        run: npx nx affected -t test
+        run: npx nx affected -t test --base=HEAD~1
