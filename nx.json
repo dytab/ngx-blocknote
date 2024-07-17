@@ -23,7 +23,8 @@
       "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": [
-      "{projectRoot}/.github/**/*.yml"
+      "{projectRoot}/.github/**/*.yml",
+      "{projectRoot}/nx.json"
     ]
   },
   "targetDefaults": {
