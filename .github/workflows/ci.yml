@@ -21,5 +21,8 @@ jobs:
       - name: install npm
         run: npm ci
 
-      - name: lint & test
-        run: npx nx affected -t lint test
+      - name: lint
+        run: npx nx affected -t lint
+
+      - name: test
+        run: npx nx affected -t test
