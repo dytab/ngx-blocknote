@@ -45,3 +45,6 @@ Thumbs.db
 
 
 storybook-static
+
+# Angular
+.angulardoc.json
