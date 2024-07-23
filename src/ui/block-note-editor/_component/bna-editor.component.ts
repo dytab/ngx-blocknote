@@ -1,18 +1,6 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  forwardRef,
-  Host,
-  input,
-  Optional,
-  SkipSelf
-} from '@angular/core';
-import {
-  ControlContainer,
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { Component, forwardRef, Host, input, Optional, SkipSelf, ViewEncapsulation } from '@angular/core';
+import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Block,
   BlockNoteEditor,
@@ -20,15 +8,14 @@ import {
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  DefaultSuggestionItem,
   getDefaultSlashMenuItems,
   insertOrUpdateBlock,
   PartialBlock
 } from '@blocknote/core';
-import { DefaultSuggestionItem } from '@blocknote/core';
 import {
   BnaFormattingToolbarDirective
 } from '../../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
-import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
 import { BnaSideMenuDirective } from '../../components/bna-side-menu/bna-side-menu.directive';
 import {
   BnaAddBlockButtonComponent
@@ -36,9 +23,8 @@ import {
 import {
   BnaDragHandleMenuComponent
 } from '../../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
-import {
-  BnaSuggestionsMenuDirective
-} from '../../components/bna-suggestions-menu/bna-suggestions-menu.directive';
+import { BnaSuggestionsMenuDirective } from '../../components/bna-suggestions-menu/bna-suggestions-menu.directive';
+import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
 
 @Component({
   imports: [
