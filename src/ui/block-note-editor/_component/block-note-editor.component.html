@@ -7,18 +7,22 @@
   <block-note-view [editor]="editor" class="block margin-icons" />
   <block-node-suggestions-menu
     [editor]="editor"
-    class="z-index-3"
-    style="background: red; padding: 10px"
+    class="z-index-3 shadow-3xl bg-white p-1.5"
   >
-    <div class="suggestions-menu d-flex flex-column">
-      @for ( slashMenuItem of slashMenuItems; track slashMenuItem.title){
-      <button
-        (mousedown)="slashMenuItem.onItemClick()"
-        class="btn btn-transparent"
-        type="button"
-      >
-        {{ slashMenuItem.title }}
-      </button>
+    <div class="suggestions-menu flex flex-col">
+      @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
+        <button
+          (mousedown)="slashMenuItem.onItemClick()"
+          class="hover:bg-gray-300 text-left text-sm p-1"
+          type="button"
+        >
+          <div>
+            {{ slashMenuItem.title }}
+          </div>
+          <div class="text-xs">
+            {{ slashMenuItem.subtext }}
+          </div>
+        </button>
       }
     </div>
   </block-node-suggestions-menu>

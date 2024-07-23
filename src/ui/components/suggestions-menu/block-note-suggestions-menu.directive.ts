@@ -17,6 +17,7 @@ export class BlockNoteSuggestionsMenuDirective {
       this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'none');
       this.renderer2.setStyle(this.elRef.nativeElement, 'position', 'absolute');
       this.renderer2.setStyle(this.elRef.nativeElement, 'z-index', '10000');
+      this.renderer2.addClass(this.elRef.nativeElement, 'Test');
       this.editor().suggestionMenus.onUpdate('/', (suggestionMenuState) => {
         console.log(suggestionMenuState);
         if (suggestionMenuState.show) {

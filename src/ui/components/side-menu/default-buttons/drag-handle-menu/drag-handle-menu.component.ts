@@ -8,13 +8,14 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   standalone: true,
   imports: [CommonModule, HlmButtonDirective],
   templateUrl: './drag-handle-menu.component.html',
-  styleUrl: './drag-handle-menu.component.css',
+  styleUrl: './drag-handle-menu.component.css'
 })
 export class DragHandleMenuComponent {
   editor = input.required<BlockNoteEditor>();
 
   openDragMenu() {
     console.log('Open drag menu');
+    // this.editor().removeBlocks([this.editor.name]);
   }
 
   dragStart($event: DragEvent) {
