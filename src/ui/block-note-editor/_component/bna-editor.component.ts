@@ -25,14 +25,17 @@ import {
   PartialBlock
 } from '@blocknote/core';
 import { DefaultSuggestionItem } from '@blocknote/core';
+import {
+  BnaFormattingToolbarDirective
+} from '../../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
 import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
-import { BnaSideMenuDirective } from '../../components/side-menu/bna-side-menu.directive';
+import { BnaSideMenuDirective } from '../../components/bna-side-menu/bna-side-menu.directive';
 import {
   BnaAddBlockButtonComponent
-} from '../../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
+} from '../../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import {
   BnaDragHandleMenuComponent
-} from '../../components/side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
+} from '../../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
 import {
   BnaSuggestionsMenuDirective
 } from '../../components/bna-suggestions-menu/bna-suggestions-menu.directive';
@@ -44,7 +47,8 @@ import {
     BnaSideMenuDirective,
     BnaAddBlockButtonComponent,
     BnaDragHandleMenuComponent,
-    BnaSuggestionsMenuDirective
+    BnaSuggestionsMenuDirective,
+    BnaFormattingToolbarDirective
   ],
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bna-editor',

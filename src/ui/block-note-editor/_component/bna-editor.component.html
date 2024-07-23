@@ -3,7 +3,9 @@
     <bna-add-block-btn [editor]="editor" />
     <bna-drag-handle-menu-btn [editor]="editor" />
   </bna-side-menu>
-
+<bna-formatting-toolbar [editor]="editor">
+  <button type="button" (click)="editor.toggleStyles( { bold: true })">B</button>
+</bna-formatting-toolbar>
   <bna-view [editor]="editor" class="block margin-icons" />
   <bna-suggestions-menu
     [editor]="editor"
