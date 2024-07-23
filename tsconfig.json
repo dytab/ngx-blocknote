@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "useDefineForClassFields": false,
     "esModuleInterop": true,
@@ -35,6 +36,5 @@
     "compilerOptions": {
       "module": "commonjs"
     }
-  },
-  "extends": "./tsconfig.base.json"
+  }
 }
