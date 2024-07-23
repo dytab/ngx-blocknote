@@ -6,17 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Block } from '@blocknote/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BnaEditorComponent } from '../_component/bna-editor.component';
 
 @Component({
   standalone: true,
-  imports: [
-    BnaEditorComponent,
-    CommonModule,
-    HlmButtonDirective,
-    ReactiveFormsModule,
-  ],
+  imports: [BnaEditorComponent, CommonModule, ReactiveFormsModule],
   styles: `
   .btn {
     margin: 0 1rem;
