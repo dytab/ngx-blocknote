@@ -25,41 +25,41 @@ import {
   PartialBlock
 } from '@blocknote/core';
 import { DefaultSuggestionItem } from '@blocknote/core';
-import { BlockNoteViewDirective } from '../../components/block-note-view/block-note-view.directive';
-import { BlockNoteSideMenuDirective } from '../../components/side-menu/block-note-side-menu.directive';
+import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
+import { BnaSideMenuDirective } from '../../components/side-menu/bna-side-menu.directive';
 import {
-  AddBlockButtonComponent
-} from '../../components/side-menu/default-buttons/add-block-button/add-block-button.component';
+  BnaAddBlockButtonComponent
+} from '../../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import {
-  DragHandleMenuComponent
-} from '../../components/side-menu/default-buttons/drag-handle-menu/drag-handle-menu.component';
+  BnaDragHandleMenuComponent
+} from '../../components/side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
 import {
-  BlockNoteSuggestionsMenuDirective
-} from '../../components/suggestions-menu/block-note-suggestions-menu.directive';
+  BnaSuggestionsMenuDirective
+} from '../../components/bna-suggestions-menu/bna-suggestions-menu.directive';
 
 @Component({
   imports: [
     CommonModule,
-    BlockNoteViewDirective,
-    BlockNoteSideMenuDirective,
-    AddBlockButtonComponent,
-    DragHandleMenuComponent,
-    BlockNoteSuggestionsMenuDirective
+    BnaViewDirective,
+    BnaSideMenuDirective,
+    BnaAddBlockButtonComponent,
+    BnaDragHandleMenuComponent,
+    BnaSuggestionsMenuDirective
   ],
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'block-note',
+  selector: 'bna-editor',
   standalone: true,
-  styleUrl: './block-note-editor.component.css',
-  templateUrl: './block-note-editor.component.html',
+  styleUrl: './bna-editor.component.css',
+  templateUrl: './bna-editor.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => BlockNoteEditorComponent),
+      useExisting: forwardRef(() => BnaEditorComponent),
       multi: true
     }
   ]
 })
-export class BlockNoteEditorComponent implements ControlValueAccessor {
+export class BnaEditorComponent implements ControlValueAccessor {
   formControl = input<FormControl>();
   formControlName = input<string>();
   labelForId = input<string>();

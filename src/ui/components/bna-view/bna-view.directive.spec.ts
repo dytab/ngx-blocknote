@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DragHandleMenuComponent } from './drag-handle-menu.component';
+import { BnaViewDirective } from './bna-view.directive';
 
-describe('DragHandleMenuComponent', () => {
-  let component: DragHandleMenuComponent;
-  let fixture: ComponentFixture<DragHandleMenuComponent>;
+describe('BlockNoteViewDirective', () => {
+  let component: BnaViewDirective;
+  let fixture: ComponentFixture<BnaViewDirective>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DragHandleMenuComponent],
+      imports: [BnaViewDirective],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DragHandleMenuComponent);
+    fixture = TestBed.createComponent(BnaViewDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,10 +2,10 @@ import { Directive, effect, ElementRef, input } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 
 @Directive({
-  selector: 'block-note-view[editor]',
+  selector: 'bna-view[editor]',
   standalone: true,
 })
-export class BlockNoteViewDirective {
+export class BnaViewDirective {
   editor = input.required<BlockNoteEditor>();
 
   constructor(protected elRef: ElementRef<HTMLElement>) {

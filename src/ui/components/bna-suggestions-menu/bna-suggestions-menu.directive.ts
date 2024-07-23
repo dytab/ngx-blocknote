@@ -2,10 +2,10 @@ import { Directive, effect, ElementRef, input, Renderer2 } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 
 @Directive({
-  selector: 'block-note-side-menu[editor]',
+  selector: 'bna-suggestions-menu[editor]',
   standalone: true,
 })
-export class BlockNoteSideMenuDirective {
+export class BnaSuggestionsMenuDirective {
   editor = input.required<BlockNoteEditor>();
 
   constructor(
@@ -14,16 +14,27 @@ export class BlockNoteSideMenuDirective {
   ) {
     effect(() => {
       const position = this.elRef.nativeElement.getBoundingClientRect();
-      const editorSnapshot = this.editor();
       this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'none');
       this.renderer2.setStyle(this.elRef.nativeElement, 'position', 'absolute');
-      editorSnapshot.sideMenu.onUpdate((sideMenuState) => {
-        if (sideMenuState.show) {
+      this.renderer2.setStyle(this.elRef.nativeElement, 'z-index', '10000');
+      this.renderer2.addClass(this.elRef.nativeElement, 'Test');
+      this.editor().suggestionMenus.onUpdate('/', (suggestionMenuState) => {
+        console.log(suggestionMenuState);
+        if (suggestionMenuState.show) {
           this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'block');
           this.renderer2.setStyle(
             this.elRef.nativeElement,
             'top',
-            sideMenuState.referencePos.top - position.top + 'px'
+            `${
+              suggestionMenuState.referencePos.top -
+              position.top +
+              suggestionMenuState.referencePos.height
+            }px`
+          );
+          this.renderer2.setStyle(
+            this.elRef.nativeElement,
+            'left',
+            `${suggestionMenuState.referencePos.left - position.left}px`
           );
         } else {
           this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'none');

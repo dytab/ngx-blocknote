@@ -1,11 +1,11 @@
 <div class="relative">
-  <block-note-side-menu [editor]="editor">
-    <block-note-add-block-btn [editor]="editor" />
-    <block-note-drag-handle-menu-btn [editor]="editor" />
-  </block-note-side-menu>
+  <bna-side-menu [editor]="editor">
+    <bna-add-block-btn [editor]="editor" />
+    <bna-drag-handle-menu-btn [editor]="editor" />
+  </bna-side-menu>
 
-  <block-note-view [editor]="editor" class="block margin-icons" />
-  <block-node-suggestions-menu
+  <bna-view [editor]="editor" class="block margin-icons" />
+  <bna-suggestions-menu
     [editor]="editor"
     class="z-index-3 shadow-3xl bg-white p-1.5"
   >
@@ -25,5 +25,5 @@
         </button>
       }
     </div>
-  </block-node-suggestions-menu>
+  </bna-suggestions-menu>
 </div>

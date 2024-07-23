@@ -4,13 +4,13 @@ import { BlockNoteEditor } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
-  selector: 'block-note-drag-handle-menu-btn',
+  selector: 'bna-drag-handle-menu-btn',
   standalone: true,
   imports: [CommonModule, HlmButtonDirective],
-  templateUrl: './drag-handle-menu.component.html',
-  styleUrl: './drag-handle-menu.component.css'
+  templateUrl: './bna-drag-handle-menu.component.html',
+  styleUrl: './bna-drag-handle-menu.component.css'
 })
-export class DragHandleMenuComponent {
+export class BnaDragHandleMenuComponent {
   editor = input.required<BlockNoteEditor>();
 
   openDragMenu() {

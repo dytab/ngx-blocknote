@@ -4,13 +4,13 @@ import { BlockNoteEditor } from '@blocknote/core';
 import {HlmButtonDirective} from "@spartan-ng/ui-button-helm";
 
 @Component({
-  selector: 'block-note-add-block-btn',
+  selector: 'bna-add-block-btn',
   standalone: true,
   imports: [CommonModule, HlmButtonDirective],
-  templateUrl: './add-block-button.component.html',
-  styleUrl: './add-block-button.component.css',
+  templateUrl: './bna-add-block-button.component.html',
+  styleUrl: './bna-add-block-button.component.css',
 })
-export class AddBlockButtonComponent {
+export class BnaAddBlockButtonComponent {
   editor = input.required<BlockNoteEditor>();
 
   addNewBlock() {

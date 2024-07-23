@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddBlockButtonComponent } from './add-block-button.component';
+import { BnaAddBlockButtonComponent } from './bna-add-block-button.component';
 
 describe('AddBlockButtonComponent', () => {
-  let component: AddBlockButtonComponent;
-  let fixture: ComponentFixture<AddBlockButtonComponent>;
+  let component: BnaAddBlockButtonComponent;
+  let fixture: ComponentFixture<BnaAddBlockButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddBlockButtonComponent],
+      imports: [BnaAddBlockButtonComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddBlockButtonComponent);
+    fixture = TestBed.createComponent(BnaAddBlockButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

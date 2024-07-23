@@ -6,16 +6,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BlockNoteEditorComponent } from '../_component/block-note-editor.component';
+import { BnaEditorComponent } from '../_component/bna-editor.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BlockNoteEditorComponent, HlmButtonDirective],
+  imports: [CommonModule, ReactiveFormsModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="mb-3">
         <label class="form-label" for="someControl">Editor</label>
-        <block-note formControlName="editor" />
+        <bna-editor formControlName="editor" />
         @if (control?.invalid && control?.touched) {
         <em class="invalid-feedback">Required!</em>
         }
