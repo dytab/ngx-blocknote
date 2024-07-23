@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "defaultBase": "master",
+  "defaultBase": "origin/main",
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
@@ -41,7 +41,9 @@
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
+        "{workspaceRoot}/eslint.config.js",
+        "{workspaceRoot}/.github/**/*.yml",
+        "{workspaceRoot}/nx.json"
       ]
     },
     "@nx/jest:jest": {
@@ -49,7 +51,9 @@
       "inputs": [
         "default",
         "^production",
-        "{workspaceRoot}/jest.preset.js"
+        "{workspaceRoot}/jest.preset.js",
+        "{workspaceRoot}/.github/**/*.yml",
+        "{workspaceRoot}/nx.json"
       ],
       "options": {
         "passWithNoTests": true
