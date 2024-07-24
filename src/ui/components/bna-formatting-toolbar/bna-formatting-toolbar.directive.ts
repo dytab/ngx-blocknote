@@ -27,7 +27,6 @@ export class BnaFormattingToolbarDirective implements OnChanges {
     this.renderer2.addClass(this.elRef.nativeElement, 'Test');
     if (this.editor()) {
       this.editor().formattingToolbar.onUpdate((formattingToolbar) => {
-        console.log(formattingToolbar);
         if (formattingToolbar.show) {
           this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'block');
           this.renderer2.setStyle(

@@ -17,6 +17,7 @@ export class BnaSideMenuDirective {
       const editorSnapshot = this.editor();
       this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'none');
       this.renderer2.setStyle(this.elRef.nativeElement, 'position', 'absolute');
+      this.renderer2.setStyle(this.elRef.nativeElement, 'z-index', '1000');
       editorSnapshot.sideMenu.onUpdate((sideMenuState) => {
         if (sideMenuState.show) {
           this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'block');
