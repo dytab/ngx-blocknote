@@ -6,42 +6,51 @@ import {
   Validators,
 } from '@angular/forms';
 import { Block } from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BnaEditorComponent } from '../_component/bna-editor.component';
 
 @Component({
   standalone: true,
-  imports: [BnaEditorComponent, CommonModule, ReactiveFormsModule],
+  imports: [
+    BnaEditorComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    HlmButtonDirective,
+  ],
   styles: `
-  .btn {
-    margin: 0 1rem;
-    border: 1px solid silver;
-    padding: 0.5rem
-  }
-  fieldset {
-    padding: 1rem;
-    margin: 1rem;
-    border: 1px solid silver;
-  }
   .invalid-feedback {
     color: red;
   }
   `,
   selector: 'bna-test-editor',
   template: `
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <button (click)="disable()" type="button" class="btn">disable</button>
-      <button (click)="enable()" type="button" class="btn">enable</button>
-      <button (click)="patch()" type="button" class="btn">patch</button>
-      <button (click)="reset()" type="button" class="btn">reset</button>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      class="flex gap-3 p-3 flex-col"
+    >
+      <div class="flex gap-1">
+        <button (click)="disable()" type="button" hlmBtn size="sm">
+          disable
+        </button>
+        <button (click)="enable()" type="button" hlmBtn size="sm">
+          enable
+        </button>
+        <button (click)="patch()" type="button" hlmBtn size="sm">patch</button>
+        <button (click)="reset()" type="button" hlmBtn size="sm">reset</button>
+      </div>
 
-      <fieldset class="mb-3">
-        <label class="form-label" for="someControl">Editor:</label>
-        <bna-editor formControlName="editor" />
+      <fieldset>
+        <label class="font-bold" for="someControl">Editor</label>
+        <bna-editor
+          formControlName="editor"
+          class="block min-h-52 bg-gray-200 rounded"
+        />
         @if (control.invalid && control.touched) {
         <em class="invalid-feedback">Required!</em>
         }
       </fieldset>
-      <button class="btn">submit</button>
+      <button hlmBtn>submit</button>
       <hr />
       <pre>{{ form.value | json }}</pre>
     </form>
