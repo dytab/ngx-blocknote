@@ -26,6 +26,7 @@ import { BnaEditorComponent } from '../_component/bna-editor.component';
     color: red;
   }
   `,
+  selector: 'bna-test-editor',
   template: `
     <form [formGroup]="form" (ngSubmit)="submit()">
       <button (click)="disable()" type="button" class="btn">disable</button>

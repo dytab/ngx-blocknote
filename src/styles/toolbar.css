@@ -1,0 +1,7 @@
+.bn-toolbar {
+    @apply flex;
+    flex-wrap: nowrap;
+    gap: 2px;
+    padding: 2px;
+    width: -moz-fit-content;
+}

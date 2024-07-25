@@ -1,11 +1,40 @@
 <div class="relative">
+  <bna-formatting-toolbar [editor]="editor">
+    <div class="bn-toolbar bn-formatting-toolbar bn-toolbar-default">
+      <button
+        type="button"
+        hlmBtn
+        variant="ghost"
+        size="xs"
+        (click)="editor.toggleStyles({ bold: true })"
+      >
+        B
+      </button>
+      <button
+        type="button"
+        hlmBtn
+        variant="ghost"
+        size="xs"
+        (click)="editor.toggleStyles({ bold: true })"
+      >
+        I
+      </button>
+      <button
+        type="button"
+        hlmBtn
+        variant="ghost"
+        size="xs"
+        (click)="editor.toggleStyles({ bold: true })"
+      >
+        B
+      </button>
+    </div>
+  </bna-formatting-toolbar>
   <bna-side-menu [editor]="editor">
     <bna-add-block-btn [editor]="editor" />
     <bna-drag-handle-menu-btn [editor]="editor" />
   </bna-side-menu>
-<bna-formatting-toolbar [editor]="editor">
-  <button type="button" (click)="editor.toggleStyles( { bold: true })">B</button>
-</bna-formatting-toolbar>
+
   <bna-view [editor]="editor" class="block margin-icons" />
   <bna-suggestions-menu
     [editor]="editor"
@@ -13,18 +42,18 @@
   >
     <div class="suggestions-menu flex flex-col">
       @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
-        <button
-          (mousedown)="slashMenuItem.onItemClick()"
-          class="hover:bg-gray-300 text-left text-sm p-1"
-          type="button"
-        >
-          <div>
-            {{ slashMenuItem.title }}
-          </div>
-          <div class="text-xs">
-            {{ slashMenuItem.subtext }}
-          </div>
-        </button>
+      <button
+        (mousedown)="slashMenuItem.onItemClick()"
+        class="hover:bg-gray-300 text-left text-sm p-1"
+        type="button"
+      >
+        <div>
+          {{ slashMenuItem.title }}
+        </div>
+        <div class="text-xs">
+          {{ slashMenuItem.subtext }}
+        </div>
+      </button>
       }
     </div>
   </bna-suggestions-menu>

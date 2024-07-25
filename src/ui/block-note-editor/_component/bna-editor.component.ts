@@ -25,6 +25,8 @@ import {
   insertOrUpdateBlock,
   PartialBlock,
 } from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 import { BnaFormattingToolbarDirective } from '../../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
 import { BnaSideMenuDirective } from '../../components/bna-side-menu/bna-side-menu.directive';
 import { BnaAddBlockButtonComponent } from '../../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
@@ -41,6 +43,8 @@ import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
     BnaDragHandleMenuComponent,
     BnaSuggestionsMenuDirective,
     BnaFormattingToolbarDirective,
+    HlmCardDirective,
+    HlmButtonDirective,
   ],
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bna-editor',

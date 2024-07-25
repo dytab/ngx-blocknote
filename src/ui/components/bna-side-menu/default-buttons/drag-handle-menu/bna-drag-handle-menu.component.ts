@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, OnChanges } from '@angular/core';
 import { Block, BlockNoteEditor } from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HlmButtonDirective],
   templateUrl: './bna-drag-handle-menu.component.html',
   styleUrl: './bna-drag-handle-menu.component.css',
 })
