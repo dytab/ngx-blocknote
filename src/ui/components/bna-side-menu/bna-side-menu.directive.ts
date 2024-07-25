@@ -26,7 +26,7 @@ export class BnaSideMenuDirective implements OnChanges {
   private adjustVisibilityAndPosition() {
     const position = this.elRef.nativeElement.getBoundingClientRect();
     const editorSnapshot = this.editor();
-    this.toggleVisibility(false);
+    this.toggleVisibility(true);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
     editorSnapshot.sideMenu.onUpdate((sideMenuState) => {
@@ -34,10 +34,10 @@ export class BnaSideMenuDirective implements OnChanges {
         this.renderer2.setStyle(
           this.elRef.nativeElement,
           'top',
-          sideMenuState.referencePos.top - position.top + 5 + 'px'
+          sideMenuState.referencePos.top - position.top + 25 + 'px'
         );
       }
-      this.toggleVisibility(sideMenuState.show);
+      // this.toggleVisibility(sideMenuState.show);
     });
   }
 

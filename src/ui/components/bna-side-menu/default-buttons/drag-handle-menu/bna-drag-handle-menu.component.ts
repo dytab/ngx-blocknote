@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, OnChanges } from '@angular/core';
 import { Block, BlockNoteEditor } from '@blocknote/core';
+import { provideIcons } from '@ng-icons/core';
+import { lucideGripVertical } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
   standalone: true,
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   templateUrl: './bna-drag-handle-menu.component.html',
   styleUrl: './bna-drag-handle-menu.component.css',
+  providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent implements OnChanges {
   editor = input.required<BlockNoteEditor>();
