@@ -36,6 +36,8 @@ export class BnaSuggestionsMenuDirective implements OnChanges {
           `${
             suggestionMenuState.referencePos.top -
             position.top +
+            //TODO: change to relative position to view
+            20 +
             suggestionMenuState.referencePos.height
           }px`
         );

@@ -34,7 +34,8 @@ export class BnaSideMenuDirective implements OnChanges {
         this.renderer2.setStyle(
           this.elRef.nativeElement,
           'top',
-          sideMenuState.referencePos.top - position.top + 25 + 'px'
+          //TODO: change to relative position to view
+          sideMenuState.referencePos.top - position.top + 35 + 'px'
         );
       }
       // this.toggleVisibility(sideMenuState.show);

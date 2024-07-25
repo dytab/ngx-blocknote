@@ -5,11 +5,23 @@ import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+import {
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
+} from '@spartan-ng/ui-menu-helm';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
   standalone: true,
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [
+    CommonModule,
+    HlmButtonDirective,
+    HlmIconComponent,
+    HlmMenuComponent,
+    HlmMenuGroupComponent,
+    HlmMenuItemDirective,
+  ],
   templateUrl: './bna-drag-handle-menu.component.html',
   styleUrl: './bna-drag-handle-menu.component.css',
   providers: [provideIcons({ lucideGripVertical })],
