@@ -20,14 +20,17 @@ export class BnaFormattingToolbarDirective implements OnChanges {
   ) {}
 
   ngOnChanges() {
+    this.adjustVisibilityAndPosition();
+  }
+
+  adjustVisibilityAndPosition() {
     const position = this.elRef.nativeElement.getBoundingClientRect();
-    this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'none');
-    this.renderer2.setStyle(this.elRef.nativeElement, 'position', 'absolute');
-    this.renderer2.setStyle(this.elRef.nativeElement, 'z-index', '10000');
+    this.toggleVisibility(false);
+    this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
+    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
     if (this.editor()) {
       this.editor().formattingToolbar.onUpdate((formattingToolbar) => {
         if (formattingToolbar.show) {
-          this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'block');
           this.renderer2.setStyle(
             this.elRef.nativeElement,
             'top',
@@ -38,10 +41,19 @@ export class BnaFormattingToolbarDirective implements OnChanges {
             'left',
             `${formattingToolbar.referencePos.left - position.left}px`
           );
-        } else {
-          this.renderer2.setStyle(this.elRef.nativeElement, 'display', 'none');
         }
+        this.toggleVisibility(formattingToolbar.show);
       });
+    }
+  }
+
+  private toggleVisibility(state: boolean): void {
+    if (state) {
+      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
+      this.renderer2.addClass(this.elRef.nativeElement, 'block');
+    } else {
+      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
+      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
     }
   }
 }
