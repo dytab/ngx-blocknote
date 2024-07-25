@@ -1,18 +1,6 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  forwardRef,
-  Host,
-  input,
-  Optional,
-  SkipSelf,
-} from '@angular/core';
-import {
-  ControlContainer,
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, forwardRef, Host, input, Optional, SkipSelf } from '@angular/core';
+import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Block,
   BlockNoteEditor,
@@ -23,16 +11,31 @@ import {
   DefaultSuggestionItem,
   getDefaultSlashMenuItems,
   insertOrUpdateBlock,
-  PartialBlock,
+  PartialBlock
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { BnaFormattingToolbarDirective } from '../../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
+import {
+  BnaFormattingToolbarDirective
+} from '../../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
 import { BnaSideMenuDirective } from '../../components/bna-side-menu/bna-side-menu.directive';
-import { BnaAddBlockButtonComponent } from '../../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
-import { BnaDragHandleMenuComponent } from '../../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
+import {
+  BnaAddBlockButtonComponent
+} from '../../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
+import {
+  BnaDragHandleMenuComponent
+} from '../../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSuggestionsMenuDirective } from '../../components/bna-suggestions-menu/bna-suggestions-menu.directive';
 import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
+import {
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
+  HlmMenuItemSubIndicatorComponent,
+  HlmMenuLabelComponent,
+  HlmMenuSeparatorComponent,
+  HlmMenuShortcutComponent
+} from '@spartan-ng/ui-menu-helm';
 
 @Component({
   imports: [
@@ -45,6 +48,13 @@ import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
     BnaFormattingToolbarDirective,
     HlmCardDirective,
     HlmButtonDirective,
+    HlmMenuComponent,
+    HlmMenuLabelComponent,
+    HlmMenuSeparatorComponent,
+    HlmMenuGroupComponent,
+    HlmMenuItemDirective,
+    HlmMenuShortcutComponent,
+    HlmMenuItemSubIndicatorComponent
   ],
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bna-editor',
@@ -55,9 +65,9 @@ import { BnaViewDirective } from '../../components/bna-view/bna-view.directive';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => BnaEditorComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class BnaEditorComponent implements ControlValueAccessor {
   formControl = input<FormControl>();
@@ -78,7 +88,8 @@ export class BnaEditorComponent implements ControlValueAccessor {
     @Host()
     @SkipSelf()
     private controlContainer: ControlContainer
-  ) {}
+  ) {
+  }
 
   get control() {
     return (
@@ -96,10 +107,12 @@ export class BnaEditorComponent implements ControlValueAccessor {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
-  onChange: any = () => {};
+  onChange: any = () => {
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
-  onTouch: any = () => {};
+  onTouch: any = () => {
+  };
 
   writeValue(outerValue: Block[]): void {
     //TODO: check how we can update the current editor with new content
@@ -110,31 +123,31 @@ export class BnaEditorComponent implements ControlValueAccessor {
     const schema = BlockNoteSchema.create({
       blockSpecs: {
         // enable the default blocks if desired
-        ...defaultBlockSpecs,
+        ...defaultBlockSpecs
 
         // Add your own custom blocks:
         // customBlock: CustomBlock,
       },
       inlineContentSpecs: {
         // enable the default inline content if desired
-        ...defaultInlineContentSpecs,
+        ...defaultInlineContentSpecs
 
         // Add your own custom inline content:
         // customInlineContent: CustomInlineContent,
       },
       styleSpecs: {
         // enable the default styles if desired
-        ...defaultStyleSpecs,
+        ...defaultStyleSpecs
 
         // Add your own custom styles:
         // customStyle: CustomStyle
-      },
+      }
     });
 
     this.editor = BlockNoteEditor.create({
       trailingBlock: false,
       schema,
-      initialContent: initialContent,
+      initialContent: initialContent
     });
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
     this.editor.onChange((data) => {
@@ -151,7 +164,7 @@ export class BnaEditorComponent implements ControlValueAccessor {
     // New block we want to insert.
     const helloWorldBlock: PartialBlock = {
       type: 'paragraph',
-      content: [{ type: 'text', text: 'Hello World', styles: { bold: true } }],
+      content: [{ type: 'text', text: 'Hello World', styles: { bold: true } }]
     };
 
     this.addedElement += 1;

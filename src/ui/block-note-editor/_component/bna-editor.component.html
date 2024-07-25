@@ -40,21 +40,21 @@
     [editor]="editor"
     class="z-index-3 shadow-3xl bg-white p-1.5"
   >
-    <div class="suggestions-menu flex flex-col">
-      @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
-      <button
-        (mousedown)="slashMenuItem.onItemClick()"
-        class="hover:bg-gray-300 text-left text-sm p-1"
-        type="button"
-      >
-        <div>
-          {{ slashMenuItem.title }}
-        </div>
-        <div class="text-xs">
-          {{ slashMenuItem.subtext }}
-        </div>
-      </button>
-      }
-    </div>
+    <hlm-menu>
+      <hlm-menu-label>Basic blocks</hlm-menu-label>
+      <hlm-menu-separator />
+      <hlm-menu-group>
+        @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
+          <button hlmMenuItem (mousedown)="slashMenuItem.onItemClick()">
+            {{ slashMenuItem.title }}
+            <hlm-menu-shortcut>{{ slashMenuItem.badge }}</hlm-menu-shortcut>
+            <div class="text-xs">
+              {{ slashMenuItem.subtext }}
+            </div>
+          </button>
+          <hlm-menu-separator />
+        }
+      </hlm-menu-group>
+    </hlm-menu>
   </bna-suggestions-menu>
 </div>
