@@ -1,0 +1,588 @@
+
+/**
+Styles copied from
+BlockNote/packages/core/src/editor/Block.css
+ */
+/*
+BASIC STYLES
+*/
+
+.bn-block-outer {
+    line-height: 1.5;
+    transition: margin 0.2s;
+}
+
+/*Ensures blocks & block content spans editor width*/
+.bn-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.bn-block-content {
+    display: flex;
+    padding: 3px 0;
+    transition: font-size 0.2s;
+    width: 100%;
+    /*
+    because the content elements are display: block
+    we use flex to position them next to list markers
+    */
+}
+
+.bn-block-content::before {
+    /* content: ""; */
+    transition: all 0.2s;
+    /*margin: 0px;*/
+}
+
+.bn-block-content.ProseMirror-selectednode > *,
+    /* Case for node view renderers */
+.ProseMirror-selectednode > .bn-block-content > * {
+    border-radius: 4px;
+    outline: 4px solid rgb(100, 160, 255);
+}
+
+/*
+NESTED BLOCKS
+*/
+
+.bn-block-group .bn-block-group {
+    margin-left: 1.5em;
+}
+
+.bn-block-group .bn-block-group > .bn-block-outer {
+    position: relative;
+}
+
+.bn-block-group
+.bn-block-group
+> .bn-block-outer:not([data-prev-depth-changed])::before {
+    content: " ";
+    display: inline;
+    position: absolute;
+    left: -20px;
+    height: 100%;
+    transition: all 0.2s 0.1s;
+}
+
+.bn-block-group
+.bn-block-group
+> .bn-block-outer[data-prev-depth-change="-2"]::before {
+    height: 0;
+}
+
+.bn-inline-content code {
+    font-family: monospace;
+}
+
+/* NESTED BLOCK ANIMATIONS (change in indent) */
+
+[data-prev-depth-change="1"] {
+    --x: 1;
+}
+[data-prev-depth-change="2"] {
+    --x: 2;
+}
+[data-prev-depth-change="3"] {
+    --x: 3;
+}
+[data-prev-depth-change="4"] {
+    --x: 4;
+}
+[data-prev-depth-change="5"] {
+    --x: 5;
+}
+
+[data-prev-depth-change="-1"] {
+    --x: -1;
+}
+[data-prev-depth-change="-2"] {
+    --x: -2;
+}
+[data-prev-depth-change="-3"] {
+    --x: -3;
+}
+[data-prev-depth-change="-4"] {
+    --x: -4;
+}
+[data-prev-depth-change="-5"] {
+    --x: -5;
+}
+
+.bn-block-outer[data-prev-depth-change] {
+    margin-left: calc(10px * var(--x));
+}
+
+.bn-block-outer[data-prev-depth-change]
+.bn-block-outer[data-prev-depth-change] {
+    margin-left: 0;
+}
+
+/* HEADINGS*/
+[data-level="1"] {
+    --level: 3em;
+}
+[data-level="2"] {
+    --level: 2em;
+}
+[data-level="3"] {
+    --level: 1.3em;
+}
+
+[data-prev-level="1"] {
+    --prev-level: 3em;
+}
+[data-prev-level="2"] {
+    --prev-level: 2em;
+}
+[data-prev-level="3"] {
+    --prev-level: 1.3em;
+}
+
+.bn-block-outer[data-prev-type="heading"] > .bn-block > .bn-block-content {
+    font-size: var(--prev-level);
+    font-weight: bold;
+}
+
+.bn-block-outer:not([data-prev-type])
+> .bn-block
+> .bn-block-content[data-content-type="heading"] {
+    font-size: var(--level);
+    font-weight: bold;
+}
+
+/* LISTS */
+
+.bn-block-content::before {
+    margin-right: 0;
+    content: "";
+}
+
+/* Ordered */
+.bn-block-content[data-content-type="numberedListItem"] {
+    display: flex;
+    gap: 0.5em;
+}
+
+[data-content-type="numberedListItem"] {
+    --index: attr(data-index);
+}
+
+[data-prev-type="numberedListItem"] {
+    --prev-index: attr(data-prev-index);
+}
+
+.bn-block-outer[data-prev-type="numberedListItem"]:not([data-prev-index="none"])
+> .bn-block
+> .bn-block-content::before {
+    content: var(--prev-index) ".";
+}
+
+.bn-block-outer:not([data-prev-type])
+> .bn-block
+> .bn-block-content[data-content-type="numberedListItem"]::before {
+    content: var(--index) ".";
+}
+
+/* Unordered */
+.bn-block-content[data-content-type="bulletListItem"] {
+    display: flex;
+    gap: 0.5em;
+}
+
+/* Checked */
+.bn-block-content[data-content-type="checkListItem"] > div {
+    display: flex;
+}
+
+.bn-block-content[data-content-type="checkListItem"] > div > div > input {
+    margin: 0;
+    margin-inline-end: 0.5em;
+    cursor: pointer;
+}
+
+.bn-block-content[data-content-type="checkListItem"][data-checked="true"] .bn-inline-content {
+    text-decoration: line-through;
+}
+
+.bn-block-content[data-text-alignment="center"] {
+    justify-content: center;
+}
+
+.bn-block-content[data-text-alignment="right"] {
+    justify-content: flex-end;
+}
+
+/* No list nesting */
+.bn-block-outer[data-prev-type="bulletListItem"]
+> .bn-block
+> .bn-block-content::before {
+    content: "•";
+}
+
+.bn-block-outer:not([data-prev-type])
+> .bn-block
+> .bn-block-content[data-content-type="bulletListItem"]::before {
+    content: "•";
+}
+
+/* 1 level of list nesting */
+[data-content-type="bulletListItem"]
+~ .bn-block-group
+> .bn-block-outer[data-prev-type="bulletListItem"]
+> .bn-block
+> .bn-block-content::before {
+    content: "◦";
+}
+
+[data-content-type="bulletListItem"]
+~ .bn-block-group
+> .bn-block-outer:not([data-prev-type])
+> .bn-block
+> .bn-block-content[data-content-type="bulletListItem"]::before {
+    content: "◦";
+}
+
+/* 2 levels of list nesting */
+[data-content-type="bulletListItem"]
+~ .bn-block-group
+[data-content-type="bulletListItem"]
+~ .bn-block-group
+> .bn-block-outer[data-prev-type="bulletListItem"]
+> .bn-block
+> .bn-block-content::before {
+    content: "▪";
+}
+
+[data-content-type="bulletListItem"]
+~ .bn-block-group
+[data-content-type="bulletListItem"]
+~ .bn-block-group
+> .bn-block-outer:not([data-prev-type])
+> .bn-block
+> .bn-block-content[data-content-type="bulletListItem"]::before {
+    content: "▪";
+}
+
+/* FILES */
+
+/* Add block button & default preview */
+[data-file-block] .bn-file-block-content-wrapper:has(.bn-add-file-button),
+[data-file-block] .bn-file-block-content-wrapper:has(.bn-file-default-preview) {
+    width: 100%;
+}
+
+[data-file-block] .bn-file-block-content-wrapper {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    user-select: none;
+}
+
+[data-file-block] .bn-add-file-button {
+    align-items: center;
+    background-color: rgb(242, 241, 238);
+    border-radius: 4px;
+    color: rgb(125, 121, 122);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 12px;
+    width: 100%;
+}
+
+.bn-editor[contenteditable="true"] [data-file-block] .bn-add-file-button:hover {
+    background-color: rgb(225, 225, 225);
+}
+
+[data-file-block] .bn-add-file-button-icon {
+    width: 24px;
+    height: 24px;
+}
+
+[data-file-block] .bn-add-file-button .bn-add-file-button-text {
+    font-size: 0.9rem;
+}
+
+[data-file-block] .bn-file-and-caption-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+}
+
+[data-file-block] .bn-file-default-preview {
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    padding: 4px;
+    width: 100%;
+}
+
+[data-file-block] .bn-file-default-preview:hover,
+.ProseMirror-selectednode .bn-file-default-preview {
+    background-color: rgb(225, 225, 225);
+}
+
+[data-file-block] .bn-file-default-preview-icon {
+    width: 24px;
+    height: 24px;
+}
+
+[data-file-block] .bn-visual-media-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: fit-content;
+}
+
+[data-file-block] .bn-visual-media {
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+[data-file-block] .bn-visual-media-resize-handle {
+    position: absolute;
+    width: 8px;
+    height: 30px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: ew-resize;
+}
+
+[data-content-type="audio"] > .bn-file-block-content-wrapper, .bn-audio {
+    width: 100%;
+}
+
+[data-file-block] .bn-file-caption {
+    font-size: 0.8em;
+    padding-block: 4px;
+}
+
+[data-file-block] .bn-file-caption:empty {
+    padding-block: 0;
+}
+
+/* PLACEHOLDERS*/
+.bn-inline-content:has(> .ProseMirror-trailingBreak:only-child):before {
+    /*float: left; */
+    pointer-events: none;
+    height: 0;
+    /* width: 0; */
+    position: absolute;
+    font-style: italic;
+}
+
+/* TODO: should this be here? */
+
+/* TEXT COLORS */
+[data-text-color="gray"] {
+    color: #9b9a97;
+}
+
+[data-text-color="brown"] {
+    color: #64473a;
+}
+
+[data-text-color="red"] {
+    color: #e03e3e;
+}
+
+[data-text-color="orange"] {
+    color: #d9730d;
+}
+
+[data-text-color="yellow"] {
+    color: #dfab01;
+}
+
+[data-text-color="green"] {
+    color: #4d6461;
+}
+
+[data-text-color="blue"] {
+    color: #0b6e99;
+}
+
+[data-text-color="purple"] {
+    color: #6940a5;
+}
+
+[data-text-color="pink"] {
+    color: #ad1a72;
+}
+
+/* BACKGROUND COLORS */
+[data-background-color="gray"] {
+    background-color: #ebeced;
+}
+
+[data-background-color="brown"] {
+    background-color: #e9e5e3;
+}
+
+[data-background-color="red"] {
+    background-color: #fbe4e4;
+}
+
+[data-background-color="orange"] {
+    background-color: #faebdd;
+}
+
+[data-background-color="yellow"] {
+    background-color: #fbf3db;
+}
+
+[data-background-color="green"] {
+    background-color: #ddedea;
+}
+
+[data-background-color="blue"] {
+    background-color: #ddebf1;
+}
+
+[data-background-color="purple"] {
+    background-color: #eae4f2;
+}
+
+[data-background-color="pink"] {
+    background-color: #f4dfeb;
+}
+
+/* TEXT ALIGNMENT */
+[data-text-alignment="left"] {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+[data-text-alignment="center"] {
+    justify-content: center;
+    text-align: center;
+}
+
+[data-text-alignment="right"] {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+[data-text-alignment="justify"] {
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.bn-editor {
+    outline: none;
+    padding-inline: 54px;
+
+    /* Define a set of colors to be used throughout the app for consistency
+    see https://atlassian.design/foundations/color for more info */
+    --N800: #172b4d; /* Dark neutral used for tooltips and text on light background */
+    --N40: #dfe1e6; /* Light neutral used for subtle borders and text on dark background */
+}
+
+/*
+bn-root should be applied to all top-level elements
+
+This includes the Prosemirror editor, but also <div> element such as
+Tippy popups that are appended to document.body directly
+*/
+.bn-root {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.bn-root *,
+.bn-root *::before,
+.bn-root *::after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+/* reset styles, they will be set on blockContent */
+.bn-default-styles p,
+.bn-default-styles h1,
+.bn-default-styles h2,
+.bn-default-styles h3,
+.bn-default-styles li {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    /* min width to make sure cursor is always visible */
+    min-width: 2px !important;
+}
+
+.bn-default-styles {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Open Sans", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.bn-table-drop-cursor {
+    position: absolute;
+    z-index: 20;
+    background-color: #adf;
+    pointer-events: none;
+}
+
+.bn-drag-preview {
+    position: absolute;
+    z-index: -1;
+}
+
+/* Give a remote user a caret */
+.collaboration-cursor__caret {
+    border-left: 1px solid #0d0d0d;
+    border-right: 1px solid #0d0d0d;
+    margin-left: -1px;
+    margin-right: -1px;
+    pointer-events: none;
+    position: relative;
+    word-break: normal;
+}
+
+/* Render the username above the caret */
+.collaboration-cursor__label {
+    border-radius: 3px 3px 3px 0;
+    color: #0d0d0d;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    left: -1px;
+    line-height: normal;
+    padding: 0.1rem 0.3rem;
+    position: absolute;
+    top: -1.4em;
+    user-select: none;
+    white-space: nowrap;
+}
+
+/* table related: */
+.bn-editor table {
+    width: auto !important;
+}
+.bn-editor th,
+.bn-editor td {
+    min-width: 1em;
+    border: 1px solid #ddd;
+    padding: 3px 5px;
+}
+
+.bn-editor .tableWrapper {
+    margin: 1em 0;
+}
+
+.bn-editor th {
+    font-weight: bold;
+    text-align: left;
+}
+

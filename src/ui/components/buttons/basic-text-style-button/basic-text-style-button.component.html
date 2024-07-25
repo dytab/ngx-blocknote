@@ -1,0 +1,13 @@
+<button
+  type="button"
+  hlmBtn
+  size="icon"
+  variant="ghost"
+  class="w-[30px] h-[30px]"
+  [ngClass]="{
+    'bg-gray-900 text-gray-100': editor().getActiveStyles()[basicTextStyle()]
+  }"
+  (click)="toggleStyle(basicTextStyle())"
+>
+  <hlm-icon size="sm" [name]="icon()" />
+</button>

@@ -1,7 +1,5 @@
 .bn-toolbar {
-    @apply flex;
-    flex-wrap: nowrap;
-    gap: 2px;
-    padding: 2px;
-    width: -moz-fit-content;
+    @apply flex flex-nowrap gap-1 p-1 bg-background justify-center items-center w-fit rounded-sm;
+    /**TODO move to tailwind**/
+    box-shadow: rgb(207, 207, 207) 0px 4px 12px 0px;
 }

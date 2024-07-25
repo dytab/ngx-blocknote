@@ -31,11 +31,7 @@ export class BnaFormattingToolbarDirective implements OnChanges {
           this.renderer2.setStyle(
             this.elRef.nativeElement,
             'top',
-            `${
-              formattingToolbar.referencePos.top -
-              position.top -
-              formattingToolbar.referencePos.height
-            }px`
+            `${formattingToolbar.referencePos.top - position.top - 50}px`
           );
           this.renderer2.setStyle(
             this.elRef.nativeElement,

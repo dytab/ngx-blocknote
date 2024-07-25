@@ -28,8 +28,8 @@
         ],
         "styles": [
           "./src/styles/styles.css",
-          "./src/styles/toolbar.css"
-
+          "./src/styles/toolbar.css",
+          "./src/styles/block-note-common.css"
         ],
         "scripts": []
       },

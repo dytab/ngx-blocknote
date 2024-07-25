@@ -1,33 +1,21 @@
 <div class="relative">
   <bna-formatting-toolbar [editor]="editor">
-    <div class="bn-toolbar bn-formatting-toolbar bn-toolbar-default">
-      <button
-        type="button"
-        hlmBtn
-        variant="ghost"
-        size="xs"
-        (click)="editor.toggleStyles({ bold: true })"
-      >
-        B
-      </button>
-      <button
-        type="button"
-        hlmBtn
-        variant="ghost"
-        size="xs"
-        (click)="editor.toggleStyles({ bold: true })"
-      >
-        I
-      </button>
-      <button
-        type="button"
-        hlmBtn
-        variant="ghost"
-        size="xs"
-        (click)="editor.toggleStyles({ bold: true })"
-      >
-        B
-      </button>
+    <div class="bn-toolbar">
+      <bna-basic-text-style-button
+        [editor]="editor"
+        [basicTextStyle]="'bold'"
+      />
+      <bna-basic-text-style-button
+        [editor]="editor"
+        [basicTextStyle]="'italic'"
+      />
+      <bna-basic-text-style-button
+        [editor]="editor"
+        [basicTextStyle]="'underline'"
+      />
+      <bna-text-align-button [editor]="editor" [alignment]="'left'" />
+      <bna-text-align-button [editor]="editor" [alignment]="'center'" />
+      <bna-text-align-button [editor]="editor" [alignment]="'right'" />
     </div>
   </bna-formatting-toolbar>
   <bna-side-menu [editor]="editor">
@@ -38,21 +26,21 @@
   <bna-view [editor]="editor" class="block margin-icons" />
   <bna-suggestions-menu
     [editor]="editor"
-    class="z-index-3 shadow-3xl bg-white p-1.5"
+    class="z-index-3"
   >
-    <hlm-menu>
+    <hlm-menu class="shadow-3xl">
       <hlm-menu-label>Basic blocks</hlm-menu-label>
       <hlm-menu-separator />
       <hlm-menu-group>
         @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
-          <button hlmMenuItem (mousedown)="slashMenuItem.onItemClick()">
-            {{ slashMenuItem.title }}
-            <hlm-menu-shortcut>{{ slashMenuItem.badge }}</hlm-menu-shortcut>
-            <div class="text-xs">
-              {{ slashMenuItem.subtext }}
-            </div>
-          </button>
-          <hlm-menu-separator />
+        <button hlmMenuItem (mousedown)="slashMenuItem.onItemClick()">
+          {{ slashMenuItem.title }}
+          <hlm-menu-shortcut>{{ slashMenuItem.badge }}</hlm-menu-shortcut>
+          <div class="text-xs">
+            {{ slashMenuItem.subtext }}
+          </div>
+        </button>
+        <hlm-menu-separator />
         }
       </hlm-menu-group>
     </hlm-menu>
