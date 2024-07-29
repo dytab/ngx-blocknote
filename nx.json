@@ -105,7 +105,7 @@
     },
     "@nx/angular:component": {
       "style": "bna",
-      "prefix": "meddevo"
+      "prefix": "bna"
     },
     "@schematics/angular:directive": {
       "prefix": "bna"
