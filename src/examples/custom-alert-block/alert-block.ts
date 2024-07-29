@@ -19,7 +19,7 @@ const alertRender = (
   editor: BlockNoteEditor<any, any, any>
 ) => {
   const div = document.createElement('p');
-  div.textContent = 'ALER asdasdT';
+  div.textContent = 'Alert';
 
   return {
     dom: div,

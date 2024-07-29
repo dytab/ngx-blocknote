@@ -17,13 +17,14 @@ import {
   Block,
   BlockNoteEditor,
   BlockNoteSchema,
+  BlockSpecs,
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
   DefaultSuggestionItem,
   getDefaultSlashMenuItems,
-  insertOrUpdateBlock,
-  PartialBlock,
+  InlineContentSpecs,
+  StyleSpecs,
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
@@ -36,7 +37,6 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
 } from '@spartan-ng/ui-menu-helm';
-import { alertBlock } from '../../../examples/alert/alert-block';
 import { BnaFormattingToolbarDirective } from '../../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
 import { BnaSideMenuDirective } from '../../components/bna-side-menu/bna-side-menu.directive';
 import { BnaAddBlockButtonComponent } from '../../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
@@ -84,7 +84,10 @@ export class BnaEditorComponent implements ControlValueAccessor {
   formControl = input<FormControl>();
   formControlName = input<string>();
   labelForId = input<string>();
-  //TODO: add input for blocks, ...
+  blockSpecs = input<BlockSpecs>();
+  inlineContentSpecs = input<InlineContentSpecs>();
+  styleSpecs = input<StyleSpecs>();
+  inputSlashMenuItems = input<DefaultSuggestionItem[]>();
 
   isDisabled = false;
 
@@ -92,8 +95,6 @@ export class BnaEditorComponent implements ControlValueAccessor {
   slashMenuItems: DefaultSuggestionItem[] = [];
 
   addedElement = 0;
-
-  // formattingToolbar!: FormattingToolbar;
 
   constructor(
     @Optional()
@@ -129,33 +130,23 @@ export class BnaEditorComponent implements ControlValueAccessor {
   }
 
   createEditor(initialContent: Block[]) {
+    const blockSpecs = this.blockSpecs();
+    const inlineContentSpecs = this.inlineContentSpecs();
+    const styleSpecs = this.styleSpecs();
     this.editor = BlockNoteEditor.create({
       trailingBlock: false,
       schema: BlockNoteSchema.create({
-        blockSpecs: {
-          // enable the default blocks if desired
-          ...defaultBlockSpecs,
-
-          // Add your own custom blocks:
-          alert: alertBlock,
-        },
-        inlineContentSpecs: {
-          // enable the default inline content if desired
-          ...defaultInlineContentSpecs,
-
-          // Add your own custom inline content:
-          // customInlineContent: CustomInlineContent,
-        },
-        styleSpecs: {
-          // enable the default styles if desired
-          ...defaultStyleSpecs,
-
-          // Add your own custom styles:
-          // customStyle: CustomStyle
-        },
+        blockSpecs: blockSpecs ? blockSpecs : { ...defaultBlockSpecs },
+        inlineContentSpecs: inlineContentSpecs
+          ? inlineContentSpecs
+          : { ...defaultInlineContentSpecs },
+        styleSpecs: styleSpecs
+          ? styleSpecs
+          : {
+              ...defaultStyleSpecs,
+            },
       }),
       initialContent: initialContent,
-      //TODO: remove cast
     }) as unknown as BlockNoteEditor;
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
     this.editor.onChange((data) => {
@@ -163,22 +154,11 @@ export class BnaEditorComponent implements ControlValueAccessor {
     });
   }
 
-  getSlashMenuItems(editor: BlockNoteEditor) {
-    return [...getDefaultSlashMenuItems(editor)];
-  }
-
-  addBlock() {
-    // Block that the text cursor is currently in.
-    // New block we want to insert.
-    const helloWorldBlock: PartialBlock = {
-      type: 'paragraph',
-      content: [{ type: 'text', text: 'Hello World', styles: { bold: true } }],
-    };
-
-    this.addedElement += 1;
-    // Inserting the new block after the current one.
-    insertOrUpdateBlock(this.editor, helloWorldBlock);
-    this.editor.suggestionMenus.closeMenu();
+  getSlashMenuItems(editor: BlockNoteEditor): DefaultSuggestionItem[] {
+    const slashMenuItems = this.inputSlashMenuItems();
+    return slashMenuItems
+      ? slashMenuItems
+      : [...getDefaultSlashMenuItems(editor)];
   }
 
   registerOnChange(fn: unknown) {
@@ -192,11 +172,5 @@ export class BnaEditorComponent implements ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
     this.editor.isEditable = !isDisabled;
-  }
-
-  toggleStyle($event: MouseEvent, style: string) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.editor.toggleStyles({ [style]: true });
   }
 }

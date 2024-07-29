@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CustomBlockExampleComponent } from './custom-block-example.component';
+import { CustomAlertBlockExampleComponent } from './custom-alert-block-example.component';
 
 describe('CustomBlockExampleComponent', () => {
-  let component: CustomBlockExampleComponent;
-  let fixture: ComponentFixture<CustomBlockExampleComponent>;
+  let component: CustomAlertBlockExampleComponent;
+  let fixture: ComponentFixture<CustomAlertBlockExampleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomBlockExampleComponent],
+      imports: [CustomAlertBlockExampleComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomBlockExampleComponent);
+    fixture = TestBed.createComponent(CustomAlertBlockExampleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
