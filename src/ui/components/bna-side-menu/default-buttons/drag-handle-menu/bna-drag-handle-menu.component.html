@@ -1,24 +1,19 @@
-  <button
-    (click)="openDragMenu()"
-    (dragend)="dragEnd()"
-    (dragstart)="dragStart($event)"
-    draggable="true"
-    type="button"
-    hlmBtn
-    variant="ghost"
-    size="xs"
-  >
-    <hlm-icon size="sm" [name]="'lucideGripVertical'" />
-  </button>
-
-
-<div
-  id="dropdown"
-  [ngClass]="{ hidden: !dragMenuShown }"
+<button
+  (dragend)="dragEnd()"
+  [brnMenuTriggerFor]="menu"
+  (dragstart)="dragStart($event)"
+  draggable="true"
+  type="button"
+  hlmBtn
+  variant="ghost"
+  size="xs"
 >
+  <hlm-icon size="sm" [name]="'lucideGripVertical'" />
+</button>
+<ng-template #menu>
   <hlm-menu class="shadow-3xl">
     <hlm-menu-group>
       <button hlmMenuItem type="button" (click)="deleteBlock()">Delete</button>
     </hlm-menu-group>
   </hlm-menu>
-</div>
+</ng-template>

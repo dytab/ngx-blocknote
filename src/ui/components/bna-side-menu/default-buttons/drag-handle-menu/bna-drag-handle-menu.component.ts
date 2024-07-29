@@ -5,10 +5,16 @@ import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmMenuItemDirective,
+  HlmMenuItemSubIndicatorComponent,
+  HlmMenuLabelComponent,
+  HlmMenuSeparatorComponent,
+  HlmMenuShortcutComponent,
+  HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
 
 @Component({
@@ -17,10 +23,16 @@ import {
   imports: [
     CommonModule,
     HlmButtonDirective,
+    BrnMenuTriggerDirective,
     HlmIconComponent,
     HlmMenuComponent,
-    HlmMenuGroupComponent,
+    HlmSubMenuComponent,
     HlmMenuItemDirective,
+    HlmMenuItemSubIndicatorComponent,
+    HlmMenuLabelComponent,
+    HlmMenuShortcutComponent,
+    HlmMenuSeparatorComponent,
+    HlmMenuGroupComponent,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',
   styleUrl: './bna-drag-handle-menu.component.css',

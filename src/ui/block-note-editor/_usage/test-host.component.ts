@@ -59,7 +59,16 @@ import { BnaEditorComponent } from '../_component/bna-editor.component';
 export class TestHostBlockNodeEditorComponent {
   form = this.formBuilder.group({
     editor: this.formBuilder.control<Block[] | undefined>(
-      undefined,
+      [
+        {
+          id: '262bf9c4-3c2a-4543-bc47-49976ec904c3',
+          type: 'alert',
+          props: {},
+          content: [],
+          children: [],
+        },
+        //TODO: remove cast
+      ] as any,
       Validators.required
     ),
   });
