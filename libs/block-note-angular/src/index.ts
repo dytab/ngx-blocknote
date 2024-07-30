@@ -1,1 +1,1 @@
-export * from './lib/block-note-editor/_component/bna-editor.component';
+export * from './lib/block-note-editor/bna-editor.component';

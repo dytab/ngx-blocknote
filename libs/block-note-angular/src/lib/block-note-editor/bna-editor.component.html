@@ -1,4 +1,5 @@
 <div class="relative py-3">
+  @if(isInitialized){
   <bna-formatting-toolbar [editor]="editor">
     <div class="bn-toolbar">
       <bna-basic-text-style-button
@@ -24,10 +25,7 @@
   </bna-side-menu>
 
   <bna-view [editor]="editor" class="block" />
-  <bna-suggestions-menu
-    [editor]="editor"
-    class="z-index-3"
-  >
+  <bna-suggestions-menu [editor]="editor" class="z-index-3">
     <hlm-menu class="shadow-3xl">
       <hlm-menu-label>Basic blocks</hlm-menu-label>
       <hlm-menu-separator />
@@ -45,4 +43,5 @@
       </hlm-menu-group>
     </hlm-menu>
   </bna-suggestions-menu>
+  }
 </div>

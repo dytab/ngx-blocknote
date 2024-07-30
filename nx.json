@@ -85,7 +85,6 @@
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "bna",
       "prefix": "bna"
     },
     "@schematics/angular:directive": {

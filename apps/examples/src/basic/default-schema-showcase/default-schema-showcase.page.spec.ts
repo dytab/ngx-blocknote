@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BasicMinimal } from './basic-minimal.component';
+import { BasicMinimal } from './default-schema-showcase.page';
 
 describe('CustomBlockExampleComponent', () => {
   let component: BasicMinimal;
