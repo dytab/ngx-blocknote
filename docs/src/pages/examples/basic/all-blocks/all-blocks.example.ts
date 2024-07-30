@@ -6,12 +6,7 @@ import { BnaEditorComponent } from '@dytab/block-note-angular';
   standalone: true,
   selector: 'bna-all-blocks-example',
   imports: [CommonModule, BnaEditorComponent],
-  template: `
-    <bna-editor
-      [initialContent]="initialContent"
-      class="block min-h-52 bg-gray-200 rounded"
-    />
-  `,
+  template: ` <bna-editor [initialContent]="initialContent" /> `,
 })
 export class AllBlocksExample {
   initialContent = [
@@ -151,7 +146,6 @@ import { BnaEditorComponent } from '@dytab/block-note-angular';
   template: \`
     <bna-editor
       [initialContent]="initialContent"
-      class="block min-h-52 bg-gray-200 rounded"
     />
   \`,
 })
