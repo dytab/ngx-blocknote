@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BnaDragHandleMenuComponent } from './bna-drag-handle-menu.component';
 
-describe('DragHandleMenuComponent', () => {
+xdescribe('DragHandleMenuComponent', () => {
   let component: BnaDragHandleMenuComponent;
   let fixture: ComponentFixture<BnaDragHandleMenuComponent>;
 

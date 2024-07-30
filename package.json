@@ -26,6 +26,7 @@
     "@spartan-ng/ui-menu-brain": "0.0.1-alpha.352",
     "@spartan-ng/ui-tabs-brain": "0.0.1-alpha.352",
     "@spartan-ng/ui-tooltip-brain": "0.0.1-alpha.352",
+    "@testing-library/angular": "^17.1.0",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "ngx-highlightjs": "^12.0.0",
