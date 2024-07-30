@@ -72,7 +72,8 @@ export class BnaEditorComponent implements OnChanges {
   styleSpecs = input<StyleSpecs>();
   inputSlashMenuItems = input<DefaultSuggestionItem[]>();
 
-  contentChanged = output();
+  contentChanged = output<Block[]>();
+  onEditorReady = output<BlockNoteEditor>();
 
   editor!: BlockNoteEditor;
   slashMenuItems: DefaultSuggestionItem[] = [];
@@ -107,6 +108,7 @@ export class BnaEditorComponent implements OnChanges {
       }),
       initialContent: initialContent,
     }) as unknown as BlockNoteEditor;
+    this.onEditorReady.emit(this.editor);
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
     this.editor.onChange((data) => {
       //TODO: remove casting

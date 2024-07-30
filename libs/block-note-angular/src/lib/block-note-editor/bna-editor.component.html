@@ -1,4 +1,4 @@
-<div class="relative py-3">
+<div class="relative py-3 bn-container">
   @if(isInitialized){
   <bna-formatting-toolbar [editor]="editor">
     <div class="bn-toolbar">
@@ -24,7 +24,7 @@
     <bna-drag-handle-menu-btn [editor]="editor" />
   </bna-side-menu>
 
-  <bna-view [editor]="editor" class="block" />
+  <bna-view [editor]="editor" class="block ProseMirror bn-editor bn-default-styles" />
   <bna-suggestions-menu [editor]="editor" class="z-index-3">
     <hlm-menu class="shadow-3xl">
       <hlm-menu-label>Basic blocks</hlm-menu-label>
