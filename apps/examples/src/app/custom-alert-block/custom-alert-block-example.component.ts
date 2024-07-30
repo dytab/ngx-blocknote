@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Block, BlockSpecs, defaultBlockSpecs } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BnaEditorComponent } from '../../ui/block-note-editor/_component/bna-editor.component';
+import { BnaEditorComponent } from '../../../../../src/ui/block-note-editor/_component/bna-editor.component';
 import { alertBlock } from './alert-block';
 
 @Component({

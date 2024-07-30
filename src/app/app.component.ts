@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CustomAlertBlockExampleComponent } from '../examples/custom-alert-block/custom-alert-block-example.component';
+import { CustomAlertBlockExampleComponent } from '../../apps/examples/src/app/custom-alert-block/custom-alert-block-example.component';
 import { TestHostBlockNodeEditorComponent } from '../ui/block-note-editor/_usage/test-host.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 

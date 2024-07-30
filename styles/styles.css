@@ -1,4 +1,4 @@
-@import '@angular/cdk/overlay-prebuilt.css';
+@import '../node_modules/@angular/cdk/overlay-prebuilt.css';
 
 @tailwind base;
 @tailwind components;
