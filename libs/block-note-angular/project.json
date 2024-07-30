@@ -1,5 +1,5 @@
 {
-  "name": "@dytab/block-note-angular",
+  "name": "block-note-angular",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/block-note-angular/src",
   "prefix": "lib",

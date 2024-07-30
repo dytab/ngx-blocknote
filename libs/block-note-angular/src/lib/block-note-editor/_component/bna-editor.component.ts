@@ -67,7 +67,6 @@ import { TextAlignButtonComponent } from '../../components/buttons/text-align-bu
     HlmMenuItemSubIndicatorComponent,
     TextAlignButtonComponent,
   ],
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bna-editor',
   standalone: true,
   styleUrl: './bna-editor.component.css',
