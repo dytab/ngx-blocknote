@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from './bna-editor.component';
 
 describe('BnaEditorComponent', () => {
   let component: BnaEditorComponent;
