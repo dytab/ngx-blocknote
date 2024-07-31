@@ -19,7 +19,7 @@ import { AllBlocksExample, allBlocksExampleCode } from './all-blocks.example';
     TabsComponent,
     AllBlocksExample,
   ],
-  template: ` <bna-section-intro name="Basic Setup">
+  template: `<bna-section-intro name="Default Schema Showcase">
       <p class="${hlmP} mb-8">
         This example shows the minimal code required to set up a BlockNote
         editor in Angular.
