@@ -1,10 +1,11 @@
-import type { BlockNoteEditor } from '@blocknote/core';
+import { BlockNoteEditor, insertOrUpdateBlock } from '@blocknote/core';
 import {
   BlockFromConfig,
   createBlockSpec,
   Props,
   PropSchema,
 } from '@blocknote/core';
+import { schema } from '@angular-devkit/core';
 
 export const alertPropSchema = {} satisfies PropSchema;
 

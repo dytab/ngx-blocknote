@@ -4,7 +4,7 @@ import {
   input,
   OnChanges,
   output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   Block,
@@ -17,7 +17,7 @@ import {
   DefaultSuggestionItem,
   getDefaultSlashMenuItems,
   InlineContentSpecs,
-  StyleSpecs,
+  StyleSpecs
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
@@ -28,16 +28,30 @@ import {
   HlmMenuItemSubIndicatorComponent,
   HlmMenuLabelComponent,
   HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
+  HlmMenuShortcutComponent
 } from '@spartan-ng/ui-menu-helm';
-import { BnaFormattingToolbarDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
-import { BnaSideMenuDirective } from '../components/bna-side-menu/bna-side-menu.directive';
-import { BnaAddBlockButtonComponent } from '../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
-import { BnaDragHandleMenuComponent } from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
-import { BnaSuggestionsMenuDirective } from '../components/bna-suggestions-menu/bna-suggestions-menu.directive';
+import {
+  BnaFormattingToolbarDirective
+} from '../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
+import {
+  BnaSideMenuDirective
+} from '../components/bna-side-menu/bna-side-menu.directive';
+import {
+  BnaAddBlockButtonComponent
+} from '../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
+import {
+  BnaDragHandleMenuComponent
+} from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
+import {
+  BnaSuggestionsMenuDirective
+} from '../components/bna-suggestions-menu/bna-suggestions-menu.directive';
 import { BnaViewDirective } from '../components/bna-view/bna-view.directive';
-import { BasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
-import { TextAlignButtonComponent } from '../components/buttons/text-align-button/text-align-button.component';
+import {
+  BasicTextStyleButtonComponent
+} from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
+import {
+  TextAlignButtonComponent
+} from '../components/buttons/text-align-button/text-align-button.component';
 
 @Component({
   imports: [
@@ -58,38 +72,38 @@ import { TextAlignButtonComponent } from '../components/buttons/text-align-butto
     HlmMenuItemDirective,
     HlmMenuShortcutComponent,
     HlmMenuItemSubIndicatorComponent,
-    TextAlignButtonComponent,
+    TextAlignButtonComponent
   ],
   selector: 'bna-editor',
   standalone: true,
   styleUrl: './bna-editor.component.css',
-  templateUrl: './bna-editor.component.html',
+  templateUrl: './bna-editor.component.html'
 })
-export class BnaEditorComponent implements OnChanges {
+export class BnaEditorComponent implements OnChanges{
   initialContent = input<Block[]>();
   blockSpecs = input<BlockSpecs>();
   inlineContentSpecs = input<InlineContentSpecs>();
   styleSpecs = input<StyleSpecs>();
-  inputSlashMenuItems = input<DefaultSuggestionItem[]>();
+  inputSlashMenuItems = input<Array<(editor: BlockNoteEditor) => Omit<DefaultSuggestionItem, 'key'>>>();
 
   contentChanged = output<Block[]>();
   onEditorReady = output<BlockNoteEditor>();
 
   editor!: BlockNoteEditor;
-  slashMenuItems: DefaultSuggestionItem[] = [];
+  slashMenuItems: Omit<DefaultSuggestionItem, 'key'>[] = [];
 
   //TODO: remove relying on init flag
   isInitialized = false;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['initialContent']) {
+  ngOnChanges(changes: SimpleChanges){
+    if (changes['initialContent']){
       //TODO: remove casting
       this.createEditor(changes['initialContent'].currentValue as any);
       this.isInitialized = true;
     }
   }
 
-  createEditor(initialContent: Block[]) {
+  createEditor(initialContent: Block[]){
     const blockSpecs = this.blockSpecs();
     const inlineContentSpecs = this.inlineContentSpecs();
     const styleSpecs = this.styleSpecs();
@@ -103,10 +117,10 @@ export class BnaEditorComponent implements OnChanges {
         styleSpecs: styleSpecs
           ? styleSpecs
           : {
-              ...defaultStyleSpecs,
-            },
+            ...defaultStyleSpecs
+          }
       }),
-      initialContent: initialContent,
+      initialContent: initialContent
     }) as unknown as BlockNoteEditor;
     this.onEditorReady.emit(this.editor);
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
@@ -116,10 +130,13 @@ export class BnaEditorComponent implements OnChanges {
     });
   }
 
-  getSlashMenuItems(editor: BlockNoteEditor): DefaultSuggestionItem[] {
+  getSlashMenuItems(editor: BlockNoteEditor): Omit<DefaultSuggestionItem, 'key'>[]{
     const slashMenuItems = this.inputSlashMenuItems();
-    return slashMenuItems
-      ? slashMenuItems
-      : [...getDefaultSlashMenuItems(editor)];
+    if (slashMenuItems){
+      const customSlashMenuItem = slashMenuItems.map(a => a(this.editor));
+      return [...getDefaultSlashMenuItems(editor), ...customSlashMenuItem];
+    }
+
+    return [...getDefaultSlashMenuItems(editor)];
   }
 }

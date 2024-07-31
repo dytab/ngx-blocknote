@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BlockSpecs, defaultBlockSpecs } from '@blocknote/core';
+import {
+  BlockConfig,
+  BlockNoteEditor,
+  BlockSpecs,
+  InlineContentSchema,
+  StyleSchema,
+  defaultBlockSpecs,
+  insertOrUpdateBlock, DefaultSuggestionItem
+} from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { alertBlock } from './alert-block';
@@ -12,19 +20,41 @@ import { alertBlock } from './alert-block';
   template: `<bna-editor
     [initialContent]="initialContent"
     [blockSpecs]="blockSpecs"
-  />`,
+    [inputSlashMenuItems]="suggestionItem"
+  />`
 })
-export class AlertBlockExample {
+export class AlertBlockExample{
   initialContent = [
     {
-      type: 'alert',
-    },
+      type: 'alert'
+    }
     //TODO: remove cast
   ] as any;
   blockSpecs: BlockSpecs = {
     ...defaultBlockSpecs,
-    alert: alertBlock,
+    alert: alertBlock
   };
+  insertAlert = (editor: BlockNoteEditor): Omit<DefaultSuggestionItem, 'key'> => ({
+    title: "Alert",
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: "alert" as never,
+      });
+    },
+    badge: 'BAFD',
+    subtext: 'SUBTEXT',
+    aliases: [
+      "alert",
+      "notification",
+      "emphasize",
+      "warning",
+      "error",
+      "info",
+      "success",
+    ],
+    group: "Other",
+  });
+  suggestionItem: Array<(editor: BlockNoteEditor) => Omit<DefaultSuggestionItem, 'key'>> = [this.insertAlert]
 }
 
 export const alertBlockExampleCode = `import { CommonModule } from '@angular/common';
