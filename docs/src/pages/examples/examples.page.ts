@@ -12,8 +12,11 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     RouterLink,
     RouterLinkActive,
   ],
+  host: {
+    class: 'block py-3 mx-auto max-w-[90rem]',
+  },
   template: `<div
-    class="w-full mx-auto px-4 sm:px-8 flex flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)] md:gap-6 lg:gap-10"
+    class="flex flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)] md:gap-6 lg:gap-10"
   >
     <aside class="flex flex-col p-3">
       Basic
@@ -51,9 +54,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         >Converting Blocks to HTML</a
       >
     </aside>
-    <main
-      class="sticky top-0 overflow-hidden py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[minmax(0,1fr)_280px]"
-    >
+    <main class="overflow-hidden py-6">
       <router-outlet class="hidden"></router-outlet>
     </main>
   </div>`,
