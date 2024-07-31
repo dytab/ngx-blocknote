@@ -19,8 +19,6 @@
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-      "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": []
   },
@@ -64,9 +62,6 @@
           "codeCoverage": true
         }
       }
-    },
-    "build-storybook": {
-      "cache": true
     },
     "@nx/angular:ng-packagr-lite": {
       "cache": true,
