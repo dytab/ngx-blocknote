@@ -10,6 +10,7 @@ import { BnaEditorComponent } from '@dytab/block-note-angular';
   template: `
     <p>Input (BlockNote Editor)</p>
     <bna-editor
+      class="h-[250px] block"
       [initialContent]="initialContent"
       (contentChanged)="onContentChange($event)"
       (onEditorReady)="editorReady($event)"
