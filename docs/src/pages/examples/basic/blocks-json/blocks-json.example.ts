@@ -50,7 +50,7 @@ export class BlocksJsonExample {
 
   async editorReady(editor: BlockNoteEditor) {
     this.editor = editor;
-    // this.content = await this.editor.bl();
+    this.content = JSON.stringify(editor.document, null, 2);
   }
 }
 
