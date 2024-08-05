@@ -6,6 +6,18 @@ import {
   Renderer2,
 } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
+import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { getVirtualElement } from '../../util/get-virtual-element.util';
+
+const shiftTopBy20px = {
+  name: 'shiftTopBy20Px',
+  fn({ x, y }: { x: number; y: number }) {
+    return {
+      x: x,
+      y: y - 100,
+    };
+  },
+};
 
 @Directive({
   selector: 'bna-formatting-toolbar[editor]',
@@ -24,22 +36,41 @@ export class BnaFormattingToolbarDirective implements OnChanges {
   }
 
   adjustVisibilityAndPosition() {
-    const position = this.elRef.nativeElement.getBoundingClientRect();
     this.toggleVisibility(false);
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
+    let cleanup: () => void = () => {
+      return;
+    };
+    this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
     if (this.editor()) {
-      this.editor().formattingToolbar.onUpdate((formattingToolbar) => {
-        if (formattingToolbar.show) {
-          this.renderer2.setStyle(
+      this.editor().formattingToolbar.onUpdate(async (formattingToolbar) => {
+        if (!formattingToolbar.show) {
+          cleanup();
+        } else {
+          const updatePosition = async () => {
+            const result = await computePosition(
+              getVirtualElement(formattingToolbar.referencePos),
+              this.elRef.nativeElement,
+              {
+                placement: 'top',
+                middleware: [flip()],
+              }
+            );
+            this.renderer2.setStyle(
+              this.elRef.nativeElement,
+              'top',
+              `${result.y}px`
+            );
+            this.renderer2.setStyle(
+              this.elRef.nativeElement,
+              'left',
+              `${result.x}px`
+            );
+          };
+          cleanup = autoUpdate(
+            getVirtualElement(formattingToolbar.referencePos),
             this.elRef.nativeElement,
-            'top',
-            `${formattingToolbar.referencePos.top - position.top - 50}px`
-          );
-          this.renderer2.setStyle(
-            this.elRef.nativeElement,
-            'left',
-            `${formattingToolbar.referencePos.left - position.left}px`
+            updatePosition
           );
         }
         this.toggleVisibility(formattingToolbar.show);

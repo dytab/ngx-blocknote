@@ -6,6 +6,8 @@ import {
   Renderer2,
 } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
+import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
   selector: 'bna-side-menu[editor]',
@@ -24,21 +26,39 @@ export class BnaSideMenuDirective implements OnChanges {
   }
 
   private adjustVisibilityAndPosition() {
-    const position = this.elRef.nativeElement.getBoundingClientRect();
+    let cleanup: () => void = () => {
+      return;
+    };
     const editorSnapshot = this.editor();
     this.toggleVisibility(true);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    editorSnapshot.sideMenu.onUpdate((sideMenuState) => {
-      if (sideMenuState.show) {
-        this.renderer2.setStyle(
+    editorSnapshot.sideMenu.onUpdate(async (sideMenuState) => {
+      if (!sideMenuState.show) {
+        cleanup();
+      } else {
+        const updatePosition = async () => {
+          const result = await computePosition(
+            getVirtualElement(sideMenuState.referencePos),
+            this.elRef.nativeElement,
+            {
+              placement: 'left',
+              middleware: [flip()],
+            }
+          );
+          this.renderer2.setStyle(
+            this.elRef.nativeElement,
+            'top',
+            `${result.y}px`
+          );
+        };
+        cleanup = autoUpdate(
+          getVirtualElement(sideMenuState.referencePos),
           this.elRef.nativeElement,
-          'top',
-          //TODO: change to relative position to view
-          sideMenuState.referencePos.top - position.top + 35 + 'px'
+          updatePosition
         );
       }
-      // this.toggleVisibility(sideMenuState.show);
+      this.toggleVisibility(sideMenuState.show);
     });
   }
 

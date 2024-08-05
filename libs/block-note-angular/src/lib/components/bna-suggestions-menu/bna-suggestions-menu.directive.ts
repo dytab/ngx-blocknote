@@ -6,6 +6,8 @@ import {
   Renderer2,
 } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
+import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
   selector: 'bna-suggestions-menu[editor]',
@@ -24,27 +26,40 @@ export class BnaSuggestionsMenuDirective implements OnChanges {
   }
 
   private adjustVisibilityAndPosition() {
-    const position = this.elRef.nativeElement.getBoundingClientRect();
     this.toggleVisibility(false);
+    let cleanup: () => void = () => {
+      return;
+    };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    this.editor().suggestionMenus.onUpdate('/', (suggestionMenuState) => {
-      if (suggestionMenuState.show) {
-        this.renderer2.setStyle(
+    this.editor().suggestionMenus.onUpdate('/', async (suggestionMenuState) => {
+      if (!suggestionMenuState.show) {
+        cleanup();
+      } else {
+        const updatePosition = async () => {
+          const result = await computePosition(
+            getVirtualElement(suggestionMenuState.referencePos),
+            this.elRef.nativeElement,
+            {
+              placement: 'bottom-start',
+              middleware: [flip()],
+            }
+          );
+          this.renderer2.setStyle(
+            this.elRef.nativeElement,
+            'top',
+            `${result.y}px`
+          );
+          this.renderer2.setStyle(
+            this.elRef.nativeElement,
+            'left',
+            `${result.x}px`
+          );
+        };
+        cleanup = autoUpdate(
+          getVirtualElement(suggestionMenuState.referencePos),
           this.elRef.nativeElement,
-          'top',
-          `${
-            suggestionMenuState.referencePos.top -
-            position.top +
-            //TODO: change to relative position to view
-            20 +
-            suggestionMenuState.referencePos.height
-          }px`
-        );
-        this.renderer2.setStyle(
-          this.elRef.nativeElement,
-          'left',
-          `${suggestionMenuState.referencePos.left - position.left}px`
+          updatePosition
         );
       }
       this.toggleVisibility(suggestionMenuState.show);
