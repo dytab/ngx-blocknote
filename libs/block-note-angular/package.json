@@ -2,9 +2,8 @@
   "name": "@dytab/block-note-angular",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
-    "@blocknote/core": "^0.14.5",
+    "@blocknote/core": "0.15.3",
     "@spartan-ng/ui-button-helm": "0.0.1",
     "@spartan-ng/ui-card-helm": "0.0.1",
     "@spartan-ng/ui-menu-helm": "0.0.1",
@@ -13,7 +12,6 @@
     "@spartan-ng/ui-icon-helm": "0.0.1",
     "@spartan-ng/ui-menu-brain": "0.0.1-alpha.352",
     "jest-preset-angular": "~14.1.0",
-    "@nx/angular": "19.4.2",
     "@spartan-ng/ui-core": "^0.0.1-alpha.352",
     "@floating-ui/dom": "^1.6.8"
   },
