@@ -6,6 +6,9 @@ import { AlertBlockPage } from '../pages/examples/custom/alert-block/alert-block
 import { ExamplesPage } from '../pages/examples/examples.page';
 import { ConvertToHtmlPage } from '../pages/examples/interoperability/convert-to-html/convert-to-html.page';
 import { OverviewPage } from '../pages/overview.page';
+import {
+  ManipulatingBlocksPage
+} from '../pages/examples/basic/manipulating-blocks/manipulating-blocks.page';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -21,6 +24,10 @@ export const appRoutes: Route[] = [
       {
         path: 'basic/all-blocks',
         component: AllBlocksPage,
+      },
+      {
+        path: 'basic/manipulating-blocks',
+        component: ManipulatingBlocksPage,
       },
       {
         path: 'custom/alert-block',

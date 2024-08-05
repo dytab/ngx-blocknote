@@ -23,6 +23,9 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a hlmBtn variant="ghost" routerLink="basic/minimal" class="justify-start"
         >Basic Setup</a
       >
+      <a hlmBtn variant="ghost" routerLink="basic/manipulating-blocks" class="justify-start"
+      >Manipulating Blocks</a
+      >
       <a
         hlmBtn
         variant="ghost"
