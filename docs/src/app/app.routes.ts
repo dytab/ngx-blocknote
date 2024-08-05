@@ -9,6 +9,9 @@ import { OverviewPage } from '../pages/overview.page';
 import {
   ManipulatingBlocksPage
 } from '../pages/examples/basic/manipulating-blocks/manipulating-blocks.page';
+import {
+  RemovingDefaultBlocksPage
+} from '../pages/examples/basic/removing-default-blocks/removing-default-blocks.page';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -28,6 +31,10 @@ export const appRoutes: Route[] = [
       {
         path: 'basic/manipulating-blocks',
         component: ManipulatingBlocksPage,
+      },
+      {
+        path: 'basic/removing-default-blocks',
+        component: RemovingDefaultBlocksPage,
       },
       {
         path: 'custom/alert-block',
