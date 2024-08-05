@@ -55,10 +55,7 @@ jobs:
         run: npx nx affected -t build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          name: 'github-pages'
-          path: 'dist'
+        uses: actions/upload-pages-artifact@v3
 
   # Deploy job
   deploy:
