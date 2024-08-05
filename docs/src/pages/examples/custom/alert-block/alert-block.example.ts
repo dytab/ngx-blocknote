@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  BlockConfig,
   BlockNoteEditor,
   BlockSpecs,
-  InlineContentSchema,
-  StyleSchema,
   defaultBlockSpecs,
-  insertOrUpdateBlock, DefaultSuggestionItem
+  DefaultSuggestionItem,
+  insertOrUpdateBlock,
 } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -21,40 +19,47 @@ import { alertBlock } from './alert-block';
     [initialContent]="initialContent"
     [blockSpecs]="blockSpecs"
     [inputSlashMenuItems]="suggestionItem"
-  />`
+  />`,
 })
-export class AlertBlockExample{
+export class AlertBlockExample {
   initialContent = [
     {
-      type: 'alert'
-    }
+      type: 'alert',
+      props: {
+        type: 'warning',
+      },
+    },
     //TODO: remove cast
   ] as any;
   blockSpecs: BlockSpecs = {
     ...defaultBlockSpecs,
-    alert: alertBlock
+    alert: alertBlock,
   };
-  insertAlert = (editor: BlockNoteEditor): Omit<DefaultSuggestionItem, 'key'> => ({
-    title: "Alert",
+  insertAlert = (
+    editor: BlockNoteEditor
+  ): Omit<DefaultSuggestionItem, 'key'> => ({
+    title: 'Alert',
     onItemClick: () => {
       insertOrUpdateBlock(editor, {
-        type: "alert" as never,
+        type: 'alert' as never,
       });
     },
     badge: 'BAFD',
     subtext: 'SUBTEXT',
     aliases: [
-      "alert",
-      "notification",
-      "emphasize",
-      "warning",
-      "error",
-      "info",
-      "success",
+      'alert',
+      'notification',
+      'emphasize',
+      'warning',
+      'error',
+      'info',
+      'success',
     ],
-    group: "Other",
+    group: 'Other',
   });
-  suggestionItem: Array<(editor: BlockNoteEditor) => Omit<DefaultSuggestionItem, 'key'>> = [this.insertAlert]
+  suggestionItem: Array<
+    (editor: BlockNoteEditor) => Omit<DefaultSuggestionItem, 'key'>
+  > = [this.insertAlert];
 }
 
 export const alertBlockExampleCode = `import { CommonModule } from '@angular/common';
