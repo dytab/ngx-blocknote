@@ -5,7 +5,9 @@
     "@ng-icons/core": "^25.1.0",
     "@spartan-ng/ui-core": "^0.0.1-alpha.352",
     "class-variance-authority": "^0.6.0",
-    "clsx": "^1.2.1"
+    "clsx": "^1.2.1",
+    "@angular/core": "18.1.3",
+    "@angular/common": "18.1.3"
   },
   "sideEffects": false
 }

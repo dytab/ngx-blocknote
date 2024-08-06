@@ -1,0 +1,16 @@
+name: release
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: build
+        run: npx nx run-many --target=build
+      - name: Release
+        run: npx nx release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

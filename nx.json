@@ -100,5 +100,13 @@
     }
   },
   "defaultProject": "docs",
+  "release": {
+    "projects": ["libs/*"],
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
+    }
+  },
   "nxCloudAccessToken": "N2Q2N2ZmZDAtZTgwZS00NWY0LWFmYzMtNTExMGFmZGYxNWVkfHJlYWQtd3JpdGU="
 }
