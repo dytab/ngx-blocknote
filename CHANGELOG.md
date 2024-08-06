@@ -1,3 +1,20 @@
+## 0.2.0 (2024-08-06)
+
+
+### 🚀 Features
+
+- add on change for selected blocks ([73cfe0b](https://github.com/dytab/BlockNoteAngular/commit/73cfe0b))
+
+### 🩹 Fixes
+
+- add "**" to router ([4bbaed4](https://github.com/dytab/BlockNoteAngular/commit/4bbaed4))
+- use correct base href ([cde3699](https://github.com/dytab/BlockNoteAngular/commit/cde3699))
+
+### ❤️  Thank You
+
+- Johannes Klein
+- Matthias Risto
+
 ## 0.1.0 (2024-08-06)
 
 
