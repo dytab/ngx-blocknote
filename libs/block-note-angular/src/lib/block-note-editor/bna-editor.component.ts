@@ -121,10 +121,7 @@ export class BnaEditorComponent implements OnChanges {
     });
     this.editor.onSelectionChange((change) => {
       const selection = this.editor.getSelection();
-      //Todo: create type
       let selectedBlocks = [];
-      // Get the blocks in the current selection and store on the state. If
-      // the selection is empty, store the block containing the text cursor
       // instead.
       if (selection !== undefined) {
         selectedBlocks = selection.blocks;
