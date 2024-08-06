@@ -44,7 +44,7 @@
             }
           ],
           "outputHashing": "all",
-          "baseHref": "/BlockNoteAngular"
+          "baseHref": "https://dytab.github.io/BlockNoteAngular"
         },
         "development": {
           "optimization": false,
