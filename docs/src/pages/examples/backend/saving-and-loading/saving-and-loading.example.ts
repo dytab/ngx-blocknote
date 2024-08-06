@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {
-  Block, BlockNoteEditor,
+  Block,
   PartialBlock
 } from '@blocknote/core';
 
@@ -15,12 +15,8 @@ import {
     <bna-editor [initialContent]="initialContent" (contentChanged)="saveToStorage($event)" />
   `,
 })
-export class SavingAndLoadingExample implements OnInit {
+export class SavingAndLoadingExample {
   initialContent = this.loadFromStorage();
-
-  ngOnInit(): void {
-    BlockNoteEditor.create({ initialContent: this.initialContent });
-  }
 
   saveToStorage(jsonBlocks: Block[]) {
     // Save contents to local storage. You might want to debounce this or replace
@@ -38,11 +34,11 @@ export class SavingAndLoadingExample implements OnInit {
 }
 
 export const savingAndLoadingExampleCode = `import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {
-  Block, BlockNoteEditor,
+  Block,
   PartialBlock
 } from '@blocknote/core';
 
@@ -54,12 +50,8 @@ import {
     <bna-editor [initialContent]="initialContent" (contentChanged)="saveToStorage($event)" />
   \`,
 })
-export class SavingAndLoadingExample implements OnInit {
+export class SavingAndLoadingExample {
   initialContent = this.loadFromStorage();
-
-  ngOnInit(): void {
-    BlockNoteEditor.create({ initialContent: this.initialContent });
-  }
 
   saveToStorage(jsonBlocks: Block[]) {
     // Save contents to local storage. You might want to debounce this or replace
