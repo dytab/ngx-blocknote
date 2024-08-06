@@ -1,6 +1,6 @@
 {
   "name": "@dytab/block-note-angular",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
     "@blocknote/core": "0.15.3",
