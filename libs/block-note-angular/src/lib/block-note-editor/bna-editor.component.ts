@@ -16,7 +16,7 @@ import {
   defaultStyleSpecs,
   DefaultSuggestionItem,
   getDefaultSlashMenuItems,
-  InlineContentSpecs,
+  InlineContentSpecs, PartialBlock,
   StyleSpecs
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -80,7 +80,7 @@ import {
   templateUrl: './bna-editor.component.html'
 })
 export class BnaEditorComponent implements OnChanges{
-  initialContent = input<Block[]>();
+  initialContent = input<Block[] | PartialBlock[]>();
   blockSpecs = input<BlockSpecs>();
   inlineContentSpecs = input<InlineContentSpecs>();
   styleSpecs = input<StyleSpecs>();

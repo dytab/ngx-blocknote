@@ -12,6 +12,9 @@ import {
 import {
   RemovingDefaultBlocksPage
 } from '../pages/examples/basic/removing-default-blocks/removing-default-blocks.page';
+import {
+  SavingAndLoadingPage
+} from '../pages/examples/backend/saving-and-loading/saving-and-loading.page';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -21,7 +24,6 @@ export const appRoutes: Route[] = [
     component: ExamplesPage,
     children: [
       { path: '', redirectTo: 'basic/minimal', pathMatch: 'full' },
-
       { path: 'basic/minimal', component: BasicSetupPage },
       { path: 'basic/blocks-json', component: BlocksJsonPage },
       {
@@ -36,6 +38,7 @@ export const appRoutes: Route[] = [
         path: 'basic/removing-default-blocks',
         component: RemovingDefaultBlocksPage,
       },
+      { path: 'backend/saving-and-loading', component: SavingAndLoadingPage },
       {
         path: 'custom/alert-block',
         component: AlertBlockPage,
