@@ -102,7 +102,7 @@
   "defaultProject": "docs",
   "release": {
     "projects": [
-      "libs/block-note-angular"
+      "block-note-angular"
     ],
     "version": {
       "conventionalCommits": true
