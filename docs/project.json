@@ -27,7 +27,12 @@
           "styles/toolbar.css",
           "node_modules/highlight.js/styles/github.css"
         ],
-        "scripts": []
+        "scripts": [],
+        "server": "docs/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "docs/server.ts"
+        }
       },
       "configurations": {
         "production": {
