@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'core',
+  displayName: 'block-note-angular',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/libs/block-note-angular/',
