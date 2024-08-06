@@ -47,6 +47,7 @@ export const appRoutes: Route[] = [
         path: 'interoperability/convert-to-html',
         component: ConvertToHtmlPage,
       },
+      { path: '**', redirectTo: 'overview' },
     ],
   },
 ];
