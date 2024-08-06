@@ -44,8 +44,7 @@
             }
           ],
           "outputHashing": "all",
-          "baseHref": "./",
-          "deployUrl": "./"
+          "baseHref": "/BlockNoteAngular/"
         },
         "development": {
           "optimization": false,
