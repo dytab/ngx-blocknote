@@ -1,3 +1,14 @@
+## 0.2.1 (2024-08-06)
+
+
+### 🩹 Fixes
+
+- delete removes the block ([5463d3f](https://github.com/dytab/BlockNoteAngular/commit/5463d3f))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.2.0 (2024-08-06)
 
 
