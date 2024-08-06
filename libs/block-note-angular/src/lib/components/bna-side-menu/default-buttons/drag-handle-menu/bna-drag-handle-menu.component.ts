@@ -76,12 +76,19 @@ export class BnaDragHandleMenuComponent implements OnChanges {
   }
 
   deleteBlock() {
-    if (this.focusedBlock) {
-      console.log('delete block', [this.focusedBlock?.id]);
-      this.editor().removeBlocks([this.focusedBlock.id]);
-      this.focusedBlock = undefined;
-      this.dragMenuShown = false;
+    const selection = this.editor().getSelection();
+    //Todo: create type
+    let selectedBlocks = [];
+    // Get the blocks in the current selection and store on the state. If
+    // the selection is empty, store the block containing the text cursor
+    // instead.
+    if (selection !== undefined) {
+      selectedBlocks = selection.blocks;
+    } else {
+      selectedBlocks = [this.editor().getTextCursorPosition().block];
     }
+    console.log('delete block', selectedBlocks);
+    this.editor().removeBlocks(selectedBlocks);
     this.editor().sideMenu.unfreezeMenu();
   }
 }
