@@ -18,7 +18,7 @@
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
     ],
     "sharedGlobals": []
   },
@@ -101,7 +101,12 @@
   },
   "defaultProject": "docs",
   "release": {
-    "projects": ["libs/block-note-angular"],
+    "projects": [
+      "libs/block-note-angular"
+    ],
+    "version": {
+      "conventionalCommits": true
+    },
     "changelog": {
       "workspaceChangelog": {
         "createRelease": "github"
