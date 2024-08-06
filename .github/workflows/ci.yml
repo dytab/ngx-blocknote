@@ -35,7 +35,7 @@ jobs:
           name: 'github-pages'
           path: 'dist/docs/browser'
 
-  publish:
+  publish-gh-pages:
     needs: main
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
