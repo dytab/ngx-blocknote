@@ -1,0 +1,58 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import {
+  HlmTabsComponent,
+  HlmTabsContentDirective,
+  HlmTabsListComponent,
+  HlmTabsTriggerDirective,
+} from '@spartan-ng/ui-tabs-helm';
+import { hlmP } from '@spartan-ng/ui-typography-helm';
+import { Highlight } from 'ngx-highlightjs';
+import { CodeComponent } from '../../../../shared/code/code.component';
+import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
+import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
+import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
+import {
+  SelectionBlocksExample,
+  selectionBlocksExampleCode,
+} from './selection-blocks.example';
+
+@Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    SectionIntroComponent,
+    DemoBoxComponent,
+    HlmTabsComponent,
+    HlmTabsListComponent,
+    HlmTabsContentDirective,
+    HlmTabsTriggerDirective,
+    TabsComponent,
+    CodeComponent,
+    Highlight,
+    SelectionBlocksExample,
+  ],
+  template: `
+    <bna-section-intro name="Displaying Selected Blocks">
+      <p class="${hlmP} mb-8">
+        In this example, the JSON representation of blocks spanned by the user's
+        selection, is displayed below the editor.
+      </p>
+      <p class="${hlmP}">
+        <strong>Try it out</strong>: Select different blocks in the editor and
+        see the JSON update!
+      </p>
+    </bna-section-intro>
+    <hlm-tabs tab="preview">
+      <bna-example-tabs firstTab="Preview" secondTab="Code">
+        <bna-demo-box firstTab>
+          <bna-selection-blocks-example />
+        </bna-demo-box>
+        <bna-code [code]="exampleCode" secondTab />
+      </bna-example-tabs>
+    </hlm-tabs>
+  `,
+})
+export class SelectionBlocksPage {
+  exampleCode = selectionBlocksExampleCode;
+}
