@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lint-test:
+  main:
     permissions:
       actions: read
       contents: read
@@ -26,31 +26,8 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - name: lint & test
-        run: npx nx affected -t lint test
-  build:
-    permissions:
-      actions: read
-      contents: read
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: install npm
-        run: npm ci
-
-      - uses: nrwl/nx-set-shas@v4
-
-      - name: build
-        run: npx nx affected -t build
-
+      - name: lint & test & build
+        run: npx nx affected -t lint test build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -60,7 +37,7 @@ jobs:
   # Deploy job
   deploy:
     # Add a dependency to the build job
-    needs: build
+    needs: main
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
