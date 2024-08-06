@@ -101,7 +101,7 @@
   },
   "defaultProject": "docs",
   "release": {
-    "projects": ["libs/*"],
+    "projects": ["libs/block-note-angular"],
     "changelog": {
       "workspaceChangelog": {
         "createRelease": "github"
