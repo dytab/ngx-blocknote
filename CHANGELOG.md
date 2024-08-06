@@ -1,3 +1,14 @@
+## 0.2.2 (2024-08-06)
+
+
+### 🩹 Fixes
+
+- delete the row which has an opened side menu if its not in selected rows ([22688b1](https://github.com/dytab/BlockNoteAngular/commit/22688b1))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.2.1 (2024-08-06)
 
 
