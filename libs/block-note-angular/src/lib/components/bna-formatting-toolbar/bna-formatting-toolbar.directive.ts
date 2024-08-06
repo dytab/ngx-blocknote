@@ -9,16 +9,6 @@ import { BlockNoteEditor } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
-const shiftTopBy20px = {
-  name: 'shiftTopBy20Px',
-  fn({ x, y }: { x: number; y: number }) {
-    return {
-      x: x,
-      y: y - 100,
-    };
-  },
-};
-
 @Directive({
   selector: 'bna-formatting-toolbar[editor]',
   standalone: true,
