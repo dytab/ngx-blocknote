@@ -21,3 +21,10 @@
     "strictTemplates": true
   }
 }
+
+
+/**
+* block sachen configuriert werden können
+* block eine "api" abruft und seinen block nachfragt und diesen dann renderts
+
+**/

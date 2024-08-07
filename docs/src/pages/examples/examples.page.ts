@@ -67,8 +67,12 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         class="justify-start"
         >Saving & Loading</a
       >
-      <a hlmBtn variant="ghost" routerLink="backend/upload-files" class="justify-start"
-      >Upload Files</a
+      <a
+        hlmBtn
+        variant="ghost"
+        routerLink="backend/upload-files"
+        class="justify-start"
+        >Upload Files</a
       >
 
       Custom
@@ -79,7 +83,13 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         routerLink="custom/alert-block"
         >Alert Block</a
       >
-
+      <a
+        hlmBtn
+        variant="ghost"
+        class="justify-start"
+        routerLink="custom/api-content-block"
+        >Api Content Block</a
+      >
       Interoperability
       <a
         hlmBtn
