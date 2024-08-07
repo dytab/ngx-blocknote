@@ -1,3 +1,14 @@
+## 0.2.4 (2024-08-07)
+
+
+### 🩹 Fixes
+
+- add test fix for release testings ([feb1d21](https://github.com/dytab/BlockNoteAngular/commit/feb1d21))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.2.3 (2024-08-06)
 
 
