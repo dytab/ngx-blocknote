@@ -13,8 +13,8 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   selector: 'bna-suggestions-menu[editor]',
   standalone: true,
 })
-export class BnaSuggestionsMenuDirective implements OnChanges {
-  editor = input.required<BlockNoteEditor>();
+export class BnaSuggestionsMenuDirective<B> implements OnChanges {
+  editor = input.required<BlockNoteEditor<any, any, any>>();
 
   constructor(
     private elRef: ElementRef<HTMLElement>,

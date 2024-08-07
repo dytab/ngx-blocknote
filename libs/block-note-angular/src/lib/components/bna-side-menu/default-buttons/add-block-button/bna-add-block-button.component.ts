@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
@@ -15,9 +15,10 @@ import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
   providers: [provideIcons({ lucidePlus })],
 })
 export class BnaAddBlockButtonComponent {
-  editor = input.required<BlockNoteEditor>();
+  @Input()
+  editor!: BlockNoteEditor<any, any, any>;
 
   addNewBlock() {
-    this.editor().sideMenu.addBlock();
+    this.editor.sideMenu.addBlock();
   }
 }

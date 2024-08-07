@@ -39,10 +39,10 @@ import {
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent implements OnChanges {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
   dragMenuShown = false;
-  selectedBlocks: Block[] = [];
-  dragBlock?: Block;
+  selectedBlocks: Block<any, any, any>[] = [];
+  dragBlock?: Block<any, any, any>;
 
   openDragMenu() {
     const selection = this.editor().getSelection();
@@ -50,7 +50,7 @@ export class BnaDragHandleMenuComponent implements OnChanges {
     // Get the blocks in the current selection and store on the state. If
     // the selection is empty, store the block containing the text cursor
     // instead.
-    let selectedBlocks: Block[] = [];
+    let selectedBlocks: Block<any, any, any>[] = [];
     if (selection !== undefined) {
       selectedBlocks = selection.blocks;
     } else {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  input,
+  Input,
   OnChanges,
   output,
   SimpleChanges,
@@ -10,15 +10,18 @@ import {
   Block,
   BlockNoteEditor,
   BlockNoteSchema,
-  BlockSpecs,
+  BlockSchema,
+  DefaultBlockSchema,
   defaultBlockSpecs,
+  DefaultInlineContentSchema,
   defaultInlineContentSpecs,
+  DefaultStyleSchema,
   defaultStyleSpecs,
   DefaultSuggestionItem,
   getDefaultSlashMenuItems,
-  InlineContentSpecs,
+  InlineContentSchema,
   PartialBlock,
-  StyleSpecs,
+  StyleSchema,
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
@@ -39,6 +42,7 @@ import { BnaSuggestionsMenuDirective } from '../components/bna-suggestions-menu/
 import { BnaViewDirective } from '../components/bna-view/bna-view.directive';
 import { BasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
 import { TextAlignButtonComponent } from '../components/buttons/text-align-button/text-align-button.component';
+import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 
 @Component({
   imports: [
@@ -66,21 +70,25 @@ import { TextAlignButtonComponent } from '../components/buttons/text-align-butto
   styleUrl: './bna-editor.component.css',
   templateUrl: './bna-editor.component.html',
 })
-export class BnaEditorComponent implements OnChanges {
-  initialContent = input<Block[] | PartialBlock[]>();
-  blockSpecs = input<BlockSpecs>();
-  inlineContentSpecs = input<InlineContentSpecs>();
-  styleSpecs = input<StyleSpecs>();
-  inputSlashMenuItems =
-    input<
-      Array<(editor: BlockNoteEditor) => Omit<DefaultSuggestionItem, 'key'>>
-    >();
+export class BnaEditorComponent<
+  BSchema extends BlockSchema = DefaultBlockSchema,
+  ISchema extends InlineContentSchema = DefaultInlineContentSchema,
+  SSchema extends StyleSchema = DefaultStyleSchema
+> implements OnChanges
+{
+  @Input()
+  options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
+  @Input()
+  initialContent!:
+    | Block<BSchema, ISchema, SSchema>[]
+    | PartialBlock<BSchema, ISchema, SSchema>[]
+    | undefined;
 
-  contentChanged = output<Block[]>();
-  selectedBlocks = output<Block[]>();
-  onEditorReady = output<BlockNoteEditor>();
+  contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
+  selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
+  onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
-  editor!: BlockNoteEditor;
+  editor!: BlockNoteEditor<BSchema, ISchema, SSchema>;
   slashMenuItems: Omit<DefaultSuggestionItem, 'key'>[] = [];
 
   //TODO: remove relying on init flag
@@ -88,36 +96,32 @@ export class BnaEditorComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['initialContent']) {
-      //TODO: remove casting
-      this.createEditor(changes['initialContent'].currentValue as any);
+      this.createEditor(changes['initialContent'].currentValue);
       this.isInitialized = true;
     }
   }
 
-  createEditor(initialContent: Block[]) {
-    const blockSpecs = this.blockSpecs();
-    const inlineContentSpecs = this.inlineContentSpecs();
-    const styleSpecs = this.styleSpecs();
+  createEditor(initialContent: Block<BSchema, ISchema, SSchema>[]) {
+    const schema = this.options?.schema;
     this.editor = BlockNoteEditor.create({
       trailingBlock: false,
-      schema: BlockNoteSchema.create({
-        blockSpecs: blockSpecs ? blockSpecs : { ...defaultBlockSpecs },
-        inlineContentSpecs: inlineContentSpecs
-          ? inlineContentSpecs
-          : { ...defaultInlineContentSpecs },
-        styleSpecs: styleSpecs
-          ? styleSpecs
-          : {
+      schema: schema
+        ? schema
+        : (BlockNoteSchema.create({
+            blockSpecs: { ...defaultBlockSpecs },
+            inlineContentSpecs: { ...defaultInlineContentSpecs },
+            styleSpecs: {
               ...defaultStyleSpecs,
             },
-      }),
+            // in this case the user did not gave a block note schema so we want to use the default one
+            //TODO: remove casting
+          }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
-    }) as unknown as BlockNoteEditor;
+    });
     this.onEditorReady.emit(this.editor);
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
     this.editor.onChange((data) => {
-      //TODO: remove casting
-      this.contentChanged.emit(data.document as any);
+      this.contentChanged.emit(data.document);
     });
     this.editor.onSelectionChange((change) => {
       const selection = this.editor.getSelection();
@@ -133,9 +137,9 @@ export class BnaEditorComponent implements OnChanges {
   }
 
   getSlashMenuItems(
-    editor: BlockNoteEditor
+    editor: BlockNoteEditor<BSchema, ISchema, SSchema>
   ): Omit<DefaultSuggestionItem, 'key'>[] {
-    const slashMenuItems = this.inputSlashMenuItems();
+    const slashMenuItems = this.options?.inputSlashMenuItems;
     if (slashMenuItems) {
       const customSlashMenuItem = slashMenuItems.map((a) => a(this.editor));
       return [...getDefaultSlashMenuItems(editor), ...customSlashMenuItem];

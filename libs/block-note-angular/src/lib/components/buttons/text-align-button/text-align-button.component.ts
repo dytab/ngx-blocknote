@@ -33,7 +33,7 @@ type Alignments = 'left' | 'center' | 'right';
   ],
 })
 export class TextAlignButtonComponent {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
   alignment = input.required<Alignments>();
   icon = computed(() => {
     return icons[this.alignment()];

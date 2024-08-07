@@ -14,7 +14,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   standalone: true,
 })
 export class BnaFormattingToolbarDirective implements OnChanges {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
 
   constructor(
     protected elRef: ElementRef<HTMLElement>,

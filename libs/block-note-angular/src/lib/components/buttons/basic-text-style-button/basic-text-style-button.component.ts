@@ -25,7 +25,7 @@ type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
   providers: [provideIcons({ lucideBold, lucideItalic, lucideUnderline })],
 })
 export class BasicTextStyleButtonComponent {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
   basicTextStyle = input.required<BasicTextStyle>();
   icon = computed(() => {
     return icons[this.basicTextStyle()];
