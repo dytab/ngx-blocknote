@@ -6,4 +6,4 @@ This library was generated with [Nx](https://nx.dev).
 
 Run `nx test block-note-angular` to execute the unit tests.
 
-Add fix
+Add fix2
