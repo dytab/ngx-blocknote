@@ -10,5 +10,6 @@
     "@spartan-ng/ui-icon-helm": "0.0.1",
     "class-variance-authority": "^0.6.0"
   },
+  "private": true,
   "sideEffects": false
 }

@@ -2,90 +2,160 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   BlockNoteEditor,
-  BlockSpecs,
+  BlockNoteSchema,
   defaultBlockSpecs,
-  DefaultSuggestionItem,
+  defaultInlineContentSpecs,
+  defaultStyleSpecs,
   insertOrUpdateBlock,
+  PartialBlock,
 } from '@blocknote/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import {
+  BlockNoteEditorOptionsType,
+  BnaEditorComponent,
+} from '@dytab/block-note-angular';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { alertBlock } from './alert-block';
 
+const schema = BlockNoteSchema.create({
+  blockSpecs: {
+    ...defaultBlockSpecs,
+    alert: alertBlock,
+  },
+  inlineContentSpecs: { ...defaultInlineContentSpecs },
+  styleSpecs: { ...defaultStyleSpecs },
+});
 @Component({
   selector: 'bna-alert-block-example',
   standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `<bna-editor
     [initialContent]="initialContent"
-    [blockSpecs]="blockSpecs"
-    [inputSlashMenuItems]="suggestionItem"
+    [options]="options"
   />`,
 })
 export class AlertBlockExample {
-  initialContent = [
+  initialContent: PartialBlock<typeof schema.blockSchema>[] = [
     {
       type: 'alert',
       props: {
         type: 'warning',
       },
     },
-    //TODO: remove cast
-  ] as any;
-  blockSpecs: BlockSpecs = {
-    ...defaultBlockSpecs,
-    alert: alertBlock,
-  };
-  insertAlert = (
-    editor: BlockNoteEditor
-  ): Omit<DefaultSuggestionItem, 'key'> => ({
-    title: 'Alert',
-    onItemClick: () => {
-      insertOrUpdateBlock(editor, {
-        type: 'alert' as never,
-      });
-    },
-    badge: 'BAFD',
-    subtext: 'SUBTEXT',
-    aliases: [
-      'alert',
-      'notification',
-      'emphasize',
-      'warning',
-      'error',
-      'info',
-      'success',
+  ];
+  options: BlockNoteEditorOptionsType<
+    typeof schema.blockSchema,
+    typeof schema.inlineContentSchema,
+    typeof schema.styleSchema
+  > = {
+    schema,
+    inputSlashMenuItems: [
+      (
+        editor: BlockNoteEditor<
+          typeof schema.blockSchema,
+          typeof schema.inlineContentSchema,
+          typeof schema.styleSchema
+        >
+      ) => ({
+        title: 'Alert',
+        onItemClick: () => {
+          insertOrUpdateBlock(editor, {
+            type: 'alert' as never,
+          });
+        },
+        badge: 'BAFD',
+        subtext: 'SUBTEXT',
+        aliases: [
+          'alert',
+          'notification',
+          'emphasize',
+          'warning',
+          'error',
+          'info',
+          'success',
+        ],
+        group: 'Other',
+      }),
     ],
-    group: 'Other',
-  });
-  suggestionItem: Array<
-    (editor: BlockNoteEditor) => Omit<DefaultSuggestionItem, 'key'>
-  > = [this.insertAlert];
+  };
 }
 
 export const alertBlockExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BlockSpecs, defaultBlockSpecs } from '@blocknote/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import {
+  BlockNoteEditor,
+  BlockNoteSchema,
+  defaultBlockSpecs,
+  defaultInlineContentSpecs,
+  defaultStyleSpecs,
+  insertOrUpdateBlock,
+  PartialBlock,
+} from '@blocknote/core';
+import {
+  BlockNoteEditorOptionsType,
+  BnaEditorComponent,
+} from '@dytab/block-note-angular';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { alertBlock } from './alert-block';
 
+const schema = BlockNoteSchema.create({
+  blockSpecs: {
+    ...defaultBlockSpecs,
+    alert: alertBlock,
+  },
+  inlineContentSpecs: { ...defaultInlineContentSpecs },
+  styleSpecs: { ...defaultStyleSpecs },
+});
 @Component({
+  selector: 'bna-alert-block-example',
   standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: \`<bna-editor
     [initialContent]="initialContent"
-    [blockSpecs]="blockSpecs"
+    [options]="options"
   />\`,
 })
 export class AlertBlockExample {
-  initialContent = [
+  initialContent: PartialBlock<typeof schema.blockSchema>[] = [
     {
       type: 'alert',
+      props: {
+        type: 'warning',
+      },
     },
-    //TODO: remove cast
-  ] as any;
-  blockSpecs: BlockSpecs = {
-    ...defaultBlockSpecs,
-    alert: alertBlock,
+  ];
+  options: BlockNoteEditorOptionsType<
+    typeof schema.blockSchema,
+    typeof schema.inlineContentSchema,
+    typeof schema.styleSchema
+  > = {
+    schema,
+    inputSlashMenuItems: [
+      (
+        editor: BlockNoteEditor<
+          typeof schema.blockSchema,
+          typeof schema.inlineContentSchema,
+          typeof schema.styleSchema
+        >
+      ) => ({
+        title: 'Alert',
+        onItemClick: () => {
+          insertOrUpdateBlock(editor, {
+            type: 'alert' as never,
+          });
+        },
+        badge: 'BAFD',
+        subtext: 'SUBTEXT',
+        aliases: [
+          'alert',
+          'notification',
+          'emphasize',
+          'warning',
+          'error',
+          'info',
+          'success',
+        ],
+        group: 'Other',
+      }),
+    ],
   };
 }`;

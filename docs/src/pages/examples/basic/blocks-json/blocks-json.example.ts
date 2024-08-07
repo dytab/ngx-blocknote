@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Block, BlockNoteEditor } from '@blocknote/core';
+import { Block, BlockNoteEditor, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
 
 @Component({
@@ -24,7 +24,7 @@ import { BnaEditorComponent } from '@dytab/block-note-angular';
   `,
 })
 export class BlocksJsonExample {
-  initialContent = [
+  initialContent: PartialBlock[] = [
     {
       type: 'paragraph',
       content: [
@@ -38,8 +38,7 @@ export class BlocksJsonExample {
         },
       ],
     },
-    //TODO: remove cast
-  ] as any;
+  ];
   editor!: BlockNoteEditor;
 
   content = '';

@@ -23,11 +23,26 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a hlmBtn variant="ghost" routerLink="basic/minimal" class="justify-start"
         >Basic Setup</a
       >
-      <a hlmBtn variant="ghost" routerLink="basic/manipulating-blocks" class="justify-start"
-      >Manipulating Blocks</a
+      <a
+        hlmBtn
+        variant="ghost"
+        routerLink="basic/manipulating-blocks"
+        class="justify-start"
+        >Manipulating Blocks</a
       >
-      <a hlmBtn variant="ghost" routerLink="basic/removing-default-blocks" class="justify-start"
-      >Removing Default Blocks</a
+      <a
+        hlmBtn
+        variant="ghost"
+        routerLink="basic/removing-default-blocks"
+        class="justify-start"
+        >Removing Default Blocks</a
+      >
+      <a
+        hlmBtn
+        variant="ghost"
+        routerLink="basic/selection-blocks"
+        class="justify-start"
+        >Displaying Selected Blocks</a
       >
       <a
         hlmBtn
@@ -45,8 +60,12 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       >
 
       Backend
-      <a hlmBtn variant="ghost" routerLink="backend/saving-and-loading" class="justify-start"
-      >Saving & Loading</a
+      <a
+        hlmBtn
+        variant="ghost"
+        routerLink="backend/saving-and-loading"
+        class="justify-start"
+        >Saving & Loading</a
       >
 
       Custom

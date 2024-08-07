@@ -5,26 +5,16 @@ import {
   OnChanges,
   Renderer2,
 } from '@angular/core';
-import { BlockNoteEditor } from '@blocknote/core';
+import { BlockNoteEditor, FormattingToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
-
-const shiftTopBy20px = {
-  name: 'shiftTopBy20Px',
-  fn({ x, y }: { x: number; y: number }) {
-    return {
-      x: x,
-      y: y - 100,
-    };
-  },
-};
 
 @Directive({
   selector: 'bna-formatting-toolbar[editor]',
   standalone: true,
 })
 export class BnaFormattingToolbarDirective implements OnChanges {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
 
   constructor(
     protected elRef: ElementRef<HTMLElement>,
@@ -47,26 +37,7 @@ export class BnaFormattingToolbarDirective implements OnChanges {
         if (!formattingToolbar.show) {
           cleanup();
         } else {
-          const updatePosition = async () => {
-            const result = await computePosition(
-              getVirtualElement(formattingToolbar.referencePos),
-              this.elRef.nativeElement,
-              {
-                placement: 'top',
-                middleware: [flip()],
-              }
-            );
-            this.renderer2.setStyle(
-              this.elRef.nativeElement,
-              'top',
-              `${result.y}px`
-            );
-            this.renderer2.setStyle(
-              this.elRef.nativeElement,
-              'left',
-              `${result.x}px`
-            );
-          };
+          const updatePosition = this.getUpdatePositionFn(formattingToolbar);
           cleanup = autoUpdate(
             getVirtualElement(formattingToolbar.referencePos),
             this.elRef.nativeElement,
@@ -76,6 +47,25 @@ export class BnaFormattingToolbarDirective implements OnChanges {
         this.toggleVisibility(formattingToolbar.show);
       });
     }
+  }
+
+  private getUpdatePositionFn(formattingToolbar: FormattingToolbarState) {
+    return async () => {
+      const result = await computePosition(
+        getVirtualElement(formattingToolbar.referencePos),
+        this.elRef.nativeElement,
+        {
+          placement: 'top',
+          middleware: [flip()],
+        }
+      );
+      this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+      this.renderer2.setStyle(
+        this.elRef.nativeElement,
+        'left',
+        `${result.x}px`
+      );
+    };
   }
 
   private toggleVisibility(state: boolean): void {

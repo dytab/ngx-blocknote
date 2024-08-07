@@ -6,7 +6,7 @@ import { BlockNoteEditor } from '@blocknote/core';
   standalone: true,
 })
 export class BnaViewDirective {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
 
   constructor(protected elRef: ElementRef<HTMLElement>) {
     effect(() => {

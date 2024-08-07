@@ -1,20 +1,15 @@
 import { Route } from '@angular/router';
+import { SavingAndLoadingPage } from '../pages/examples/backend/saving-and-loading/saving-and-loading.page';
 import { AllBlocksPage } from '../pages/examples/basic/all-blocks/all-blocks.page';
 import { BasicSetupPage } from '../pages/examples/basic/basic-setup/basic-setup.page';
 import { BlocksJsonPage } from '../pages/examples/basic/blocks-json/blocks-json.page';
+import { ManipulatingBlocksPage } from '../pages/examples/basic/manipulating-blocks/manipulating-blocks.page';
+import { RemovingDefaultBlocksPage } from '../pages/examples/basic/removing-default-blocks/removing-default-blocks.page';
+import { SelectionBlocksPage } from '../pages/examples/basic/selection-blocks/selection-blocks.page';
 import { AlertBlockPage } from '../pages/examples/custom/alert-block/alert-block.page';
 import { ExamplesPage } from '../pages/examples/examples.page';
 import { ConvertToHtmlPage } from '../pages/examples/interoperability/convert-to-html/convert-to-html.page';
 import { OverviewPage } from '../pages/overview.page';
-import {
-  ManipulatingBlocksPage
-} from '../pages/examples/basic/manipulating-blocks/manipulating-blocks.page';
-import {
-  RemovingDefaultBlocksPage
-} from '../pages/examples/basic/removing-default-blocks/removing-default-blocks.page';
-import {
-  SavingAndLoadingPage
-} from '../pages/examples/backend/saving-and-loading/saving-and-loading.page';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -40,6 +35,10 @@ export const appRoutes: Route[] = [
       },
       { path: 'backend/saving-and-loading', component: SavingAndLoadingPage },
       {
+        path: 'basic/selection-blocks',
+        component: SelectionBlocksPage,
+      },
+      {
         path: 'custom/alert-block',
         component: AlertBlockPage,
       },
@@ -47,6 +46,7 @@ export const appRoutes: Route[] = [
         path: 'interoperability/convert-to-html',
         component: ConvertToHtmlPage,
       },
+      { path: '**', redirectTo: 'overview' },
     ],
   },
 ];

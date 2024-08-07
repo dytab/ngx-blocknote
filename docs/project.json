@@ -27,7 +27,10 @@
           "styles/toolbar.css",
           "node_modules/highlight.js/styles/github.css"
         ],
-        "scripts": []
+        "scripts": [],
+        "server": "docs/src/main.server.ts",
+        "prerender": true,
+        "ssr": false
       },
       "configurations": {
         "production": {
@@ -44,8 +47,7 @@
             }
           ],
           "outputHashing": "all",
-          "baseHref": "./",
-          "deployUrl": "./"
+          "baseHref": "/BlockNoteAngular/"
         },
         "development": {
           "optimization": false,

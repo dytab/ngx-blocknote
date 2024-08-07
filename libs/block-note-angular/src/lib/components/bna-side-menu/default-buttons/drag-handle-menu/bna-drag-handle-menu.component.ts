@@ -39,18 +39,37 @@ import {
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent implements OnChanges {
-  editor = input.required<BlockNoteEditor>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
   dragMenuShown = false;
-  focusedBlock?: Block;
+  selectedBlocks: Block<any, any, any>[] = [];
+  dragBlock?: Block<any, any, any>;
 
   openDragMenu() {
-    console.log('Open drag menu');
+    const selection = this.editor().getSelection();
+    //Todo: create type
+    // Get the blocks in the current selection and store on the state. If
+    // the selection is empty, store the block containing the text cursor
+    // instead.
+    let selectedBlocks: Block<any, any, any>[] = [];
+    if (selection !== undefined) {
+      selectedBlocks = selection.blocks;
+    } else {
+      selectedBlocks = [this.editor().getTextCursorPosition().block];
+    }
+    if (
+      this.dragBlock &&
+      selectedBlocks.find(
+        (selectedBlock) => this.dragBlock!.id === selectedBlock.id
+      ) === undefined
+    ) {
+      selectedBlocks = [this.dragBlock];
+    }
+    this.selectedBlocks = selectedBlocks;
+    console.log('Open drag menu', this.selectedBlocks);
     this.dragMenuShown = !this.dragMenuShown;
-    // this.editor().block;
     if (this.dragMenuShown) {
       this.editor().sideMenu.freezeMenu();
     }
-    // this.editor().removeBlocks([this.editor.name]);
   }
 
   dragStart($event: DragEvent) {
@@ -66,22 +85,13 @@ export class BnaDragHandleMenuComponent implements OnChanges {
 
   ngOnChanges() {
     this.editor().sideMenu.onUpdate((state) => {
-      if (!state.show) {
-        this.dragMenuShown = false;
-        this.focusedBlock = undefined;
-      } else {
-        this.focusedBlock = state.block;
-      }
+      this.dragBlock = state.block;
     });
   }
 
   deleteBlock() {
-    if (this.focusedBlock) {
-      console.log('delete block', [this.focusedBlock?.id]);
-      this.editor().removeBlocks([this.focusedBlock.id]);
-      this.focusedBlock = undefined;
-      this.dragMenuShown = false;
-    }
+    console.log('delete block', this.selectedBlocks);
+    this.editor().removeBlocks(this.selectedBlocks);
     this.editor().sideMenu.unfreezeMenu();
   }
 }
