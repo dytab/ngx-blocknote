@@ -1,25 +1,26 @@
 import {
   Component,
-  Directive,
   ElementRef,
   input,
   OnChanges,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
   BlockNoteEditor,
-  FileBlockConfig
+  FileBlockConfig,
 } from '@blocknote/core';
-import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
-import { getVirtualElement } from '../../util/get-virtual-element.util';
+import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import {
   HlmTabsComponent,
-  HlmTabsListComponent
+  HlmTabsContentDirective,
+  HlmTabsListComponent,
+  HlmTabsTriggerDirective,
 } from '@spartan-ng/ui-tabs-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { FormsModule } from '@angular/forms';
+import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
   selector: 'bna-file-panel',
@@ -29,12 +30,14 @@ import { FormsModule } from '@angular/forms';
     HlmTabsComponent,
     HlmTabsListComponent,
     HlmButtonDirective,
-    FormsModule
+    FormsModule,
+    HlmTabsTriggerDirective,
+    HlmTabsContentDirective,
   ],
   templateUrl: './bna-file-panel.component.html',
 })
 export class BnaFilePanelComponent implements OnChanges {
-  editor = input.required<BlockNoteEditor<any,any,any>>();
+  editor = input.required<BlockNoteEditor<any, any, any>>();
   private block?: BlockFromConfig<FileBlockConfig, any, any>;
 
   embedInputText = '';
@@ -59,14 +62,14 @@ export class BnaFilePanelComponent implements OnChanges {
       if (!filePanelState.show) {
         cleanup();
       } else {
-        this.block = filePanelState.block
+        this.block = filePanelState.block;
         const updatePosition = async () => {
           const result = await computePosition(
             getVirtualElement(filePanelState.referencePos),
             this.elRef.nativeElement,
             {
-              placement: 'bottom-start',
-              middleware: [flip()],
+              placement: 'bottom',
+              middleware: [offset(10), flip()],
             }
           );
           this.renderer2.setStyle(
@@ -100,44 +103,39 @@ export class BnaFilePanelComponent implements OnChanges {
     }
   }
 
-  async onFileInput(event: Event){
-    const editor = this.editor()
-    if (!editor.uploadFile || !this.block){
+  async onFileInputChanged(event: Event) {
+    const editor = this.editor();
+    if (!editor.uploadFile || !this.block) {
       console.error('uploadFile was not provided in editor options');
-      return
+      return;
     }
 
-    const files = (event.target as HTMLInputElement).files
-    if(!files) return
+    const files = (event.target as HTMLInputElement).files;
+    if (!files) return;
 
-    const file = files[0]
-    const fileUrl = await editor.uploadFile(file)
+    const file = files[0];
+    const fileUrl = await editor.uploadFile(file);
 
-    editor.updateBlock(
-      this.block,
-        {
-          props: {
-            url: fileUrl,
-          },
-        }
-    )
-
-    editor.filePanel?.closeMenu()
+    this.updateBlockWithEmbedFileUrl(this.block, editor, fileUrl);
   }
 
-  insertEmbed(){
-    const editor = this.editor()
-    if(!this.block) return;
+  insertEmbedFile(embedFileUrl: string) {
+    const editor = this.editor();
+    if (!this.block) return;
+    this.updateBlockWithEmbedFileUrl(this.block, editor, embedFileUrl);
+  }
 
-    editor.updateBlock(
-      this.block,
-      {
-        props: {
-          url: this.embedInputText,
-        },
-      }
-    )
+  private updateBlockWithEmbedFileUrl(
+    block: BlockFromConfig<FileBlockConfig, any, any>,
+    editor: BlockNoteEditor<any, any, any>,
+    embedFileUrl: string | Record<string, any>
+  ) {
+    editor.updateBlock(block, {
+      props: {
+        url: embedFileUrl,
+      },
+    });
 
-    editor.filePanel?.closeMenu()
+    editor.filePanel?.closeMenu();
   }
 }
