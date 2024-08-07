@@ -12,5 +12,6 @@
     "@spartan-ng/ui-icon-helm": "0.0.1",
     "@angular/cdk": "18.1.3"
   },
+  "private": true,
   "sideEffects": false
 }
