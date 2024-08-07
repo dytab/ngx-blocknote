@@ -18,4 +18,5 @@ export interface BlockNoteEditorOptionsType<
       editor: BlockNoteEditor<BSchema, ISchema, SSchema>
     ) => Omit<DefaultSuggestionItem, 'key'>
   >;
+  uploadFile?: (file: File) => Promise<string | Record<string, any>>;
 }

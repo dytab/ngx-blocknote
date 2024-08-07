@@ -25,6 +25,8 @@
     </bna-side-menu>
 
     <bna-view [editor]="editor" class="block ProseMirror bn-editor relative bn-default-styles" />
+      <bna-file-panel [editor]="editor" class="z-index-3">
+      </bna-file-panel>
     <bna-suggestions-menu [editor]="editor" class="z-index-3">
       <hlm-menu class="shadow-3xl">
         <hlm-menu-label>Basic blocks</hlm-menu-label>

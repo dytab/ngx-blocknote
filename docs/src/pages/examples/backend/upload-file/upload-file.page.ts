@@ -1,0 +1,55 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import {
+  HlmTabsComponent,
+  HlmTabsContentDirective,
+  HlmTabsListComponent,
+  HlmTabsTriggerDirective,
+} from '@spartan-ng/ui-tabs-helm';
+import { hlmP } from '@spartan-ng/ui-typography-helm';
+import { Highlight } from 'ngx-highlightjs';
+import { CodeComponent } from '../../../../shared/code/code.component';
+import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
+import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
+import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
+import {
+  UploadFileExample,
+  uploadFileExampleCode,
+} from './upload-file.example';
+
+@Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    SectionIntroComponent,
+    DemoBoxComponent,
+    HlmTabsComponent,
+    HlmTabsListComponent,
+    HlmTabsContentDirective,
+    HlmTabsTriggerDirective,
+    TabsComponent,
+    CodeComponent,
+    UploadFileExample,
+    Highlight,
+  ],
+  template: `
+    <bna-section-intro name="Upload Files">
+      <p class="${hlmP} mb-8">
+        This example allows users to upload files and use them in the editor. The files are uploaded to /TMP/Files, and can be used for File, Image, Video, and Audio blocks.
+        <br><br>
+        <b>Try it out:</b> Click the "Add Image" button and see there's now an "Upload" tab in the toolbar!
+      </p>
+    </bna-section-intro>
+    <hlm-tabs tab="preview">
+      <bna-example-tabs firstTab="Preview" secondTab="Code">
+        <bna-demo-box firstTab>
+          <bna-upload-file-example />
+        </bna-demo-box>
+        <bna-code [code]="exampleCode" secondTab />
+      </bna-example-tabs>
+    </hlm-tabs>
+  `,
+})
+export class UploadFilePage{
+  exampleCode = uploadFileExampleCode;
+}
