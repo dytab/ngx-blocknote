@@ -6,7 +6,7 @@ describe('BlockNoteAngularService', () => {
   let service: BlockNoteAngularService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ providers: [BlockNoteAngularService] });
     service = TestBed.inject(BlockNoteAngularService);
   });
 
