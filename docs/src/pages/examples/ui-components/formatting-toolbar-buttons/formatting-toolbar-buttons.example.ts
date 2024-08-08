@@ -7,6 +7,8 @@ import {
   BnaFormattingToolbarComponent,
   BnaFormattingToolbarControllerDirective,
 } from '@dytab/block-note-angular';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BlueButtonComponent } from './blue-button.component';
 
 @Component({
   selector: 'bna-basic-setup-example',
@@ -17,10 +19,13 @@ import {
     BnaFormattingToolbarControllerDirective,
     BasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
+    HlmButtonDirective,
+    BlueButtonComponent,
   ],
   template: `<bna-editor [initialContent]="initialContent">
     <bna-formatting-toolbar-controller>
       <bna-formatting-toolbar>
+        <bna-blue-button />
         <bna-basic-text-style-button [basicTextStyle]="'italic'" />
         <bna-basic-text-style-button [basicTextStyle]="'bold'" />
       </bna-formatting-toolbar>
