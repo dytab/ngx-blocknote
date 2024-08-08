@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
+  BasicTextStyleButtonComponent,
   BnaEditorComponent,
-  BnaFormattingToolbarDirective,
+  BnaFormattingToolbarControllerDirective,
 } from '@dytab/block-note-angular';
-import { BasicTextStyleButtonComponent } from '../../../../../../libs/block-note-angular/src/lib/components/buttons/basic-text-style-button/basic-text-style-button.component';
 
 @Component({
   selector: 'bna-basic-setup-example',
@@ -13,18 +13,14 @@ import { BasicTextStyleButtonComponent } from '../../../../../../libs/block-note
   imports: [
     CommonModule,
     BnaEditorComponent,
-    BnaFormattingToolbarDirective,
+    BnaFormattingToolbarControllerDirective,
     BasicTextStyleButtonComponent,
   ],
   template: `<bna-editor [initialContent]="initialContent">
-    <div test>
-      <bna-formatting-toolbar>
-        <bna-basic-text-style-button [basicTextStyle]="'italic'" />
-        <bna-basic-text-style-button [basicTextStyle]="'bold'" />
-      </bna-formatting-toolbar>
-    </div>
-    <!--    <bna-formatting-toolbar test>-->
-    <!--    </bna-formatting-toolbar>-->
+    <bna-formatting-toolbar-controller>
+      <bna-basic-text-style-button [basicTextStyle]="'italic'" />
+      <bna-basic-text-style-button [basicTextStyle]="'bold'" />
+    </bna-formatting-toolbar-controller>
   </bna-editor> `,
 })
 export class FormattingToolbarButtonsExample {

@@ -4,12 +4,12 @@ import { BlockNoteAngularService } from '../../services/block-note-angular.servi
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
-  selector: 'bna-side-menu',
+  selector: 'bna-suggestions-menu-controller',
   standalone: true,
 })
-export class BnaSideMenuDirective {
+export class BnaSuggestionsMenuControllerDirective {
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private blockNoteEditorService: BlockNoteAngularService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
@@ -19,26 +19,26 @@ export class BnaSideMenuDirective {
   }
 
   private adjustVisibilityAndPosition() {
+    const editor = this.blockNoteEditorService.editor();
+    if (!editor) {
+      return;
+    }
+    this.toggleVisibility(false);
     let cleanup: () => void = () => {
       return;
     };
-    const editorSnapshot = this.blockNoteAngularService.editor();
-    if (!editorSnapshot) {
-      return;
-    }
-    this.toggleVisibility(true);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    editorSnapshot.sideMenu.onUpdate(async (sideMenuState) => {
-      if (!sideMenuState.show) {
+    editor.suggestionMenus.onUpdate('/', async (suggestionMenuState) => {
+      if (!suggestionMenuState.show) {
         cleanup();
       } else {
         const updatePosition = async () => {
           const result = await computePosition(
-            getVirtualElement(sideMenuState.referencePos),
+            getVirtualElement(suggestionMenuState.referencePos),
             this.elRef.nativeElement,
             {
-              placement: 'left',
+              placement: 'bottom-start',
               middleware: [flip()],
             }
           );
@@ -47,14 +47,19 @@ export class BnaSideMenuDirective {
             'top',
             `${result.y}px`
           );
+          this.renderer2.setStyle(
+            this.elRef.nativeElement,
+            'left',
+            `${result.x}px`
+          );
         };
         cleanup = autoUpdate(
-          getVirtualElement(sideMenuState.referencePos),
+          getVirtualElement(suggestionMenuState.referencePos),
           this.elRef.nativeElement,
           updatePosition
         );
       }
-      this.toggleVisibility(sideMenuState.show);
+      this.toggleVisibility(suggestionMenuState.show);
     });
   }
 

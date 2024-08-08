@@ -5,10 +5,10 @@ import { BlockNoteAngularService } from '../../services/block-note-angular.servi
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
-  selector: 'bna-formatting-toolbar',
+  selector: 'bna-formatting-toolbar-controller',
   standalone: true,
 })
-export class BnaFormattingToolbarDirective {
+export class BnaFormattingToolbarControllerDirective {
   constructor(
     private blockNoteAngularService: BlockNoteAngularService,
     protected elRef: ElementRef<HTMLElement>,

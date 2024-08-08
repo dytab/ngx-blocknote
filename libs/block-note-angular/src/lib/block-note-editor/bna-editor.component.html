@@ -2,7 +2,7 @@
   @if(isInitialized){
 <!--  <div #ref><ng-content select="[test]"></ng-content></div>-->
 <!--  <ng-container *ngIf="!ref.hasChildNodes()">-->
-    <bna-formatting-toolbar>
+    <bna-formatting-toolbar-controller>
       <div class="bn-toolbar">
         <bna-basic-text-style-button [basicTextStyle]="'bold'" />
         <bna-basic-text-style-button [basicTextStyle]="'italic'" />
@@ -11,18 +11,20 @@
         <bna-text-align-button [alignment]="'center'" />
         <bna-text-align-button [alignment]="'right'" />
       </div>
-    </bna-formatting-toolbar>
+    </bna-formatting-toolbar-controller>
 <!--  </ng-container>-->
 
-  <bna-side-menu class="text-gray-500">
+  <bna-side-menu-controller class="text-gray-500">
     <bna-add-block-btn />
     <bna-drag-handle-menu-btn />
-  </bna-side-menu>
-  <bna-view
+  </bna-side-menu-controller>
+  <bna-view-controller
     class="block ProseMirror bn-editor relative bn-default-styles"
   />
-  <bna-file-panel class="z-index-3"> </bna-file-panel>
-  <bna-suggestions-menu class="z-index-3">
+  <bna-file-panel-controller>
+    <bna-file-panel> </bna-file-panel>
+  </bna-file-panel-controller>
+  <bna-suggestions-menu-controller class="z-index-3">
     <hlm-menu class="shadow-3xl">
       <hlm-menu-label>Basic blocks</hlm-menu-label>
       <hlm-menu-separator />
@@ -39,6 +41,6 @@
         }
       </hlm-menu-group>
     </hlm-menu>
-  </bna-suggestions-menu>
+  </bna-suggestions-menu-controller>
   }
 </div>

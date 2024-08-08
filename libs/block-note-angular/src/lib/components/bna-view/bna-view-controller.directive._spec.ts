@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BnaViewDirective } from './bna-view.directive';
+import { BnaViewControllerDirective } from './bna-view-controller.directive';
 
 describe('BlockNoteViewDirective', () => {
-  let component: BnaViewDirective;
-  let fixture: ComponentFixture<BnaViewDirective>;
+  let component: BnaViewControllerDirective;
+  let fixture: ComponentFixture<BnaViewControllerDirective>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaViewDirective],
+      imports: [BnaViewControllerDirective],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BnaViewDirective);
+    fixture = TestBed.createComponent(BnaViewControllerDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

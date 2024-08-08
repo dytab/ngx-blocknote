@@ -1,15 +1,15 @@
 import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
-import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
-  selector: 'bna-suggestions-menu',
+  selector: 'bna-file-panel-controller',
   standalone: true,
 })
-export class BnaSuggestionsMenuDirective {
+export class BnaFilePanelControllerDirective {
   constructor(
-    private blockNoteEditorService: BlockNoteAngularService,
+    private blockNoteAngularService: BlockNoteAngularService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
@@ -19,7 +19,7 @@ export class BnaSuggestionsMenuDirective {
   }
 
   private adjustVisibilityAndPosition() {
-    const editor = this.blockNoteEditorService.editor();
+    const editor = this.blockNoteAngularService.editor();
     if (!editor) {
       return;
     }
@@ -29,17 +29,17 @@ export class BnaSuggestionsMenuDirective {
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    editor.suggestionMenus.onUpdate('/', async (suggestionMenuState) => {
-      if (!suggestionMenuState.show) {
+    editor.filePanel?.onUpdate(async (filePanelState) => {
+      if (!filePanelState.show) {
         cleanup();
       } else {
         const updatePosition = async () => {
           const result = await computePosition(
-            getVirtualElement(suggestionMenuState.referencePos),
+            getVirtualElement(filePanelState.referencePos),
             this.elRef.nativeElement,
             {
-              placement: 'bottom-start',
-              middleware: [flip()],
+              placement: 'bottom',
+              middleware: [offset(10), flip()],
             }
           );
           this.renderer2.setStyle(
@@ -54,12 +54,12 @@ export class BnaSuggestionsMenuDirective {
           );
         };
         cleanup = autoUpdate(
-          getVirtualElement(suggestionMenuState.referencePos),
+          getVirtualElement(filePanelState.referencePos),
           this.elRef.nativeElement,
           updatePosition
         );
       }
-      this.toggleVisibility(suggestionMenuState.show);
+      this.toggleVisibility(filePanelState.show);
     });
   }
 

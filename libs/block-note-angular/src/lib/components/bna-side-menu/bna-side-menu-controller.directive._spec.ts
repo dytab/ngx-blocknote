@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BnaSideMenuDirective } from './bna-side-menu.directive';
+import { BnaSideMenuControllerDirective } from './bna-side-menu-controller.directive';
 
 describe('BlockNoteSideMenuComponent', () => {
-  let component: BnaSideMenuDirective;
-  let fixture: ComponentFixture<BnaSideMenuDirective>;
+  let component: BnaSideMenuControllerDirective;
+  let fixture: ComponentFixture<BnaSideMenuControllerDirective>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaSideMenuDirective],
+      imports: [BnaSideMenuControllerDirective],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BnaSideMenuDirective);
+    fixture = TestBed.createComponent(BnaSideMenuControllerDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

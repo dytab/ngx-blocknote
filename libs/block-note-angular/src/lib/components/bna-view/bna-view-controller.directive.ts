@@ -2,10 +2,10 @@ import { Directive, effect, ElementRef } from '@angular/core';
 import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 
 @Directive({
-  selector: 'bna-view',
+  selector: 'bna-view-controller',
   standalone: true,
 })
-export class BnaViewDirective {
+export class BnaViewControllerDirective {
   constructor(
     private blockNoteAngularService: BlockNoteAngularService,
     protected elRef: ElementRef<HTMLElement>

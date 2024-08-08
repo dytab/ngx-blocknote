@@ -35,13 +35,14 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
 } from '@spartan-ng/ui-menu-helm';
+import { BnaFilePanelControllerDirective } from '../components/bna-file-panel/bna-file-panel-controller.directive';
 import { BnaFilePanelComponent } from '../components/bna-file-panel/bna-file-panel.component';
-import { BnaFormattingToolbarDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
-import { BnaSideMenuDirective } from '../components/bna-side-menu/bna-side-menu.directive';
+import { BnaFormattingToolbarControllerDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
+import { BnaSideMenuControllerDirective } from '../components/bna-side-menu/bna-side-menu-controller.directive';
 import { BnaAddBlockButtonComponent } from '../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import { BnaDragHandleMenuComponent } from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
-import { BnaSuggestionsMenuDirective } from '../components/bna-suggestions-menu/bna-suggestions-menu.directive';
-import { BnaViewDirective } from '../components/bna-view/bna-view.directive';
+import { BnaSuggestionsMenuControllerDirective } from '../components/bna-suggestions-menu/bna-suggestions-menu-controller.directive';
+import { BnaViewControllerDirective } from '../components/bna-view/bna-view-controller.directive';
 import { BasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
 import { TextAlignButtonComponent } from '../components/buttons/text-align-button/text-align-button.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
@@ -50,12 +51,12 @@ import { BlockNoteAngularService } from '../services/block-note-angular.service'
 @Component({
   imports: [
     CommonModule,
-    BnaViewDirective,
-    BnaSideMenuDirective,
+    BnaViewControllerDirective,
+    BnaSideMenuControllerDirective,
     BnaAddBlockButtonComponent,
     BnaDragHandleMenuComponent,
-    BnaSuggestionsMenuDirective,
-    BnaFormattingToolbarDirective,
+    BnaSuggestionsMenuControllerDirective,
+    BnaFormattingToolbarControllerDirective,
     HlmCardDirective,
     HlmButtonDirective,
     BasicTextStyleButtonComponent,
@@ -69,6 +70,7 @@ import { BlockNoteAngularService } from '../services/block-note-angular.service'
     TextAlignButtonComponent,
     BnaFilePanelComponent,
     HlmInputDirective,
+    BnaFilePanelControllerDirective,
   ],
   providers: [BlockNoteAngularService],
   selector: 'bna-editor',
