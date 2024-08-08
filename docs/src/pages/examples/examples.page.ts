@@ -20,12 +20,18 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   >
     <aside class="flex flex-col p-3">
       Basic
-      <a hlmBtn variant="ghost" routerLink="basic/minimal" class="justify-start"
+      <a
+        hlmBtn
+        variant="ghost"
+        routerLinkActive="active-link"
+        routerLink="basic/minimal"
+        class="justify-start"
         >Basic Setup</a
       >
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="basic/manipulating-blocks"
         class="justify-start"
         >Manipulating Blocks</a
@@ -33,6 +39,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="basic/removing-default-blocks"
         class="justify-start"
         >Removing Default Blocks</a
@@ -40,6 +47,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="basic/selection-blocks"
         class="justify-start"
         >Displaying Selected Blocks</a
@@ -47,6 +55,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="basic/blocks-json"
         class="justify-start"
         >Displaying Document JSON</a
@@ -54,6 +63,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="basic/all-blocks"
         class="justify-start"
         >Default Schema Showcase</a
@@ -63,6 +73,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="backend/saving-and-loading"
         class="justify-start"
         >Saving & Loading</a
@@ -70,6 +81,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <a
         hlmBtn
         variant="ghost"
+        routerLinkActive="active-link"
         routerLink="backend/upload-files"
         class="justify-start"
         >Upload Files</a
@@ -80,6 +92,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         hlmBtn
         variant="ghost"
         class="justify-start"
+        routerLinkActive="active-link"
         routerLink="custom/alert-block"
         >Alert Block</a
       >
@@ -87,6 +100,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         hlmBtn
         variant="ghost"
         class="justify-start"
+        routerLinkActive="active-link"
         routerLink="custom/api-content-block"
         >Api Content Block</a
       >
@@ -95,6 +109,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         hlmBtn
         variant="ghost"
         class="justify-start"
+        routerLinkActive="active-link"
         routerLink="interoperability/convert-to-html"
         >Converting Blocks to HTML</a
       >
@@ -103,6 +118,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         hlmBtn
         variant="ghost"
         class="justify-start"
+        routerLinkActive="active-link"
         routerLink="ui-components/formatting-toolbar-buttons"
         >Formatting Toolbar Buttons</a
       >
@@ -110,6 +126,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         hlmBtn
         variant="ghost"
         class="justify-start"
+        routerLinkActive="active-link"
         routerLink="ui-components/formatting-side-menu-buttons"
         >Formatting Side Menu Buttons</a
       >

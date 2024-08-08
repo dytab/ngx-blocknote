@@ -321,6 +321,8 @@ NESTED BLOCKS
     width: 100%;
 }
 
+/* TODO: is additional specificity here used to overwrite 3rd party styles? */
+.active-link,
 [data-file-block] .bn-file-default-preview:hover,
 .ProseMirror-selectednode .bn-file-default-preview {
     background-color: rgb(225, 225, 225);
