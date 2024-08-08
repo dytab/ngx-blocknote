@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  hlmP,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
-import { hlmP } from '@spartan-ng/ui-typography-helm';
+} from '@dytab/block-note-angular';
 import { Highlight } from 'ngx-highlightjs';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -35,7 +35,9 @@ import {
   template: `
     <bna-section-intro name="Manipulating Blocks">
       <p class="${hlmP} mb-8">
-        This example shows 4 buttons to manipulate the first block using the <code>insertBlocks</code>, <code>updateBlock</code>, <code>removeBlocks</code> and <code>replaceBlocks</code> methods.
+        This example shows 4 buttons to manipulate the first block using the
+        <code>insertBlocks</code>, <code>updateBlock</code>,
+        <code>removeBlocks</code> and <code>replaceBlocks</code> methods.
       </p>
     </bna-section-intro>
     <hlm-tabs tab="preview">
@@ -48,6 +50,6 @@ import {
     </hlm-tabs>
   `,
 })
-export class ManipulatingBlocksPage{
+export class ManipulatingBlocksPage {
   exampleCode = manipulatingBlocksExampleCode;
 }

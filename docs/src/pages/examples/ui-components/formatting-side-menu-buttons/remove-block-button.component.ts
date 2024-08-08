@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
-import { BlockNoteAngularService } from '@dytab/block-note-angular';
+import {
+  BlockNoteAngularService,
+  HlmButtonDirective,
+  HlmIconComponent,
+} from '@dytab/block-note-angular';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
 
 @Component({
   selector: 'bna-remove-block-button',

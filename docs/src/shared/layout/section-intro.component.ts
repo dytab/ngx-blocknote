@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { hlmH1, hlmLead } from '@spartan-ng/ui-typography-helm';
+import { hlmH1, hlmLead } from '@dytab/block-note-angular';
 
 @Component({
   selector: 'bna-section-intro',

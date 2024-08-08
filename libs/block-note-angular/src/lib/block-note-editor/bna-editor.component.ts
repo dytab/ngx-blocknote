@@ -23,18 +23,6 @@ import {
   PartialBlock,
   StyleSchema,
 } from '@blocknote/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemDirective,
-  HlmMenuItemSubIndicatorComponent,
-  HlmMenuLabelComponent,
-  HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
-} from '@spartan-ng/ui-menu-helm';
 import { BnaFilePanelControllerDirective } from '../components/bna-file-panel/bna-file-panel-controller.directive';
 import { BnaFilePanelComponent } from '../components/bna-file-panel/bna-file-panel.component';
 import { BnaFormattingToolbarControllerDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
@@ -49,6 +37,18 @@ import { BasicTextStyleButtonComponent } from '../components/buttons/basic-text-
 import { TextAlignButtonComponent } from '../components/buttons/text-align-button/text-align-button.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { BlockNoteAngularService } from '../services/block-note-angular.service';
+import {
+  HlmButtonDirective,
+  HlmCardDirective,
+  HlmInputDirective,
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
+  HlmMenuItemSubIndicatorComponent,
+  HlmMenuLabelComponent,
+  HlmMenuSeparatorComponent,
+  HlmMenuShortcutComponent,
+} from '../ui';
 
 @Component({
   imports: [

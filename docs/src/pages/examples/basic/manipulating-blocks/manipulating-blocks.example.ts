@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BlockNoteEditor } from '@blocknote/core';
+import {
+  BnaEditorComponent,
+  HlmButtonDirective,
+} from '@dytab/block-note-angular';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',
@@ -10,15 +12,26 @@ import { BlockNoteEditor } from '@blocknote/core';
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <div class="flex gap-2">
-      <button hlmBtn size="sm" type="button" (click)="insertFirstBlock()">Insert First Block</button>
-      <button hlmBtn size="sm" type="button" (click)="updateFirstBlock()">Update First Block</button>
-      <button hlmBtn size="sm" type="button" (click)="removeFirstBlock()">Remove First Block</button>
-      <button hlmBtn size="sm" type="button" (click)="replaceFirstBlock()">Replace First Block</button>
+      <button hlmBtn size="sm" type="button" (click)="insertFirstBlock()">
+        Insert First Block
+      </button>
+      <button hlmBtn size="sm" type="button" (click)="updateFirstBlock()">
+        Update First Block
+      </button>
+      <button hlmBtn size="sm" type="button" (click)="removeFirstBlock()">
+        Remove First Block
+      </button>
+      <button hlmBtn size="sm" type="button" (click)="replaceFirstBlock()">
+        Replace First Block
+      </button>
     </div>
-    <bna-editor [initialContent]="initialContent" (onEditorReady)="editorReady($event)" />
+    <bna-editor
+      [initialContent]="initialContent"
+      (onEditorReady)="editorReady($event)"
+    />
   `,
 })
-export class ManipulatingBlocksExample{
+export class ManipulatingBlocksExample {
   initialContent = undefined;
   editor!: BlockNoteEditor;
 
@@ -26,49 +39,46 @@ export class ManipulatingBlocksExample{
     this.editor = editor;
   }
 
-  insertFirstBlock(){
+  insertFirstBlock() {
     this.editor.insertBlocks(
       [
         {
           content:
-            "This block was inserted at " +
-            new Date().toLocaleTimeString(),
+            'This block was inserted at ' + new Date().toLocaleTimeString(),
         },
       ],
       this.editor.document[0],
-      "before"
-    )
+      'before'
+    );
   }
 
-  updateFirstBlock(){
+  updateFirstBlock() {
     this.editor.updateBlock(this.editor.document[0], {
-      content:
-        "This block was updated at " + new Date().toLocaleTimeString(),
-    })
+      content: 'This block was updated at ' + new Date().toLocaleTimeString(),
+    });
   }
 
-  removeFirstBlock(){
-    this.editor.removeBlocks([this.editor.document[0]])
+  removeFirstBlock() {
+    this.editor.removeBlocks([this.editor.document[0]]);
   }
 
-  replaceFirstBlock(){
+  replaceFirstBlock() {
     this.editor.replaceBlocks(
       [this.editor.document[0]],
       [
         {
           content:
-            "This block was replaced at " +
-            new Date().toLocaleTimeString(),
+            'This block was replaced at ' + new Date().toLocaleTimeString(),
         },
       ]
-    )
+    );
   }
 }
 
 export const manipulatingBlocksExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@dytab/block-note-angular';
 import { BlockNoteEditor } from '@blocknote/core';
 
 @Component({

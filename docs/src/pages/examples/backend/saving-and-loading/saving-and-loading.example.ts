@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { Block, PartialBlock } from '@blocknote/core';
 import {
-  Block,
-  PartialBlock
-} from '@blocknote/core';
+  BnaEditorComponent,
+  HlmButtonDirective,
+} from '@dytab/block-note-angular';
 
 @Component({
   selector: 'bna-saving-and-loading-example',
   standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
-    <bna-editor [initialContent]="initialContent" (contentChanged)="saveToStorage($event)" />
+    <bna-editor
+      [initialContent]="initialContent"
+      (contentChanged)="saveToStorage($event)"
+    />
   `,
 })
 export class SavingAndLoadingExample {
@@ -21,12 +23,12 @@ export class SavingAndLoadingExample {
   saveToStorage(jsonBlocks: Block[]) {
     // Save contents to local storage. You might want to debounce this or replace
     // with a call to your API / database.
-    localStorage.setItem("editorContent", JSON.stringify(jsonBlocks));
+    localStorage.setItem('editorContent', JSON.stringify(jsonBlocks));
   }
 
   private loadFromStorage() {
     // Gets the previously stored editor contents.
-    const storageString = localStorage.getItem("editorContent");
+    const storageString = localStorage.getItem('editorContent');
     return storageString
       ? (JSON.parse(storageString) as PartialBlock[])
       : undefined;
@@ -36,7 +38,7 @@ export class SavingAndLoadingExample {
 export const savingAndLoadingExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BnaEditorComponent } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@dytab/block-note-angular';
 import {
   Block,
   PartialBlock

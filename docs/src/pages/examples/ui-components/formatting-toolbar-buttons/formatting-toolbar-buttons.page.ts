@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  hlmP,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
-import { hlmP } from '@spartan-ng/ui-typography-helm';
+} from '@dytab/block-note-angular';
 import { Highlight } from 'ngx-highlightjs';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -46,7 +46,7 @@ import {
     <hlm-tabs tab="preview">
       <bna-example-tabs firstTab="Preview" secondTab="Code">
         <bna-demo-box firstTab>
-          <bna-basic-setup-example />
+          <bna-formatting-toolbar-buttons-example />
         </bna-demo-box>
         <bna-code [code]="exampleCode" secondTab />
       </bna-example-tabs>

@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
-import { BlockNoteAngularService } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmMenuItemDirective } from '@spartan-ng/ui-menu-helm';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../ui';
 
 @Component({
   selector: 'bna-delete-block-item',

@@ -4,8 +4,8 @@ import { BlockNoteSchema, defaultBlockSpecs } from '@blocknote/core';
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
+  HlmButtonDirective,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-removing-default-blocks-example',
@@ -35,7 +35,7 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@dytab/block-note-angular';
 
 @Component({
   selector: 'bna-removing-default-blocks-example',

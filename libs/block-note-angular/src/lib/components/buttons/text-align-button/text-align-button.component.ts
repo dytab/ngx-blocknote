@@ -10,9 +10,8 @@ import {
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
 import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
+import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 
 const icons = {
   left: 'lucideAlignLeft',

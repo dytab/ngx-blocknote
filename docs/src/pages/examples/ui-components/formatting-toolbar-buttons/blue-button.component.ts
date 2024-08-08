@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BlockNoteAngularService } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import {
+  BlockNoteAngularService,
+  HlmButtonDirective,
+} from '@dytab/block-note-angular';
 
 @Component({
   selector: 'bna-blue-button',

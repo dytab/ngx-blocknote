@@ -7,12 +7,12 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
+  HlmButtonDirective,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { RemoveBlockButtonComponent } from './remove-block-button.component';
 
 @Component({
-  selector: 'bna-basic-setup-example',
+  selector: 'bna-formatting-side-menu-buttons-example',
   standalone: true,
   imports: [
     CommonModule,

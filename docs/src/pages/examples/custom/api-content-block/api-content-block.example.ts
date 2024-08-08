@@ -12,8 +12,8 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
+  HlmButtonDirective,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { apiContentBlock } from './api-content-block';
 
 const schema = BlockNoteSchema.create({
@@ -64,7 +64,7 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@dytab/block-note-angular';
 import { apiContentBlock } from './api-content-block';
 
 const schema = BlockNoteSchema.create({

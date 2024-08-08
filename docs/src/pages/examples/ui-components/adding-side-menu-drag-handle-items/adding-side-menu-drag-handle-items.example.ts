@@ -4,17 +4,17 @@ import { PartialBlock } from '@blocknote/core';
 import {
   BasicTextStyleButtonComponent,
   BnaAddBlockButtonComponent,
+  BnaDeleteBlockItemComponent,
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
+  HlmButtonDirective,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BnaDeleteBlockItemComponent } from '../../../../../../libs/block-note-angular/src/lib/components/bna-side-menu/default-buttons/bna-delete-block-item/bna-delete-block-item.component';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
 
 @Component({
-  selector: 'bna-basic-setup-example',
+  selector: 'bna-adding-side-menu-drag-handle-items-example',
   standalone: true,
   imports: [
     CommonModule,

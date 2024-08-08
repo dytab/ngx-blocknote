@@ -3,10 +3,11 @@ import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 import {
+  HlmButtonDirective,
+  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmMenuItemDirective,
@@ -15,8 +16,7 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
-} from '@spartan-ng/ui-menu-helm';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+} from '../../../../ui';
 import { BnaFormattingToolbarControllerDirective } from '../../../bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
 import { BnaFormattingToolbarComponent } from '../../../bna-formatting-toolbar/bna-formatting-toolbar.component';
 import { BasicTextStyleButtonComponent } from '../../../buttons/basic-text-style-button/basic-text-style-button.component';

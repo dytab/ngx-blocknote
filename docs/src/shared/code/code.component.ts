@@ -7,11 +7,13 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  HlmButtonDirective,
+  HlmIconComponent,
+  HlmScrollAreaComponent,
+} from '@dytab/block-note-angular';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
-import { HlmScrollAreaComponent } from '@spartan-ng/ui-scrollarea-helm';
 import { Highlight } from 'ngx-highlightjs';
 
 @Component({

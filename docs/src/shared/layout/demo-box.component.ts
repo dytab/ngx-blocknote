@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmCardDirective } from '@dytab/block-note-angular';
 
 @Component({
   selector: 'bna-demo-box',

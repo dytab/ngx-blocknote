@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  hlmP,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
-import { hlmP } from '@spartan-ng/ui-typography-helm';
+} from '@dytab/block-note-angular';
 import { Highlight } from 'ngx-highlightjs';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -35,9 +35,12 @@ import {
   template: `
     <bna-section-intro name="Upload Files">
       <p class="${hlmP} mb-8">
-        This example allows users to upload files and use them in the editor. The files are uploaded to /TMP/Files, and can be used for File, Image, Video, and Audio blocks.
-        <br><br>
-        <b>Try it out:</b> Click the "Add Image" button and see there's now an "Upload" tab in the toolbar!
+        This example allows users to upload files and use them in the editor.
+        The files are uploaded to /TMP/Files, and can be used for File, Image,
+        Video, and Audio blocks.
+        <br /><br />
+        <b>Try it out:</b> Click the "Add Image" button and see there's now an
+        "Upload" tab in the toolbar!
       </p>
     </bna-section-intro>
     <hlm-tabs tab="preview">
@@ -50,6 +53,6 @@ import {
     </hlm-tabs>
   `,
 })
-export class UploadFilePage{
+export class UploadFilePage {
   exampleCode = uploadFileExampleCode;
 }

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { HlmTabsComponent } from '@spartan-ng/ui-tabs-helm';
-import { hlmP } from '@spartan-ng/ui-typography-helm';
+import { hlmP, HlmTabsComponent } from '@dytab/block-note-angular';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';

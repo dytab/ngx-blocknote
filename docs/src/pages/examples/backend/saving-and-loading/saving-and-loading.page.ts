@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  hlmP,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
-import { hlmP } from '@spartan-ng/ui-typography-helm';
+} from '@dytab/block-note-angular';
 import { Highlight } from 'ngx-highlightjs';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -35,10 +35,13 @@ import {
   template: `
     <bna-section-intro name="Saving & Loading">
       <p class="${hlmP} mb-8">
-        This example shows how to save the editor contents to local storage whenever a change is made, and load the saved contents when the editor is created.
-        <br><br>
-        You can replace the <code>saveToStorage</code> and <code>loadFromStorage</code> functions with calls to your backend or database.
-        <br><br>
+        This example shows how to save the editor contents to local storage
+        whenever a change is made, and load the saved contents when the editor
+        is created.
+        <br /><br />
+        You can replace the <code>saveToStorage</code> and
+        <code>loadFromStorage</code> functions with calls to your backend or
+        database. <br /><br />
         <b>Try it out:</b> Try typing in the editor and reloading the page!
       </p>
     </bna-section-intro>
@@ -52,6 +55,6 @@ import {
     </hlm-tabs>
   `,
 })
-export class SavingAndLoadingPage{
+export class SavingAndLoadingPage {
   exampleCode = savingAndLoadingExampleCode;
 }

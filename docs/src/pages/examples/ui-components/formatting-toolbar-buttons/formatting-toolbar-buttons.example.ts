@@ -6,12 +6,12 @@ import {
   BnaEditorComponent,
   BnaFormattingToolbarComponent,
   BnaFormattingToolbarControllerDirective,
+  HlmButtonDirective,
 } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BlueButtonComponent } from './blue-button.component';
 
 @Component({
-  selector: 'bna-basic-setup-example',
+  selector: 'bna-formatting-toolbar-buttons-example',
   standalone: true,
   imports: [
     CommonModule,

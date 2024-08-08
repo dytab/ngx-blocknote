@@ -8,3 +8,5 @@ export * from './lib/components/bna-side-menu/bna-side-menu.component';
 export * from './lib/components/bna-side-menu/bna-side-menu-controller.directive';
 export * from './lib/components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
 export * from './lib/components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
+export * from './lib/ui';
+export * from './lib/components/bna-side-menu/default-buttons/bna-delete-block-item/bna-delete-block-item.component';
