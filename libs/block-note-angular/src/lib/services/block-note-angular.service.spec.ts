@@ -7,7 +7,10 @@ describe('BlockNoteAngularService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [BlockNoteAngularService] });
-    service = TestBed.inject(BlockNoteAngularService);
+    service = TestBed.inject(
+      BlockNoteAngularService
+      //TODO: remove this strange cast
+    ) as any;
   });
 
   it('should be created', () => {

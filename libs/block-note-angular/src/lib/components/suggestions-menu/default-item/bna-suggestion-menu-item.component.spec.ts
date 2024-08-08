@@ -12,6 +12,7 @@ describe('BnaSuggestionMenuItemComponent', () => {
 
     fixture = TestBed.createComponent(BnaSuggestionMenuItemComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('slashMenuItem', {} as never);
     fixture.detectChanges();
   });
 
