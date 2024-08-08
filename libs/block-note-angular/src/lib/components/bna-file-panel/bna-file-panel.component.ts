@@ -1,5 +1,5 @@
 import { Component, effect } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
   BlockNoteEditor,
@@ -26,6 +26,7 @@ import { BlockNoteAngularService } from '../../services/block-note-angular.servi
     FormsModule,
     HlmTabsTriggerDirective,
     HlmTabsContentDirective,
+    ReactiveFormsModule,
   ],
   templateUrl: './bna-file-panel.component.html',
 })
@@ -33,6 +34,7 @@ export class BnaFilePanelComponent {
   private focusedBlock?: BlockFromConfig<FileBlockConfig, any, any>;
 
   embedInputText = '';
+  fileControl = new FormControl();
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
     effect(() => {
@@ -71,6 +73,8 @@ export class BnaFilePanelComponent {
     const fileUrl = await editor.uploadFile(file);
 
     this.updateBlockWithEmbedFileUrl(this.focusedBlock, editor, fileUrl);
+    this.focusedBlock = undefined;
+    this.fileControl.reset();
   }
 
   insertEmbedFile(embedFileUrl: string) {
