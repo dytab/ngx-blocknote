@@ -3,6 +3,7 @@ import {
   Component,
   Input,
   OnChanges,
+  OnInit,
   output,
   SimpleChanges,
 } from '@angular/core';
@@ -86,15 +87,17 @@ export class BnaEditorComponent<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
   SSchema extends StyleSchema = DefaultStyleSchema
-> implements OnChanges
+> implements OnChanges, OnInit
 {
   @Input()
   options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
+
+  // TODO: move to reusable type
   @Input()
-  initialContent!:
+  initialContent:
     | Block<BSchema, ISchema, SSchema>[]
     | PartialBlock<BSchema, ISchema, SSchema>[]
-    | undefined;
+    | undefined = undefined;
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
@@ -108,14 +111,25 @@ export class BnaEditorComponent<
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {}
 
+  ngOnInit() {
+    this.createEditor(this.initialContent);
+    this.isInitialized = true;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['initialContent']) {
+      // TODO: try to type the current value (currently any)
       this.createEditor(changes['initialContent'].currentValue);
       this.isInitialized = true;
     }
   }
 
-  createEditor(initialContent: Block<BSchema, ISchema, SSchema>[]) {
+  createEditor(
+    initialContent:
+      | Block<BSchema, ISchema, SSchema>[]
+      | PartialBlock<BSchema, ISchema, SSchema>[]
+      | undefined
+  ) {
     const schema = this.options?.schema;
     this.editor = BlockNoteEditor.create({
       trailingBlock: false,
