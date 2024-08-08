@@ -1,3 +1,31 @@
+## 0.3.0 (2024-08-08)
+
+
+### 🚀 Features
+
+- add basic block note typings ([ac105ed](https://github.com/dytab/BlockNoteAngular/commit/ac105ed))
+- add uploadFiles functionality and example ([896157d](https://github.com/dytab/BlockNoteAngular/commit/896157d))
+- add styling for upload and embed file ([86fc9fa](https://github.com/dytab/BlockNoteAngular/commit/86fc9fa))
+- add prototype of api-content block example ([40d47eb](https://github.com/dytab/BlockNoteAngular/commit/40d47eb))
+- add first version of formatting toolbar buttons example ([f193a0b](https://github.com/dytab/BlockNoteAngular/commit/f193a0b))
+- allow full customization of formatting toolbar ([d02c596](https://github.com/dytab/BlockNoteAngular/commit/d02c596))
+- add blue button to example ([1b698ab](https://github.com/dytab/BlockNoteAngular/commit/1b698ab))
+- add formatting side menu example ([2becd96](https://github.com/dytab/BlockNoteAngular/commit/2becd96))
+- make initialContent optional ([32b327a](https://github.com/dytab/BlockNoteAngular/commit/32b327a))
+- do not create new editor, when initial content changes ([798c4f5](https://github.com/dytab/BlockNoteAngular/commit/798c4f5))
+- add drag handle menu items example ([8455f9d](https://github.com/dytab/BlockNoteAngular/commit/8455f9d))
+
+### 🩹 Fixes
+
+- reset file upload form after file was uploaded ([c5a8073](https://github.com/dytab/BlockNoteAngular/commit/c5a8073))
+- make active navigation links visible ([26acb8f](https://github.com/dytab/BlockNoteAngular/commit/26acb8f))
+
+### ❤️  Thank You
+
+- FMuks
+- Markus Falk
+- Matthias Risto
+
 ## 0.2.5 (2024-08-07)
 
 

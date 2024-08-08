@@ -17,7 +17,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@dytab/block-note-angular": ["libs/block-note-angular/src/index.ts"],
+      "@dytab/block-note-angular": ["libs/block-note-angular/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
