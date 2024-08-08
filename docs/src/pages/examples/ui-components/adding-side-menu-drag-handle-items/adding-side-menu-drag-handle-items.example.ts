@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
-  BasicTextStyleButtonComponent,
   BnaAddBlockButtonComponent,
+  BnaBasicTextStyleButtonComponent,
   BnaDeleteBlockItemComponent,
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
@@ -19,7 +19,7 @@ import { ResetBlockButtonComponent } from './reset-block-button.component';
   imports: [
     CommonModule,
     BnaEditorComponent,
-    BasicTextStyleButtonComponent,
+    BnaBasicTextStyleButtonComponent,
     HlmButtonDirective,
     BnaSideMenuControllerDirective,
     BnaSideMenuComponent,

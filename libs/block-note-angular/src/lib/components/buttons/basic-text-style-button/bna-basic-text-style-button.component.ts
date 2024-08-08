@@ -19,11 +19,11 @@ type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
   selector: 'bna-basic-text-style-button',
   standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
-  templateUrl: './basic-text-style-button.component.html',
-  styleUrl: './basic-text-style-button.component.css',
+  templateUrl: './bna-basic-text-style-button.component.html',
+  styleUrl: './bna-basic-text-style-button.component.css',
   providers: [provideIcons({ lucideBold, lucideItalic, lucideUnderline })],
 })
-export class BasicTextStyleButtonComponent {
+export class BnaBasicTextStyleButtonComponent {
   basicTextStyle = input.required<BasicTextStyle>();
   icon = computed(() => {
     return icons[this.basicTextStyle()];

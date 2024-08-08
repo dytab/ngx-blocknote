@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BasicTextStyleButtonComponent } from './basic-text-style-button.component';
+import { BnaBasicTextStyleButtonComponent } from './bna-basic-text-style-button.component';
 
 describe('BnaBasicTextStyleButtonComponent', () => {
-  let component: BasicTextStyleButtonComponent;
-  let fixture: ComponentFixture<BasicTextStyleButtonComponent>;
+  let component: BnaBasicTextStyleButtonComponent;
+  let fixture: ComponentFixture<BnaBasicTextStyleButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BasicTextStyleButtonComponent],
+      imports: [BnaBasicTextStyleButtonComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BasicTextStyleButtonComponent);
+    fixture = TestBed.createComponent(BnaBasicTextStyleButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

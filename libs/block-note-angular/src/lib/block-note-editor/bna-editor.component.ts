@@ -33,8 +33,8 @@ import { BnaAddBlockButtonComponent } from '../components/bna-side-menu/default-
 import { BnaDragHandleMenuComponent } from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSuggestionsMenuControllerDirective } from '../components/bna-suggestions-menu/bna-suggestions-menu-controller.directive';
 import { BnaViewControllerDirective } from '../components/bna-view/bna-view-controller.directive';
-import { BasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
-import { TextAlignButtonComponent } from '../components/buttons/text-align-button/text-align-button.component';
+import { BnaBasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/bna-basic-text-style-button.component';
+import { BnaTextAlignButtonComponent } from '../components/buttons/text-align-button/bna-text-align-button.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { BlockNoteAngularService } from '../services/block-note-angular.service';
 import {
@@ -61,7 +61,7 @@ import {
     BnaFormattingToolbarControllerDirective,
     HlmCardDirective,
     HlmButtonDirective,
-    BasicTextStyleButtonComponent,
+    BnaBasicTextStyleButtonComponent,
     HlmMenuComponent,
     HlmMenuLabelComponent,
     HlmMenuSeparatorComponent,
@@ -69,7 +69,7 @@ import {
     HlmMenuItemDirective,
     HlmMenuShortcutComponent,
     HlmMenuItemSubIndicatorComponent,
-    TextAlignButtonComponent,
+    BnaTextAlignButtonComponent,
     BnaFilePanelComponent,
     HlmInputDirective,
     BnaFilePanelControllerDirective,

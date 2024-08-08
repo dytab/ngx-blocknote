@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect } from '@angular/core';
-import { Block } from '@blocknote/core';
+import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
@@ -19,8 +18,8 @@ import {
 } from '../../../../ui';
 import { BnaFormattingToolbarControllerDirective } from '../../../bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
 import { BnaFormattingToolbarComponent } from '../../../bna-formatting-toolbar/bna-formatting-toolbar.component';
-import { BasicTextStyleButtonComponent } from '../../../buttons/basic-text-style-button/basic-text-style-button.component';
-import { TextAlignButtonComponent } from '../../../buttons/text-align-button/text-align-button.component';
+import { BnaBasicTextStyleButtonComponent } from '../../../buttons/basic-text-style-button/bna-basic-text-style-button.component';
+import { BnaTextAlignButtonComponent } from '../../../buttons/text-align-button/bna-text-align-button.component';
 import { BnaDeleteBlockItemComponent } from '../bna-delete-block-item/bna-delete-block-item.component';
 
 @Component({
@@ -39,10 +38,10 @@ import { BnaDeleteBlockItemComponent } from '../bna-delete-block-item/bna-delete
     HlmMenuShortcutComponent,
     HlmMenuSeparatorComponent,
     HlmMenuGroupComponent,
-    BasicTextStyleButtonComponent,
+    BnaBasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
     BnaFormattingToolbarControllerDirective,
-    TextAlignButtonComponent,
+    BnaTextAlignButtonComponent,
     BnaDeleteBlockItemComponent,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',
@@ -50,50 +49,12 @@ import { BnaDeleteBlockItemComponent } from '../bna-delete-block-item/bna-delete
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent {
-  dragMenuShown = false;
-  selectedBlocks: Block<any, any, any>[] = [];
-  dragBlock?: Block<any, any, any>;
-
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {
-    effect(() => {
-      const editor = blockNoteAngularService.editor();
-      if (!editor) {
-        return;
-      }
-      editor.sideMenu.onUpdate((state) => {
-        this.dragBlock = state.block;
-      });
-    });
-  }
+  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
 
   openDragMenu() {
     const editor = this.blockNoteAngularService.editor();
     if (!editor) {
       return;
-    }
-    const selection = editor.getSelection();
-    //Todo: create type
-    // Get the blocks in the current selection and store on the state. If
-    // the selection is empty, store the block containing the text cursor
-    // instead.
-    let selectedBlocks: Block<any, any, any>[] = [];
-    if (selection !== undefined) {
-      selectedBlocks = selection.blocks;
-    } else {
-      selectedBlocks = [editor.getTextCursorPosition().block];
-    }
-    if (
-      this.dragBlock &&
-      selectedBlocks.find(
-        (selectedBlock) => this.dragBlock!.id === selectedBlock.id
-      ) === undefined
-    ) {
-      selectedBlocks = [this.dragBlock];
-    }
-    this.selectedBlocks = selectedBlocks;
-    this.dragMenuShown = !this.dragMenuShown;
-    if (this.dragMenuShown) {
-      editor.sideMenu.freezeMenu();
     }
   }
 
@@ -102,7 +63,6 @@ export class BnaDragHandleMenuComponent {
     if (!editor) {
       return;
     }
-    console.log('drag start', $event);
     editor.sideMenu.blockDragStart($event);
   }
 
@@ -112,15 +72,5 @@ export class BnaDragHandleMenuComponent {
       return;
     }
     editor.sideMenu.blockDragEnd();
-  }
-
-  deleteBlock() {
-    const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
-    console.log('delete block', this.selectedBlocks);
-    editor.removeBlocks(this.selectedBlocks);
-    editor.sideMenu.unfreezeMenu();
   }
 }

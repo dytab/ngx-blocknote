@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../ui';
@@ -14,8 +14,9 @@ import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../ui';
     class: 'block',
   },
 })
-export class BnaDeleteBlockItemComponent {
+export class BnaDeleteBlockItemComponent implements OnInit {
   dragBlock?: Block<any, any, any>;
+  selectedBlocks: Block<any, any, any>[] = [];
 
   constructor(public blockNoteAngularService: BlockNoteAngularService) {
     effect(() => {
@@ -29,14 +30,39 @@ export class BnaDeleteBlockItemComponent {
     });
   }
 
+  ngOnInit() {
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
+    const selection = editor.getSelection();
+    //Todo: create type
+    // Get the blocks in the current selection and store on the state. If
+    // the selection is empty, store the block containing the text cursor
+    // instead.
+    let selectedBlocks: Block<any, any, any>[] = [];
+    if (selection !== undefined) {
+      selectedBlocks = selection.blocks;
+    } else {
+      selectedBlocks = [editor.getTextCursorPosition().block];
+    }
+    if (
+      this.dragBlock &&
+      selectedBlocks.find(
+        (selectedBlock) => this.dragBlock!.id === selectedBlock.id
+      ) === undefined
+    ) {
+      selectedBlocks = [this.dragBlock];
+    }
+    this.selectedBlocks = selectedBlocks;
+  }
+
   deleteBlock() {
     const editor = this.blockNoteAngularService.editor();
     if (!editor) {
       return;
     }
-    console.log('delete block');
-    // console.log('delete block', this.selectedBlocks);
-    // editor.removeBlocks(this.selectedBlocks);
-    // editor.sideMenu.unfreezeMenu();
+    editor.removeBlocks(this.selectedBlocks);
+    editor.sideMenu.unfreezeMenu();
   }
 }

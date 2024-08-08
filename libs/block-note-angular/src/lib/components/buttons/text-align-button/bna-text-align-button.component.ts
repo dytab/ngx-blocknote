@@ -25,13 +25,13 @@ type Alignments = 'left' | 'center' | 'right';
   selector: 'bna-text-align-button',
   standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
-  templateUrl: './text-align-button.component.html',
-  styleUrl: './text-align-button.component.css',
+  templateUrl: './bna-text-align-button.component.html',
+  styleUrl: './bna-text-align-button.component.css',
   providers: [
     provideIcons({ lucideAlignLeft, lucideAlignCenter, lucideAlignRight }),
   ],
 })
-export class TextAlignButtonComponent {
+export class BnaTextAlignButtonComponent {
   alignment = input.required<Alignments>();
   icon = computed(() => {
     return icons[this.alignment()];

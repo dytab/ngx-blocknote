@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
-  BasicTextStyleButtonComponent,
+  BnaBasicTextStyleButtonComponent,
   BnaEditorComponent,
   BnaFormattingToolbarComponent,
   BnaFormattingToolbarControllerDirective,
@@ -17,7 +17,7 @@ import { BlueButtonComponent } from './blue-button.component';
     CommonModule,
     BnaEditorComponent,
     BnaFormattingToolbarControllerDirective,
-    BasicTextStyleButtonComponent,
+    BnaBasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
     HlmButtonDirective,
     BlueButtonComponent,

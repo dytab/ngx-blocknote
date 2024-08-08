@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TextAlignButtonComponent } from './text-align-button.component';
+import { BnaTextAlignButtonComponent } from './bna-text-align-button.component';
 
 describe('TextAlignButtonComponent', () => {
-  let component: TextAlignButtonComponent;
-  let fixture: ComponentFixture<TextAlignButtonComponent>;
+  let component: BnaTextAlignButtonComponent;
+  let fixture: ComponentFixture<BnaTextAlignButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextAlignButtonComponent],
+      imports: [BnaTextAlignButtonComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TextAlignButtonComponent);
+    fixture = TestBed.createComponent(BnaTextAlignButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
