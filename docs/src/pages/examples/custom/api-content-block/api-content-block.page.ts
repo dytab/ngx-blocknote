@@ -4,7 +4,7 @@ import {
   BnaEditorComponent,
   HlmButtonDirective,
   hlmP,
-  HlmTabsComponent,
+  HlmTabsComponent
 } from '@dytab/block-note-angular';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';

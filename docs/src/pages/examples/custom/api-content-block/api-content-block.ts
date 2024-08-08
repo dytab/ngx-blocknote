@@ -3,14 +3,19 @@ import {
   BlockNoteEditor,
   createBlockSpec,
   Props,
-  PropSchema,
 } from '@blocknote/core';
 
 export const apiContentPropSchema = {
-  type: {
-    default: 'abc',
+  name: {
+    default: '',
   },
-} satisfies PropSchema;
+  age: {
+    default: false,
+  },
+  address: {
+    default: false,
+  }
+};
 
 export const apiContentBlockConfig = {
   type: 'apiContent' as const,
@@ -28,7 +33,29 @@ const apiContentRender = (
   div.style.width = '100%';
   div.style.padding = '4px 8px';
   div.style.borderRadius = '4px';
-  div.innerHTML = 'Add rendered content';
+  div.innerHTML = 'Content not configured';
+
+  const data = {
+    name : 'Max Musetrmann',
+    age : 25,
+    address : '123 Main St'
+  }
+
+  let dataString = ''
+  for (const [key,value] of Object.entries(block.props)){
+    if (value) {
+      if(key === 'name'){
+        dataString += `<p>${value}</p>`;
+        continue;
+      }
+      // @ts-ignore
+      const asdf = data[key] as number | string
+      dataString += `<p>${asdf}</p>`;
+    }
+  }
+  if(dataString.length > 0)
+    div.innerHTML = dataString;
+
   return {
     dom: div,
   };

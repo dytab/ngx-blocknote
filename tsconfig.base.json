@@ -11,14 +11,22 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@dytab/block-note-angular": ["libs/block-note-angular/src/index.ts"]
+      "@dytab/block-note-angular": [
+        "libs/block-note-angular/src/index.ts"
+      ],
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

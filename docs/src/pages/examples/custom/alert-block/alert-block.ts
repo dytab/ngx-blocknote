@@ -79,7 +79,6 @@ const alertRender = (
   div.style.display = 'flex';
   div.style.alignItems = 'center';
   const alertType = alertTypes.find((type) => type.value === block.props.type);
-  console.log(block, alertType);
   if (!alertType) {
     return {
       dom: div,

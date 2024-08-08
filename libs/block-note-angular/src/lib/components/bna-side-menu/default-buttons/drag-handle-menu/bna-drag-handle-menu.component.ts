@@ -91,7 +91,6 @@ export class BnaDragHandleMenuComponent {
       selectedBlocks = [this.dragBlock];
     }
     this.selectedBlocks = selectedBlocks;
-    console.log('Open drag menu', this.selectedBlocks);
     this.dragMenuShown = !this.dragMenuShown;
     if (this.dragMenuShown) {
       editor.sideMenu.freezeMenu();

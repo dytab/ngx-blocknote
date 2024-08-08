@@ -1,131 +1,183 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
+  Block,
   BlockNoteEditor,
-  BlockNoteSchema,
+  BlockNoteSchema, BlockSchemaFromSpecs,
+  DefaultBlockSchema,
   defaultBlockSpecs,
+  DefaultInlineContentSchema,
   defaultInlineContentSpecs,
-  defaultStyleSpecs,
-  insertOrUpdateBlock,
-  PartialBlock,
+  DefaultStyleSchema,
+  defaultStyleSpecs, InlineContentSchema,
+  PartialBlock, StyleSchema, TiptapBlockImplementation
 } from '@blocknote/core';
 import {
+  BlockNoteAngularService,
   BlockNoteEditorOptionsType,
+  BnaAddBlockButtonComponent,
+  BnaDeleteBlockItemComponent,
+  BnaDragHandleMenuComponent,
   BnaEditorComponent,
+  BnaSideMenuComponent,
+  BnaSideMenuControllerDirective,
   HlmButtonDirective,
+  HlmCheckboxComponent,
+  HlmDialogComponent,
+  HlmDialogContentComponent,
+  HlmDialogFooterComponent,
+  HlmDialogHeaderComponent, HlmInputDirective
 } from '@dytab/block-note-angular';
 import { apiContentBlock } from './api-content-block';
+import {
+  ResetBlockButtonComponent
+} from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
+import {
+  BrnDialogContentDirective,
+  BrnDialogDescriptionDirective,
+  BrnDialogRef,
+  BrnDialogTitleDirective,
+  BrnDialogTriggerDirective
+} from '@spartan-ng/ui-dialog-brain';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
-    apiContent: apiContentBlock,
+    apiContent: apiContentBlock
   },
   inlineContentSpecs: { ...defaultInlineContentSpecs },
-  styleSpecs: { ...defaultStyleSpecs },
+  styleSpecs: { ...defaultStyleSpecs }
 });
+
 @Component({
   selector: 'bna-api-content-block-example',
   standalone: true,
-  imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
-  template: `<bna-editor
-    [initialContent]="initialContent"
-    [options]="options"
-  />`,
+  imports: [
+    CommonModule,
+    BnaEditorComponent,
+    HlmButtonDirective,
+    BnaAddBlockButtonComponent,
+    BnaDeleteBlockItemComponent,
+    BnaDragHandleMenuComponent,
+    BnaSideMenuComponent,
+    BnaSideMenuControllerDirective,
+    ResetBlockButtonComponent,
+    HlmDialogComponent,
+    HlmDialogContentComponent,
+    BrnDialogContentDirective,
+    HlmDialogHeaderComponent,
+    BrnDialogTitleDirective,
+    BrnDialogDescriptionDirective,
+    BrnDialogTriggerDirective,
+    HlmDialogFooterComponent,
+    HlmCheckboxComponent,
+    ReactiveFormsModule,
+    HlmInputDirective
+  ],
+  providers: [BlockNoteAngularService],
+  template: `
+    <bna-editor
+      [initialContent]="initialContent"
+      [options]="options"
+      (onEditorReady)="onEditorReady($event)"
+    >
+      <bna-side-menu-controller>
+        <bna-side-menu>
+          <bna-add-block-btn />
+          <bna-drag-handle-menu-btn>
+            <hlm-dialog>
+              <button
+                hlmBtn
+                brnDialogTrigger
+                variant="ghost"
+                size="sm"
+                class="justify-start w-full"
+              >
+                Configure Block
+              </button>
+              <hlm-dialog-content *brnDialogContent="let ctx">
+                <form [formGroup]="formGroup" (ngSubmit)="updateBlockConfiguration(); ctx.close()">
+
+                <hlm-dialog-header>
+                  <h3 brnDialogTitle hlm>Configure Block</h3>
+                  <p brnDialogDescription hlm>Toggle which content which should
+                    be rendered</p>
+
+                    <label class="flex items-center" hlmLabel>
+                      Name:
+                      <input hlmInput [size]="'sm'" formControlName="name" class="mr-2" />
+                    </label>
+                    <label class="flex items-center" hlmLabel>
+                      <hlm-checkbox formControlName="age" class="mr-2" />
+                      Age
+                    </label>
+                    <label class="flex items-center" hlmLabel>
+                      <hlm-checkbox formControlName="address" class="mr-2" />
+                      Address
+                    </label>
+                </hlm-dialog-header>
+                <hlm-dialog-footer>
+                  <button hlmBtn type="submit" >Save changes
+                  </button>
+                </hlm-dialog-footer>
+                </form>
+              </hlm-dialog-content>
+            </hlm-dialog>
+          </bna-drag-handle-menu-btn>
+        </bna-side-menu
+        >
+      </bna-side-menu-controller>
+    </bna-editor>
+  `
 })
-export class ApiContentBlockExample {
+
+export class ApiContentBlockExample{
+  @Input() block?: Block<any, any, any>;
+  @Input() editor?: BlockNoteEditor<typeof schema.blockSchema>;
+
+  formGroup = new FormGroup({
+    name: new FormControl(this.block?.props.name),
+    age: new FormControl(this.block?.props.age),
+    address: new FormControl(this.block?.props.address)
+  });
+
   initialContent: PartialBlock<typeof schema.blockSchema>[] = [
     {
       type: 'apiContent',
-      props: {},
+      props: {
+        name: 'Max Mustermann',
+        age: true
+      }
     },
+    {
+      type: 'apiContent',
+    }
   ];
   options: BlockNoteEditorOptionsType<
     typeof schema.blockSchema,
     typeof schema.inlineContentSchema,
     typeof schema.styleSchema
   > = {
-    schema,
+    schema
   };
+
+  updateBlockConfiguration(){
+    if(!this.block || !this.editor) return
+
+    const formValues = this.formGroup.value;
+    this.editor.updateBlock(this.block, {
+      props: { ...formValues }
+    })
+  }
+
+  onEditorReady(editor: BlockNoteEditor<typeof schema.blockSchema>){
+    this.editor = editor;
+    this.editor.sideMenu.onUpdate((state) => {
+      this.block = state.block;
+      this.formGroup.patchValue(this.block?.props);
+    });
+  }
 }
 
-export const apiContentBlockExampleCode = `import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import {
-  BlockNoteEditor,
-  BlockNoteSchema,
-  defaultBlockSpecs,
-  defaultInlineContentSpecs,
-  defaultStyleSpecs,
-  insertOrUpdateBlock,
-  PartialBlock,
-} from '@blocknote/core';
-import {
-  BlockNoteEditorOptionsType,
-  BnaEditorComponent,
-} from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@dytab/block-note-angular';
-import { apiContentBlock } from './api-content-block';
-
-const schema = BlockNoteSchema.create({
-  blockSpecs: {
-    ...defaultBlockSpecs,
-    alert: apiContentBlock,
-  },
-  inlineContentSpecs: { ...defaultInlineContentSpecs },
-  styleSpecs: { ...defaultStyleSpecs },
-});
-@Component({
-  selector: 'bna-alert-block-example',
-  standalone: true,
-  imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
-  template: \`<bna-editor
-    [initialContent]="initialContent"
-    [options]="options"
-  />\`,
-})
-export class AlertBlockExample {
-  initialContent: PartialBlock<typeof schema.blockSchema>[] = [
-    {
-      type: 'alert',
-      props: {
-        type: 'warning',
-      },
-    },
-  ];
-  options: BlockNoteEditorOptionsType<
-    typeof schema.blockSchema,
-    typeof schema.inlineContentSchema,
-    typeof schema.styleSchema
-  > = {
-    schema,
-    inputSlashMenuItems: [
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        title: 'Alert',
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'alert' as never,
-          });
-        },
-        badge: 'BAFD',
-        subtext: 'SUBTEXT',
-        aliases: [
-          'alert',
-          'notification',
-          'emphasize',
-          'warning',
-          'error',
-          'info',
-          'success',
-        ],
-        group: 'Other',
-      }),
-    ],
-  };
-}`;
+export const apiContentBlockExampleCode = ``;
