@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
@@ -15,12 +15,10 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
-} from '../../../../ui';
-import { BnaFormattingToolbarControllerDirective } from '../../../bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
-import { BnaFormattingToolbarComponent } from '../../../bna-formatting-toolbar/bna-formatting-toolbar.component';
-import { BnaBasicTextStyleButtonComponent } from '../../../buttons/basic-text-style-button/bna-basic-text-style-button.component';
-import { BnaTextAlignButtonComponent } from '../../../buttons/text-align-button/bna-text-align-button.component';
-import { BnaDeleteBlockItemComponent } from '../bna-delete-block-item/bna-delete-block-item.component';
+} from '../../../ui';
+import { BnaFormattingToolbarControllerDirective } from '../../formatting-toolbar/bna-formatting-toolbar-controller.directive';
+import { BnaFormattingToolbarComponent } from '../../formatting-toolbar/bna-formatting-toolbar.component';
+import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/bna-delete-block-item.component';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
@@ -38,10 +36,8 @@ import { BnaDeleteBlockItemComponent } from '../bna-delete-block-item/bna-delete
     HlmMenuShortcutComponent,
     HlmMenuSeparatorComponent,
     HlmMenuGroupComponent,
-    BnaBasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
     BnaFormattingToolbarControllerDirective,
-    BnaTextAlignButtonComponent,
     BnaDeleteBlockItemComponent,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',

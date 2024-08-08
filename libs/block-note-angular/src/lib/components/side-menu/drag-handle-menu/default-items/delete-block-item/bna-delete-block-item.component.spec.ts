@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { BlockNoteAngularService } from '../../../../../services/block-note-angular.service';
 import { BnaDeleteBlockItemComponent } from './bna-delete-block-item.component';
 
 describe('DeleteBlockItemComponent', () => {

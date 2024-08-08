@@ -23,18 +23,17 @@ import {
   PartialBlock,
   StyleSchema,
 } from '@blocknote/core';
-import { BnaFilePanelControllerDirective } from '../components/bna-file-panel/bna-file-panel-controller.directive';
-import { BnaFilePanelComponent } from '../components/bna-file-panel/bna-file-panel.component';
-import { BnaFormattingToolbarControllerDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
-import { BnaFormattingToolbarComponent } from '../components/bna-formatting-toolbar/bna-formatting-toolbar.component';
-import { BnaSideMenuControllerDirective } from '../components/bna-side-menu/bna-side-menu-controller.directive';
-import { BnaSideMenuComponent } from '../components/bna-side-menu/bna-side-menu.component';
-import { BnaAddBlockButtonComponent } from '../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
-import { BnaDragHandleMenuComponent } from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
-import { BnaSuggestionsMenuControllerDirective } from '../components/bna-suggestions-menu/bna-suggestions-menu-controller.directive';
-import { BnaViewControllerDirective } from '../components/bna-view/bna-view-controller.directive';
-import { BnaBasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/bna-basic-text-style-button.component';
-import { BnaTextAlignButtonComponent } from '../components/buttons/text-align-button/bna-text-align-button.component';
+import { BnaFilePanelControllerDirective } from '../components/file-panel/bna-file-panel-controller.directive';
+import { BnaFilePanelComponent } from '../components/file-panel/bna-file-panel.component';
+import { BnaFormattingToolbarControllerDirective } from '../components/formatting-toolbar/bna-formatting-toolbar-controller.directive';
+import { BnaFormattingToolbarComponent } from '../components/formatting-toolbar/bna-formatting-toolbar.component';
+import { BnaBasicTextStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/basic-text-style-button/bna-basic-text-style-button.component';
+import { BnaTextAlignButtonComponent } from '../components/formatting-toolbar/default-buttons/text-align-button/bna-text-align-button.component';
+import { BnaSideMenuControllerDirective } from '../components/side-menu/bna-side-menu-controller.directive';
+import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.component';
+import { BnaAddBlockButtonComponent } from '../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
+import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
+import { BnaSuggestionsMenuControllerDirective } from '../components/suggestions-menu/bna-suggestions-menu-controller.directive';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { BlockNoteAngularService } from '../services/block-note-angular.service';
 import {
@@ -49,6 +48,7 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
 } from '../ui';
+import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
 
 @Component({
   imports: [

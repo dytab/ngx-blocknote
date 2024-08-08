@@ -10,8 +10,8 @@ import {
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
-import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 const icons = {
   left: 'lucideAlignLeft',

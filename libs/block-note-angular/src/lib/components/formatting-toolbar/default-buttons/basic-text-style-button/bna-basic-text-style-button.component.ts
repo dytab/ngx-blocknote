@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideBold, lucideItalic, lucideUnderline } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
-import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 const icons = {
   bold: 'lucideBold',
