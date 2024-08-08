@@ -118,7 +118,12 @@ export class BnaEditorComponent<
     }
   }
 
-  createEditor(initialContent: Block<BSchema, ISchema, SSchema>[] | undefined) {
+  createEditor(
+    initialContent:
+      | Block<BSchema, ISchema, SSchema>[]
+      | PartialBlock<BSchema, ISchema, SSchema>[]
+      | undefined
+  ) {
     const schema = this.options?.schema;
     const editor = BlockNoteEditor.create({
       schema: schema
@@ -168,7 +173,9 @@ export class BnaEditorComponent<
   }
 
   private updateEditorsInitialChanges(
-    initialContent: Block<BSchema, ISchema, SSchema>[]
+    initialContent:
+      | Block<BSchema, ISchema, SSchema>[]
+      | PartialBlock<BSchema, ISchema, SSchema>[]
   ) {
     this.editor.replaceBlocks(
       [...this.editor.document],
