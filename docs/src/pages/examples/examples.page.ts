@@ -98,6 +98,14 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         routerLink="interoperability/convert-to-html"
         >Converting Blocks to HTML</a
       >
+      Ui Components
+      <a
+        hlmBtn
+        variant="ghost"
+        class="justify-start"
+        routerLink="ui-components/formatting-toolbar-buttons"
+        >Formatting Toolbar Buttons</a
+      >
     </aside>
     <main class="overflow-hidden py-6">
       <router-outlet class="hidden"></router-outlet>

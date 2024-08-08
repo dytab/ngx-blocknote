@@ -1,6 +1,8 @@
 <div class="block h-full py-3 bn-container">
   @if(isInitialized){
-    <bna-formatting-toolbar [editor]="editor">
+    <div #ref><ng-content></ng-content></div>
+    <ng-container *ngIf="!ref.hasChildNodes()">
+      <bna-formatting-toolbar [editor]="editor">
       <div class="bn-toolbar">
         <bna-basic-text-style-button
           [editor]="editor"
@@ -18,12 +20,13 @@
         <bna-text-align-button [editor]="editor" [alignment]="'center'" />
         <bna-text-align-button [editor]="editor" [alignment]="'right'" />
       </div>
-    </bna-formatting-toolbar>
+      </bna-formatting-toolbar>
+    </ng-container>
+
     <bna-side-menu [editor]="editor" class="text-gray-500">
       <bna-add-block-btn [editor]="editor" />
       <bna-drag-handle-menu-btn [editor]="editor" />
     </bna-side-menu>
-
     <bna-view [editor]="editor" class="block ProseMirror bn-editor relative bn-default-styles" />
       <bna-file-panel [editor]="editor" class="z-index-3">
       </bna-file-panel>
