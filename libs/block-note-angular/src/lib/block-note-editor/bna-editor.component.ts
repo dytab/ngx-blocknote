@@ -147,7 +147,6 @@ export class BnaEditorComponent<
       initialContent: initialContent,
       uploadFile: this.options?.uploadFile,
     });
-    console.log('SET editor', this.editor);
     this.blockNoteAngularService.setEditor(this.editor);
     this.onEditorReady.emit(this.editor);
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
