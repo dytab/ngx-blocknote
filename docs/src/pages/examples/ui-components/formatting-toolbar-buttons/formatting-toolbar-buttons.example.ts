@@ -4,6 +4,7 @@ import { PartialBlock } from '@blocknote/core';
 import {
   BasicTextStyleButtonComponent,
   BnaEditorComponent,
+  BnaFormattingToolbarComponent,
   BnaFormattingToolbarControllerDirective,
 } from '@dytab/block-note-angular';
 
@@ -15,11 +16,14 @@ import {
     BnaEditorComponent,
     BnaFormattingToolbarControllerDirective,
     BasicTextStyleButtonComponent,
+    BnaFormattingToolbarComponent,
   ],
   template: `<bna-editor [initialContent]="initialContent">
     <bna-formatting-toolbar-controller>
-      <bna-basic-text-style-button [basicTextStyle]="'italic'" />
-      <bna-basic-text-style-button [basicTextStyle]="'bold'" />
+      <bna-formatting-toolbar>
+        <bna-basic-text-style-button [basicTextStyle]="'italic'" />
+        <bna-basic-text-style-button [basicTextStyle]="'bold'" />
+      </bna-formatting-toolbar>
     </bna-formatting-toolbar-controller>
   </bna-editor> `,
 })

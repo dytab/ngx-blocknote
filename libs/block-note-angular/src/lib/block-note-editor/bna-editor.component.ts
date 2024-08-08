@@ -38,6 +38,7 @@ import {
 import { BnaFilePanelControllerDirective } from '../components/bna-file-panel/bna-file-panel-controller.directive';
 import { BnaFilePanelComponent } from '../components/bna-file-panel/bna-file-panel.component';
 import { BnaFormattingToolbarControllerDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
+import { BnaFormattingToolbarComponent } from '../components/bna-formatting-toolbar/bna-formatting-toolbar.component';
 import { BnaSideMenuControllerDirective } from '../components/bna-side-menu/bna-side-menu-controller.directive';
 import { BnaAddBlockButtonComponent } from '../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import { BnaDragHandleMenuComponent } from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
@@ -71,6 +72,7 @@ import { BlockNoteAngularService } from '../services/block-note-angular.service'
     BnaFilePanelComponent,
     HlmInputDirective,
     BnaFilePanelControllerDirective,
+    BnaFormattingToolbarComponent,
   ],
   providers: [BlockNoteAngularService],
   selector: 'bna-editor',

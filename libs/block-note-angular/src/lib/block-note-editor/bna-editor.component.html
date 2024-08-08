@@ -1,18 +1,20 @@
 <div class="block h-full py-3 bn-container">
   @if(isInitialized){
-<!--  <div #ref><ng-content select="[test]"></ng-content></div>-->
-<!--  <ng-container *ngIf="!ref.hasChildNodes()">-->
+  <div #formattingToolbar>
+    <ng-content select="bna-formatting-toolbar-controller"></ng-content>
+  </div>
+  <ng-container *ngIf="!formattingToolbar.hasChildNodes()">
     <bna-formatting-toolbar-controller>
-      <div class="bn-toolbar">
+      <bna-formatting-toolbar>
         <bna-basic-text-style-button [basicTextStyle]="'bold'" />
         <bna-basic-text-style-button [basicTextStyle]="'italic'" />
         <bna-basic-text-style-button [basicTextStyle]="'underline'" />
         <bna-text-align-button [alignment]="'left'" />
         <bna-text-align-button [alignment]="'center'" />
         <bna-text-align-button [alignment]="'right'" />
-      </div>
+      </bna-formatting-toolbar>
     </bna-formatting-toolbar-controller>
-<!--  </ng-container>-->
+  </ng-container>
 
   <bna-side-menu-controller class="text-gray-500">
     <bna-add-block-btn />
