@@ -14,7 +14,7 @@ export const apiContentPropSchema = {
   },
   address: {
     default: false,
-  }
+  },
 };
 
 export const apiContentBlockConfig = {
@@ -36,25 +36,25 @@ const apiContentRender = (
   div.innerHTML = 'Content not configured';
 
   const data = {
-    name : 'Max Musetrmann',
-    age : 25,
-    address : '123 Main St'
-  }
+    name: 'Max Musetrmann',
+    age: 25,
+    address: '123 Main St',
+  };
 
-  let dataString = ''
-  for (const [key,value] of Object.entries(block.props)){
+  let dataString = '';
+  for (const [key, value] of Object.entries(block.props)) {
     if (value) {
-      if(key === 'name'){
+      if (key === 'name') {
         dataString += `<p>${value}</p>`;
         continue;
       }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const asdf = data[key] as number | string
+      const asdf = data[key] as number | string;
       dataString += `<p>${asdf}</p>`;
     }
   }
-  if(dataString.length > 0)
-    div.innerHTML = dataString;
+  if (dataString.length > 0) div.innerHTML = dataString;
 
   return {
     dom: div,
