@@ -1,35 +1,31 @@
-import {
-  Directive,
-  ElementRef,
-  input,
-  OnChanges,
-  Renderer2,
-} from '@angular/core';
-import { BlockNoteEditor } from '@blocknote/core';
+import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
-  selector: 'bna-side-menu[editor]',
+  selector: 'bna-side-menu',
   standalone: true,
 })
-export class BnaSideMenuDirective implements OnChanges {
-  editor = input.required<BlockNoteEditor<any,any,any>>();
-
+export class BnaSideMenuDirective {
   constructor(
+    private blockNoteAngularService: BlockNoteAngularService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
-  ) {}
-
-  ngOnChanges() {
-    this.adjustVisibilityAndPosition();
+  ) {
+    effect(() => {
+      this.adjustVisibilityAndPosition();
+    });
   }
 
   private adjustVisibilityAndPosition() {
     let cleanup: () => void = () => {
       return;
     };
-    const editorSnapshot = this.editor();
+    const editorSnapshot = this.blockNoteAngularService.editor();
+    if (!editorSnapshot) {
+      return;
+    }
     this.toggleVisibility(true);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');

@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  input,
-  OnChanges,
-  Renderer2,
-} from '@angular/core';
+import { Component, effect, ElementRef, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
@@ -20,6 +14,7 @@ import {
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
 } from '@spartan-ng/ui-tabs-helm';
+import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
@@ -36,29 +31,33 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   ],
   templateUrl: './bna-file-panel.component.html',
 })
-export class BnaFilePanelComponent implements OnChanges {
-  editor = input.required<BlockNoteEditor<any, any, any>>();
+export class BnaFilePanelComponent {
   private block?: BlockFromConfig<FileBlockConfig, any, any>;
 
   embedInputText = '';
 
   constructor(
+    private blockNoteAngularService: BlockNoteAngularService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
-  ) {}
-
-  ngOnChanges() {
-    this.adjustVisibilityAndPosition();
+  ) {
+    effect(() => {
+      this.adjustVisibilityAndPosition();
+    });
   }
 
   private adjustVisibilityAndPosition() {
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
     this.toggleVisibility(false);
     let cleanup: () => void = () => {
       return;
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    this.editor().filePanel?.onUpdate(async (filePanelState) => {
+    editor.filePanel?.onUpdate(async (filePanelState) => {
       if (!filePanelState.show) {
         cleanup();
       } else {
@@ -104,7 +103,10 @@ export class BnaFilePanelComponent implements OnChanges {
   }
 
   async onFileInputChanged(event: Event) {
-    const editor = this.editor();
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
     if (!editor.uploadFile || !this.block) {
       console.error('uploadFile was not provided in editor options');
       return;
@@ -120,8 +122,8 @@ export class BnaFilePanelComponent implements OnChanges {
   }
 
   insertEmbedFile(embedFileUrl: string) {
-    const editor = this.editor();
-    if (!this.block) return;
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor || !this.block) return;
     this.updateBlockWithEmbedFileUrl(this.block, editor, embedFileUrl);
   }
 

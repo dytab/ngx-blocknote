@@ -1,52 +1,44 @@
 <div class="block h-full py-3 bn-container">
   @if(isInitialized){
-    <div #ref><ng-content></ng-content></div>
-    <ng-container *ngIf="!ref.hasChildNodes()">
-      <bna-formatting-toolbar [editor]="editor">
+<!--  <div #ref><ng-content select="[test]"></ng-content></div>-->
+<!--  <ng-container *ngIf="!ref.hasChildNodes()">-->
+    <bna-formatting-toolbar>
       <div class="bn-toolbar">
-        <bna-basic-text-style-button
-          [editor]="editor"
-          [basicTextStyle]="'bold'"
-        />
-        <bna-basic-text-style-button
-          [editor]="editor"
-          [basicTextStyle]="'italic'"
-        />
-        <bna-basic-text-style-button
-          [editor]="editor"
-          [basicTextStyle]="'underline'"
-        />
-        <bna-text-align-button [editor]="editor" [alignment]="'left'" />
-        <bna-text-align-button [editor]="editor" [alignment]="'center'" />
-        <bna-text-align-button [editor]="editor" [alignment]="'right'" />
+        <bna-basic-text-style-button [basicTextStyle]="'bold'" />
+        <bna-basic-text-style-button [basicTextStyle]="'italic'" />
+        <bna-basic-text-style-button [basicTextStyle]="'underline'" />
+        <bna-text-align-button [alignment]="'left'" />
+        <bna-text-align-button [alignment]="'center'" />
+        <bna-text-align-button [alignment]="'right'" />
       </div>
-      </bna-formatting-toolbar>
-    </ng-container>
+    </bna-formatting-toolbar>
+<!--  </ng-container>-->
 
-    <bna-side-menu [editor]="editor" class="text-gray-500">
-      <bna-add-block-btn [editor]="editor" />
-      <bna-drag-handle-menu-btn [editor]="editor" />
-    </bna-side-menu>
-    <bna-view [editor]="editor" class="block ProseMirror bn-editor relative bn-default-styles" />
-      <bna-file-panel [editor]="editor" class="z-index-3">
-      </bna-file-panel>
-    <bna-suggestions-menu [editor]="editor" class="z-index-3">
-      <hlm-menu class="shadow-3xl">
-        <hlm-menu-label>Basic blocks</hlm-menu-label>
+  <bna-side-menu class="text-gray-500">
+    <bna-add-block-btn />
+    <bna-drag-handle-menu-btn />
+  </bna-side-menu>
+  <bna-view
+    class="block ProseMirror bn-editor relative bn-default-styles"
+  />
+  <bna-file-panel class="z-index-3"> </bna-file-panel>
+  <bna-suggestions-menu class="z-index-3">
+    <hlm-menu class="shadow-3xl">
+      <hlm-menu-label>Basic blocks</hlm-menu-label>
+      <hlm-menu-separator />
+      <hlm-menu-group>
+        @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
+        <button hlmMenuItem (mousedown)="slashMenuItem.onItemClick()">
+          {{ slashMenuItem.title }}
+          <hlm-menu-shortcut>{{ slashMenuItem.badge }}</hlm-menu-shortcut>
+          <div class="text-xs">
+            {{ slashMenuItem.subtext }}
+          </div>
+        </button>
         <hlm-menu-separator />
-        <hlm-menu-group>
-          @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
-            <button hlmMenuItem (mousedown)="slashMenuItem.onItemClick()">
-              {{ slashMenuItem.title }}
-              <hlm-menu-shortcut>{{ slashMenuItem.badge }}</hlm-menu-shortcut>
-              <div class="text-xs">
-                {{ slashMenuItem.subtext }}
-              </div>
-            </button>
-            <hlm-menu-separator />
-          }
-        </hlm-menu-group>
-      </hlm-menu>
-    </bna-suggestions-menu>
+        }
+      </hlm-menu-group>
+    </hlm-menu>
+  </bna-suggestions-menu>
   }
 </div>

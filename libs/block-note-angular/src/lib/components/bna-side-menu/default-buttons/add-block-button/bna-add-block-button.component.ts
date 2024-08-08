@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { BlockNoteEditor } from '@blocknote/core';
+import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 
 @Component({
   selector: 'bna-add-block-btn',
@@ -15,10 +15,9 @@ import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
   providers: [provideIcons({ lucidePlus })],
 })
 export class BnaAddBlockButtonComponent {
-  @Input()
-  editor!: BlockNoteEditor<any, any, any>;
+  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
 
   addNewBlock() {
-    this.editor.sideMenu.addBlock();
+    this.blockNoteAngularService.editor()?.sideMenu.addBlock();
   }
 }

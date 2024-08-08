@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import {
-  BlockNoteEditor,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
@@ -13,6 +12,7 @@ import {
 } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
 
 const icons = {
   left: 'lucideAlignLeft',
@@ -33,24 +33,23 @@ type Alignments = 'left' | 'center' | 'right';
   ],
 })
 export class TextAlignButtonComponent {
-  editor = input.required<BlockNoteEditor<any, any, any>>();
   alignment = input.required<Alignments>();
   icon = computed(() => {
     return icons[this.alignment()];
   });
 
+  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
+
   toggleAlignment(textAlignment: Alignments) {
-    const selectedBlocks = this.editor().getSelection()?.blocks;
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
+    const selectedBlocks = editor.getSelection()?.blocks;
     if (selectedBlocks) {
       for (const block of selectedBlocks) {
-        if (
-          checkBlockTypeHasDefaultProp(
-            'textAlignment',
-            block.type,
-            this.editor()
-          )
-        ) {
-          this.editor().updateBlock(block, {
+        if (checkBlockTypeHasDefaultProp('textAlignment', block.type, editor)) {
+          editor.updateBlock(block, {
             props: { textAlignment: textAlignment },
           });
         }
@@ -59,12 +58,16 @@ export class TextAlignButtonComponent {
   }
 
   hasAlignment() {
-    const selectedBlocks = this.editor().getSelection()?.blocks;
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
+    const selectedBlocks = editor.getSelection()?.blocks;
     const block = selectedBlocks?.[0];
     if (!block) {
       return false;
     }
-    if (checkBlockHasDefaultProp('textAlignment', block, this.editor())) {
+    if (checkBlockHasDefaultProp('textAlignment', block, editor)) {
       return block.props.textAlignment === this.alignment();
     } else {
       return false;

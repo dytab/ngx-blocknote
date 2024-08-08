@@ -5,7 +5,9 @@
   variant="ghost"
   class="w-[30px] h-[30px]"
   [ngClass]="{
-    'bg-gray-900 text-gray-100': editor().getActiveStyles()[basicTextStyle()]
+    'bg-gray-900 text-gray-100': blockNoteAngularService.editor()
+      ? blockNoteAngularService.editor()!.getActiveStyles()[basicTextStyle()]
+      : false
   }"
   (click)="toggleStyle(basicTextStyle())"
 >

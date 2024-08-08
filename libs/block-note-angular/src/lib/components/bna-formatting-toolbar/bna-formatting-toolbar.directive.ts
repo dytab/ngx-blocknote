@@ -1,28 +1,22 @@
-import {
-  Directive,
-  ElementRef,
-  input,
-  OnChanges,
-  Renderer2,
-} from '@angular/core';
-import { BlockNoteEditor, FormattingToolbarState } from '@blocknote/core';
+import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
+import { FormattingToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
-  selector: 'bna-formatting-toolbar[editor]',
+  selector: 'bna-formatting-toolbar',
   standalone: true,
 })
-export class BnaFormattingToolbarDirective implements OnChanges {
-  editor = input.required<BlockNoteEditor<any, any, any>>();
-
+export class BnaFormattingToolbarDirective {
   constructor(
+    private blockNoteAngularService: BlockNoteAngularService,
     protected elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
-  ) {}
-
-  ngOnChanges() {
-    this.adjustVisibilityAndPosition();
+  ) {
+    effect(() => {
+      this.adjustVisibilityAndPosition();
+    });
   }
 
   adjustVisibilityAndPosition() {
@@ -32,8 +26,9 @@ export class BnaFormattingToolbarDirective implements OnChanges {
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    if (this.editor()) {
-      this.editor().formattingToolbar.onUpdate(async (formattingToolbar) => {
+    const editor = this.blockNoteAngularService.editor();
+    if (editor) {
+      editor.formattingToolbar.onUpdate(async (formattingToolbar) => {
         if (!formattingToolbar.show) {
           cleanup();
         } else {

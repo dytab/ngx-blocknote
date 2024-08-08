@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, OnChanges } from '@angular/core';
-import { Block, BlockNoteEditor } from '@blocknote/core';
+import { Component, effect } from '@angular/core';
+import { Block } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -16,6 +16,7 @@ import {
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
@@ -38,14 +39,29 @@ import {
   styleUrl: './bna-drag-handle-menu.component.css',
   providers: [provideIcons({ lucideGripVertical })],
 })
-export class BnaDragHandleMenuComponent implements OnChanges {
-  editor = input.required<BlockNoteEditor<any, any, any>>();
+export class BnaDragHandleMenuComponent {
   dragMenuShown = false;
   selectedBlocks: Block<any, any, any>[] = [];
   dragBlock?: Block<any, any, any>;
 
+  constructor(public blockNoteAngularService: BlockNoteAngularService) {
+    effect(() => {
+      const editor = blockNoteAngularService.editor();
+      if (!editor) {
+        return;
+      }
+      editor.sideMenu.onUpdate((state) => {
+        this.dragBlock = state.block;
+      });
+    });
+  }
+
   openDragMenu() {
-    const selection = this.editor().getSelection();
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
+    const selection = editor.getSelection();
     //Todo: create type
     // Get the blocks in the current selection and store on the state. If
     // the selection is empty, store the block containing the text cursor
@@ -54,7 +70,7 @@ export class BnaDragHandleMenuComponent implements OnChanges {
     if (selection !== undefined) {
       selectedBlocks = selection.blocks;
     } else {
-      selectedBlocks = [this.editor().getTextCursorPosition().block];
+      selectedBlocks = [editor.getTextCursorPosition().block];
     }
     if (
       this.dragBlock &&
@@ -68,30 +84,34 @@ export class BnaDragHandleMenuComponent implements OnChanges {
     console.log('Open drag menu', this.selectedBlocks);
     this.dragMenuShown = !this.dragMenuShown;
     if (this.dragMenuShown) {
-      this.editor().sideMenu.freezeMenu();
+      editor.sideMenu.freezeMenu();
     }
   }
 
   dragStart($event: DragEvent) {
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
     console.log('drag start', $event);
-    this.editor().sideMenu.blockDragStart($event);
+    editor.sideMenu.blockDragStart($event);
   }
 
   dragEnd() {
-    console.log('drag end');
-
-    this.editor().sideMenu.blockDragEnd();
-  }
-
-  ngOnChanges() {
-    this.editor().sideMenu.onUpdate((state) => {
-      this.dragBlock = state.block;
-    });
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
+    editor.sideMenu.blockDragEnd();
   }
 
   deleteBlock() {
+    const editor = this.blockNoteAngularService.editor();
+    if (!editor) {
+      return;
+    }
     console.log('delete block', this.selectedBlocks);
-    this.editor().removeBlocks(this.selectedBlocks);
-    this.editor().sideMenu.unfreezeMenu();
+    editor.removeBlocks(this.selectedBlocks);
+    editor.sideMenu.unfreezeMenu();
   }
 }

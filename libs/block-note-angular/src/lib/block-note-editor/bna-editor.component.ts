@@ -25,6 +25,7 @@ import {
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import {
   HlmMenuComponent,
   HlmMenuGroupComponent,
@@ -34,23 +35,17 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
 } from '@spartan-ng/ui-menu-helm';
+import { BnaFilePanelComponent } from '../components/bna-file-panel/bna-file-panel.component';
 import { BnaFormattingToolbarDirective } from '../components/bna-formatting-toolbar/bna-formatting-toolbar.directive';
 import { BnaSideMenuDirective } from '../components/bna-side-menu/bna-side-menu.directive';
 import { BnaAddBlockButtonComponent } from '../components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import { BnaDragHandleMenuComponent } from '../components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSuggestionsMenuDirective } from '../components/bna-suggestions-menu/bna-suggestions-menu.directive';
 import { BnaViewDirective } from '../components/bna-view/bna-view.directive';
-import {
-  BasicTextStyleButtonComponent
-} from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
-import {
-  TextAlignButtonComponent
-} from '../components/buttons/text-align-button/text-align-button.component';
+import { BasicTextStyleButtonComponent } from '../components/buttons/basic-text-style-button/basic-text-style-button.component';
+import { TextAlignButtonComponent } from '../components/buttons/text-align-button/text-align-button.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
-import {
-  BnaFilePanelComponent
-} from '../components/bna-file-panel/bna-file-panel.component';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { BlockNoteAngularService } from '../services/block-note-angular.service';
 
 @Component({
   imports: [
@@ -73,8 +68,9 @@ import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
     HlmMenuItemSubIndicatorComponent,
     TextAlignButtonComponent,
     BnaFilePanelComponent,
-    HlmInputDirective
+    HlmInputDirective,
   ],
+  providers: [BlockNoteAngularService],
   selector: 'bna-editor',
   standalone: true,
   styleUrl: './bna-editor.component.css',
@@ -104,6 +100,8 @@ export class BnaEditorComponent<
   //TODO: remove relying on init flag
   isInitialized = false;
 
+  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['initialContent']) {
       this.createEditor(changes['initialContent'].currentValue);
@@ -127,8 +125,10 @@ export class BnaEditorComponent<
             //TODO: remove casting
           }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
-      uploadFile: this.options?.uploadFile
+      uploadFile: this.options?.uploadFile,
     });
+    console.log('SET editor', this.editor);
+    this.blockNoteAngularService.setEditor(this.editor);
     this.onEditorReady.emit(this.editor);
     this.slashMenuItems = this.getSlashMenuItems(this.editor);
     this.editor.onChange((data) => {

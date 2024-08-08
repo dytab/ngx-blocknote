@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
-import { BlockNoteEditor } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideBold, lucideItalic, lucideUnderline } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm';
+import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
 
 const icons = {
   bold: 'lucideBold',
@@ -25,13 +25,14 @@ type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
   providers: [provideIcons({ lucideBold, lucideItalic, lucideUnderline })],
 })
 export class BasicTextStyleButtonComponent {
-  editor = input.required<BlockNoteEditor<any, any, any>>();
   basicTextStyle = input.required<BasicTextStyle>();
   icon = computed(() => {
     return icons[this.basicTextStyle()];
   });
 
+  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
+
   toggleStyle(style: BasicTextStyle) {
-    this.editor().toggleStyles({ [style]: true });
+    this.blockNoteAngularService.editor()?.toggleStyles({ [style]: true });
   }
 }

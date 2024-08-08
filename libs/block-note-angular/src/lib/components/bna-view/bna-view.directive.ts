@@ -1,16 +1,20 @@
-import { Directive, effect, ElementRef, input } from '@angular/core';
-import { BlockNoteEditor } from '@blocknote/core';
+import { Directive, effect, ElementRef } from '@angular/core';
+import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 
 @Directive({
-  selector: 'bna-view[editor]',
+  selector: 'bna-view',
   standalone: true,
 })
 export class BnaViewDirective {
-  editor = input.required<BlockNoteEditor<any, any, any>>();
-
-  constructor(protected elRef: ElementRef<HTMLElement>) {
+  constructor(
+    private blockNoteAngularService: BlockNoteAngularService,
+    protected elRef: ElementRef<HTMLElement>
+  ) {
     effect(() => {
-      const editorSnapshot = this.editor();
+      const editorSnapshot = this.blockNoteAngularService.editor();
+      if (!editorSnapshot) {
+        return;
+      }
 
       editorSnapshot.mount(this.elRef.nativeElement);
     });
