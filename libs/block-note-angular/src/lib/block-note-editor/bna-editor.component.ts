@@ -3,7 +3,6 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   output,
   SimpleChanges,
 } from '@angular/core';
@@ -87,51 +86,41 @@ export class BnaEditorComponent<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
   SSchema extends StyleSchema = DefaultStyleSchema
-> implements OnChanges, OnInit
+> implements OnChanges
 {
   @Input()
   options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
-
-  // TODO: move to reusable type
   @Input()
-  initialContent:
+  initialContent!:
     | Block<BSchema, ISchema, SSchema>[]
     | PartialBlock<BSchema, ISchema, SSchema>[]
-    | undefined = undefined;
+    | undefined;
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
   onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
-  editor!: BlockNoteEditor<BSchema, ISchema, SSchema>;
+  editor = this.createEditor(undefined);
   slashMenuItems: Omit<DefaultSuggestionItem, 'key'>[] = [];
 
   //TODO: remove relying on init flag
-  isInitialized = false;
+  isInitialized = true;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {}
 
-  ngOnInit() {
-    this.createEditor(this.initialContent);
-    this.isInitialized = true;
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['initialContent']) {
-      // TODO: try to type the current value (currently any)
-      this.createEditor(changes['initialContent'].currentValue);
-      this.isInitialized = true;
+    if (changes['options']) {
+      this.editor = this.createEditor(changes['initialContent'].currentValue);
+    } else if (changes['initialContent']) {
+      this.updateEditorsInitialChanges(changes['initialContent'].currentValue);
+      //TODO: remove after improving
+      this.onEditorReady.emit(this.editor);
     }
   }
 
-  createEditor(
-    initialContent:
-      | Block<BSchema, ISchema, SSchema>[]
-      | PartialBlock<BSchema, ISchema, SSchema>[]
-      | undefined
-  ) {
+  createEditor(initialContent: Block<BSchema, ISchema, SSchema>[] | undefined) {
     const schema = this.options?.schema;
-    this.editor = BlockNoteEditor.create({
+    const editor = BlockNoteEditor.create({
       schema: schema
         ? schema
         : (BlockNoteSchema.create({
@@ -146,23 +135,24 @@ export class BnaEditorComponent<
       initialContent: initialContent,
       uploadFile: this.options?.uploadFile,
     });
-    this.blockNoteAngularService.setEditor(this.editor);
-    this.onEditorReady.emit(this.editor);
-    this.slashMenuItems = this.getSlashMenuItems(this.editor);
-    this.editor.onChange((data) => {
+    this.blockNoteAngularService.setEditor(editor);
+    this.onEditorReady.emit(editor);
+    this.slashMenuItems = this.getSlashMenuItems(editor);
+    editor.onChange((data) => {
       this.contentChanged.emit(data.document);
     });
-    this.editor.onSelectionChange((change) => {
-      const selection = this.editor.getSelection();
+    editor.onSelectionChange((change) => {
+      const selection = editor.getSelection();
       let selectedBlocks = [];
       // instead.
       if (selection !== undefined) {
         selectedBlocks = selection.blocks;
       } else {
-        selectedBlocks = [this.editor.getTextCursorPosition().block];
+        selectedBlocks = [editor.getTextCursorPosition().block];
       }
       this.selectedBlocks.emit(selectedBlocks);
     });
+    return editor;
   }
 
   getSlashMenuItems(
@@ -175,5 +165,18 @@ export class BnaEditorComponent<
     }
 
     return [...getDefaultSlashMenuItems(editor)];
+  }
+
+  private updateEditorsInitialChanges(
+    initialContent: Block<BSchema, ISchema, SSchema>[]
+  ) {
+    this.editor.replaceBlocks(
+      [...this.editor.document],
+      initialContent ?? [
+        {
+          type: 'paragraph',
+        },
+      ]
+    );
   }
 }
