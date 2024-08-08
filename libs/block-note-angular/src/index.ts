@@ -4,3 +4,7 @@ export * from './lib/interfaces/block-note-editor-options.type';
 export * from './lib/components/bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
 export * from './lib/components/bna-formatting-toolbar/bna-formatting-toolbar.component';
 export * from './lib/components/buttons/basic-text-style-button/basic-text-style-button.component';
+export * from './lib/components/bna-side-menu/bna-side-menu.component';
+export * from './lib/components/bna-side-menu/bna-side-menu-controller.directive';
+export * from './lib/components/bna-side-menu/default-buttons/drag-handle-menu/bna-drag-handle-menu.component';
+export * from './lib/components/bna-side-menu/default-buttons/add-block-button/bna-add-block-button.component';

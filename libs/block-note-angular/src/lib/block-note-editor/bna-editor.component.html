@@ -15,11 +15,17 @@
       </bna-formatting-toolbar>
     </bna-formatting-toolbar-controller>
   </ng-container>
-
-  <bna-side-menu-controller class="text-gray-500">
-    <bna-add-block-btn />
-    <bna-drag-handle-menu-btn />
-  </bna-side-menu-controller>
+  <div #sideMenuController>
+    <ng-content select="bna-side-menu-controller"></ng-content>
+  </div>
+  <ng-container *ngIf="!sideMenuController.hasChildNodes()">
+    <bna-side-menu-controller>
+      <bna-side-menu>
+        <bna-add-block-btn />
+        <bna-drag-handle-menu-btn />
+      </bna-side-menu>
+    </bna-side-menu-controller>
+  </ng-container>
   <bna-view-controller
     class="block ProseMirror bn-editor relative bn-default-styles"
   />
