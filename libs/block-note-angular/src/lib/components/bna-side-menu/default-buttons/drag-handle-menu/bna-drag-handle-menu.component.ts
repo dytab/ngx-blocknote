@@ -17,6 +17,11 @@ import {
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { BnaFormattingToolbarControllerDirective } from '../../../bna-formatting-toolbar/bna-formatting-toolbar-controller.directive';
+import { BnaFormattingToolbarComponent } from '../../../bna-formatting-toolbar/bna-formatting-toolbar.component';
+import { BasicTextStyleButtonComponent } from '../../../buttons/basic-text-style-button/basic-text-style-button.component';
+import { TextAlignButtonComponent } from '../../../buttons/text-align-button/text-align-button.component';
+import { BnaDeleteBlockItemComponent } from '../bna-delete-block-item/bna-delete-block-item.component';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
@@ -34,6 +39,11 @@ import { BlockNoteAngularService } from '../../../../services/block-note-angular
     HlmMenuShortcutComponent,
     HlmMenuSeparatorComponent,
     HlmMenuGroupComponent,
+    BasicTextStyleButtonComponent,
+    BnaFormattingToolbarComponent,
+    BnaFormattingToolbarControllerDirective,
+    TextAlignButtonComponent,
+    BnaDeleteBlockItemComponent,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',
   styleUrl: './bna-drag-handle-menu.component.css',

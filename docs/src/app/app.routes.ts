@@ -11,6 +11,7 @@ import { AlertBlockPage } from '../pages/examples/custom/alert-block/alert-block
 import { ApiContentBlockPage } from '../pages/examples/custom/api-content-block/api-content-block.page';
 import { ExamplesPage } from '../pages/examples/examples.page';
 import { ConvertToHtmlPage } from '../pages/examples/interoperability/convert-to-html/convert-to-html.page';
+import { AddingSideMenuDragHandleItemsPage } from '../pages/examples/ui-components/adding-side-menu-drag-handle-items/adding-side-menu-drag-handle-items.page';
 import { FormattingSideMenuButtonsPage } from '../pages/examples/ui-components/formatting-side-menu-buttons/formatting-side-menu-buttons.page';
 import { FormattingToolbarButtonsPage } from '../pages/examples/ui-components/formatting-toolbar-buttons/formatting-toolbar-buttons.page';
 import { OverviewPage } from '../pages/overview.page';
@@ -62,6 +63,10 @@ export const appRoutes: Route[] = [
       {
         path: 'ui-components/formatting-side-menu-buttons',
         component: FormattingSideMenuButtonsPage,
+      },
+      {
+        path: 'ui-components/adding-side-menu-drag-handle-items',
+        component: AddingSideMenuDragHandleItemsPage,
       },
       { path: '**', redirectTo: 'overview' },
     ],

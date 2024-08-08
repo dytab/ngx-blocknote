@@ -14,7 +14,12 @@
 <ng-template #menu>
   <hlm-menu class="shadow-3xl">
     <hlm-menu-group>
-      <button hlmMenuItem type="button" (click)="deleteBlock()">Delete</button>
+      <div #dragHandleMenuItems>
+        <ng-content></ng-content>
+      </div>
+      <ng-container *ngIf="!dragHandleMenuItems.hasChildNodes()">
+        <bna-delete-block-item />
+      </ng-container>
     </hlm-menu-group>
   </hlm-menu>
 </ng-template>

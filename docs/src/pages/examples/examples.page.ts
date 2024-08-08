@@ -120,7 +120,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         class="justify-start"
         routerLinkActive="active-link"
         routerLink="ui-components/formatting-toolbar-buttons"
-        >Formatting Toolbar Buttons</a
+        >Adding Formatting Toolbar Buttons</a
       >
       <a
         hlmBtn
@@ -128,7 +128,14 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         class="justify-start"
         routerLinkActive="active-link"
         routerLink="ui-components/formatting-side-menu-buttons"
-        >Formatting Side Menu Buttons</a
+        >Adding Block Side Menu Buttons</a
+      >
+      <a
+        hlmBtn
+        variant="ghost"
+        class="justify-start"
+        routerLink="ui-components/adding-side-menu-drag-handle-items"
+        >Adding Drag Handle Menu Items</a
       >
     </aside>
     <main class="overflow-hidden py-6">
