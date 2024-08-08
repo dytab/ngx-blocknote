@@ -135,6 +135,7 @@ import { HlmButtonDirective } from '@dytab/block-note-angular';
         variant="ghost"
         class="justify-start"
         routerLink="ui-components/adding-side-menu-drag-handle-items"
+        routerLinkActive="active-link"
         >Adding Drag Handle Menu Items</a
       >
     </aside>
