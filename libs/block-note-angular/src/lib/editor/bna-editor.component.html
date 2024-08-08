@@ -1,5 +1,4 @@
 <div class="block h-full py-3 bn-container">
-  @if(isInitialized){
   <div #formattingToolbar>
     <ng-content select="bna-formatting-toolbar-controller"></ng-content>
   </div>
@@ -33,22 +32,7 @@
     <bna-file-panel> </bna-file-panel>
   </bna-file-panel-controller>
   <bna-suggestions-menu-controller class="z-index-3">
-    <hlm-menu class="shadow-3xl">
-      <hlm-menu-label>Basic blocks</hlm-menu-label>
-      <hlm-menu-separator />
-      <hlm-menu-group>
-        @for (slashMenuItem of slashMenuItems; track slashMenuItem.title) {
-        <button hlmMenuItem (mousedown)="slashMenuItem.onItemClick()">
-          {{ slashMenuItem.title }}
-          <hlm-menu-shortcut>{{ slashMenuItem.badge }}</hlm-menu-shortcut>
-          <div class="text-xs">
-            {{ slashMenuItem.subtext }}
-          </div>
-        </button>
-        <hlm-menu-separator />
-        }
-      </hlm-menu-group>
-    </hlm-menu>
+    <bna-suggestions-menu
+    ></bna-suggestions-menu>
   </bna-suggestions-menu-controller>
-  }
 </div>

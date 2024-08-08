@@ -17,8 +17,6 @@ import {
   defaultInlineContentSpecs,
   DefaultStyleSchema,
   defaultStyleSpecs,
-  DefaultSuggestionItem,
-  getDefaultSlashMenuItems,
   InlineContentSchema,
   PartialBlock,
   StyleSchema,
@@ -33,6 +31,7 @@ import { BnaSideMenuControllerDirective } from '../components/side-menu/bna-side
 import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.component';
 import { BnaAddBlockButtonComponent } from '../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
+import { BnaSuggestionsMenuComponent } from '../components/suggestions-menu';
 import { BnaSuggestionsMenuControllerDirective } from '../components/suggestions-menu/bna-suggestions-menu-controller.directive';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { BlockNoteAngularService } from '../services/block-note-angular.service';
@@ -75,6 +74,7 @@ import { BnaViewControllerDirective } from './view/bna-view-controller.directive
     BnaFilePanelControllerDirective,
     BnaFormattingToolbarComponent,
     BnaSideMenuComponent,
+    BnaSuggestionsMenuComponent,
   ],
   providers: [BlockNoteAngularService],
   selector: 'bna-editor',
@@ -101,16 +101,15 @@ export class BnaEditorComponent<
   onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   editor = this.createEditor(undefined);
-  slashMenuItems: Omit<DefaultSuggestionItem, 'key'>[] = [];
 
-  //TODO: remove relying on init flag
-  isInitialized = true;
-
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private blockNoteAngularService: BlockNoteAngularService) {
+    this.blockNoteAngularService.setEditor(this.editor);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['options']) {
       this.editor = this.createEditor(changes['initialContent'].currentValue);
+      this.blockNoteAngularService.setOptions(this.options ?? {});
     } else if (changes['initialContent']) {
       this.updateEditorsInitialChanges(changes['initialContent'].currentValue);
       //TODO: remove after improving
@@ -142,7 +141,6 @@ export class BnaEditorComponent<
     });
     this.blockNoteAngularService.setEditor(editor);
     this.onEditorReady.emit(editor);
-    this.slashMenuItems = this.getSlashMenuItems(editor);
     editor.onChange((data) => {
       this.contentChanged.emit(data.document);
     });
@@ -158,18 +156,6 @@ export class BnaEditorComponent<
       this.selectedBlocks.emit(selectedBlocks);
     });
     return editor;
-  }
-
-  getSlashMenuItems(
-    editor: BlockNoteEditor<BSchema, ISchema, SSchema>
-  ): Omit<DefaultSuggestionItem, 'key'>[] {
-    const slashMenuItems = this.options?.inputSlashMenuItems;
-    if (slashMenuItems) {
-      const customSlashMenuItem = slashMenuItems.map((a) => a(this.editor));
-      return [...getDefaultSlashMenuItems(editor), ...customSlashMenuItem];
-    }
-
-    return [...getDefaultSlashMenuItems(editor)];
   }
 
   private updateEditorsInitialChanges(

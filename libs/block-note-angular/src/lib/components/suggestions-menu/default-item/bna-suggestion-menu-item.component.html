@@ -1,0 +1,20 @@
+<button
+  hlmBtn
+  variant="ghost"
+  type="button"
+  class="flex w-full justify-start py-1 px-4 h-full gap-4 text-left font-normal"
+  (mousedown)="slashMenuItem().onItemClick()"
+>
+  <div
+    class="border border-border h-[45px] w-[45px] rounded flex justify-center items-center flex-shrink-0"
+  >
+    <hlm-icon size="base"[name]="iconName()" class="text-neutral-700"/>
+  </div>
+  <div class="w-full">
+    <p class="text-sm font-normal">{{ slashMenuItem().title }}</p>
+    <p class="text-xs text-muted-foreground">{{ slashMenuItem().subtext }}</p>
+  </div>
+  <div class="flex-grow-0 flex-shrink-0 bg-accent rounded p-1 text-xs">
+    {{ slashMenuItem().badge }}
+  </div>
+</button>
