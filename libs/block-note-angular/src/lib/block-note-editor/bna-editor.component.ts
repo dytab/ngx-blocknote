@@ -132,7 +132,6 @@ export class BnaEditorComponent<
   ) {
     const schema = this.options?.schema;
     this.editor = BlockNoteEditor.create({
-      trailingBlock: false,
       schema: schema
         ? schema
         : (BlockNoteSchema.create({
