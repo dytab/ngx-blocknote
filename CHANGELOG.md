@@ -1,3 +1,22 @@
+## 0.4.0 (2024-08-09)
+
+
+### 🚀 Features
+
+- add api content configuration dialog ([89b8307](https://github.com/dytab/BlockNoteAngular/commit/89b8307))
+- add consistent file naming to buttons ([7e2f167](https://github.com/dytab/BlockNoteAngular/commit/7e2f167))
+- add grouping to suggestion menu ([d944206](https://github.com/dytab/BlockNoteAngular/commit/d944206))
+
+### 🩹 Fixes
+
+- remove json from basic setup so its not shown in overview ([e2f8f69](https://github.com/dytab/BlockNoteAngular/commit/e2f8f69))
+- add active link to drag handle menu items link ([26dea53](https://github.com/dytab/BlockNoteAngular/commit/26dea53))
+
+### ❤️  Thank You
+
+- FMuks
+- Matthias Risto
+
 ## 0.3.0 (2024-08-08)
 
 
