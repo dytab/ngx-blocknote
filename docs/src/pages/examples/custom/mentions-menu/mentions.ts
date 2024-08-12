@@ -22,7 +22,6 @@ const render = (
   div.style.padding = '4px 8px';
   div.style.borderRadius = '4px';
   div.innerHTML = `${inlineContent.props.user}`;
-  console.log(inlineContent);
   return {
     dom: div,
   };
