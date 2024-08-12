@@ -9,6 +9,7 @@ import { RemovingDefaultBlocksPage } from '../pages/examples/basic/removing-defa
 import { SelectionBlocksPage } from '../pages/examples/basic/selection-blocks/selection-blocks.page';
 import { AlertBlockPage } from '../pages/examples/custom/alert-block/alert-block.page';
 import { ApiContentBlockPage } from '../pages/examples/custom/api-content-block/api-content-block.page';
+import { MentionsMenuPage } from '../pages/examples/custom/mentions-menu/mentions-menu.page';
 import { ExamplesPage } from '../pages/examples/examples.page';
 import { ConvertToHtmlPage } from '../pages/examples/interoperability/convert-to-html/convert-to-html.page';
 import { AddingSideMenuDragHandleItemsPage } from '../pages/examples/ui-components/adding-side-menu-drag-handle-items/adding-side-menu-drag-handle-items.page';
@@ -51,6 +52,10 @@ export const appRoutes: Route[] = [
       {
         path: 'custom/api-content-block',
         component: ApiContentBlockPage,
+      },
+      {
+        path: 'custom/mentions-menu',
+        component: MentionsMenuPage,
       },
       {
         path: 'interoperability/convert-to-html',
