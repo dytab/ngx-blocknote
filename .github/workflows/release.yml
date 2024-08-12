@@ -23,6 +23,7 @@ jobs:
 
       - name: install npm
         run: npm ci
+
       - name: build
         run: npx nx run-many --target=build
 
