@@ -40,6 +40,7 @@ export class AlertBlockExample {
       props: {
         type: 'warning',
       },
+      content: 'Hallo Welt.',
     },
   ];
   options: BlockNoteEditorOptionsType<
