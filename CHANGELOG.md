@@ -1,3 +1,14 @@
+## 0.5.0 (2024-08-12)
+
+
+### 🚀 Features
+
+- add basic mentions menu example ([572aed7](https://github.com/dytab/BlockNoteAngular/commit/572aed7))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.4.0 (2024-08-09)
 
 
