@@ -63,6 +63,5 @@ export class BnaDeleteBlockItemComponent implements OnInit {
       return;
     }
     editor.removeBlocks(this.selectedBlocks);
-    editor.sideMenu.unfreezeMenu();
   }
 }

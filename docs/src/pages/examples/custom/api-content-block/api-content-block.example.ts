@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   Block,
   BlockNoteEditor,
-  BlockNoteSchema, BlockSchemaFromSpecs,
-  DefaultBlockSchema,
+  BlockNoteSchema,
   defaultBlockSpecs,
-  DefaultInlineContentSchema,
   defaultInlineContentSpecs,
-  DefaultStyleSchema,
-  defaultStyleSpecs, InlineContentSchema,
-  PartialBlock, StyleSchema, TiptapBlockImplementation
+  defaultStyleSpecs,
+  PartialBlock,
 } from '@blocknote/core';
 import {
   BlockNoteAngularService,
@@ -26,28 +24,25 @@ import {
   HlmDialogComponent,
   HlmDialogContentComponent,
   HlmDialogFooterComponent,
-  HlmDialogHeaderComponent, HlmInputDirective
+  HlmDialogHeaderComponent,
+  HlmInputDirective,
 } from '@dytab/block-note-angular';
-import { apiContentBlock } from './api-content-block';
-import {
-  ResetBlockButtonComponent
-} from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
 import {
   BrnDialogContentDirective,
   BrnDialogDescriptionDirective,
-  BrnDialogRef,
   BrnDialogTitleDirective,
-  BrnDialogTriggerDirective
+  BrnDialogTriggerDirective,
 } from '@spartan-ng/ui-dialog-brain';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
+import { apiContentBlock } from './api-content-block';
 
 const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
-    apiContent: apiContentBlock
+    apiContent: apiContentBlock,
   },
   inlineContentSpecs: { ...defaultInlineContentSpecs },
-  styleSpecs: { ...defaultStyleSpecs }
+  styleSpecs: { ...defaultStyleSpecs },
 });
 
 @Component({
@@ -73,7 +68,7 @@ const schema = BlockNoteSchema.create({
     HlmDialogFooterComponent,
     HlmCheckboxComponent,
     ReactiveFormsModule,
-    HlmInputDirective
+    HlmInputDirective,
   ],
   providers: [BlockNoteAngularService],
   template: `
@@ -97,16 +92,24 @@ const schema = BlockNoteSchema.create({
                 Configure Block
               </button>
               <hlm-dialog-content *brnDialogContent="let ctx">
-                <form [formGroup]="formGroup" (ngSubmit)="updateBlockConfiguration(); ctx.close()">
-
-                <hlm-dialog-header>
-                  <h3 brnDialogTitle hlm>Configure Block</h3>
-                  <p brnDialogDescription hlm>Toggle which content which should
-                    be rendered</p>
+                <form
+                  [formGroup]="formGroup"
+                  (ngSubmit)="updateBlockConfiguration(); ctx.close()"
+                >
+                  <hlm-dialog-header>
+                    <h3 brnDialogTitle hlm>Configure Block</h3>
+                    <p brnDialogDescription hlm>
+                      Toggle which content which should be rendered
+                    </p>
 
                     <label class="flex items-center" hlmLabel>
                       Name:
-                      <input hlmInput [size]="'sm'" formControlName="name" class="mr-2" />
+                      <input
+                        hlmInput
+                        [size]="'sm'"
+                        formControlName="name"
+                        class="mr-2"
+                      />
                     </label>
                     <label class="flex items-center" hlmLabel>
                       <hlm-checkbox formControlName="age" class="mr-2" />
@@ -116,30 +119,27 @@ const schema = BlockNoteSchema.create({
                       <hlm-checkbox formControlName="address" class="mr-2" />
                       Address
                     </label>
-                </hlm-dialog-header>
-                <hlm-dialog-footer>
-                  <button hlmBtn type="submit" >Save changes
-                  </button>
-                </hlm-dialog-footer>
+                  </hlm-dialog-header>
+                  <hlm-dialog-footer>
+                    <button hlmBtn type="submit">Save changes</button>
+                  </hlm-dialog-footer>
                 </form>
               </hlm-dialog-content>
             </hlm-dialog>
           </bna-drag-handle-menu-btn>
-        </bna-side-menu
-        >
+        </bna-side-menu>
       </bna-side-menu-controller>
     </bna-editor>
-  `
+  `,
 })
-
-export class ApiContentBlockExample{
+export class ApiContentBlockExample {
   @Input() block?: Block<any, any, any>;
   @Input() editor?: BlockNoteEditor<typeof schema.blockSchema>;
 
   formGroup = new FormGroup({
     name: new FormControl(this.block?.props.name),
     age: new FormControl(this.block?.props.age),
-    address: new FormControl(this.block?.props.address)
+    address: new FormControl(this.block?.props.address),
   });
 
   initialContent: PartialBlock<typeof schema.blockSchema>[] = [
@@ -147,31 +147,32 @@ export class ApiContentBlockExample{
       type: 'apiContent',
       props: {
         name: 'Max Mustermann',
-        age: true
-      }
+        age: true,
+      },
     },
     {
       type: 'apiContent',
-    }
+    },
   ];
   options: BlockNoteEditorOptionsType<
     typeof schema.blockSchema,
     typeof schema.inlineContentSchema,
     typeof schema.styleSchema
   > = {
-    schema
+    schema,
   };
 
-  updateBlockConfiguration(){
-    if(!this.block || !this.editor) return
+  updateBlockConfiguration() {
+    if (!this.block || !this.editor) return;
 
     const formValues = this.formGroup.value;
     this.editor.updateBlock(this.block, {
-      props: { ...formValues }
-    })
+      props: { ...formValues },
+    });
+    this.editor.sideMenu.unfreezeMenu();
   }
 
-  onEditorReady(editor: BlockNoteEditor<typeof schema.blockSchema>){
+  onEditorReady(editor: BlockNoteEditor<typeof schema.blockSchema>) {
     this.editor = editor;
     this.editor.sideMenu.onUpdate((state) => {
       this.block = state.block;

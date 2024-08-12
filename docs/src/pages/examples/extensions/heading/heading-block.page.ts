@@ -30,8 +30,8 @@ import {
   ],
   template: `<bna-section-intro name="Heading Block">
       <p class="${hlmP} mb-8">
-        In this example, we use our custom heading so that we can use 6 level
-        headings instead of the default 3.
+        In this example, we show the custom heading which allows us to use 6
+        level headings instead of the default 3.
       </p>
       <p>
         <strong>Try it out</strong>: Press the "/" key to open the Slash Menu

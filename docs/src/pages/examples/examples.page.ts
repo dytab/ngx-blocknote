@@ -104,6 +104,14 @@ import { HlmButtonDirective } from '@dytab/block-note-angular';
         routerLink="custom/api-content-block"
         >Api Content Block</a
       >
+      <a
+        hlmBtn
+        variant="ghost"
+        class="justify-start"
+        routerLinkActive="active-link"
+        routerLink="custom/mentions-menu"
+        >Mentions Menu</a
+      >
       Extensions
       <a
         hlmBtn
@@ -112,14 +120,6 @@ import { HlmButtonDirective } from '@dytab/block-note-angular';
         routerLinkActive="active-link"
         routerLink="extensions/heading-block"
         >Heading Block</a
-      >
-      <a
-        hlmBtn
-        variant="ghost"
-        class="justify-start"
-        routerLinkActive="active-link"
-        routerLink="custom/mentions-menu"
-        >Mentions Menu</a
       >
       Interoperability
       <a

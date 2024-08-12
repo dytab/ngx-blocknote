@@ -52,6 +52,7 @@ export class BnaDragHandleMenuComponent {
     if (!editor) {
       return;
     }
+    editor.sideMenu.freezeMenu();
   }
 
   dragStart($event: DragEvent) {
