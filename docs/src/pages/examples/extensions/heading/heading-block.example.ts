@@ -108,23 +108,6 @@ export class HeadingBlockExample {
           typeof schema.styleSchema
         >
       ) => ({
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'heading',
-            props: { level: 3 },
-          });
-        },
-        badge: formatKeyboardShortcut('Mod-Alt-3'),
-        key: 'heading_3',
-        ...editor.dictionary.slash_menu.heading_3,
-      }),
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
         ...editor.dictionary.slash_menu.heading_3,
         onItemClick: () => {
           insertOrUpdateBlock(editor, {
