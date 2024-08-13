@@ -1,5 +1,11 @@
 import { Directive, effect, ElementRef, Input, Renderer2 } from '@angular/core';
-import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import {
+  autoUpdate,
+  computePosition,
+  flip,
+  offset,
+  size,
+} from '@floating-ui/dom';
 import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
@@ -30,6 +36,7 @@ export class BnaSuggestionsMenuControllerDirective {
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
+    this.renderer2.addClass(this.elRef.nativeElement, 'flex');
     editor.suggestionMenus.onUpdate(
       this.triggerCharacter,
       async (suggestionMenuState) => {
@@ -42,9 +49,22 @@ export class BnaSuggestionsMenuControllerDirective {
               this.elRef.nativeElement,
               {
                 placement: 'bottom-start',
-                middleware: [flip()],
+                middleware: [
+                  offset(10),
+                  flip(),
+                  size({
+                    apply: ({ availableWidth, availableHeight, elements }) => {
+                      this.renderer2.setStyle(
+                        this.elRef.nativeElement,
+                        'maxHeight',
+                        `${availableHeight - 10}px`
+                      );
+                    },
+                  }),
+                ],
               }
             );
+            console.log(result);
             this.renderer2.setStyle(
               this.elRef.nativeElement,
               'top',

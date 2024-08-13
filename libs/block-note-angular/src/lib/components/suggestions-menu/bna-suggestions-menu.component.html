@@ -1,4 +1,4 @@
-<div class="bg-background shadow-2xl shadow-neutral-500 rounded p-1">
+<div class="h-full flex flex-col overflow-auto bg-background shadow-2xl shadow-neutral-500 rounded p-1">
   @for ( group of filteredSlashMenuItemGroups; track group.label){
   <div class="px-2 py-1">{{ group.label }}</div>
   @for(item of group.items;track item.key+item.title){
