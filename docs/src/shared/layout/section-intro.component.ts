@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { hlmH1, hlmLead } from '@dytab/block-note-angular';
 
 @Component({
@@ -13,11 +14,17 @@ import { hlmH1, hlmLead } from '@dytab/block-note-angular';
     <div class="mt-6"><ng-content></ng-content></div>
   `,
 })
-export class SectionIntroComponent {
+export class SectionIntroComponent implements OnChanges {
   @Input()
   name = '';
   @Input()
   lead = '';
   protected readonly hlmLead = hlmLead;
   protected readonly hlmH1 = hlmH1;
+
+  constructor(private title: Title) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.title.setTitle(this.name);
+  }
 }
