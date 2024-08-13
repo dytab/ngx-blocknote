@@ -37,12 +37,15 @@ const schema = BlockNoteSchema.create({
 export class TableOfContentsBlockExample {
   initialContent: PartialBlock<typeof schema.blockSchema>[] = [
     { type: 'tableOfContents' },
-    { type: 'heading', props: { level: 1 }, content: 'Level 1' },
+    { type: 'heading', props: { level: 1 }, content: 'First Heading 1' },
     { type: 'heading', props: { level: 2 }, content: 'Level 2' },
     { type: 'heading', props: { level: 3 }, content: 'Level 3' },
     { type: 'heading', props: { level: 4 }, content: 'Level 4' },
     { type: 'heading', props: { level: 5 }, content: 'Level 5' },
     { type: 'heading', props: { level: 6 }, content: 'Level 6' },
+    { type: 'heading', props: { level: 1 }, content: 'Second Heading 1' },
+    { type: 'heading', props: { level: 2 }, content: '(1.1)' },
+    { type: 'heading', props: { level: 2 }, content: '(1.2)' },
   ];
   options: BlockNoteEditorOptionsType<
     typeof schema.blockSchema,
@@ -61,7 +64,6 @@ export class TableOfContentsBlockExample {
         onItemClick: () => {
           insertOrUpdateBlock(editor, {
             type: 'tableOfContents',
-            props: { level: 1 },
           });
         },
         key: 'table-of-contents',

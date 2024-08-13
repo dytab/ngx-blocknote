@@ -136,16 +136,18 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
     ];
   },
 
-  renderHTML({ node, HTMLAttributes }) {
-    return createDefaultBlockDOMOutputSpec(
+  renderHTML(x) {
+    const element = createDefaultBlockDOMOutputSpec(
       this.name,
-      `h${node.attrs.level}`,
+      `h${x.node.attrs.level}`,
       {
         ...(this.options.domAttributes?.blockContent || {}),
-        ...HTMLAttributes,
+        ...x.HTMLAttributes,
       },
       this.options.domAttributes?.inlineContent || {}
     );
+    //add id to element, but how to access id here?
+    return element;
   },
 });
 
