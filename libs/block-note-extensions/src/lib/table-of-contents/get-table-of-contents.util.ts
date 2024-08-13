@@ -1,3 +1,3 @@
-export const getTableOfContents = ()=>{
-
-}
+export const getTableOfContents = () => {
+  //fix lint
+};
