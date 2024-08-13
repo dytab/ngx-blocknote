@@ -44,6 +44,7 @@ export class BnaTextAlignButtonComponent {
     if (!editor) {
       return;
     }
+    this.blockNoteAngularService.editor().focus();
     const selectedBlocks = editor.getSelection()?.blocks;
     if (selectedBlocks) {
       for (const block of selectedBlocks) {

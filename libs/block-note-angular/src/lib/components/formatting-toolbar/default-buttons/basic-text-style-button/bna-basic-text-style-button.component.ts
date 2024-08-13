@@ -32,6 +32,7 @@ export class BnaBasicTextStyleButtonComponent {
   constructor(public blockNoteAngularService: BlockNoteAngularService) {}
 
   toggleStyle(style: BasicTextStyle) {
+    this.blockNoteAngularService.editor().focus();
     this.blockNoteAngularService.editor()?.toggleStyles({ [style]: true });
   }
 }
