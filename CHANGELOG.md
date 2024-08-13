@@ -1,3 +1,22 @@
+## 0.6.0 (2024-08-13)
+
+
+### 🚀 Features
+
+- add alert block custom inline reuse block-note vanillajs example ([8493a69](https://github.com/dytab/BlockNoteAngular/commit/8493a69))
+- add heading example ([f3da4a4](https://github.com/dytab/BlockNoteAngular/commit/f3da4a4))
+- suggestions-menu stays inside view with calculated maxHeight ([204cd9b](https://github.com/dytab/BlockNoteAngular/commit/204cd9b))
+- add TOC prototype block ([853e3ec](https://github.com/dytab/BlockNoteAngular/commit/853e3ec))
+
+### 🩹 Fixes
+
+- top bar is not over suggestion menu ([84ad75d](https://github.com/dytab/BlockNoteAngular/commit/84ad75d))
+- remove duplicated slash menu item ([47518e6](https://github.com/dytab/BlockNoteAngular/commit/47518e6))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.5.0 (2024-08-12)
 
 
