@@ -64,7 +64,6 @@ export class BnaSuggestionsMenuControllerDirective {
                 ],
               }
             );
-            console.log(result);
             this.renderer2.setStyle(
               this.elRef.nativeElement,
               'top',
