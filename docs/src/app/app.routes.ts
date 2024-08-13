@@ -5,7 +5,7 @@ import { OverviewPage } from '../pages/overview.page';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
-  { path: 'overview', component: OverviewPage },
+  { path: 'overview', component: OverviewPage, title: 'Overview' },
   {
     path: 'examples',
     component: ExamplesPage,
