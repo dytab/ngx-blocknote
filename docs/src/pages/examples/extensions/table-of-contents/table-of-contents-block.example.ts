@@ -6,7 +6,6 @@ import {
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
-  formatKeyboardShortcut,
   insertOrUpdateBlock,
   PartialBlock,
 } from '@blocknote/core';
@@ -15,11 +14,12 @@ import {
   BnaEditorComponent,
   HlmButtonDirective,
 } from '@dytab/block-note-angular';
-import { Heading } from '@dytab/block-note-extensions';
+import { Heading, TableOfContentBlock } from '@dytab/block-note-extensions';
 
 const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
+    tableOfContents: TableOfContentBlock,
     heading: Heading,
   },
   inlineContentSpecs: { ...defaultInlineContentSpecs },
@@ -34,8 +34,9 @@ const schema = BlockNoteSchema.create({
     [options]="options"
   />`,
 })
-export class HeadingBlockExample {
+export class TableOfContentsBlockExample {
   initialContent: PartialBlock<typeof schema.blockSchema>[] = [
+    { type: 'tableOfContents' },
     { type: 'heading', props: { level: 1 }, content: 'Level 1' },
     { type: 'heading', props: { level: 2 }, content: 'Level 2' },
     { type: 'heading', props: { level: 3 }, content: 'Level 3' },
@@ -59,104 +60,19 @@ export class HeadingBlockExample {
       ) => ({
         onItemClick: () => {
           insertOrUpdateBlock(editor, {
-            type: 'heading',
+            type: 'tableOfContents',
             props: { level: 1 },
           });
         },
-        badge: formatKeyboardShortcut('Mod-Alt-1'),
-        key: 'heading',
-        ...editor.dictionary.slash_menu.heading,
-      }),
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'heading',
-            props: { level: 2 },
-          });
-        },
-        badge: formatKeyboardShortcut('Mod-Alt-2'),
-        key: 'heading_2',
-        ...editor.dictionary.slash_menu.heading_2,
-      }),
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'heading',
-            props: { level: 3 },
-          });
-        },
-        badge: formatKeyboardShortcut('Mod-Alt-3'),
-        key: 'heading_3',
-        ...editor.dictionary.slash_menu.heading_3,
-      }),
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        ...editor.dictionary.slash_menu.heading_3,
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'heading',
-            props: { level: 4 },
-          });
-        },
-        badge: formatKeyboardShortcut('Mod-Alt-4'),
-        key: 'heading_4',
-      }),
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        ...editor.dictionary.slash_menu.heading_3,
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'heading',
-            props: { level: 5 },
-          });
-        },
-        badge: formatKeyboardShortcut('Mod-Alt-5'),
-        key: 'heading_5',
-      }),
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        ...editor.dictionary.slash_menu.heading_3,
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'heading',
-            props: { level: 6 },
-          });
-        },
-        badge: formatKeyboardShortcut('Mod-Alt-6'),
-        key: 'heading_6',
+        key: 'table-of-contents',
+        group: 'Special',
+        title: 'Table of Contents',
       }),
     ],
   };
 }
 
-export const headingBlockExampleCode = `import { CommonModule } from '@angular/common';
+export const tableOfContentsBlockExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   BlockNoteEditor,

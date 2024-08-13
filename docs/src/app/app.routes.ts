@@ -12,6 +12,7 @@ import { ApiContentBlockPage } from '../pages/examples/custom/api-content-block/
 import { MentionsMenuPage } from '../pages/examples/custom/mentions-menu/mentions-menu.page';
 import { ExamplesPage } from '../pages/examples/examples.page';
 import { HeadingBlockPage } from '../pages/examples/extensions/heading/heading-block.page';
+import { TableOfContentsBlockPage } from '../pages/examples/extensions/table-of-contents/table-of-contents-block.page';
 import { ConvertToHtmlPage } from '../pages/examples/interoperability/convert-to-html/convert-to-html.page';
 import { AddingSideMenuDragHandleItemsPage } from '../pages/examples/ui-components/adding-side-menu-drag-handle-items/adding-side-menu-drag-handle-items.page';
 import { FormattingSideMenuButtonsPage } from '../pages/examples/ui-components/formatting-side-menu-buttons/formatting-side-menu-buttons.page';
@@ -61,6 +62,10 @@ export const appRoutes: Route[] = [
       {
         path: 'extensions/heading-block',
         component: HeadingBlockPage,
+      },
+      {
+        path: 'extensions/table-of-contents',
+        component: TableOfContentsBlockPage,
       },
       {
         path: 'interoperability/convert-to-html',

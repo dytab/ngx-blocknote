@@ -121,6 +121,14 @@ import { HlmButtonDirective } from '@dytab/block-note-angular';
         routerLink="extensions/heading-block"
         >Heading Block</a
       >
+      <a
+        hlmBtn
+        variant="ghost"
+        class="justify-start"
+        routerLinkActive="active-link"
+        routerLink="extensions/table-of-contents"
+        >Table Of Contents</a
+      >
       Interoperability
       <a
         hlmBtn

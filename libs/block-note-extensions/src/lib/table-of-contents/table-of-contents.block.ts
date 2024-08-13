@@ -9,7 +9,7 @@ import {
 export const tableOfContentsPropSchema = {} satisfies PropSchema;
 
 export const tableOfContentsBlockConfig = {
-  type: 'table-of-contents' as const,
+  type: 'tableOfContents' as const,
   propSchema: tableOfContentsPropSchema,
   content: 'none',
 } as const;
@@ -19,8 +19,9 @@ const render = (
   editor: BlockNoteEditor<any, any, any>
 ) => {
   const div = document.createElement('div');
-  for (const block of editor.document) {
-  }
+  div.innerHTML = 'TABLE Of contents';
+  // for (const block of editor.document) {
+  // }
 
   // editor.onChange(() => {
   //   //we need to  rerender our stuff here
@@ -37,7 +38,7 @@ export const parse = (
   return undefined;
 };
 
-export const tableOfContentBlock = createBlockSpec(tableOfContentsBlockConfig, {
+export const TableOfContentBlock = createBlockSpec(tableOfContentsBlockConfig, {
   render: render,
   parse: parse,
 });

@@ -11,9 +11,9 @@ import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
 import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
 import {
-  HeadingBlockExample,
-  headingBlockExampleCode,
-} from './heading-block.example';
+  TableOfContentsBlockExample,
+  tableOfContentsBlockExampleCode,
+} from './table-of-contents-block.example';
 
 @Component({
   standalone: true,
@@ -26,7 +26,7 @@ import {
     DemoBoxComponent,
     HlmTabsComponent,
     TabsComponent,
-    HeadingBlockExample,
+    TableOfContentsBlockExample,
   ],
   template: `<bna-section-intro name="Heading Block">
       <p class="${hlmP} mb-8">
@@ -47,6 +47,6 @@ import {
       </bna-example-tabs>
     </hlm-tabs>`,
 })
-export class HeadingBlockPage {
-  exampleCode = headingBlockExampleCode;
+export class TableOfContentsBlockPage {
+  exampleCode = tableOfContentsBlockExampleCode;
 }
