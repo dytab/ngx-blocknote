@@ -69,12 +69,13 @@ export class BnaSuggestionMenuItemComponent {
     const icon = icons[item?.key];
     return icon ? icon : 'lucideLayoutPanelTop';
   });
+  selected = input<boolean>(false);
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {}
 
   onClick() {
-    this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
     this.blockNoteAngularService.editor().suggestionMenus.clearQuery();
     this.slashMenuItem().onItemClick();
+    this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
   }
 }

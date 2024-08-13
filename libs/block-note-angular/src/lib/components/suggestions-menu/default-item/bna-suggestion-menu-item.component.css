@@ -1,0 +1,3 @@
+.selected{
+    @apply bg-gray-300;
+}

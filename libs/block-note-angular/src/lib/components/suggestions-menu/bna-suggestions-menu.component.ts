@@ -1,14 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  HostListener,
+  Input,
+  OnChanges,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import {
   DefaultSuggestionItem,
   filterSuggestionItems,
   getDefaultSlashMenuItems,
 } from '@blocknote/core';
-import { SlashMenuItemsGroups } from '../../interfaces/slash-menu-items-group.type';
+import { SlashMenuItem } from '../../interfaces/slash-menu-items-group.type';
 import { BlockNoteAngularService } from '../../services';
 import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-menu-item.component';
-import { getGroupedSlashMenuItems } from './get-grouped-slash-menu-items.util';
 
 @Component({
   selector: 'bna-suggestions-menu',
@@ -17,17 +24,75 @@ import { getGroupedSlashMenuItems } from './get-grouped-slash-menu-items.util';
   templateUrl: './bna-suggestions-menu.component.html',
   styleUrl: './bna-suggestions-menu.component.css',
 })
-export class BnaSuggestionsMenuComponent {
-  //TODO: add search
+export class BnaSuggestionsMenuComponent implements OnChanges {
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    const suggestionMenuShown =
+      this.blockNoteAngularService.editor().suggestionMenus.shown;
+    if (!suggestionMenuShown) {
+      return;
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      const newSelectedIndex = this.selectedIndex - 1;
+      if (newSelectedIndex < 0) {
+        this.selectedIndex = this.filteredSlashMenuItems.length - 1;
+      } else {
+        this.selectedIndex = newSelectedIndex;
+      }
+      return;
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      const newSelectedIndex = this.selectedIndex + 1;
+      if (newSelectedIndex > this.filteredSlashMenuItems.length - 1) {
+        this.selectedIndex = 0;
+      } else {
+        this.selectedIndex = newSelectedIndex;
+      }
+      return;
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      this.insertSelectedBlock();
+      return;
+    }
+  }
+  selectedIndex = 0;
+  @Input({ required: true }) triggerCharacter = '/';
   query = signal('');
-  filteredSlashMenuItemGroups: SlashMenuItemsGroups = [];
+  filteredSlashMenuItems: SlashMenuItem[] = [];
+  cleanUpFn = () => {
+    return;
+  };
+
+  insertSelectedBlock() {
+    this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
+    this.blockNoteAngularService.editor().suggestionMenus.clearQuery();
+    this.filteredSlashMenuItems[this.selectedIndex].onItemClick();
+    this.selectedIndex = 0;
+  }
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
     effect(() => {
-      this.filteredSlashMenuItemGroups = getGroupedSlashMenuItems(
-        filterSuggestionItems(this.getSlashMenuItems(), this.query())
+      this.filteredSlashMenuItems = filterSuggestionItems(
+        this.getSlashMenuItems(),
+        this.query()
       );
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['triggerCharacter']) {
+      //remove old update listener before adding new on change
+      this.cleanUpFn();
+      this.cleanUpFn = this.blockNoteAngularService
+        .editor()
+        .suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
+          if (this.query() !== state.query) {
+            this.query.set(state.query);
+            this.selectedIndex = 0;
+          }
+        });
+    }
   }
 
   getSlashMenuItems(): (Omit<DefaultSuggestionItem, 'key'> & {

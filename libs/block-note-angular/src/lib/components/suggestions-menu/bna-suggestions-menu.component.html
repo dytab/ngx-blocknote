@@ -1,7 +1,15 @@
-<div class="h-full flex flex-col overflow-auto bg-background shadow-2xl shadow-neutral-500 rounded p-1">
-  @for ( group of filteredSlashMenuItemGroups; track group.label){
-  <div class="px-2 py-1">{{ group.label }}</div>
-  @for(item of group.items;track item.key+item.title){
-  <bna-suggestion-menu-item [slashMenuItem]="item" />
-  } }
+<div
+  class="h-full flex flex-col overflow-auto bg-background shadow-2xl shadow-neutral-500 rounded p-1"
+>
+  @for(item of filteredSlashMenuItems;track item.key+item.title; let index
+  = $index){ @if(index === 0 || item.group !== filteredSlashMenuItems[index
+  - 1].group){
+  <div class="px-2 py-1">{{ item.group }}</div>
+  }
+
+  <bna-suggestion-menu-item
+    [slashMenuItem]="item"
+    [selected]="selectedIndex === index"
+  />
+  }
 </div>
