@@ -5,6 +5,7 @@ import {
   PropSchema,
 } from '@blocknote/core';
 import { InputRule } from '@tiptap/core';
+import { TagParseRule } from 'prosemirror-model';
 import { createDefaultBlockDOMOutputSpec } from '../helpers/defaultBlockHelpers';
 import { getCurrentBlockContentType } from '../helpers/getCurrentBlockType';
 
@@ -122,42 +123,16 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
           if (typeof element === 'string') {
             return false;
           }
-
           return {
             level: element.getAttribute('data-level'),
           };
         },
       },
-      {
-        tag: 'h1',
-        attrs: { level: 1 },
+      ...(headings.map((headingLevel) => ({
+        tag: `h${headingLevel}`,
+        attrs: { level: headingLevel },
         node: 'heading',
-      },
-      {
-        tag: 'h2',
-        attrs: { level: 2 },
-        node: 'heading',
-      },
-      {
-        tag: 'h3',
-        attrs: { level: 3 },
-        node: 'heading',
-      },
-      {
-        tag: 'h4',
-        attrs: { level: 4 },
-        node: 'heading',
-      },
-      {
-        tag: 'h5',
-        attrs: { level: 5 },
-        node: 'heading',
-      },
-      {
-        tag: 'h6',
-        attrs: { level: 6 },
-        node: 'heading',
-      },
+      })) as TagParseRule[]),
     ];
   },
 
