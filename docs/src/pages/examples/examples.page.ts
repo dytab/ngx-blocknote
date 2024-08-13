@@ -17,9 +17,9 @@ import { exampleGroupedLinks } from './shared/examples';
     class: 'block py-3 mx-auto max-w-[90rem]',
   },
   template: ` <div
-    class="flex flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)] md:gap-6 lg:gap-10"
+    class="flex flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)] md:gap-6 lg:gap-10 px-10"
   >
-    <aside class="flex flex-col p-3">
+    <aside class="flex flex-col">
       @for (exampleGroup of exampleGroupedLinks; track exampleGroup.groupName) {
       <div>{{ exampleGroup.groupName }}</div>
       @for (example of exampleGroup.links; track example.url) {
