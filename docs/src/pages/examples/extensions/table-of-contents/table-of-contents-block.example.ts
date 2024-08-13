@@ -26,7 +26,7 @@ const schema = BlockNoteSchema.create({
   styleSpecs: { ...defaultStyleSpecs },
 });
 @Component({
-  selector: 'bna-heading-block-example',
+  selector: 'bna-table-of-contents-block-example',
   standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `<bna-editor

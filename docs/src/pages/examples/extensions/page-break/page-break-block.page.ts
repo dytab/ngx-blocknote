@@ -11,9 +11,9 @@ import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
 import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
 import {
-  TableOfContentsBlockExample,
-  tableOfContentsBlockExampleCode,
-} from './table-of-contents-block.example';
+  PageBreakBlockExample,
+  pageBreakBlockExampleCode,
+} from './page-break-block.example';
 
 @Component({
   standalone: true,
@@ -26,24 +26,23 @@ import {
     DemoBoxComponent,
     HlmTabsComponent,
     TabsComponent,
-    TableOfContentsBlockExample,
+    PageBreakBlockExample,
   ],
-  template: `<bna-section-intro name="Table of contents">
+  template: `<bna-section-intro name="Page Break">
       <p class="${hlmP} mb-8">
-        In this example, we show the table of contents block, which shows us all
-        the headings. When you click on an entry in the toc you get to the
-        corresponding heading.
+        In this example, we show the page break block, which helps us break
+        pages when generating pdfs.
       </p>
     </bna-section-intro>
     <hlm-tabs tab="preview">
       <bna-example-tabs firstTab="Preview" secondTab="Code">
         <bna-demo-box firstTab>
-          <bna-table-of-contents-block-example />
+          <bna-page-break-block-example />
         </bna-demo-box>
         <bna-code [code]="exampleCode" secondTab />
       </bna-example-tabs>
     </hlm-tabs>`,
 })
-export class TableOfContentsBlockPage {
-  exampleCode = tableOfContentsBlockExampleCode;
+export class PageBreakBlockPage {
+  exampleCode = pageBreakBlockExampleCode;
 }
