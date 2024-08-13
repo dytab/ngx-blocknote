@@ -81,7 +81,14 @@ export class BnaSuggestionsMenuControllerDirective {
             updatePosition
           );
         }
-        this.toggleVisibility(suggestionMenuState.show);
+        if (!suggestionMenuState.show) {
+          //hide after executing functions inside menu
+          setTimeout(() => {
+            this.toggleVisibility(suggestionMenuState.show);
+          }, 150);
+        } else {
+          this.toggleVisibility(true);
+        }
       }
     );
   }

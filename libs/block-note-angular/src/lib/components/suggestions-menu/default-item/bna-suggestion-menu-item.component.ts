@@ -17,6 +17,7 @@ import {
   lucideVideo,
 } from '@ng-icons/lucide';
 import { SlashMenuItem } from '../../../interfaces/slash-menu-items-group.type';
+import { BlockNoteAngularService } from '../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 
 const icons: Record<string, string> = {
@@ -68,4 +69,12 @@ export class BnaSuggestionMenuItemComponent {
     const icon = icons[item?.key];
     return icon ? icon : 'lucideLayoutPanelTop';
   });
+
+  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+
+  onClick() {
+    this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
+    this.blockNoteAngularService.editor().suggestionMenus.clearQuery();
+    this.slashMenuItem().onItemClick();
+  }
 }
