@@ -27,5 +27,8 @@
     "@spartan-ng/ui-checkbox-brain": "0.0.1-alpha.352",
     "@spartan-ng/ui-dialog-brain": "0.0.1-alpha.352"
   },
+  "repository": {
+    "url": "git+https://github.com/dytab/BlockNoteAngular.git"
+  },
   "sideEffects": false
 }
