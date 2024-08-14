@@ -1,3 +1,16 @@
+## 0.8.0 (2024-08-14)
+
+
+### 🚀 Features
+
+- add strike button ([947adac](https://github.com/dytab/BlockNoteAngular/commit/947adac))
+- add link toolbar, to add inline links ([6abb56c](https://github.com/dytab/BlockNoteAngular/commit/6abb56c))
+- **docs:** change browser title to match examples ([4eb5ff7](https://github.com/dytab/BlockNoteAngular/commit/4eb5ff7))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.7.0 (2024-08-14)
 
 
