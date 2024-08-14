@@ -90,3 +90,11 @@ Custom styles heading
 .bn-block-content a{
   @apply text-blue-600;
 }
+
+
+.bn-editor th,
+.bn-editor td {
+  min-width: 1em;
+  border: 1px solid #8a8a8a;
+  padding: 3px 5px;
+}
