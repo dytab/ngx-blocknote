@@ -27,6 +27,8 @@ import { BnaFormattingToolbarControllerDirective } from '../components/formattin
 import { BnaFormattingToolbarComponent } from '../components/formatting-toolbar/bna-formatting-toolbar.component';
 import { BnaBasicTextStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/basic-text-style-button/bna-basic-text-style-button.component';
 import { BnaTextAlignButtonComponent } from '../components/formatting-toolbar/default-buttons/text-align-button/bna-text-align-button.component';
+import { BnaLinkToolbarControllerDirective } from '../components/link-toolbar/link-toolbar-controller.directive';
+import { BnaLinkToolbarComponent } from '../components/link-toolbar/link-toolbar.component';
 import { BnaSideMenuControllerDirective } from '../components/side-menu/bna-side-menu-controller.directive';
 import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.component';
 import { BnaAddBlockButtonComponent } from '../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
@@ -75,6 +77,8 @@ import { BnaViewControllerDirective } from './view/bna-view-controller.directive
     BnaFormattingToolbarComponent,
     BnaSideMenuComponent,
     BnaSuggestionsMenuComponent,
+    BnaLinkToolbarControllerDirective,
+    BnaLinkToolbarComponent,
   ],
   providers: [BlockNoteAngularService],
   selector: 'bna-editor',
