@@ -85,3 +85,8 @@ Custom styles heading
 .toc-entry[data-level='6'] {
   padding-left: 50px;
 }
+
+
+.bn-block-content a{
+  @apply text-blue-600;
+}
