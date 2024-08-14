@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import {
-  HlmButtonDirective,
-  HlmIconComponent,
-} from '@dytab/block-note-angular';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { ColorOptions } from '../../interfaces/color-options.type';
+import { HlmButtonDirective, HlmIconComponent } from '../../ui';
 import { BnaColorIconComponent } from './color-icon/bna-color-icon.component';
 
 const colors = [
