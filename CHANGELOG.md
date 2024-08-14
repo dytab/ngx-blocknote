@@ -1,3 +1,14 @@
+## 0.9.0 (2024-08-14)
+
+
+### 🚀 Features
+
+- proper readme ([78b8783](https://github.com/dytab/BlockNoteAngular/commit/78b8783))
+
+### ❤️  Thank You
+
+- Johannes Klein
+
 ## 0.8.0 (2024-08-14)
 
 
