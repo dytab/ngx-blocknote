@@ -1,3 +1,23 @@
+## 0.7.0 (2024-08-14)
+
+
+### 🚀 Features
+
+- add page-break block extension ([6d7fc00](https://github.com/dytab/BlockNoteAngular/commit/6d7fc00))
+- add page-break block extension ([173227d](https://github.com/dytab/BlockNoteAngular/commit/173227d))
+- add suggestion menu query and keyboard support ([5ead48d](https://github.com/dytab/BlockNoteAngular/commit/5ead48d))
+
+### 🩹 Fixes
+
+- add test fix, to try ci ([db6a526](https://github.com/dytab/BlockNoteAngular/commit/db6a526))
+- add test fix, to try ci #2 ([#2](https://github.com/dytab/BlockNoteAngular/issues/2))
+- focus is not lost, when formatting toolbar button was clicked ([fcb678e](https://github.com/dytab/BlockNoteAngular/commit/fcb678e))
+- suggestion menu focus block, remove query ([0b76d8b](https://github.com/dytab/BlockNoteAngular/commit/0b76d8b))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.6.0 (2024-08-13)
 
 
