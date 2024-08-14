@@ -1,0 +1,43 @@
+@if(options.text){
+<div class="flex flex-col mb-2">
+  <div class="py-1 px-2">Text color</div>
+  @for(color of colors;track color){
+  <button
+    hlmBtn
+    variant="ghost"
+    size="sm"
+    class="gap-2 justify-start text-left font-normal"
+    (click)="options.text?.setColor(color)"
+  >
+    <bna-color-icon [textColor]="color" /><span class="w-full">{{
+      color.charAt(0).toUpperCase() + color.slice(1)
+    }}</span>
+    @if(options.text?.color === color){
+    <hlm-icon name="lucideCheck" />
+    }
+  </button>
+
+  }
+</div>
+} @if(options.background){
+<div class="flex flex-col">
+  <div class="py-1 px-2">Background color</div>
+  @for(color of colors;track color){
+  <button
+    hlmBtn
+    variant="ghost"
+    size="sm"
+    class="gap-2 justify-start text-left font-normal"
+    (click)="options.background?.setColor(color)"
+  >
+    <bna-color-icon [backgroundColor]="color" /><span class="w-full">{{
+      color.charAt(0).toUpperCase() + color.slice(1)
+    }}</span>
+    @if(options.background?.color === color){
+    <hlm-icon name="lucideCheck" />
+    }
+  </button>
+
+  }
+</div>
+}
