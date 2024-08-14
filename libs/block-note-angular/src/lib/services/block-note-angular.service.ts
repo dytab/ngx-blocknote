@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import {
+  Block,
   BlockNoteEditor,
   BlockSchema,
   DefaultBlockSchema,
@@ -26,4 +27,7 @@ export class BlockNoteAngularService<
   setOptions(options: BlockNoteEditorOptionsType<any, any, any>) {
     this.options.set(options);
   }
+
+  ///TESTING
+  sideMenuFocusedBlock = signal<Block<any, any, any> | undefined>(undefined);
 }

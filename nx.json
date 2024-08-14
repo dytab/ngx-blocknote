@@ -64,6 +64,11 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "{workspaceRoot}/dist/libs/{projectName}"
+      }
     }
   },
   "plugins": [
@@ -107,7 +112,8 @@
     "projects": ["block-note-angular", "block-note-extensions"],
     "version": {
       "preVersionCommand": "npx nx run-many -t build",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "packageRoot": "{workspaceRoot}/dist/libs/{projectName}"
     },
     "changelog": {
       "workspaceChangelog": {

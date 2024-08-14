@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   imports: [CommonModule],
   templateUrl: './link-toolbar.component.html',
   styleUrl: './link-toolbar.component.css',
+  host: {
+    class: 'bn-link-toolbar',
+  },
 })
 export class BnaLinkToolbarComponent {}

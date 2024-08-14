@@ -18,6 +18,7 @@ import {
 } from '../../../ui';
 import { BnaFormattingToolbarControllerDirective } from '../../formatting-toolbar/bna-formatting-toolbar-controller.directive';
 import { BnaFormattingToolbarComponent } from '../../formatting-toolbar/bna-formatting-toolbar.component';
+import { BnaBlockColorStyleComponent } from './default-items/block-color-style/bna-block-color-style.component';
 import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/bna-delete-block-item.component';
 
 @Component({
@@ -39,6 +40,7 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     BnaFormattingToolbarComponent,
     BnaFormattingToolbarControllerDirective,
     BnaDeleteBlockItemComponent,
+    BnaBlockColorStyleComponent,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',
   styleUrl: './bna-drag-handle-menu.component.css',

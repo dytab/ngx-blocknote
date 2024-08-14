@@ -33,6 +33,10 @@ export class BnaSideMenuControllerDirective {
       if (!sideMenuState.show) {
         cleanup();
       } else {
+        //TODO: remove this and use editor directly
+        this.blockNoteAngularService.sideMenuFocusedBlock.set(
+          sideMenuState.block
+        );
         const updatePosition = async () => {
           const result = await computePosition(
             getVirtualElement(sideMenuState.referencePos),

@@ -1,0 +1,19 @@
+<div class="relative">
+  <button
+    #button
+    (click)="openMenu()"
+    class="bg-background"
+    draggable="true"
+    hlmBtn
+    size="xs"
+    type="button"
+    variant="outline"
+  >
+    <hlm-icon size="sm" [name]="icon()" />
+  </button>
+  <div class="absolute" [ngStyle]="styles()" #menu [ngClass]="{hidden:!isMenuOpened}">
+    <div class="bg-background shadow-xl p-2 rounded">Test</div>
+  </div>
+</div>
+
+

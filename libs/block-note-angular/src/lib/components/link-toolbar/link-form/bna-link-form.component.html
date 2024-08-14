@@ -1,0 +1,25 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="flex gap-2 justify-center items-center min-w-[350px]">
+    <div class="flex justify-center items-center w-[20px] h-[20px]">
+      <hlm-icon size="sm" name="lucideLink" />
+    </div>
+    <input
+      class="w-full h-[32px] outline-none placeholder:italic placeholder:text-slate-600 placeholder:font-normal"
+      type="text"
+      placeholder="Edit URL"
+      [formControl]="form.controls.url"
+    />
+  </div>
+  <div class="flex gap-2 justify-center items-center">
+    <div class="flex justify-center items-center w-[20px] h-[20px]">
+      <hlm-icon size="sm" name="lucideType" />
+    </div>
+    <input
+      class="w-full h-[32px] outline-none placeholder:italic placeholder:text-slate-600 placeholder:font-normal"
+      type="text"
+      placeholder="Edit title"
+      [formControl]="form.controls.text"
+    />
+  </div>
+  <button class="hidden">Save</button>
+</form>

@@ -1,0 +1,21 @@
+<button
+  type="button"
+  hlmBtn
+  size="icon"
+  variant="ghost"
+  class="w-[30px] h-[30px]"
+  [brnMenuTriggerFor]="menu"
+>
+  <bna-color-icon
+    [textColor]="options.text?.color ?? 'default'"
+    [backgroundColor]="options.background?.color ?? 'default'"
+  />
+</button>
+
+<ng-template #menu>
+  <hlm-menu>
+    <hlm-menu-group class="px-2 max-h-[350px] overflow-auto">
+      <bna-color-picker [options]="options" />
+    </hlm-menu-group>
+  </hlm-menu>
+</ng-template>

@@ -27,21 +27,19 @@ export class BnaLinkToolbarControllerDirective {
     this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
     const editor = this.blockNoteAngularService.editor();
-    if (editor) {
-      editor.linkToolbar.onUpdate(async (linkToolbar) => {
-        if (!linkToolbar.show) {
-          cleanup();
-        } else {
-          const updatePosition = this.getUpdatePositionFn(linkToolbar);
-          cleanup = autoUpdate(
-            getVirtualElement(linkToolbar.referencePos),
-            this.elRef.nativeElement,
-            updatePosition
-          );
-        }
-        this.toggleVisibility(linkToolbar.show);
-      });
-    }
+    editor.linkToolbar.onUpdate(async (linkToolbar) => {
+      if (!linkToolbar.show) {
+        cleanup();
+      } else {
+        const updatePosition = this.getUpdatePositionFn(linkToolbar);
+        cleanup = autoUpdate(
+          getVirtualElement(linkToolbar.referencePos),
+          this.elRef.nativeElement,
+          updatePosition
+        );
+      }
+      this.toggleVisibility(linkToolbar.show);
+    });
   }
 
   private getUpdatePositionFn(linkToolbar: LinkToolbarState) {
