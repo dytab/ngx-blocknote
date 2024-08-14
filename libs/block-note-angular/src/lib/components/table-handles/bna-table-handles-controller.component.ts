@@ -76,8 +76,6 @@ export class BnaTableHandlesController implements AfterViewInit {
           `${result.colHandle.position.x}px`
         );
       }
-
-      console.log('POSITION RESULT', result);
     });
     this.adjustVisibilityAndPosition();
   }
@@ -93,7 +91,7 @@ export class BnaTableHandlesController implements AfterViewInit {
     const editor = this.blockNoteAngularService.editor();
     editor.tableHandles?.onUpdate(async (tableHandles) => {
       this.tableHandles.set(tableHandles);
-      this.toggleVisibility(tableHandles.show);
+      this.toggleVisibility(true);
     });
   }
 

@@ -1,6 +1,10 @@
 <!--<pre>{{ tableHandlesPosition() | json }}</pre>-->
-<div #rowHandle class="absolute"><bna-table-handle orientation="row" [index]="1"  /></div>
+@if(tableHandles()?.show){
+<div #rowHandle class="absolute">
+  <bna-table-handle orientation="row" [index]="1" />
+</div>
 <div #colHandle class="absolute">
   <bna-table-handle orientation="column" [index]="1" />
-
 </div>
+
+}
