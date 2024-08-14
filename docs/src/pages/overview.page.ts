@@ -29,7 +29,7 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
             class="hero-glow text-glow absolute block h-full w-full sm:hidden"
           ></div>
           <h1 class=" leading-none text-6xl font-medium md:text-7xl z-10">
-            Unofficial<br /><strong>Block Note</strong><br />Angular Wrapper
+            Unofficial<br /><strong>BlockNote</strong><br />Angular Wrapper
           </h1>
           <p class="font-space-grotesk text-lg leading-snug md:text-xl z-10">
             A beautiful text editor that just works in <strong>angular</strong>.
@@ -56,13 +56,13 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
       <div class="flex flex-col justify-center items-center">
         <h2 class="${hlmH2}">Disclaimer</h2>
         <p class="${hlmLead} text-center xl:w-[584px] mb-5">
-          This is not an official Angular wrapper for Block Note. This wrapper
+          This is not an official Angular wrapper for BlockNote. This wrapper
           was created on our own because we needed a solution for Angular. For
           this reason, we would like to offer it here in case other developers
           also need a corresponding solution for Angular.
         </p>
         <a hlmBtn variant="default" href="https://www.blocknotejs.org/"
-          >Go to Block Note</a
+          >Go to BlockNote</a
         >
       </div>
     </section>`,

@@ -133,7 +133,7 @@ export class BnaEditorComponent<
             styleSpecs: {
               ...defaultStyleSpecs,
             },
-            // in this case the user did not gave a block note schema so we want to use the default one
+            // in this case the user did not give a blocknote schema so we want to use the default one
             //TODO: remove casting
           }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
