@@ -7,12 +7,12 @@
     variant="ghost"
     size="sm"
     class="gap-2 justify-start text-left font-normal"
-    (click)="options.text?.setColor(color)"
+    (click)="options.text.setColor(color)"
   >
     <bna-color-icon [textColor]="color" /><span class="w-full">{{
       color.charAt(0).toUpperCase() + color.slice(1)
     }}</span>
-    @if(options.text?.color === color){
+    @if(options.text.color === color){
     <hlm-icon name="lucideCheck" />
     }
   </button>
@@ -28,12 +28,12 @@
     variant="ghost"
     size="sm"
     class="gap-2 justify-start text-left font-normal"
-    (click)="options.background?.setColor(color)"
+    (click)="options.background.setColor(color)"
   >
     <bna-color-icon [backgroundColor]="color" /><span class="w-full">{{
       color.charAt(0).toUpperCase() + color.slice(1)
     }}</span>
-    @if(options.background?.color === color){
+    @if(options.background.color === color){
     <hlm-icon name="lucideCheck" />
     }
   </button>
