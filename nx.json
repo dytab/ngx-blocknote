@@ -112,10 +112,10 @@
     "projects": ["block-note-angular", "block-note-extensions"],
     "version": {
       "preVersionCommand": "npx nx run-many -t build",
-      "conventionalCommits": true,
       "generatorOptions": {
         "packageRoot": "{workspaceRoot}/dist/libs/{projectName}",
-        "currentVersionResolver": "git-tag"
+        "currentVersionResolver": "git-tag",
+        "specifierSource": "conventional-commits"
       }
     },
     "changelog": {
