@@ -1,3 +1,21 @@
+## 0.11.0 (2024-08-15)
+
+
+### 🚀 Features
+
+- add table handles to add rows/columns and delete them. ([368e44b](https://github.com/dytab/BlockNoteAngular/commit/368e44b))
+- add block type select to formatting toolbar ([7f714c3](https://github.com/dytab/BlockNoteAngular/commit/7f714c3))
+- add filtering to mention example ([146aac3](https://github.com/dytab/BlockNoteAngular/commit/146aac3))
+
+### 🩹 Fixes
+
+- add ng-content if its not specific, so that mention opens ([14a5c08](https://github.com/dytab/BlockNoteAngular/commit/14a5c08))
+- **docs:** adjust z-index on nav, so that main contents does not get over it ([a48af98](https://github.com/dytab/BlockNoteAngular/commit/a48af98))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.10.0 (2024-08-15)
 
 
