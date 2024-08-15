@@ -1,3 +1,15 @@
+## 0.10.0 (2024-08-15)
+
+
+### 🚀 Features
+
+- add color picker to switch block and inline colors ([3281cd8](https://github.com/dytab/BlockNoteAngular/commit/3281cd8))
+- **docs:** change browser title to match examples ([911b1af](https://github.com/dytab/BlockNoteAngular/commit/911b1af))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.9.0 (2024-08-14)
 
 
