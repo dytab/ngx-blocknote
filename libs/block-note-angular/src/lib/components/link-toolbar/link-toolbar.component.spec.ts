@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LinkToolbarComponent } from './link-toolbar.component';
+import { BnaLinkToolbarComponent } from './link-toolbar.component';
 
-describe('LinkToolbarComponent', () => {
-  let component: LinkToolbarComponent;
-  let fixture: ComponentFixture<LinkToolbarComponent>;
+describe('BnaLinkToolbarComponent', () => {
+  let component: BnaLinkToolbarComponent;
+  let fixture: ComponentFixture<BnaLinkToolbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LinkToolbarComponent],
+      imports: [BnaLinkToolbarComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LinkToolbarComponent);
+    fixture = TestBed.createComponent(BnaLinkToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
