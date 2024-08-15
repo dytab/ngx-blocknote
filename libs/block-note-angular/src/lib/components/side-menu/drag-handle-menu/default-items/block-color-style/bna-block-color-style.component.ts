@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
-  DefaultBlockSchema,
-  DefaultInlineContentSchema,
-  DefaultStyleSchema,
 } from '@blocknote/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { useSelectedBlocks } from '../../../../../hooks/use-selected-blocks';
 import { ColorOptions } from '../../../../../interfaces/color-options.type';
 import { BlockNoteAngularService } from '../../../../../services';
 import {
@@ -35,47 +33,69 @@ import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-c
   styleUrl: './bna-block-color-style.component.css',
 })
 export class BnaBlockColorStyleComponent {
+  selectedBlocks = signal<Block[]>(
+    useSelectedBlocks(this.blockNoteAngularService.editor())
+  );
   options = computed(() => {
     const editor = this.blockNoteAngularService.editor();
-    const block = this.blockNoteAngularService.sideMenuFocusedBlock() as
-      | Block<
-          DefaultBlockSchema,
-          DefaultInlineContentSchema,
-          DefaultStyleSchema
-        >
-      | undefined;
+    const sideMenuFocusedBlock =
+      this.blockNoteAngularService.sideMenuFocusedBlock();
+    let selectedBlocks = this.selectedBlocks();
+    if (
+      sideMenuFocusedBlock &&
+      selectedBlocks.find((block) => block.id === sideMenuFocusedBlock.id) ===
+        undefined
+    ) {
+      //the current block where the side menu is opened is not in selection, then use this instead of selection
+      selectedBlocks = [sideMenuFocusedBlock as Block];
+    }
+    const firstSelectedBlock = selectedBlocks[0];
     const colorOptions: ColorOptions = {};
 
-    if (!block) {
+    if (!firstSelectedBlock) {
       return colorOptions;
     }
     if (
-      checkBlockTypeHasDefaultProp('textColor', block.type, editor) &&
-      checkBlockHasDefaultProp('textColor', block, editor)
+      checkBlockTypeHasDefaultProp(
+        'textColor',
+        firstSelectedBlock.type,
+        editor
+      ) &&
+      checkBlockHasDefaultProp('textColor', firstSelectedBlock, editor)
     ) {
       colorOptions.text = {
-        color: block.props.textColor || 'default',
+        color: firstSelectedBlock.props.textColor || 'default',
         setColor: (color: string) => {
-          editor.updateBlock(block, {
-            type: block.type,
-            props: { textColor: color },
-          });
+          for (const block of selectedBlocks) {
+            editor.updateBlock(block, {
+              type: block.type,
+              props: { textColor: color },
+            });
+          }
           editor.focus();
+          editor.sideMenu.unfreezeMenu();
         },
       };
     }
     if (
-      checkBlockTypeHasDefaultProp('backgroundColor', block.type, editor) &&
-      checkBlockHasDefaultProp('backgroundColor', block, editor)
+      checkBlockTypeHasDefaultProp(
+        'backgroundColor',
+        firstSelectedBlock.type,
+        editor
+      ) &&
+      checkBlockHasDefaultProp('backgroundColor', firstSelectedBlock, editor)
     ) {
       colorOptions.background = {
-        color: block.props.backgroundColor || 'default',
+        color: firstSelectedBlock.props.backgroundColor || 'default',
         setColor: (color: string) => {
-          editor.updateBlock(block, {
-            type: block.type,
-            props: { backgroundColor: color },
-          });
+          for (const block of selectedBlocks) {
+            editor.updateBlock(block, {
+              type: block.type,
+              props: { backgroundColor: color },
+            });
+          }
           editor.focus();
+          editor.sideMenu.unfreezeMenu();
         },
       };
     }
@@ -83,5 +103,11 @@ export class BnaBlockColorStyleComponent {
     return colorOptions;
   });
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private blockNoteAngularService: BlockNoteAngularService) {
+    this.blockNoteAngularService.editor().onSelectionChange(() => {
+      //Update selected blocks, when selection changes, so that we change the color of all selected blocks
+      const selected = useSelectedBlocks(this.blockNoteAngularService.editor());
+      this.selectedBlocks.set(selected);
+    });
+  }
 }
