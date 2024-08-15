@@ -113,7 +113,10 @@
     "version": {
       "preVersionCommand": "npx nx run-many -t build",
       "conventionalCommits": true,
-      "packageRoot": "{workspaceRoot}/dist/libs/{projectName}"
+      "generatorOptions": {
+        "packageRoot": "{workspaceRoot}/dist/libs/{projectName}",
+        "currentVersionResolver": "git-tag"
+      }
     },
     "changelog": {
       "workspaceChangelog": {
