@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { TableHandleOptions } from '../../../interfaces/table-handle-options.type';
+import { BnaAddButtonComponent } from './default-buttons/add-button/bna-add-button.component';
+import { BnaDeleteButtonComponent } from './default-buttons/delete-button/bna-delete-button.component';
 
 @Component({
   selector: 'bna-table-handle-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BnaDeleteButtonComponent, BnaAddButtonComponent],
   templateUrl: './bna-table-handle-menu.component.html',
   styleUrl: './bna-table-handle-menu.component.css',
   host: {
@@ -12,4 +15,6 @@ import { Component } from '@angular/core';
     class: 'block bg-background shadow-xl p-2 rounded',
   },
 })
-export class BnaTableHandleMenuComponent {}
+export class BnaTableHandleMenuComponent {
+  options = input.required<TableHandleOptions>();
+}

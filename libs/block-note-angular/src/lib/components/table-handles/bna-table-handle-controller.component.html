@@ -1,10 +1,11 @@
-<!--<pre>{{ tableHandlesPosition() | json }}</pre>-->
-@if(tableHandles()?.show){
+@if(tableHandles()?.show){ @if(showRowHandle() && rowOptions()){
 <div #rowHandle class="absolute">
-  <bna-table-handle orientation="row" [index]="1" />
+  <!--  This is already checked, that its not undefined-->
+  <bna-table-handle [options]="$any(rowOptions())" />
 </div>
+} @if(showColumnHandle() && columnOptions()){
 <div #colHandle class="absolute">
-  <bna-table-handle orientation="column" [index]="1" />
+  <!--  This is already checked, that its not undefined-->
+  <bna-table-handle [options]="$any(columnOptions())" />
 </div>
-
-}
+} }

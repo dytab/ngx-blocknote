@@ -78,7 +78,7 @@ async function useTableHandlePosition(
     floatings[orientation],
     {
       placement: orientation === 'row' ? 'left' : 'top',
-      middleware: [offset(orientation === 'row' ? -10 : -12)],
+      middleware: [offset(orientation === 'row' ? -5 : -12)],
     }
   );
   // const { refs, update, context, floatingStyles } = computePosition({

@@ -3,7 +3,6 @@
     #button
     (click)="openMenu($event)"
     class="bg-background"
-    draggable="true"
     hlmBtn
     size="xs"
     type="button"
@@ -16,7 +15,7 @@
     #menu
     [ngClass]="{ hidden: !isMenuOpened }"
   >
-    <bna-table-handle-menu class="w-full"/>
+    <bna-table-handle-menu class="w-full" [options]="optionsWithCloseMenu()" />
 
   </div>
 </div>

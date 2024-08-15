@@ -26,6 +26,7 @@ import { BnaFilePanelComponent } from '../components/file-panel/bna-file-panel.c
 import { BnaFormattingToolbarControllerDirective } from '../components/formatting-toolbar/bna-formatting-toolbar-controller.directive';
 import { BnaFormattingToolbarComponent } from '../components/formatting-toolbar/bna-formatting-toolbar.component';
 import { BnaBasicTextStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/basic-text-style-button/bna-basic-text-style-button.component';
+import { BnaBlockTypeSelectionButtonComponent } from '../components/formatting-toolbar/default-buttons/block-type-selection-button/bna-block-type-selection-button.component';
 import { BnaColorStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/color-style/bna-color-style-button.component';
 import { BnaCreateLinkComponent } from '../components/formatting-toolbar/default-buttons/create-link/bna-create-link.component';
 import { BnaTextAlignButtonComponent } from '../components/formatting-toolbar/default-buttons/text-align-button/bna-text-align-button.component';
@@ -56,9 +57,6 @@ import {
   HlmMenuShortcutComponent,
 } from '../ui';
 import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
-import {
-  BnaBlockTypeSelectionButtonComponent
-} from '../components/formatting-toolbar/default-buttons/block-type-selection-button/bna-block-type-selection-button.component';
 
 @Component({
   imports: [
@@ -93,7 +91,7 @@ import {
     BnaEditLinkButtonComponent,
     BnaDeleteLinkComponent,
     BnaColorStyleButtonComponent,
-    BnaBlockTypeSelectionButtonComponent
+    BnaBlockTypeSelectionButtonComponent,
     BnaTableHandlesController,
   ],
   providers: [BlockNoteAngularService],
