@@ -37,14 +37,14 @@ For more examples and detailed guides, please visit the [documentation website](
 |----------------------------------|-----------|
 | Headings                         | ✅         |
 | Basic Blocks                     | ✅         |
-| Table                            | 🛠️       |
+| Table                            | ✅       |
 | Media                            | ✅         |
 | Emojis                           | ❌         |
 
 
 | Formatting Toolbar | Status   |
 |--------------------|----------|
-| Paragraph Styles   | ❌        |
+| Block Type Select  | ❌        |
 | Bold               | ✅        |
 | Italic             | ✅        |
 | Unterline          | ✅        |
