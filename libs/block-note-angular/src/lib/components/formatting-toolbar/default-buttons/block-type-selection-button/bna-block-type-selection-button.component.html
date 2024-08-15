@@ -1,0 +1,23 @@
+<button
+  type="button"
+  hlmBtn
+  size="icon"
+  variant="ghost"
+  class="h-[30px]"
+  [brnMenuTriggerFor]="menu"
+>
+<!--  @if (blockType?.icon) {-->
+<!--    <hlm-icon size="sm" [name]="blockType.icon" />-->
+<!--  }-->
+  {{ blockType?.name }}
+</button>
+
+<ng-template #menu>
+  <hlm-menu>
+    <hlm-menu-group class="px-2">
+      @if(block){
+        <bna-block-type-select class="w-full" [block]="block" [editor]="editor" />
+      }
+    </hlm-menu-group>
+  </hlm-menu>
+</ng-template>

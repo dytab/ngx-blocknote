@@ -57,6 +57,9 @@ import {
   HlmMenuShortcutComponent,
 } from '../ui';
 import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
+import {
+  BnaBlockTypeSelectionButtonComponent
+} from '../components/formatting-toolbar/default-buttons/block-type-selection-button/bna-block-type-selection-button.component';
 
 @Component({
   imports: [
@@ -91,6 +94,7 @@ import { BnaViewControllerDirective } from './view/bna-view-controller.directive
     BnaEditLinkButtonComponent,
     BnaDeleteLinkComponent,
     BnaColorStyleButtonComponent,
+    BnaBlockTypeSelectionButtonComponent
   ],
   providers: [BlockNoteAngularService],
   selector: 'bna-editor',

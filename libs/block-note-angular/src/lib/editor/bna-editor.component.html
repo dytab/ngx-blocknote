@@ -5,6 +5,7 @@
   <ng-container *ngIf="!formattingToolbar.hasChildNodes()">
     <bna-formatting-toolbar-controller>
       <bna-formatting-toolbar>
+        <bna-block-type-selection-button />
         <bna-basic-text-style-button [basicTextStyle]="'bold'" />
         <bna-basic-text-style-button [basicTextStyle]="'italic'" />
         <bna-basic-text-style-button [basicTextStyle]="'underline'" />
