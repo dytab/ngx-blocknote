@@ -1,7 +1,7 @@
 <div class="relative">
   <button
     #button
-    (click)="openMenu()"
+    (click)="openMenu($event)"
     class="bg-background"
     draggable="true"
     hlmBtn
@@ -11,9 +11,12 @@
   >
     <hlm-icon size="sm" [name]="icon()" />
   </button>
-  <div class="absolute" [ngStyle]="styles()" #menu [ngClass]="{hidden:!isMenuOpened}">
-    <div class="bg-background shadow-xl p-2 rounded">Test</div>
+  <div
+    class="absolute inset-y-0 left-[40px]"
+    #menu
+    [ngClass]="{ hidden: !isMenuOpened }"
+  >
+    <bna-table-handle-menu class="w-full"/>
+
   </div>
 </div>
-
-
