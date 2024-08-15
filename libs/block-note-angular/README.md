@@ -4,7 +4,7 @@ This project is an Angular implementation of [BlockNote](https://github.com/Type
 
 ## Installation
 ```bash
-npm install <lib-name>
+npm install @dytab/block-note-angular
 ```
 
 ## Basic Setup
