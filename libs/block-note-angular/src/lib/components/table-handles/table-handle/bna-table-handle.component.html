@@ -1,0 +1,22 @@
+<div class="relative">
+  <button
+    #button
+    (click)="openMenu($event)"
+    class="bg-background"
+    draggable="true"
+    hlmBtn
+    size="xs"
+    type="button"
+    variant="outline"
+  >
+    <hlm-icon size="sm" [name]="icon()" />
+  </button>
+  <div
+    class="absolute inset-y-0 left-[40px]"
+    #menu
+    [ngClass]="{ hidden: !isMenuOpened }"
+  >
+    <bna-table-handle-menu class="w-full"/>
+
+  </div>
+</div>

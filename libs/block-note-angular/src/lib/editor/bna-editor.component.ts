@@ -26,9 +26,7 @@ import { BnaFilePanelComponent } from '../components/file-panel/bna-file-panel.c
 import { BnaFormattingToolbarControllerDirective } from '../components/formatting-toolbar/bna-formatting-toolbar-controller.directive';
 import { BnaFormattingToolbarComponent } from '../components/formatting-toolbar/bna-formatting-toolbar.component';
 import { BnaBasicTextStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/basic-text-style-button/bna-basic-text-style-button.component';
-import {
-  BnaColorStyleButtonComponent
-} from '../components/formatting-toolbar/default-buttons/color-style/bna-color-style-button.component';
+import { BnaColorStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/color-style/bna-color-style-button.component';
 import { BnaCreateLinkComponent } from '../components/formatting-toolbar/default-buttons/create-link/bna-create-link.component';
 import { BnaTextAlignButtonComponent } from '../components/formatting-toolbar/default-buttons/text-align-button/bna-text-align-button.component';
 import { BnaDeleteLinkComponent } from '../components/link-toolbar/default-buttons/delete-link/bna-delete-link.component';
@@ -42,6 +40,7 @@ import { BnaAddBlockButtonComponent } from '../components/side-menu/default-butt
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSuggestionsMenuComponent } from '../components/suggestions-menu';
 import { BnaSuggestionsMenuControllerDirective } from '../components/suggestions-menu/bna-suggestions-menu-controller.directive';
+import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { BlockNoteAngularService } from '../services/block-note-angular.service';
 import {
@@ -95,6 +94,7 @@ import {
     BnaDeleteLinkComponent,
     BnaColorStyleButtonComponent,
     BnaBlockTypeSelectionButtonComponent
+    BnaTableHandlesController,
   ],
   providers: [BlockNoteAngularService],
   selector: 'bna-editor',
