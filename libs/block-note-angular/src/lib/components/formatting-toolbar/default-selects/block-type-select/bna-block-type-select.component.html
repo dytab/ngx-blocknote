@@ -1,0 +1,45 @@
+<button
+  type="button"
+  hlmBtn
+  size="xs"
+  variant="ghost"
+  class="h-[30px] min-w-[100px]"
+  [brnMenuTriggerFor]="menu"
+>
+  @if (currentBlockType()?.icon) {
+  <hlm-icon size="sm" [name]="$any(currentBlockType()?.icon)" class="me-2" />
+  }
+  <span>
+    {{ currentBlockType()?.name }}
+  </span>
+</button>
+<ng-template #menu>
+  <hlm-menu>
+    <hlm-menu-group class="px-2">
+      <div class="flex flex-col w-full">
+        @for (blockType of blockTypeSelectItems; track blockType.name) {
+        <button
+          type="button"
+          hlmBtn
+          size="sm"
+          variant="ghost"
+          class="gap-2 flex justify-start"
+          (click)="changeBlockType(blockType.type, blockType.props)"
+        >
+          <div
+            class="min-w-[120px] gap-2 flex justify-start items-center w-full"
+          >
+            @if (blockType.icon) {
+            <hlm-icon size="sm" [name]="blockType.icon" />
+            }
+            {{ blockType.name }}
+          </div>
+          @if(blockType.isSelected(block)){
+          <hlm-icon size="sm" name="lucideCheck" />
+          }
+        </button>
+        }
+      </div>
+    </hlm-menu-group>
+  </hlm-menu>
+</ng-template>

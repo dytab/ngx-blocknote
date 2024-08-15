@@ -44,7 +44,7 @@ For more examples and detailed guides, please visit the [documentation website](
 
 | Formatting Toolbar | Status   |
 |--------------------|----------|
-| Block Type Select  | ❌        |
+| Block Type Select  | ✅        |
 | Bold               | ✅        |
 | Italic             | ✅        |
 | Unterline          | ✅        |
