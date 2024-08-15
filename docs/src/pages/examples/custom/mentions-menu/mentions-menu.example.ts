@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockNoteSchema,
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  filterSuggestionItems,
   PartialBlock,
 } from '@blocknote/core';
 import {
@@ -23,6 +24,7 @@ const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
   return users.map((user) => ({
     title: user,
     onItemClick: () => {
+      editor.suggestionMenus.clearQuery();
       editor.insertInlineContent([
         {
           type: 'mention',
@@ -32,6 +34,7 @@ const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
         },
         ' ', // add a space after the mention
       ]);
+      editor.suggestionMenus.closeMenu();
     },
   }));
 };
@@ -60,13 +63,8 @@ const schema = BlockNoteSchema.create({
       <div
         class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
       >
-        @for(item of items;track item.title){
-        <button
-          hlmBtn
-          variant="ghost"
-          size="sm"
-          (mousedown)="item.onItemClick()"
-        >
+        @for(item of filteredItems();track item.title){
+        <button hlmBtn variant="ghost" size="sm" (click)="item.onItemClick()">
           {{ item.title }}
         </button>
         }
@@ -75,6 +73,10 @@ const schema = BlockNoteSchema.create({
   >`,
 })
 export class MentionsMenuExample {
+  query = signal('');
+  filteredItems = computed(() => {
+    return filterSuggestionItems(this.items, this.query());
+  });
   items: { title: string; onItemClick: () => void }[] = [];
   initialContent: PartialBlock<
     typeof schema.blockSchema,
@@ -112,17 +114,21 @@ export class MentionsMenuExample {
 
   onEditorReady($event: BlockNoteEditor<any, any, any>) {
     this.items = getMentionMenuItems($event);
+    $event.suggestionMenus.onUpdate('@', (state) => {
+      this.query.set(state.query);
+    });
   }
 }
 
 export const mentionsMenuExampleCode = `import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockNoteSchema,
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  filterSuggestionItems,
   PartialBlock,
 } from '@blocknote/core';
 import {
@@ -140,6 +146,7 @@ const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
   return users.map((user) => ({
     title: user,
     onItemClick: () => {
+      editor.suggestionMenus.clearQuery();
       editor.insertInlineContent([
         {
           type: 'mention',
@@ -149,6 +156,7 @@ const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
         },
         ' ', // add a space after the mention
       ]);
+      editor.suggestionMenus.closeMenu();
     },
   }));
 };
@@ -177,13 +185,8 @@ const schema = BlockNoteSchema.create({
       <div
         class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
       >
-        @for(item of items;track item.title){
-        <button
-          hlmBtn
-          variant="ghost"
-          size="sm"
-          (mousedown)="item.onItemClick()"
-        >
+        @for(item of filteredItems();track item.title){
+        <button hlmBtn variant="ghost" size="sm" (click)="item.onItemClick()">
           {{ item.title }}
         </button>
         }
@@ -192,6 +195,10 @@ const schema = BlockNoteSchema.create({
   >\`,
 })
 export class MentionsMenuExample {
+  query = signal('');
+  filteredItems = computed(() => {
+    return filterSuggestionItems(this.items, this.query());
+  });
   items: { title: string; onItemClick: () => void }[] = [];
   initialContent: PartialBlock<
     typeof schema.blockSchema,
@@ -229,5 +236,8 @@ export class MentionsMenuExample {
 
   onEditorReady($event: BlockNoteEditor<any, any, any>) {
     this.items = getMentionMenuItems($event);
+    $event.suggestionMenus.onUpdate('@', (state) => {
+      this.query.set(state.query);
+    });
   }
 }`;

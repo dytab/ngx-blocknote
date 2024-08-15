@@ -40,6 +40,7 @@ export class BnaSuggestionsMenuControllerDirective {
     editor.suggestionMenus.onUpdate(
       this.triggerCharacter,
       async (suggestionMenuState) => {
+        console.log(suggestionMenuState);
         if (!suggestionMenuState.show) {
           cleanup();
         } else {
@@ -85,7 +86,7 @@ export class BnaSuggestionsMenuControllerDirective {
           //hide after executing functions inside menu
           setTimeout(() => {
             this.toggleVisibility(suggestionMenuState.show);
-          }, 150);
+          }, 250);
         } else {
           this.toggleVisibility(true);
         }
