@@ -1,0 +1,3 @@
+@import './tailwind-base.css';
+@import './toolbar.css';
+@import '../../../../../node_modules/@blocknote/core/dist/style.css';

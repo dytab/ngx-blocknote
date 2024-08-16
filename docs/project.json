@@ -22,12 +22,11 @@
           }
         ],
         "styles": [
-          "styles/styles.css",
-          "styles/block-note-common.css",
-          "styles/toolbar.css",
-          "styles/custom-styles.css",
-          "node_modules/highlight.js/styles/github.css",
-          "docs/src/styles.css"
+          "docs/src/styles.css",
+          "libs/block-note-angular/src/lib/styles/styles.css",
+          "libs/block-note-extensions/src/lib/heading/headings.css",
+          "libs/block-note-extensions/src/lib/table-of-contents/table-of-contents.css",
+          "libs/block-note-extensions/src/lib/page-break/page-break.css"
         ],
         "scripts": [],
         "server": "docs/src/main.server.ts",
