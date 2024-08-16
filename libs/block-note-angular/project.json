@@ -1,15 +1,15 @@
 {
   "name": "block-note-angular",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/block-note-angular/src",
+  "sourceRoot": "libs/block-note-angular/src/lib",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build": {
+    "build-angular": {
       "dependsOn": ["^build"],
       "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "outputs": ["{workspaceRoot}/dist/libs/block-note-angular"],
       "options": {
         "project": "libs/block-note-angular/ng-package.json",
         "tailwindConfig": "libs/block-note-angular/tailwind.config.js"
@@ -20,6 +20,46 @@
         },
         "development": {
           "tsConfig": "libs/block-note-angular/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build-lib": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/libs/block-note-angular"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx run block-note-angular:build-angular:production",
+            "tailwindcss -c libs/block-note-angular/tailwind.config.js -i ./libs/block-note-angular/src/lib/styles/styles.css -o ./dist/libs/block-note-angular/themes/styles.css -m"
+          ]
+        },
+        "development": {
+          "commands": [
+            "nx run block-note-angular:build-angular:development",
+            "tailwindcss -c libs/block-note-angular/tailwind.config.js -i ./libs/block-note-angular/src/lib/styles/styles.css -o ./dist/libs/block-note-angular/themes/styles.css"
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/libs/block-note-angular"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "rimraf -rf dist/libs/block-note-angular",
+            "nx run block-note-angular:build-lib:production"
+          ],
+          "parallel": false
+        },
+        "development": {
+          "commands": [
+            "rimraf -rf dist/libs/block-note-angular",
+            "nx run block-note-angular:build-lib:development"
+          ],
+          "parallel": false
         }
       },
       "defaultConfiguration": "production"
