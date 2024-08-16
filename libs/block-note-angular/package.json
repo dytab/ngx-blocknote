@@ -5,27 +5,18 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/core": "^18.0.0",
-    "@blocknote/core": ">=0.14.0 <0.16.0",
-    "@ng-icons/core": "^25.1.0",
-    "@ng-icons/lucide": "^26.3.0",
-    "@spartan-ng/ui-menu-brain": "^0.0.1",
-    "jest-preset-angular": "^14.2.2",
-    "@spartan-ng/ui-core": "^0.0.1",
-    "@floating-ui/dom": "^1.6.8",
-    "@angular/common": "^18.0.0",
-    "@nx/angular": "^19.5.7",
-    "@angular/forms": "^18.0.0",
-    "class-variance-authority": ">=0.6.0 <1.0.0",
-    "clsx": "^1.2.1",
-    "ngx-scrollbar": "^13.0.1",
-    "@spartan-ng/ui-tabs-brain": "^0.0.1",
     "@angular/cdk": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@blocknote/core": ">=0.14.0 <0.16.0",
+    "@floating-ui/dom": "^1.6.8",
+    "@ng-icons/core": "^25.1.0",
+    "@spartan-ng/ui-dialog-brain": "^0.0.1",
+    "@spartan-ng/ui-menu-brain": "^0.0.1",
+    "@spartan-ng/ui-tabs-brain": "^0.0.1",
     "@spartan-ng/ui-tooltip-brain": "^0.0.1",
-    "@angular/platform-browser": "^18.0.0",
-    "@testing-library/angular": "^17.1.0",
-    "@spartan-ng/ui-checkbox-brain": "^0.0.1",
-    "@spartan-ng/ui-dialog-brain": "^0.0.1"
+    "class-variance-authority": ">=0.6.0 <1.0.0",
+    "clsx": "^1.2.1"
   },
   "repository": {
     "url": "git+https://github.com/dytab/BlockNoteAngular.git"
