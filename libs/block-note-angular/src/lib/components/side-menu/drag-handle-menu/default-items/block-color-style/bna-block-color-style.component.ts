@@ -12,7 +12,7 @@ import { BlockNoteAngularService } from '../../../../../services';
 import {
   HlmButtonDirective,
   HlmMenuComponent,
-  HlmMenuGroupComponent,
+  HlmMenuGroupComponent, HlmMenuItemDirective
 } from '../../../../../ui';
 import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-color-icon.component';
@@ -28,6 +28,7 @@ import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-c
     BrnMenuTriggerDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,
+    HlmMenuItemDirective,
   ],
   templateUrl: './bna-block-color-style.component.html',
   styleUrl: './bna-block-color-style.component.css',
