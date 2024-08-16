@@ -1,3 +1,14 @@
+## 0.13.0 (2024-08-16)
+
+
+### 🚀 Features
+
+- add styles to build step, so that consumers can add it ([7309c69](https://github.com/dytab/BlockNoteAngular/commit/7309c69))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.12.0 (2024-08-16)
 
 
