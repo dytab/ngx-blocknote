@@ -5,5 +5,19 @@
     "entryFile": "src/index.ts",
     "styleIncludePaths": ["src/lib/styles"]
   },
-  "assets": ["src/lib/styles"]
+  "assets": ["src/lib/styles"],
+  "allowedNonPeerDependencies":[
+    "@floating-ui/dom",
+    "@ng-icons/core",
+    "@ng-icons/lucide",
+    "@spartan-ng/ui-checkbox-brain",
+    "@spartan-ng/ui-core",
+    "@spartan-ng/ui-dialog-brain",
+    "@spartan-ng/ui-menu-brain",
+    "@spartan-ng/ui-tabs-brain",
+    "@spartan-ng/ui-tooltip-brain",
+    "class-variance-authority",
+    "clsx",
+    "ngx-scrollbar"
+  ]
 }
