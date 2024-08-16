@@ -5,40 +5,35 @@
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {
-    "@angular/cdk": "^18.0.0",
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0",
-    "@angular/forms": "^18.0.0",
-    "@angular/platform-browser": "^18.0.0",
-    "@blocknote/core": ">=0.14.0 <0.16.0",
+  "dependencies": {
     "@floating-ui/dom": "^1.6.8",
     "@ng-icons/core": "^25.1.0",
     "@ng-icons/lucide": "^26.5.0",
-    "@nx/angular": "^19.0.0",
     "@spartan-ng/ui-checkbox-brain": ">=0.0.1-alpha.317 <0.0.2",
     "@spartan-ng/ui-core": ">=0.0.1-alpha.317 <0.0.2",
     "@spartan-ng/ui-dialog-brain": ">=0.0.1-alpha.317 <0.0.2",
     "@spartan-ng/ui-menu-brain": ">=0.0.1-alpha.317 <0.0.2",
     "@spartan-ng/ui-tabs-brain": ">=0.0.1-alpha.317 <0.0.2",
     "@spartan-ng/ui-tooltip-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@testing-library/angular": "^17.0.0",
     "class-variance-authority": ">=0.6.0 <1.0.0",
     "clsx": "^1.2.1",
-    "jest-preset-angular": "^14.0.0",
     "ngx-scrollbar": "^13.0.1"
   },
+  "devDependencies": {
+    "@nx/angular": "^19.0.0",
+    "@testing-library/angular": "^17.0.0",
+    "jest-preset-angular": "^14.0.0"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@blocknote/core": ">=0.14.0 <0.16.0"
+  },
   "peerDependenciesMeta": {
-    "@nx/angular": {
-      "optional": true
-    },
     "@angular/platform-browser": {
-      "optional": true
-    },
-    "@testing-library/angular": {
-      "optional": true
-    },
-    "jest-preset-angular": {
       "optional": true
     }
   },
