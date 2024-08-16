@@ -61,4 +61,4 @@ For more examples and detailed guides, please visit the [documentation website](
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is distributed under the terms of the [MIT License](LICENSE.md).
