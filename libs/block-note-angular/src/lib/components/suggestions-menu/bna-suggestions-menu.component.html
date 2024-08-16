@@ -10,6 +10,7 @@
   <bna-suggestion-menu-item
     [slashMenuItem]="item"
     [selected]="selectedIndex === index"
+    (mouseEnter)="selectedIndex = index"
   />
   }
 </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import {
   lucideFileAudio,
@@ -70,6 +70,7 @@ export class BnaSuggestionMenuItemComponent {
     return icon ? icon : 'lucideLayoutPanelTop';
   });
   selected = input<boolean>(false);
+  mouseEnter = output();
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {}
 
@@ -77,5 +78,9 @@ export class BnaSuggestionMenuItemComponent {
     this.blockNoteAngularService.editor().suggestionMenus.clearQuery();
     this.slashMenuItem().onItemClick();
     this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
+  }
+
+  onMouseEnter() {
+    this.mouseEnter.emit();
   }
 }
