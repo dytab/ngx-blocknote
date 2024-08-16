@@ -25,10 +25,10 @@ import { exampleGroupedLinks } from './shared/examples';
       @for (example of exampleGroup.links; track example.url) {
       <a
         hlmBtn
-        variant="ghost"
-        routerLinkActive="active-link"
+        variant="link"
+        routerLinkActive="!text-foreground"
         [routerLink]="example.url"
-        class="justify-start"
+        class="justify-start text-muted-foreground"
         >{{ example.name }}</a
       >
       } }

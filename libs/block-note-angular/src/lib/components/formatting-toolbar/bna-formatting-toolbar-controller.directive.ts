@@ -1,6 +1,6 @@
 import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
 import { FormattingToolbarState } from '@blocknote/core';
-import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { BlockNoteAngularService } from '../../services/block-note-angular.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
@@ -51,7 +51,7 @@ export class BnaFormattingToolbarControllerDirective {
         this.elRef.nativeElement,
         {
           placement: 'top',
-          middleware: [flip()],
+          middleware: [flip(), offset(15)],
         }
       );
       this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
