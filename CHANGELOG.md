@@ -1,3 +1,16 @@
+## 0.14.0 (2024-08-16)
+
+
+### 🚀 Features
+
+- support dark mode in docs and in bna ([350e890](https://github.com/dytab/BlockNoteAngular/commit/350e890))
+- mouse changes selected suggestion item ([e8994ed](https://github.com/dytab/BlockNoteAngular/commit/e8994ed))
+- add offset to toolbar, so that the block content is more readable ([6655e51](https://github.com/dytab/BlockNoteAngular/commit/6655e51))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.13.0 (2024-08-16)
 
 
