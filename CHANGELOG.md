@@ -1,3 +1,14 @@
+## 0.12.0 (2024-08-16)
+
+
+### 🚀 Features
+
+- side menu should be a menu, so buttons should match the style ([4eef223](https://github.com/dytab/BlockNoteAngular/commit/4eef223))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.11.1 (2024-08-16)
 
 
