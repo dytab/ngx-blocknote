@@ -1,5 +1,6 @@
 {
   "name": "@dytab/block-note-angular",
+  "homepage": "https://dytab.github.io/BlockNoteAngular",
   "version": "0.10.0",
   "publishConfig": {
     "access": "public"
@@ -21,5 +22,6 @@
   "repository": {
     "url": "git+https://github.com/dytab/BlockNoteAngular.git"
   },
+  "bugs": "https://github.com/dytab/BlockNoteAngular/issues",
   "sideEffects": false
 }
