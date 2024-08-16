@@ -1,3 +1,19 @@
+## 0.11.1 (2024-08-16)
+
+
+### 🚀 Features
+
+- update table of content, when heading is updated ([5aaf369](https://github.com/dytab/BlockNoteAngular/commit/5aaf369))
+- hide page-break inside pdf rendering ([e152f8a](https://github.com/dytab/BlockNoteAngular/commit/e152f8a))
+
+### 🩹 Fixes
+
+- drag menu color shows correctly block colors ([abd8f45](https://github.com/dytab/BlockNoteAngular/commit/abd8f45))
+
+### ❤️  Thank You
+
+- Matthias Risto
+
 ## 0.11.0 (2024-08-15)
 
 
