@@ -26,7 +26,9 @@
           "styles/block-note-common.css",
           "styles/toolbar.css",
           "styles/custom-styles.css",
-          "node_modules/highlight.js/styles/github.css"
+          "node_modules/highlight.js/styles/github.css",
+          "docs/src/styles.css",
+
         ],
         "scripts": [],
         "server": "docs/src/main.server.ts",
