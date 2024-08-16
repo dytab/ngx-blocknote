@@ -17,12 +17,15 @@ const render = (
   block: BlockFromConfig<typeof pageBreakBlockConfig, any, any>,
   editor: BlockNoteEditor<any, any, any>
 ) => {
-  const element = document.createElement('div');
-  element.style.pageBreakAfter = 'always';
-  //TODO: do not render this
-  element.textContent = '..........PageBreak..........';
+  const pageBreakWrapper = document.createElement('div');
+  pageBreakWrapper.style.pageBreakAfter = 'always';
+
+  const pageBreakText = document.createElement('div');
+  pageBreakText.className = 'page-wrapper-text';
+  pageBreakText.textContent = '..........PageBreak..........';
+  pageBreakWrapper.appendChild(pageBreakText);
   return {
-    dom: element,
+    dom: pageBreakWrapper,
   };
 };
 
