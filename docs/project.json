@@ -22,11 +22,7 @@
           }
         ],
         "styles": [
-          "docs/src/styles.css",
-          "libs/block-note-angular/src/lib/styles/styles.css",
-          "libs/block-note-extensions/src/lib/heading/headings.css",
-          "libs/block-note-extensions/src/lib/table-of-contents/table-of-contents.css",
-          "libs/block-note-extensions/src/lib/page-break/page-break.css"
+          "docs/src/styles/styles.css"
         ],
         "scripts": [],
         "server": "docs/src/main.server.ts",

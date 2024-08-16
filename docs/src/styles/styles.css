@@ -1,0 +1,13 @@
+@import './tailwind.css';
+
+@import 'libs/block-note-angular/src/lib/styles/core.css';
+@import 'libs/block-note-angular/src/lib/styles/toolbar.css';
+@import 'libs/block-note-angular/src/lib/styles/blocks.css';
+@import 'libs/block-note-extensions/src/lib/table-of-contents/table-of-contents.css';
+@import 'libs/block-note-extensions/src/lib/page-break/page-break.css';
+@import 'libs/block-note-extensions/src/lib/heading/heading.css';
+
+body {
+  @apply bg-background;
+}
+
