@@ -41,11 +41,10 @@ export class ResetBlockButtonComponent {
 
   resetBlock() {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor || !this.block) {
+    if (!this.block) {
       return;
     }
-    this.blockNoteAngularService
-      .editor()!
-      .updateBlock(this.block, { type: 'paragraph' });
+    editor.updateBlock(this.block, { type: 'paragraph' });
+    editor.focus();
   }
 }

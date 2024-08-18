@@ -41,15 +41,6 @@ import { ResetBlockButtonComponent } from './reset-block-button.component';
         <bna-drag-handle-menu-btn>
           <bna-delete-block-item />
           <bna-reset-block-button />
-          <button
-            hlmBtn
-            variant="ghost"
-            size="sm"
-            class="justify-start w-full"
-            (click)="doSomething()"
-          >
-            Test
-          </button>
         </bna-drag-handle-menu-btn></bna-side-menu
       >
     </bna-side-menu-controller>
@@ -74,10 +65,6 @@ export class AddingSideMenuDragHandleItemsExample {
       type: 'paragraph',
     },
   ];
-
-  doSomething() {
-    console.log('Do something');
-  }
 }
 
 export const addingSideMenuDragHandleItemsExampleCode = `import { CommonModule } from '@angular/common';
