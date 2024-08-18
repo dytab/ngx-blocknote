@@ -3,7 +3,7 @@ import { Component, effect, OnInit } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { BlockNoteAngularService } from '../../../../../services/block-note-angular.service';
 import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../../ui';
-import { useSelectedBlocks } from '../../../../../hooks/use-selected-blocks';
+import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',

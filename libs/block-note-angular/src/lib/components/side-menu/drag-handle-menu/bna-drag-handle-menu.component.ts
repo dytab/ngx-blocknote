@@ -51,25 +51,16 @@ export class BnaDragHandleMenuComponent {
 
   openDragMenu() {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
     editor.sideMenu.freezeMenu();
   }
 
   dragStart($event: DragEvent) {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
     editor.sideMenu.blockDragStart($event);
   }
 
   dragEnd() {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
     editor.sideMenu.blockDragEnd();
   }
 }

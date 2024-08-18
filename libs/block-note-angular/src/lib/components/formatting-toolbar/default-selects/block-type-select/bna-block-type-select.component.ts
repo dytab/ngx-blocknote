@@ -16,7 +16,7 @@ import {
   lucideType,
 } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { useSelectedBlocks } from '../../../../hooks/use-selected-blocks';
+import { useSelectedBlocks } from '../../../../util/use-selected-blocks';
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
 import { BlockNoteAngularService } from '../../../../services';
 import {

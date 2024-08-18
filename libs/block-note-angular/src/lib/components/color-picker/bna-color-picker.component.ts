@@ -19,10 +19,6 @@ const colors = [
   'pink',
 ] as const;
 
-const emptyFn = () => {
-  //empty
-};
-
 @Component({
   selector: 'bna-color-picker',
   standalone: true,

@@ -6,7 +6,7 @@ import {
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { useSelectedBlocks } from '../../../../../hooks/use-selected-blocks';
+import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 import { ColorOptions } from '../../../../../interfaces/color-options.type';
 import { BlockNoteAngularService } from '../../../../../services';
 import {

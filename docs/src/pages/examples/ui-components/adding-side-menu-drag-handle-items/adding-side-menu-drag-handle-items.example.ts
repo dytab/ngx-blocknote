@@ -10,6 +10,9 @@ import {
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
   HlmButtonDirective,
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
 } from '@dytab/block-note-angular';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
 
@@ -27,6 +30,9 @@ import { ResetBlockButtonComponent } from './reset-block-button.component';
     ResetBlockButtonComponent,
     BnaDragHandleMenuComponent,
     BnaDeleteBlockItemComponent,
+    HlmMenuComponent,
+    HlmMenuGroupComponent,
+    HlmMenuItemDirective,
   ],
   template: `<bna-editor [initialContent]="initialContent">
     <bna-side-menu-controller>
