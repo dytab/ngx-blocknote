@@ -27,7 +27,7 @@ import {
 } from '../../../../ui';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
-import { blockTypeSelectItems } from './block-type-select-items';
+import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
 
 @Component({
   selector: 'bna-block-type-selection-button',
@@ -62,7 +62,7 @@ import { blockTypeSelectItems } from './block-type-select-items';
 })
 export class BnaBlockTypeSelectComponent {
   currentBlockType = signal<BlockTypeSelectItem | undefined>(undefined);
-  blockTypeSelectItems = blockTypeSelectItems;
+  blockTypeSelectItems = defaultBlockTypeSelectItems;
   block?: Block;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
@@ -76,7 +76,7 @@ export class BnaBlockTypeSelectComponent {
   }
 
   private getBlockType(block: Block) {
-    return blockTypeSelectItems.find((a) => a.isSelected(block));
+    return defaultBlockTypeSelectItems.find((a) => a.isSelected(block));
   }
 
   changeBlockType(

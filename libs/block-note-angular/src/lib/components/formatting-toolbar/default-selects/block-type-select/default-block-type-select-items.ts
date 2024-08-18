@@ -1,6 +1,6 @@
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
 
-export const blockTypeSelectItems: BlockTypeSelectItem[] = [
+export const defaultBlockTypeSelectItems: BlockTypeSelectItem[] = [
   {
     name: 'Paragraph',
     type: 'paragraph',
