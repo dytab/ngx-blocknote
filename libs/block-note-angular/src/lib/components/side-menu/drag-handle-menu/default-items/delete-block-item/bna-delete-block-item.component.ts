@@ -44,5 +44,7 @@ export class BnaDeleteBlockItemComponent {
       selectedBlocks = [sideMenuFocusedBlock as Block];
     }
     editor.removeBlocks(selectedBlocks);
+    editor.focus();
+    editor.sideMenu.unfreezeMenu();
   }
 }
