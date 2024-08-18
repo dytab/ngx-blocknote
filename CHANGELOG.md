@@ -1,3 +1,17 @@
+## 0.14.1 (2024-08-18)
+
+
+### 🩹 Fixes
+
+- delete the correct selected block ([35f55c4](https://github.com/dytab/BlockNoteAngular/commit/35f55c4))
+- unfreeze side menu and focus editor after delete ([855451c](https://github.com/dytab/BlockNoteAngular/commit/855451c))
+- unfreeze side menu and focus editor after delete ([2aeda6b](https://github.com/dytab/BlockNoteAngular/commit/2aeda6b))
+- export color picker and useSelectedBlocks ([42f79dc](https://github.com/dytab/BlockNoteAngular/commit/42f79dc))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.14.0 (2024-08-16)
 
 
