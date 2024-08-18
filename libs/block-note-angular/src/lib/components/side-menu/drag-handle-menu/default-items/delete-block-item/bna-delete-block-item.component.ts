@@ -3,6 +3,7 @@ import { Component, effect, OnInit } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { BlockNoteAngularService } from '../../../../../services/block-note-angular.service';
 import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../../ui';
+import { useSelectedBlocks } from '../../../../../hooks/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',
@@ -14,9 +15,8 @@ import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../../ui';
     class: 'block',
   },
 })
-export class BnaDeleteBlockItemComponent implements OnInit {
+export class BnaDeleteBlockItemComponent {
   dragBlock?: Block<any, any, any>;
-  selectedBlocks: Block<any, any, any>[] = [];
 
   constructor(public blockNoteAngularService: BlockNoteAngularService) {
     effect(() => {
@@ -30,38 +30,19 @@ export class BnaDeleteBlockItemComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
-    const selection = editor.getSelection();
-    //Todo: create type
-    // Get the blocks in the current selection and store on the state. If
-    // the selection is empty, store the block containing the text cursor
-    // instead.
-    let selectedBlocks: Block<any, any, any>[] = [];
-    if (selection !== undefined) {
-      selectedBlocks = selection.blocks;
-    } else {
-      selectedBlocks = [editor.getTextCursorPosition().block];
-    }
-    if (
-      this.dragBlock &&
-      selectedBlocks.find(
-        (selectedBlock) => this.dragBlock!.id === selectedBlock.id
-      ) === undefined
-    ) {
-      selectedBlocks = [this.dragBlock];
-    }
-    this.selectedBlocks = selectedBlocks;
-  }
-
   deleteBlock() {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
+    const sideMenuFocusedBlock =
+      this.blockNoteAngularService.sideMenuFocusedBlock();
+    let selectedBlocks = useSelectedBlocks(editor)
+    if (
+      sideMenuFocusedBlock &&
+      selectedBlocks.find((block) => block.id === sideMenuFocusedBlock.id) ===
+      undefined
+    ) {
+      //the current block where the side menu is opened is not in selection, then use this instead of selection
+      selectedBlocks = [sideMenuFocusedBlock as Block];
     }
-    editor.removeBlocks(this.selectedBlocks);
+    editor.removeBlocks(selectedBlocks);
   }
 }
