@@ -1,3 +1,15 @@
+## 0.14.2 (2024-08-18)
+
+
+### 🩹 Fixes
+
+- export block type select ([7fbee1e](https://github.com/dytab/BlockNoteAngular/commit/7fbee1e))
+- **docs:** focus block after reset ([a568180](https://github.com/dytab/BlockNoteAngular/commit/a568180))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.14.1 (2024-08-18)
 
 
