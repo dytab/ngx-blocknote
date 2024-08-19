@@ -17,7 +17,7 @@ export const getTableOfContents = (
   ).filter((block) => block.type === 'heading') as any;
 
   return headingBlocks.map((block) => ({
-    headingLevel: block.props.level,
+    headingLevel: block.props['level'],
     id: block.id,
     text: (block.content && Array.isArray(block.content)
       ? block.content.map((inlineContent) => {

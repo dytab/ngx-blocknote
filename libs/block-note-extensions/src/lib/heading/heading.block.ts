@@ -39,7 +39,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
         },
         renderHTML: (attributes) => {
           return {
-            'data-level': (attributes.level as number).toString(),
+            'data-level': (attributes['level'] as number).toString(),
           };
         },
       },
@@ -144,7 +144,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
   renderHTML(x) {
     const element = createDefaultBlockDOMOutputSpec(
       this.name,
-      `h${x.node.attrs.level}`,
+      `h${x.node.attrs['level']}`,
       {
         ...(this.options.domAttributes?.blockContent || {}),
         ...x.HTMLAttributes,
