@@ -27,9 +27,8 @@ import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-me
 export class BnaSuggestionsMenuComponent implements OnChanges {
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-    const suggestionMenuShown =
-      this.blockNoteAngularService.editor().suggestionMenus.shown;
-    if (!suggestionMenuShown) {
+    const menuShown = this.isShown();
+    if (!menuShown) {
       return;
     }
     if (event.key === 'ArrowUp') {
@@ -59,6 +58,7 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
   selectedIndex = 0;
   @Input({ required: true }) triggerCharacter = '/';
   query = signal('');
+  isShown = signal(false);
   filteredSlashMenuItems: SlashMenuItem[] = [];
   cleanUpFn = () => {
     return;
@@ -90,6 +90,9 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
           if (this.query() !== state.query) {
             this.query.set(state.query);
             this.selectedIndex = 0;
+          }
+          if (this.isShown() !== state.show) {
+            this.isShown.set(state.show);
           }
         });
     }
