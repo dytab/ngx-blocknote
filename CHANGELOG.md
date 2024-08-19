@@ -1,3 +1,18 @@
+## 0.16.0 (2024-08-19)
+
+
+### 🚀 Features
+
+- add option to overwrite block type select items ([f18c7d6](https://github.com/dytab/BlockNoteAngular/commit/f18c7d6))
+
+### 🩹 Fixes
+
+- update types to match blocknote ([597fcde](https://github.com/dytab/BlockNoteAngular/commit/597fcde))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.15.0 (2024-08-19)
 
 
