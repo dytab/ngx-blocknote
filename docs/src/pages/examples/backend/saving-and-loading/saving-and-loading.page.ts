@@ -6,7 +6,7 @@ import {
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ui';
 import { Highlight } from 'ngx-highlightjs';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';

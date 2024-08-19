@@ -9,12 +9,9 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
-  HlmButtonDirective,
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemDirective,
 } from '@dytab/block-note-angular';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
+import { HlmButtonDirective, HlmMenuComponent, HlmMenuGroupComponent, HlmMenuItemDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-adding-side-menu-drag-handle-items-example',

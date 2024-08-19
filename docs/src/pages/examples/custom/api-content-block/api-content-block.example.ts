@@ -19,13 +19,6 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
-  HlmButtonDirective,
-  HlmCheckboxComponent,
-  HlmDialogComponent,
-  HlmDialogContentComponent,
-  HlmDialogFooterComponent,
-  HlmDialogHeaderComponent,
-  HlmInputDirective,
 } from '@dytab/block-note-angular';
 import {
   BrnDialogContentDirective,
@@ -35,6 +28,13 @@ import {
 } from '@spartan-ng/ui-dialog-brain';
 import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
 import { apiContentBlock } from './api-content-block';
+import {
+  HlmButtonDirective, HlmCheckboxComponent,
+  HlmDialogComponent,
+  HlmDialogContentComponent,
+  HlmDialogFooterComponent,
+  HlmDialogHeaderComponent, HlmInputDirective
+} from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({
   blockSpecs: {

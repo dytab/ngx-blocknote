@@ -2,9 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   BnaEditorComponent,
-  HlmButtonDirective,
-  hlmP,
-  HlmTabsComponent
 } from '@dytab/block-note-angular';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -14,6 +11,7 @@ import {
   ApiContentBlockExample,
   apiContentBlockExampleCode,
 } from './api-content-block.example';
+import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
 
 @Component({
   standalone: true,

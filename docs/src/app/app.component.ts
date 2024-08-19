@@ -1,8 +1,8 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HlmButtonDirective } from '@dytab/block-note-angular';
 import { ThemeSwitchComponent } from '../shared/layout/theme/theme-switch.component';
+import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   standalone: true,

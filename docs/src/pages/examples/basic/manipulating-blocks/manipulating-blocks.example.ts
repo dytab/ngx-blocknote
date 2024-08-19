@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import {
   BnaEditorComponent,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
+import {
+  HlmButtonDirective,
+} from '@dytab/ui';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',

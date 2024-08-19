@@ -6,7 +6,7 @@ import {
   HlmMenuComponent,
   HlmMenuItemCheckboxDirective,
   HlmMenuItemCheckComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideMonitor, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';

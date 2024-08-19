@@ -11,7 +11,7 @@ import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmScrollAreaComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
 import { Highlight } from 'ngx-highlightjs';

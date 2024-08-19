@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmCardDirective } from '@dytab/block-note-angular';
+import { HlmCardDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-demo-box',

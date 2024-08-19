@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
-  BnaEditorComponent,
   HlmButtonDirective,
+} from '@dytab/ui';
+import {
+  BnaEditorComponent,
 } from '@dytab/block-note-angular';
 
 @Component({

@@ -10,12 +10,12 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
 import {
   getPageBreakSuggestionItem,
   PageBreak,
 } from '@dytab/block-note-extensions';
+import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({
   blockSpecs: {

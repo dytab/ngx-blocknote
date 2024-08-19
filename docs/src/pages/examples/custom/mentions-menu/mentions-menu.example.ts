@@ -14,9 +14,9 @@ import {
   BnaEditorComponent,
   BnaSuggestionsMenuComponent,
   BnaSuggestionsMenuControllerDirective,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
 import { Mention } from './mentions';
+import { HlmButtonDirective } from '@dytab/ui';
 
 const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
   const users = ['Steve', 'Bob', 'Joe', 'Mike'];

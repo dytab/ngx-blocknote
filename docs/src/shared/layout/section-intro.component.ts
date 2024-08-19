@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { hlmH1, hlmLead } from '@dytab/block-note-angular';
+import { hlmH1, hlmLead } from '@dytab/ui';
 
 @Component({
   selector: 'bna-section-intro',

@@ -1,12 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import {
   hlmP,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ui';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -15,6 +13,8 @@ import {
   ConvertToHtmlExample,
   convertToHtmlExampleCode,
 } from './convert-to-html.example';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   standalone: true,

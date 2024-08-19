@@ -12,8 +12,10 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
+import {
+  HlmButtonDirective,
+} from '@dytab/ui';
 import { alertBlock } from './alert-block';
 
 const schema = BlockNoteSchema.create({

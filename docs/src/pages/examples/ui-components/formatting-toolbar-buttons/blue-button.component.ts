@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  BlockNoteAngularService,
-  HlmButtonDirective,
-} from '@dytab/block-note-angular';
+import { BlockNoteAngularService } from '@dytab/block-note-angular';
+import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-blue-button',

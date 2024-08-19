@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 import { Block, PartialBlock } from '@blocknote/core';
 import {
   BnaEditorComponent,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
+import {
+  HlmButtonDirective,
+} from '@dytab/ui';
 
 @Component({
   selector: 'bna-saving-and-loading-example',

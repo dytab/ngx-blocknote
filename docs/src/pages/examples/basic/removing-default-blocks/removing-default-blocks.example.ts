@@ -4,8 +4,10 @@ import { BlockNoteSchema, defaultBlockSpecs } from '@blocknote/core';
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
+import {
+  HlmButtonDirective,
+} from '@dytab/ui';
 
 @Component({
   selector: 'bna-removing-default-blocks-example',

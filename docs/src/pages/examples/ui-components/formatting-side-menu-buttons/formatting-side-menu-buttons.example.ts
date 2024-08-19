@@ -7,9 +7,9 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
-  HlmButtonDirective,
 } from '@dytab/block-note-angular';
 import { RemoveBlockButtonComponent } from './remove-block-button.component';
+import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-formatting-side-menu-buttons-example',

@@ -5,7 +5,7 @@ import {
   HlmCardDirective,
   hlmH2,
   hlmLead,
-} from '@dytab/block-note-angular';
+} from '@dytab/ui';
 import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.example';
 
 @Component({
@@ -51,7 +51,7 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
       </div>
     </section>
     <section
-      class="relative flex h-fit w-full justify-center overflow-hidden pb-36 pt-24 xl:pt-36 border-b border-t shadow-sm"
+      class="relative flex h-fit w-full justify-center overflow-hidden pb-36 pt-24 xl:pt-36 border-b border-t border-border shadow-sm"
     >
       <div class="flex flex-col justify-center items-center">
         <h2 class="${hlmH2}">Disclaimer</h2>

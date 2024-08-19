@@ -20,7 +20,8 @@
       "@dytab/block-note-angular": ["libs/block-note-angular/src/index.ts"],
       "@dytab/block-note-extensions": [
         "libs/block-note-extensions/src/index.ts"
-      ]
+      ],
+      "@dytab/ui": ["libs/block-note-angular/src/lib/ui/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

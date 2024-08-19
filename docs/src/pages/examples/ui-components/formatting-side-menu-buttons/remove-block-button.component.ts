@@ -3,11 +3,10 @@ import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import {
   BlockNoteAngularService,
-  HlmButtonDirective,
-  HlmIconComponent,
 } from '@dytab/block-note-angular';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
+import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 
 @Component({
   selector: 'bna-remove-block-button',

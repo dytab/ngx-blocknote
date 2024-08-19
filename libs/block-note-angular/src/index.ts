@@ -5,5 +5,4 @@ export * from './lib/components/suggestions-menu';
 export * from './lib/editor';
 export * from './lib/interfaces';
 export * from './lib/services';
-export * from './lib/ui';
 export * from './lib/util';
