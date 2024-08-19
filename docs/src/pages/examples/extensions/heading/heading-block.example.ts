@@ -46,7 +46,7 @@ export class HeadingBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    inputSlashMenuItems: [...headingSlashMenuItems],
+    suggestionItems: [...headingSlashMenuItems],
   };
 }
 

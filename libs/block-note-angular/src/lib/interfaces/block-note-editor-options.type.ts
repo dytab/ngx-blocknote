@@ -2,10 +2,10 @@ import {
   BlockNoteEditor,
   BlockNoteSchema,
   BlockSchema,
-  DefaultSuggestionItem,
   InlineContentSchema,
   StyleSchema,
 } from '@blocknote/core';
+import { SuggestionItem } from './suggestion-item.type';
 
 export interface BlockNoteEditorOptionsType<
   BSchema extends BlockSchema = any,
@@ -13,10 +13,8 @@ export interface BlockNoteEditorOptionsType<
   SSchema extends StyleSchema = any
 > {
   schema?: BlockNoteSchema<BSchema, ISchema, SSchema>;
-  inputSlashMenuItems?: Array<
-    (
-      editor: BlockNoteEditor<BSchema, ISchema, SSchema>
-    ) => Omit<DefaultSuggestionItem, 'key'>
+  suggestionItems?: Array<
+    (editor: BlockNoteEditor<BSchema, ISchema, SSchema>) => SuggestionItem
   >;
   uploadFile?: (file: File) => Promise<string | Record<string, any>>;
 }

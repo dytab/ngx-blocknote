@@ -13,7 +13,7 @@ import {
   filterSuggestionItems,
   getDefaultSlashMenuItems,
 } from '@blocknote/core';
-import { SlashMenuItem } from '../../interfaces/slash-menu-items.type';
+import { SuggestionItem } from '../../interfaces/suggestion-item.type';
 import { BlockNoteAngularService } from '../../services';
 import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-menu-item.component';
 
@@ -59,7 +59,7 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
   @Input({ required: true }) triggerCharacter = '/';
   query = signal('');
   isShown = signal(false);
-  filteredSlashMenuItems: SlashMenuItem[] = [];
+  filteredSlashMenuItems: SuggestionItem[] = [];
   cleanUpFn = () => {
     return;
   };
@@ -106,16 +106,12 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
       return [];
     }
     const slashMenuItems =
-      this.blockNoteAngularService.options().inputSlashMenuItems;
+      this.blockNoteAngularService.options().suggestionItems;
     if (slashMenuItems) {
       const customSlashMenuItem = slashMenuItems.map((a) =>
         a(this.blockNoteAngularService.editor())
       );
-      return [
-        ...getDefaultSlashMenuItems(editor),
-        ...customSlashMenuItem,
-        //TODO: remove casting
-      ] as any;
+      return [...customSlashMenuItem] as any;
     }
 
     return [...getDefaultSlashMenuItems(editor)];

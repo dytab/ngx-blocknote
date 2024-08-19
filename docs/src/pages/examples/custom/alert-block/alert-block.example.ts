@@ -13,9 +13,7 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/block-note-angular';
-import {
-  HlmButtonDirective,
-} from '@dytab/ui';
+import { HlmButtonDirective } from '@dytab/ui';
 import { alertBlock } from './alert-block';
 
 const schema = BlockNoteSchema.create({
@@ -51,7 +49,7 @@ export class AlertBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    inputSlashMenuItems: [
+    suggestionItems: [
       (
         editor: BlockNoteEditor<
           typeof schema.blockSchema,
@@ -59,6 +57,7 @@ export class AlertBlockExample {
           typeof schema.styleSchema
         >
       ) => ({
+        key: 'alert',
         title: 'Alert',
         onItemClick: () => {
           insertOrUpdateBlock(editor, {

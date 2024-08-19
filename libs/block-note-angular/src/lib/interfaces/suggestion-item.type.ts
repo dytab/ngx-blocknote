@@ -1,4 +1,4 @@
-export interface SlashMenuItem {
+export interface SuggestionItem {
   key: string;
   title: string;
   onItemClick: () => void;
@@ -7,4 +7,3 @@ export interface SlashMenuItem {
   aliases?: string[];
   group?: string;
 }
-

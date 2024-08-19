@@ -56,7 +56,7 @@ export class PageBreakBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    inputSlashMenuItems: [getPageBreakSuggestionItem],
+    suggestionItems: [getPageBreakSuggestionItem],
   };
 }
 

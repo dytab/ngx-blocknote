@@ -54,7 +54,7 @@ export class TableOfContentsBlockExample {
     typeof schema.styleSchema
   > = {
     schema: schema,
-    inputSlashMenuItems: [
+    suggestionItems: [
       (
         editor: BlockNoteEditor<
           typeof schema.blockSchema,
