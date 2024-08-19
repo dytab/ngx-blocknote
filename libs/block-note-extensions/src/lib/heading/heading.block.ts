@@ -1,18 +1,18 @@
 import {
   BlockNoteEditor,
   createBlockSpecFromStronglyTypedTiptapNode,
+  createDefaultBlockDOMOutputSpec,
   createStronglyTypedTiptapNode,
   defaultBlockSpecs,
   defaultProps,
   formatKeyboardShortcut,
   getBlockSchemaFromSpecs,
+  getCurrentBlockContentType,
   insertOrUpdateBlock,
   PropSchema,
 } from '@blocknote/core';
 import { InputRule } from '@tiptap/core';
 import { TagParseRule } from 'prosemirror-model';
-import { createDefaultBlockDOMOutputSpec } from '../helpers/defaultBlockHelpers';
-import { getCurrentBlockContentType } from '../helpers/getCurrentBlockType';
 
 const headings = [1, 2, 3, 4, 5, 6] as const;
 export const headingPropSchema = {
