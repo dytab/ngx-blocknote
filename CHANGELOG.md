@@ -1,3 +1,21 @@
+## 0.15.0 (2024-08-19)
+
+
+### 🚀 Features
+
+- add no items found to suggestion menu ([1d594b2](https://github.com/dytab/BlockNoteAngular/commit/1d594b2))
+
+### 🩹 Fixes
+
+- only handle key changes, when the correct suggestions menu is shown ([a9061eb](https://github.com/dytab/BlockNoteAngular/commit/a9061eb))
+- remove ui from published block-note-angular library ([cca0798](https://github.com/dytab/BlockNoteAngular/commit/cca0798))
+- export missing types slash-menu-items ([8e75a98](https://github.com/dytab/BlockNoteAngular/commit/8e75a98))
+- add missing exports from formatting toolbar ([0990528](https://github.com/dytab/BlockNoteAngular/commit/0990528))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.14.2 (2024-08-18)
 
 
