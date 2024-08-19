@@ -1,7 +1,3 @@
-export interface SlashMenuItemsGroup {
-  label: string;
-  items: SlashMenuItem[];
-}
 export interface SlashMenuItem {
   key: string;
   title: string;
@@ -12,4 +8,3 @@ export interface SlashMenuItem {
   group?: string;
 }
 
-export type SlashMenuItemsGroups = SlashMenuItemsGroup[];

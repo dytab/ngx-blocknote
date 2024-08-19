@@ -16,7 +16,7 @@ import {
   lucideTable,
   lucideVideo,
 } from '@ng-icons/lucide';
-import { SlashMenuItem } from '../../../interfaces/slash-menu-items-group.type';
+import { SlashMenuItem } from '../../../interfaces/slash-menu-items.type';
 import { BlockNoteAngularService } from '../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 

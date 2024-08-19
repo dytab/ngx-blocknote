@@ -13,7 +13,7 @@ import {
   filterSuggestionItems,
   getDefaultSlashMenuItems,
 } from '@blocknote/core';
-import { SlashMenuItem } from '../../interfaces/slash-menu-items-group.type';
+import { SlashMenuItem } from '../../interfaces/slash-menu-items.type';
 import { BlockNoteAngularService } from '../../services';
 import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-menu-item.component';
 
