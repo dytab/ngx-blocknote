@@ -50,7 +50,7 @@ function renderTableOfContent(
 export const tableOfContentsPropSchema = {} satisfies PropSchema;
 
 export const tableOfContentsBlockConfig = {
-  type: 'tableOfContents' as const,
+  type: 'table_of_contents' as const,
   propSchema: tableOfContentsPropSchema,
   content: 'none' as const,
 } as const;
@@ -87,10 +87,10 @@ export const getTableOfContentSuggestionItem = (
 ) => ({
   onItemClick: () => {
     insertOrUpdateBlock(editor, {
-      type: 'tableOfContents',
+      type: 'table_of_contents',
     });
   },
-  key: 'table-of-contents',
+  key: 'table_of_contents',
   group: 'Special',
   title: 'Table of Contents',
 });

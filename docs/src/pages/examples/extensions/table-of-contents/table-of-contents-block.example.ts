@@ -24,7 +24,7 @@ import { HlmButtonDirective } from '@dytab/ui';
 const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
-    tableOfContents: TableOfContentBlock,
+    table_of_contents: TableOfContentBlock,
     heading: Heading,
   },
   inlineContentSpecs: { ...defaultInlineContentSpecs },
@@ -42,7 +42,7 @@ const schema = BlockNoteSchema.create({
 })
 export class TableOfContentsBlockExample {
   initialContent: PartialBlock<typeof schema.blockSchema>[] = [
-    { type: 'tableOfContents' },
+    { type: 'table_of_contents' },
     { type: 'heading', props: { level: 1 }, content: 'First Heading 1' },
     { type: 'heading', props: { level: 2 }, content: 'Level 2' },
     { type: 'heading', props: { level: 3 }, content: 'Level 3' },

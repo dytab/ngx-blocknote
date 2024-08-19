@@ -21,7 +21,7 @@ import { HlmButtonDirective } from '@dytab/ui';
 const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
-    pageBreak: PageBreak,
+    page_break: PageBreak,
   },
   inlineContentSpecs: { ...defaultInlineContentSpecs },
   styleSpecs: { ...defaultStyleSpecs },
@@ -43,7 +43,7 @@ export class PageBreakBlockExample {
       content:
         'Here is a content before the page break. This should be on the first page',
     },
-    { type: 'pageBreak' },
+    { type: 'page_break' },
     { type: 'heading', content: 'Second Page', props: { level: 1 } },
     {
       type: 'paragraph',

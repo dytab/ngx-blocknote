@@ -8,7 +8,7 @@ import {
 export const pageBreakPropSchema = {} satisfies PropSchema;
 
 export const pageBreakBlockConfig = {
-  type: 'pageBreak' as const,
+  type: 'page_break' as const,
   propSchema: pageBreakPropSchema,
   content: 'none' as const,
 } as const;

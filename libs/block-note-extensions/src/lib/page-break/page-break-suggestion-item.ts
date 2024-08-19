@@ -9,10 +9,10 @@ export const getPageBreakSuggestionItem = (
 ): Omit<DefaultSuggestionItem, 'key'> & { key: string } => ({
   onItemClick: () => {
     insertOrUpdateBlock(editor, {
-      type: 'pageBreak',
+      type: 'page_break',
     });
   },
-  key: 'pageBreak',
+  key: 'page_break',
   group: 'Special',
   title: 'Page Break',
   subtext: 'Breaks the content',

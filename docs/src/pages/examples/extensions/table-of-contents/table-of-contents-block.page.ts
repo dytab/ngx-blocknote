@@ -32,11 +32,6 @@ import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
         the headings. When you click on an entry in the toc you get to the
         corresponding heading.
       </p>
-      <p class="${hlmP} mb-8">
-        So that the ....Page Break.... Text is not rendered in the pdf you need
-        to import the <code>page-break.css</code> so that its ignored during pdf
-        generation.
-      </p>
     </bna-section-intro>
     <hlm-tabs tab="preview">
       <bna-example-tabs firstTab="Preview" secondTab="Code">
