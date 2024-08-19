@@ -57,8 +57,9 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
               return;
             }
 
-            chain()
-              .BNUpdateBlock(state.selection.from, {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            chain().BNUpdateBlock(state.selection.from, {
                 type: 'heading',
                 props: {
                   level: level as any,
@@ -79,6 +80,8 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
           return true;
         }
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         return this.editor.commands.BNUpdateBlock(
           this.editor.state.selection.anchor,
           {
@@ -94,6 +97,8 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
           return true;
         }
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         return this.editor.commands.BNUpdateBlock(
           this.editor.state.selection.anchor,
           {
@@ -108,6 +113,8 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
         if (getCurrentBlockContentType(this.editor) !== 'inline*') {
           return true;
         }
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         return this.editor.commands.BNUpdateBlock(
           this.editor.state.selection.anchor,
           {
