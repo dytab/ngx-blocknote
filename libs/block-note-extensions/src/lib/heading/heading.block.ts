@@ -1,7 +1,12 @@
 import {
+  BlockNoteEditor,
   createBlockSpecFromStronglyTypedTiptapNode,
   createStronglyTypedTiptapNode,
+  defaultBlockSpecs,
   defaultProps,
+  formatKeyboardShortcut,
+  getBlockSchemaFromSpecs,
+  insertOrUpdateBlock,
   PropSchema,
 } from '@blocknote/core';
 import { InputRule } from '@tiptap/core';
@@ -155,3 +160,77 @@ export const Heading = createBlockSpecFromStronglyTypedTiptapNode(
   HeadingBlockContent,
   headingPropSchema
 );
+
+const headingSchema = getBlockSchemaFromSpecs({
+  ...defaultBlockSpecs,
+  heading: Heading,
+});
+
+export const headingSlashMenuItems = [
+  (editor: BlockNoteEditor<typeof headingSchema>) => ({
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: 'heading',
+        props: { level: 1 },
+      });
+    },
+    badge: formatKeyboardShortcut('Mod-Alt-1'),
+    key: 'heading',
+    ...editor.dictionary.slash_menu.heading,
+  }),
+  (editor: BlockNoteEditor<typeof headingSchema>) => ({
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: 'heading',
+        props: { level: 2 },
+      });
+    },
+    badge: formatKeyboardShortcut('Mod-Alt-2'),
+    key: 'heading_2',
+    ...editor.dictionary.slash_menu.heading_2,
+  }),
+  (editor: BlockNoteEditor<typeof headingSchema>) => ({
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: 'heading',
+        props: { level: 3 },
+      });
+    },
+    badge: formatKeyboardShortcut('Mod-Alt-3'),
+    key: 'heading_3',
+    ...editor.dictionary.slash_menu.heading_3,
+  }),
+  (editor: BlockNoteEditor<typeof headingSchema>) => ({
+    ...editor.dictionary.slash_menu.heading_3,
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: 'heading',
+        props: { level: 4 },
+      });
+    },
+    badge: formatKeyboardShortcut('Mod-Alt-4'),
+    key: 'heading_4',
+  }),
+  (editor: BlockNoteEditor<typeof headingSchema>) => ({
+    ...editor.dictionary.slash_menu.heading_3,
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: 'heading',
+        props: { level: 5 },
+      });
+    },
+    badge: formatKeyboardShortcut('Mod-Alt-5'),
+    key: 'heading_5',
+  }),
+  (editor: BlockNoteEditor<typeof headingSchema>) => ({
+    ...editor.dictionary.slash_menu.heading_3,
+    onItemClick: () => {
+      insertOrUpdateBlock(editor, {
+        type: 'heading',
+        props: { level: 6 },
+      });
+    },
+    badge: formatKeyboardShortcut('Mod-Alt-6'),
+    key: 'heading_6',
+  }),
+];
