@@ -2,10 +2,14 @@ import {
   BlockFromConfig,
   BlockNoteEditor,
   createBlockSpec,
+  defaultBlockSpecs,
+  getBlockSchemaFromSpecs,
+  insertOrUpdateBlock,
   PropSchema,
 } from '@blocknote/core';
 import { getTableOfContents } from './get-table-of-contents.util';
 import { TOCItem } from './toc-item.type';
+import { SuggestionItem } from '@dytab/block-note-angular';
 
 function scrollToHeadingElement(entry: TOCItem) {
   // Find the element
@@ -72,4 +76,22 @@ const render = (
 
 export const TableOfContentBlock = createBlockSpec(tableOfContentsBlockConfig, {
   render: render,
+});
+
+const tableOfContentsSchema = getBlockSchemaFromSpecs({
+  ...defaultBlockSpecs,
+  tableOfContents: TableOfContentBlock,
+});
+
+export const getTableOfContentSuggestionItem = (
+  editor: BlockNoteEditor<typeof tableOfContentsSchema>
+): SuggestionItem => ({
+  onItemClick: () => {
+    insertOrUpdateBlock(editor, {
+      type: 'tableOfContents',
+    });
+  },
+  key: 'table-of-contents',
+  group: 'Special',
+  title: 'Table of Contents',
 });

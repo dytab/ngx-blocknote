@@ -5,13 +5,17 @@ import {
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  getDefaultSlashMenuItems,
   PartialBlock,
 } from '@blocknote/core';
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/block-note-angular';
-import { Heading, headingSlashMenuItems } from '@dytab/block-note-extensions';
+import {
+  getHeadingSlashMenuItems,
+  Heading,
+} from '@dytab/block-note-extensions';
 import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({
@@ -46,7 +50,10 @@ export class HeadingBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    suggestionItems: [...headingSlashMenuItems],
+    getSuggestionItems: (editor  ) => [
+      ...getHeadingSlashMenuItems(editor),
+      ...getDefaultSlashMenuItems(editor),
+    ],
   };
 }
 

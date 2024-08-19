@@ -6,6 +6,7 @@ import {
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  getDefaultSlashMenuItems,
   insertOrUpdateBlock,
   PartialBlock,
 } from '@blocknote/core';
@@ -49,14 +50,8 @@ export class AlertBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    suggestionItems: [
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
+    getSuggestionItems: (editor) => [
+      {
         key: 'alert',
         title: 'Alert',
         onItemClick: () => {
@@ -76,7 +71,8 @@ export class AlertBlockExample {
           'success',
         ],
         group: 'Other',
-      }),
+      },
+      ...getDefaultSlashMenuItems(editor),
     ],
   };
 }

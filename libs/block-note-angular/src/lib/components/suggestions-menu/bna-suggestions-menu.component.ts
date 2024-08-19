@@ -105,13 +105,9 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
     if (!editor) {
       return [];
     }
-    const slashMenuItems =
-      this.blockNoteAngularService.options().suggestionItems;
-    if (slashMenuItems) {
-      const customSlashMenuItem = slashMenuItems.map((a) =>
-        a(this.blockNoteAngularService.editor())
-      );
-      return [...customSlashMenuItem] as any;
+    const getItems = this.blockNoteAngularService.options().getSuggestionItems;
+    if (getItems) {
+      return [...getItems(editor)];
     }
 
     return [...getDefaultSlashMenuItems(editor)];

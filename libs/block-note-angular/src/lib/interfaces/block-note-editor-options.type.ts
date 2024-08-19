@@ -13,8 +13,6 @@ export interface BlockNoteEditorOptionsType<
   SSchema extends StyleSchema = any
 > {
   schema?: BlockNoteSchema<BSchema, ISchema, SSchema>;
-  suggestionItems?: Array<
-    (editor: BlockNoteEditor<BSchema, ISchema, SSchema>) => SuggestionItem
-  >;
+  getSuggestionItems?: (editor: BlockNoteEditor<BSchema, ISchema, SSchema>) => SuggestionItem[];
   uploadFile?: (file: File) => Promise<string | Record<string, any>>;
 }

@@ -5,6 +5,7 @@ import {
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  getDefaultSlashMenuItems,
   PartialBlock,
 } from '@blocknote/core';
 import {
@@ -56,7 +57,10 @@ export class PageBreakBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    suggestionItems: [getPageBreakSuggestionItem],
+    getSuggestionItems: (editor) => [
+      getPageBreakSuggestionItem(editor),
+      ...getDefaultSlashMenuItems(editor),
+    ],
   };
 }
 

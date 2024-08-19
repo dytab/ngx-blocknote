@@ -6,6 +6,7 @@ import {
   defaultBlockSpecs,
   defaultInlineContentSpecs,
   defaultStyleSpecs,
+  getDefaultSlashMenuItems,
   insertOrUpdateBlock,
   PartialBlock,
 } from '@blocknote/core';
@@ -13,7 +14,11 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/block-note-angular';
-import { Heading, TableOfContentBlock } from '@dytab/block-note-extensions';
+import {
+  getTableOfContentSuggestionItem,
+  Heading,
+  TableOfContentBlock,
+} from '@dytab/block-note-extensions';
 import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({
@@ -54,23 +59,10 @@ export class TableOfContentsBlockExample {
     typeof schema.styleSchema
   > = {
     schema: schema,
-    suggestionItems: [
-      (
-        editor: BlockNoteEditor<
-          typeof schema.blockSchema,
-          typeof schema.inlineContentSchema,
-          typeof schema.styleSchema
-        >
-      ) => ({
-        onItemClick: () => {
-          insertOrUpdateBlock(editor, {
-            type: 'tableOfContents',
-          });
-        },
-        key: 'table-of-contents',
-        group: 'Special',
-        title: 'Table of Contents',
-      }),
+    getSuggestionItems: (editor) => [
+      //TODO: remove as any cast
+      getTableOfContentSuggestionItem(editor as any),
+      ...getDefaultSlashMenuItems(editor),
     ],
   };
 }
