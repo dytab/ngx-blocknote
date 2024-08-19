@@ -4,8 +4,7 @@
   "dependencies": {
     "@blocknote/core": "^0.15.3",
     "@tiptap/core": "2.6.4",
-    "prosemirror-model": "1.22.3",
-    "@dytab/block-note-angular":">=0.10.0 <1.0.0"
+    "prosemirror-model": "1.22.3"
   },
   "publishConfig": {
     "access": "public"

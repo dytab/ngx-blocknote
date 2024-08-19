@@ -9,7 +9,6 @@ import {
 } from '@blocknote/core';
 import { getTableOfContents } from './get-table-of-contents.util';
 import { TOCItem } from './toc-item.type';
-import { SuggestionItem } from '@dytab/block-note-angular';
 
 function scrollToHeadingElement(entry: TOCItem) {
   // Find the element
@@ -85,7 +84,7 @@ const tableOfContentsSchema = getBlockSchemaFromSpecs({
 
 export const getTableOfContentSuggestionItem = (
   editor: BlockNoteEditor<typeof tableOfContentsSchema>
-): SuggestionItem => ({
+) => ({
   onItemClick: () => {
     insertOrUpdateBlock(editor, {
       type: 'tableOfContents',
