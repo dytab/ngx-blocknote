@@ -1,5 +1,6 @@
 {
   "name": "@dytab/block-note-extensions",
+  "homepage": "https://dytab.github.io/BlockNoteAngular",
   "version": "0.0.1",
   "dependencies": {
     "@blocknote/core": "^0.15.3",
@@ -12,7 +13,6 @@
   "repository": {
     "url": "git+https://github.com/dytab/BlockNoteAngular.git"
   },
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "typings": "./index.d.ts"
+  "bugs": "https://github.com/dytab/BlockNoteAngular/issues",
+  "sideEffects": false
 }

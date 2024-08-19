@@ -2,31 +2,25 @@
   "name": "block-note-extensions",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/block-note-extensions/src",
+  "prefix": "lib",
   "projectType": "library",
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}",
-        "currentVersionResolver": "git-tag"
-      }
-    }
-  },
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/libs/block-note-extensions"],
       "options": {
-        "outputPath": "dist/libs/block-note-extensions",
-        "main": "libs/block-note-extensions/src/index.ts",
-        "tsConfig": "libs/block-note-extensions/tsconfig.lib.json",
-        "assets": ["libs/block-note-extensions/*.md"]
-      }
-    },
-    "nx-release-publish": {
-      "options": {
-        "packageRoot": "dist/{projectRoot}"
-      }
+        "project": "libs/block-note-extensions/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/block-note-extensions/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/block-note-extensions/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }
