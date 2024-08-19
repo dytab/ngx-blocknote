@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import {
@@ -62,7 +62,7 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
 })
 export class BnaBlockTypeSelectComponent {
   currentBlockType = signal<BlockTypeSelectItem | undefined>(undefined);
-  blockTypeSelectItems = defaultBlockTypeSelectItems;
+  @Input() blockTypeSelectItems = defaultBlockTypeSelectItems;
   block?: Block;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
