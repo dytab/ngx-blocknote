@@ -218,6 +218,7 @@ export const getHeadingSlashMenuItems = (
       });
     },
     badge: formatKeyboardShortcut('Mod-Alt-4'),
+    title: 'Heading 4',
     key: 'heading_4',
   },
   {
@@ -229,6 +230,7 @@ export const getHeadingSlashMenuItems = (
       });
     },
     badge: formatKeyboardShortcut('Mod-Alt-5'),
+    title: 'Heading 5',
     key: 'heading_5',
   },
   {
@@ -239,6 +241,7 @@ export const getHeadingSlashMenuItems = (
         props: { level: 6 },
       });
     },
+    title: 'Heading 6',
     badge: formatKeyboardShortcut('Mod-Alt-6'),
     key: 'heading_6',
   },
