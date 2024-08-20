@@ -29,7 +29,7 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
             class="hero-glow text-glow absolute block h-full w-full sm:hidden"
           ></div>
           <h1 class=" leading-none text-6xl font-medium md:text-7xl z-10">
-            Unofficial<br /><strong>BlockNote</strong><br />Angular Wrapper
+            NGX <br /><strong>BlockNote</strong><br />
           </h1>
           <p class="font-space-grotesk text-lg leading-snug md:text-xl z-10">
             A beautiful text editor that just works in <strong>angular</strong>.
