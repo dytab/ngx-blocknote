@@ -4,6 +4,7 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
+  "assets": [{ "input": "src", "glob": "**/*.css", "output": "" }],
   "allowedNonPeerDependencies": [
     "@blocknote/core",
     "@tiptap/core",
