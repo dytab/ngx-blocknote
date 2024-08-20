@@ -1,6 +1,6 @@
 {
   "name": "@dytab/blocknote-extensions",
-  "homepage": "https://dytab.github.io/ngx-block-note",
+  "homepage": "https://dytab.github.io/ngx-blocknote",
   "version": "0.0.1",
   "dependencies": {
     "@blocknote/core": "^0.15.3",
