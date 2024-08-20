@@ -28,7 +28,7 @@ export class BasicSetupExample {
 ```
 
 ## Further Examples
-For more examples and detailed guides, please visit the [documentation website](https://dytab.github.io/BlockNoteAngular).
+For more examples and detailed guides, please visit the [documentation website](https://dytab.github.io/ngx-blocknote/).
 
 
 ## Features
