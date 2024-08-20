@@ -1,3 +1,20 @@
+## 0.17.0 (2024-08-20)
+
+
+### 🚀 Features
+
+- change names to ngx-blocknote and blocknote-extensions ([439c915](https://github.com/dytab/ngx-blocknote/commit/439c915))
+
+### 🩹 Fixes
+
+- set correct heading title for level 4-6 ([85692e1](https://github.com/dytab/ngx-blocknote/commit/85692e1))
+- remove wrong return type from getPageBreakSuggestionItem ([c85374d](https://github.com/dytab/ngx-blocknote/commit/c85374d))
+- adjust docs imports to new path ([cba486d](https://github.com/dytab/ngx-blocknote/commit/cba486d))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.16.0 (2024-08-19)
 
 

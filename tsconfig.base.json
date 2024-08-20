@@ -17,10 +17,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
+      "@dytab/blocknote-extensions": ["libs/blocknote-extensions/src/index.ts"],
       "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"],
-      "@dytab/blocknote-extensions": [
-        "libs/blocknote-extensions/src/index.ts"
-      ],
       "@dytab/ui": ["libs/ngx-blocknote/src/lib/ui/index.ts"]
     }
   },
