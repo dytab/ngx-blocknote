@@ -7,8 +7,8 @@ This project is an Angular implementation of [BlockNote](https://github.com/Type
 We welcome all contributions, be it code, documentation, testing, feature suggestions, or bug reports.
 
 🤝 If you choose to work on a specific GitHub Issue, please leave a comment to let us know your plans.\
-👾 To submit code patches, kindly open a [GitHub Pull Request](https://github.com/dytab/BlockNoteAngular/compare).\
-📕 If you're unsure where to start, check out the open [GitHub Issues](https://github.com/dytab/BlockNoteAngular/issues).
+👾 To submit code patches, kindly open a [GitHub Pull Request](https://github.com/dytab/ngx-blocknote/compare).\
+📕 If you're unsure where to start, check out the open [GitHub Issues](https://github.com/dytab/ngx-blocknote/issues).
 
 Thank you for your interest!
 

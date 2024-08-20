@@ -1,23 +1,23 @@
 {
-  "name": "block-note-extensions",
+  "name": "blocknote-extensions",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/block-note-extensions/src",
+  "sourceRoot": "libs/blocknote-extensions/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/libs/block-note-extensions"],
+      "outputs": ["{workspaceRoot}/dist/libs/blocknote-extensions"],
       "options": {
-        "project": "libs/block-note-extensions/ng-package.json"
+        "project": "libs/blocknote-extensions/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/block-note-extensions/tsconfig.lib.prod.json"
+          "tsConfig": "libs/blocknote-extensions/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/block-note-extensions/tsconfig.lib.json"
+          "tsConfig": "libs/blocknote-extensions/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"

@@ -1,4 +1,4 @@
-# block-note-extensions
+# blocknote-extensions
 
 This library was generated with [Nx](https://nx.dev).
 

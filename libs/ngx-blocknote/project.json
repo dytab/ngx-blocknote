@@ -1,24 +1,24 @@
 {
-  "name": "block-note-angular",
+  "name": "ngx-blocknote",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/block-note-angular/src/lib",
+  "sourceRoot": "libs/ngx-blocknote/src/lib",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],
   "targets": {
     "build-angular": {
       "executor": "@nx/angular:package",
-      "outputs": ["{workspaceRoot}/dist/libs/block-note-angular"],
+      "outputs": ["{workspaceRoot}/dist/libs/ngx-blocknote"],
       "options": {
-        "project": "libs/block-note-angular/ng-package.json",
-        "tailwindConfig": "libs/block-note-angular/tailwind.config.js"
+        "project": "libs/ngx-blocknote/ng-package.json",
+        "tailwindConfig": "libs/ngx-blocknote/tailwind.config.js"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/block-note-angular/tsconfig.lib.prod.json"
+          "tsConfig": "libs/ngx-blocknote/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/block-note-angular/tsconfig.lib.json"
+          "tsConfig": "libs/ngx-blocknote/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,16 +26,16 @@
     "build": {
       "dependsOn": ["build-angular"],
       "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/libs/block-note-angular"],
+      "outputs": ["{workspaceRoot}/dist/libs/ngx-blocknote"],
       "configurations": {
         "production": {
           "commands": [
-            "tailwindcss -c libs/block-note-angular/tailwind.config.js -i ./libs/block-note-angular/src/lib/styles/styles.css -o ./dist/libs/block-note-angular/themes/styles.css -m"
+            "tailwindcss -c libs/ngx-blocknote/tailwind.config.js -i ./libs/ngx-blocknote/src/lib/styles/styles.css -o ./dist/libs/ngx-blocknote/themes/styles.css -m"
           ]
         },
         "development": {
           "commands": [
-            "tailwindcss -c libs/block-note-angular/tailwind.config.js -i ./libs/block-note-angular/src/lib/styles/styles.css -o ./dist/libs/block-note-angular/themes/styles.css"
+            "tailwindcss -c libs/ngx-blocknote/tailwind.config.js -i ./libs/ngx-blocknote/src/lib/styles/styles.css -o ./dist/libs/ngx-blocknote/themes/styles.css"
           ]
         }
       },
@@ -45,7 +45,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/block-note-angular/jest.config.ts"
+        "jestConfig": "libs/ngx-blocknote/jest.config.ts"
       }
     },
     "lint": {

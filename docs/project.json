@@ -44,7 +44,7 @@
             }
           ],
           "outputHashing": "all",
-          "baseHref": "/BlockNoteAngular/"
+          "baseHref": "/ngx-block-note/"
         },
         "development": {
           "optimization": false,

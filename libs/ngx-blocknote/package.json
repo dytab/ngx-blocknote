@@ -1,6 +1,6 @@
 {
-  "name": "@dytab/block-note-angular",
-  "homepage": "https://dytab.github.io/BlockNoteAngular",
+  "name": "@dytab/ngx-blocknote",
+  "homepage": "https://dytab.github.io/ngx-blocknote",
   "version": "0.10.0",
   "publishConfig": {
     "access": "public"
@@ -38,8 +38,8 @@
     }
   },
   "repository": {
-    "url": "git+https://github.com/dytab/BlockNoteAngular.git"
+    "url": "git+https://github.com/dytab/ngx-blocknote.git"
   },
-  "bugs": "https://github.com/dytab/BlockNoteAngular/issues",
+  "bugs": "https://github.com/dytab/ngx-blocknote/issues",
   "sideEffects": false
 }

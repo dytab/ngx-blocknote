@@ -109,7 +109,7 @@
   },
   "defaultProject": "docs",
   "release": {
-    "projects": ["block-note-angular", "block-note-extensions"],
+    "projects": ["ngx-blocknote", "blocknote-extensions"],
     "version": {
       "preVersionCommand": "npx nx run-many -t build",
       "generatorOptions": {

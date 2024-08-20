@@ -17,11 +17,11 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@dytab/block-note-angular": ["libs/block-note-angular/src/index.ts"],
-      "@dytab/block-note-extensions": [
-        "libs/block-note-extensions/src/index.ts"
+      "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"],
+      "@dytab/blocknote-extensions": [
+        "libs/blocknote-extensions/src/index.ts"
       ],
-      "@dytab/ui": ["libs/block-note-angular/src/lib/ui/index.ts"]
+      "@dytab/ui": ["libs/ngx-blocknote/src/lib/ui/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
