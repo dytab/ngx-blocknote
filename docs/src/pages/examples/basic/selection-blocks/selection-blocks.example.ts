@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block, BlockNoteEditor, PartialBlock } from '@blocknote/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-selection-blocks-example',
@@ -52,7 +52,7 @@ export class SelectionBlocksExample {
 export const selectionBlocksExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block, BlockNoteEditor, PartialBlock } from '@blocknote/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-selection-blocks-example',

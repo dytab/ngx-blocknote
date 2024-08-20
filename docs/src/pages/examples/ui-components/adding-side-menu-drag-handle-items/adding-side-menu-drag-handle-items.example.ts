@@ -9,7 +9,7 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
 import { HlmButtonDirective, HlmMenuComponent, HlmMenuGroupComponent, HlmMenuItemDirective } from '@dytab/ui';
 
@@ -66,7 +66,7 @@ export class AddingSideMenuDragHandleItemsExample {
 
 export const addingSideMenuDragHandleItemsExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   standalone: true,

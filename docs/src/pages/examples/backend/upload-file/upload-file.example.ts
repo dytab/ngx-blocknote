@@ -6,7 +6,7 @@ import {
 } from '@dytab/ui';
 import {
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-upload-file-example',
@@ -52,8 +52,8 @@ export class UploadFileExample {
 
 export const uploadFileExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@dytab/ngx-blocknote';
 import { PartialBlock } from '@blocknote/core';
 
 @Component({

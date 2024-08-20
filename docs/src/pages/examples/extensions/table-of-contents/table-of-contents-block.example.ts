@@ -13,12 +13,12 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import {
   getTableOfContentSuggestionItem,
   Heading,
   TableOfContentBlock,
-} from '@dytab/block-note-extensions';
+} from '@dytab/blocknote-extensions';
 import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({
@@ -81,8 +81,8 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@dytab/ngx-blocknote';
 import { alertBlock } from './alert-block';
 
 const schema = BlockNoteSchema.create({

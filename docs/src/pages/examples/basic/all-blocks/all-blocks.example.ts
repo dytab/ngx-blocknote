@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   standalone: true,
@@ -138,7 +138,7 @@ export class AllBlocksExample {
 
 export const allBlocksExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   standalone: true,

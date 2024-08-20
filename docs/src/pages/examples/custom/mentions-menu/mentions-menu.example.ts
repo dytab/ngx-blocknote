@@ -14,7 +14,7 @@ import {
   BnaEditorComponent,
   BnaSuggestionsMenuComponent,
   BnaSuggestionsMenuControllerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import { Mention } from './mentions';
 import { HlmButtonDirective } from '@dytab/ui';
 
@@ -137,7 +137,7 @@ import {
   BnaSuggestionsMenuComponent,
   BnaSuggestionsMenuControllerDirective,
   HlmButtonDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import { Mention } from './mentions';
 
 const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {

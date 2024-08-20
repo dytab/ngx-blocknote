@@ -3,7 +3,7 @@ import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import {
   BlockNoteAngularService,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
 import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';

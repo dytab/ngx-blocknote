@@ -7,7 +7,7 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import { RemoveBlockButtonComponent } from './remove-block-button.component';
 import { HlmButtonDirective } from '@dytab/ui';
 
@@ -54,7 +54,7 @@ export class FormattingSideMenuButtonsExample {
 
 export const formattingSideMenuButtonsExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   standalone: true,

@@ -19,7 +19,7 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import {
   BrnDialogContentDirective,
   BrnDialogDescriptionDirective,

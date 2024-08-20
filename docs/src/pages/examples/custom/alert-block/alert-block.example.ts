@@ -13,7 +13,7 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import { HlmButtonDirective } from '@dytab/ui';
 import { alertBlock } from './alert-block';
 
@@ -91,8 +91,8 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@dytab/ngx-blocknote';
 import { alertBlock } from './alert-block';
 
 const schema = BlockNoteSchema.create({

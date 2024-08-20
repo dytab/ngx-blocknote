@@ -11,11 +11,11 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import {
   getPageBreakSuggestionItem,
   PageBreak,
-} from '@dytab/block-note-extensions';
+} from '@dytab/blocknote-extensions';
 import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({

@@ -8,7 +8,7 @@ import {
   BnaEditorComponent,
   BnaFormattingToolbarComponent,
   BnaFormattingToolbarControllerDirective,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-formatting-toolbar-buttons-example',

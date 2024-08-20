@@ -11,11 +11,11 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import {
   getHeadingSlashMenuItems,
   Heading,
-} from '@dytab/block-note-extensions';
+} from '@dytab/blocknote-extensions';
 import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BlockNoteAngularService } from '@dytab/block-note-angular';
+import { BlockNoteAngularService } from '@dytab/ngx-blocknote';
 import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({

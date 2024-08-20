@@ -13,7 +13,7 @@ import {
   HeadingBlockExample,
   headingBlockExampleCode,
 } from './heading-block.example';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   standalone: true,

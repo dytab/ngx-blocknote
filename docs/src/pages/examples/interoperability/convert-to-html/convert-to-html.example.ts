@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block, BlockNoteEditor, PartialBlock } from '@blocknote/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-convert-to-html-example',
@@ -54,7 +54,7 @@ export class ConvertToHtmlExample {
 export const convertToHtmlExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block, BlockNoteEditor, PartialBlock } from '@blocknote/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-convert-to-html-example',

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import {
   BnaEditorComponent,
-} from '@dytab/block-note-angular';
+} from '@dytab/ngx-blocknote';
 import {
   HlmButtonDirective,
 } from '@dytab/ui';
@@ -79,8 +79,8 @@ export class ManipulatingBlocksExample {
 
 export const manipulatingBlocksExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/block-note-angular';
-import { HlmButtonDirective } from '@dytab/block-note-angular';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@dytab/ngx-blocknote';
 import { BlockNoteEditor } from '@blocknote/core';
 
 @Component({
