@@ -186,6 +186,7 @@ export const getHeadingSlashMenuItems = (
     badge: formatKeyboardShortcut('Mod-Alt-1'),
     key: 'heading',
     ...editor.dictionary.slash_menu.heading,
+    subtext: 'Big section heading',
   },
   {
     onItemClick: () => {
@@ -197,6 +198,7 @@ export const getHeadingSlashMenuItems = (
     badge: formatKeyboardShortcut('Mod-Alt-2'),
     key: 'heading_2',
     ...editor.dictionary.slash_menu.heading_2,
+    subtext: 'Medium section heading',
   },
   {
     onItemClick: () => {
@@ -208,6 +210,7 @@ export const getHeadingSlashMenuItems = (
     badge: formatKeyboardShortcut('Mod-Alt-3'),
     key: 'heading_3',
     ...editor.dictionary.slash_menu.heading_3,
+    subtext: 'Small section heading',
   },
   {
     ...editor.dictionary.slash_menu.heading_3,
@@ -220,6 +223,7 @@ export const getHeadingSlashMenuItems = (
     badge: formatKeyboardShortcut('Mod-Alt-4'),
     title: 'Heading 4',
     key: 'heading_4',
+    subtext: 'Very small section heading',
   },
   {
     ...editor.dictionary.slash_menu.heading_3,
@@ -232,6 +236,7 @@ export const getHeadingSlashMenuItems = (
     badge: formatKeyboardShortcut('Mod-Alt-5'),
     title: 'Heading 5',
     key: 'heading_5',
+    subtext: 'Smallest section heading',
   },
   {
     ...editor.dictionary.slash_menu.heading_3,
@@ -244,5 +249,6 @@ export const getHeadingSlashMenuItems = (
     title: 'Heading 6',
     badge: formatKeyboardShortcut('Mod-Alt-6'),
     key: 'heading_6',
+    subtext: 'Very big section heading',
   },
 ];
