@@ -161,7 +161,7 @@ export class BnaEditorComponent<
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['options']) {
-      this.editor = this.createEditor(changes['initialContent'].currentValue);
+      this.editor = this.createEditor(changes['initialContent']?.currentValue);
       this.blockNoteAngularService.setOptions(this.options ?? {});
     } else if (changes['initialContent']) {
       this.updateEditorsInitialContent(changes['initialContent'].currentValue);
@@ -176,15 +176,17 @@ export class BnaEditorComponent<
   ) {
     const schema = this.options?.schema;
     const editor = BlockNoteEditor.create({
-      schema: schema ? schema :  (BlockNoteSchema.create({
-        blockSpecs: { ...defaultBlockSpecs },
-        inlineContentSpecs: { ...defaultInlineContentSpecs },
-        styleSpecs: {
-          ...defaultStyleSpecs,
-        },
-        // in this case the user did not give a blocknote schema so we want to use the default one
-        //TODO: remove casting
-      })as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
+      schema: schema
+        ? schema
+        : (BlockNoteSchema.create({
+            blockSpecs: { ...defaultBlockSpecs },
+            inlineContentSpecs: { ...defaultInlineContentSpecs },
+            styleSpecs: {
+              ...defaultStyleSpecs,
+            },
+            // in this case the user did not give a blocknote schema so we want to use the default one
+            //TODO: remove casting
+          }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
       uploadFile: this.options?.uploadFile,
     });
