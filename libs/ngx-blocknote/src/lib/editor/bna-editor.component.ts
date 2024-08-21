@@ -9,14 +9,10 @@ import {
 import {
   Block,
   BlockNoteEditor,
-  BlockNoteSchema,
   BlockSchema,
   DefaultBlockSchema,
-  defaultBlockSpecs,
   DefaultInlineContentSchema,
-  defaultInlineContentSpecs,
   DefaultStyleSchema,
-  defaultStyleSpecs,
   InlineContentSchema,
   PartialBlock,
   StyleSchema,
@@ -57,6 +53,7 @@ import {
   HlmMenuShortcutComponent,
 } from '../ui';
 import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
+import { useSelectedBlocks } from '../util';
 
 @Component({
   imports: [
@@ -129,9 +126,7 @@ export class BnaEditorComponent<
       this.editor = this.createEditor(changes['initialContent'].currentValue);
       this.blockNoteAngularService.setOptions(this.options ?? {});
     } else if (changes['initialContent']) {
-      this.updateEditorsInitialChanges(changes['initialContent'].currentValue);
-      //TODO: remove after improving
-      this.onEditorReady.emit(this.editor);
+      this.updateEditorsInitialContent(changes['initialContent'].currentValue);
     }
   }
 
@@ -143,40 +138,29 @@ export class BnaEditorComponent<
   ) {
     const schema = this.options?.schema;
     const editor = BlockNoteEditor.create({
-      schema: schema
-        ? schema
-        : (BlockNoteSchema.create({
-            blockSpecs: { ...defaultBlockSpecs },
-            inlineContentSpecs: { ...defaultInlineContentSpecs },
-            styleSpecs: {
-              ...defaultStyleSpecs,
-            },
-            // in this case the user did not give a blocknote schema so we want to use the default one
-            //TODO: remove casting
-          }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
+      schema: schema ? schema : undefined,
       initialContent: initialContent,
       uploadFile: this.options?.uploadFile,
     });
     this.blockNoteAngularService.setEditor(editor);
     this.onEditorReady.emit(editor);
-    editor.onChange((data) => {
-      this.contentChanged.emit(data.document);
-    });
-    editor.onSelectionChange((change) => {
-      const selection = editor.getSelection();
-      let selectedBlocks = [];
-      // instead.
-      if (selection !== undefined) {
-        selectedBlocks = selection.blocks;
-      } else {
-        selectedBlocks = [editor.getTextCursorPosition().block];
-      }
-      this.selectedBlocks.emit(selectedBlocks);
-    });
+    this.createEditorListeners(editor);
     return editor;
   }
 
-  private updateEditorsInitialChanges(
+  private createEditorListeners(
+    editor: BlockNoteEditor<BSchema, ISchema, SSchema>
+  ) {
+    editor.onChange((data) => {
+      this.contentChanged.emit(data.document);
+    });
+    editor.onSelectionChange(() => {
+      const selectedBlocks = useSelectedBlocks(editor);
+      this.selectedBlocks.emit(selectedBlocks);
+    });
+  }
+
+  private updateEditorsInitialContent(
     initialContent:
       | Block<BSchema, ISchema, SSchema>[]
       | PartialBlock<BSchema, ISchema, SSchema>[]
