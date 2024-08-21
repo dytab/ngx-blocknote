@@ -1,3 +1,14 @@
+## 0.18.0 (2024-08-21)
+
+
+### 🚀 Features
+
+- make editor work with angular forms ([b3dd2d7](https://github.com/dytab/ngx-blocknote/commit/b3dd2d7))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.17.0 (2024-08-20)
 
 
