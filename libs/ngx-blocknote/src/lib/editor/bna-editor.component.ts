@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  forwardRef,
   Input,
   OnChanges,
   output,
@@ -9,10 +10,14 @@ import {
 import {
   Block,
   BlockNoteEditor,
+  BlockNoteSchema,
   BlockSchema,
   DefaultBlockSchema,
+  defaultBlockSpecs,
   DefaultInlineContentSchema,
+  defaultInlineContentSpecs,
   DefaultStyleSchema,
+  defaultStyleSpecs,
   InlineContentSchema,
   PartialBlock,
   StyleSchema,
@@ -54,6 +59,16 @@ import {
 } from '../ui';
 import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
 import { useSelectedBlocks } from '../util';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+type InitialContent<
+  BSchema extends BlockSchema = DefaultBlockSchema,
+  ISchema extends InlineContentSchema = DefaultInlineContentSchema,
+  SSchema extends StyleSchema = DefaultStyleSchema
+> =
+  | Block<BSchema, ISchema, SSchema>[]
+  | PartialBlock<BSchema, ISchema, SSchema>[]
+  | undefined;
 
 @Component({
   imports: [
@@ -91,7 +106,14 @@ import { useSelectedBlocks } from '../util';
     BnaBlockTypeSelectComponent,
     BnaTableHandlesController,
   ],
-  providers: [BlockNoteAngularService],
+  providers: [
+    BlockNoteAngularService,
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => BnaEditorComponent),
+      multi: true,
+    },
+  ],
   selector: 'bna-editor',
   standalone: true,
   styleUrl: './bna-editor.component.css',
@@ -101,15 +123,12 @@ export class BnaEditorComponent<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
   SSchema extends StyleSchema = DefaultStyleSchema
-> implements OnChanges
+> implements OnChanges, ControlValueAccessor
 {
   @Input()
   options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
   @Input()
-  initialContent!:
-    | Block<BSchema, ISchema, SSchema>[]
-    | PartialBlock<BSchema, ISchema, SSchema>[]
-    | undefined;
+  initialContent?: InitialContent<BSchema, ISchema, SSchema>;
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
@@ -119,6 +138,25 @@ export class BnaEditorComponent<
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
     this.blockNoteAngularService.setEditor(this.editor);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  onChange: any = () => {};
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  onTouch: any = () => {};
+
+  writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
+    this.updateEditorsInitialContent(initialContent);
+  }
+  registerOnChange(fn: unknown): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: unknown): void {
+    this.onTouch = fn;
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    this.editor.isEditable = !isDisabled;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -138,7 +176,15 @@ export class BnaEditorComponent<
   ) {
     const schema = this.options?.schema;
     const editor = BlockNoteEditor.create({
-      schema: schema ? schema : undefined,
+      schema: schema ? schema :  (BlockNoteSchema.create({
+        blockSpecs: { ...defaultBlockSpecs },
+        inlineContentSpecs: { ...defaultInlineContentSpecs },
+        styleSpecs: {
+          ...defaultStyleSpecs,
+        },
+        // in this case the user did not give a blocknote schema so we want to use the default one
+        //TODO: remove casting
+      })as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
       uploadFile: this.options?.uploadFile,
     });
@@ -153,6 +199,7 @@ export class BnaEditorComponent<
   ) {
     editor.onChange((data) => {
       this.contentChanged.emit(data.document);
+      this.onChange(data.document);
     });
     editor.onSelectionChange(() => {
       const selectedBlocks = useSelectedBlocks(editor);
@@ -161,11 +208,9 @@ export class BnaEditorComponent<
   }
 
   private updateEditorsInitialContent(
-    initialContent:
-      | Block<BSchema, ISchema, SSchema>[]
-      | PartialBlock<BSchema, ISchema, SSchema>[]
+    initialContent: InitialContent<BSchema, ISchema, SSchema>
   ) {
-    this.editor.replaceBlocks(
+    return this.editor.replaceBlocks(
       [...this.editor.document],
       initialContent ?? [
         {

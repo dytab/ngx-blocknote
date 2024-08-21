@@ -17,6 +17,7 @@ import { AddingSideMenuDragHandleItemsPage } from '../ui-components/adding-side-
 import { FormattingSideMenuButtonsPage } from '../ui-components/formatting-side-menu-buttons/formatting-side-menu-buttons.page';
 import { FormattingToolbarButtonsPage } from '../ui-components/formatting-toolbar-buttons/formatting-toolbar-buttons.page';
 import { Example, ExampleGroup } from './example.type';
+import { FormPage } from '../basic/form/form.page';
 
 //This will be added to The app routes and also to the links in the examples
 export const exampleLinks: Example[] = [
@@ -55,6 +56,12 @@ export const exampleLinks: Example[] = [
     url: 'basic/all-blocks',
     name: 'Default Schema Showcase',
     component: AllBlocksPage,
+  },
+  {
+    groupName: 'Basic',
+    url: 'basic/form',
+    name: 'Form',
+    component: FormPage,
   },
   {
     groupName: 'Backend',
