@@ -1,3 +1,16 @@
+## 0.18.1 (2024-08-21)
+
+
+### 🩹 Fixes
+
+- don't throw an error when initialContent is empty ([b302ec9](https://github.com/dytab/ngx-blocknote/commit/b302ec9))
+- editor ready is triggered first time on initialization or editor recreate ([54a54c4](https://github.com/dytab/ngx-blocknote/commit/54a54c4))
+- init editor, even when no input was given ([b88230d](https://github.com/dytab/ngx-blocknote/commit/b88230d))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.18.0 (2024-08-21)
 
 
