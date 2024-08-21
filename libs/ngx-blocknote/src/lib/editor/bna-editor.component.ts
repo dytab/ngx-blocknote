@@ -148,6 +148,7 @@ export class BnaEditorComponent<
   onTouch: any = () => {};
 
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
+    console.log("write content");
     this.updateEditorsInitialContent(initialContent);
   }
   registerOnChange(fn: unknown): void {
@@ -162,9 +163,10 @@ export class BnaEditorComponent<
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['options']) {
-      this.editor = this.createEditor(changes['initialContent']?.currentValue);
+      this.editor = this.createEditor(undefined);
       this.onEditorReady.emit(this.editor);
       this.firstTimeInitialized = true;
+
       this.blockNoteAngularService.setOptions(this.options ?? {});
     }
 
