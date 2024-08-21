@@ -3,9 +3,9 @@ import {
   Component,
   forwardRef,
   Input,
-  OnChanges,
+  OnChanges, OnInit,
   output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   Block,
@@ -123,7 +123,7 @@ export class BnaEditorComponent<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
   SSchema extends StyleSchema = DefaultStyleSchema
-> implements OnChanges, ControlValueAccessor
+> implements OnChanges, ControlValueAccessor, OnInit
 {
   @Input()
   options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
@@ -168,7 +168,6 @@ export class BnaEditorComponent<
       this.blockNoteAngularService.setOptions(this.options ?? {});
     }
 
-
     if (!changes['options'] && !this.firstTimeInitialized) {
       this.firstTimeInitialized = true;
       this.onEditorReady.emit(this.editor);
@@ -176,6 +175,14 @@ export class BnaEditorComponent<
 
     if (changes['initialContent']) {
       this.updateEditorsInitialContent(changes['initialContent'].currentValue);
+    }
+  }
+
+  ngOnInit() {
+    //do not remove this, this needs to be here, because it does not fire in onChanges, if there are no inputs
+    if (!this.firstTimeInitialized) {
+      this.firstTimeInitialized = true;
+      this.onEditorReady.emit(this.editor);
     }
   }
 
