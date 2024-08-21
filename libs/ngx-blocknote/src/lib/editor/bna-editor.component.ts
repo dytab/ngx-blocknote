@@ -135,6 +135,7 @@ export class BnaEditorComponent<
   onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   editor = this.createEditor(undefined);
+  firstTimeInitialized = false;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
     this.blockNoteAngularService.setEditor(this.editor);
@@ -162,8 +163,18 @@ export class BnaEditorComponent<
   ngOnChanges(changes: SimpleChanges) {
     if (changes['options']) {
       this.editor = this.createEditor(changes['initialContent']?.currentValue);
+      this.onEditorReady.emit(this.editor);
+      this.firstTimeInitialized = true;
       this.blockNoteAngularService.setOptions(this.options ?? {});
-    } else if (changes['initialContent']) {
+    }
+
+
+    if (!changes['options'] && !this.firstTimeInitialized) {
+      this.firstTimeInitialized = true;
+      this.onEditorReady.emit(this.editor);
+    }
+
+    if (changes['initialContent']) {
       this.updateEditorsInitialContent(changes['initialContent'].currentValue);
     }
   }
@@ -191,7 +202,6 @@ export class BnaEditorComponent<
       uploadFile: this.options?.uploadFile,
     });
     this.blockNoteAngularService.setEditor(editor);
-    this.onEditorReady.emit(editor);
     this.createEditorListeners(editor);
     return editor;
   }
