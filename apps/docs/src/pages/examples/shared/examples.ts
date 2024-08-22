@@ -18,6 +18,7 @@ import { FormattingSideMenuButtonsPage } from '../ui-components/formatting-side-
 import { FormattingToolbarButtonsPage } from '../ui-components/formatting-toolbar-buttons/formatting-toolbar-buttons.page';
 import { Example, ExampleGroup } from './example.type';
 import { FormPage } from '../basic/form/form.page';
+import { ServerSideRenderingPage } from '../backend/server-side-rendering/server-side-rendering.page';
 
 //This will be added to The app routes and also to the links in the examples
 export const exampleLinks: Example[] = [
@@ -74,6 +75,12 @@ export const exampleLinks: Example[] = [
     url: 'backend/upload-files',
     name: 'Upload Files',
     component: UploadFilePage,
+  },
+  {
+    groupName: 'Backend',
+    url: 'backend/server-side-rendering',
+    name: 'Server Side Rendering',
+    component: ServerSideRenderingPage,
   },
   {
     groupName: 'Custom',

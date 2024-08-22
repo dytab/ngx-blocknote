@@ -2,6 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHighlightOptions } from 'ngx-highlightjs';
 import { appRoutes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,5 +16,6 @@ export const appConfig: ApplicationConfig = {
         css: () => import('highlight.js/lib/languages/css'),
       },
     }),
+    provideHttpClient(),
   ],
 };
