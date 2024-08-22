@@ -1,0 +1,13 @@
+@import './tailwind.css';
+
+@import '../../../../libs/ngx-blocknote/src/lib/styles/core.css';
+@import '../../../../libs/ngx-blocknote/src/lib/styles/toolbar.css';
+@import '../../../../libs/ngx-blocknote/src/lib/styles/blocks.css';
+@import '../../../../libs/blocknote-extensions/src/lib/table-of-contents/table-of-contents.css';
+@import '../../../../libs/blocknote-extensions/src/lib/page-break/page-break.css';
+@import '../../../../libs/blocknote-extensions/src/lib/heading/heading.css';
+
+body {
+  @apply bg-background;
+}
+
