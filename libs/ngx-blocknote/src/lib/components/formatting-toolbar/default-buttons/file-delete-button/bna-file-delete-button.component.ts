@@ -1,10 +1,10 @@
-import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
-import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { Component, computed } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
+import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
+import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
@@ -42,7 +42,7 @@ export class BnaFileDeleteButtonComponent {
     if (!fileBlock) {
       return;
     }
-    editor.removeBlocks([fileBlock]);
     editor.focus();
+    editor.removeBlocks([fileBlock]);
   }
 }

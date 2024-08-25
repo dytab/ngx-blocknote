@@ -8,6 +8,7 @@ import {
   output,
   SimpleChanges,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Block,
   BlockNoteEditor,
@@ -30,6 +31,12 @@ import { BnaFormattingToolbarComponent } from '../components/formatting-toolbar/
 import { BnaBasicTextStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/basic-text-style-button/bna-basic-text-style-button.component';
 import { BnaColorStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/color-style/bna-color-style-button.component';
 import { BnaCreateLinkComponent } from '../components/formatting-toolbar/default-buttons/create-link/bna-create-link.component';
+import { BnaFileCaptionButtonComponent } from '../components/formatting-toolbar/default-buttons/file-caption-button/bna-file-caption-button.component';
+import { BnaFileDeleteButtonComponent } from '../components/formatting-toolbar/default-buttons/file-delete-button/bna-file-delete-button.component';
+import { BnaFileDownloadButtonComponent } from '../components/formatting-toolbar/default-buttons/file-download-button/bna-file-download-button.component';
+import { BnaFilePreviewButtonComponent } from '../components/formatting-toolbar/default-buttons/file-preview-button/bna-file-preview-button.component';
+import { BnaFileRenameButtonComponent } from '../components/formatting-toolbar/default-buttons/file-rename-button/bna-file-rename-button.component';
+import { BnaFileReplaceButtonComponent } from '../components/formatting-toolbar/default-buttons/file-replace-button/bna-file-replace-button.component';
 import { BnaTextAlignButtonComponent } from '../components/formatting-toolbar/default-buttons/text-align-button/bna-text-align-button.component';
 import { BnaBlockTypeSelectComponent } from '../components/formatting-toolbar/default-selects/block-type-select/bna-block-type-select.component';
 import { BnaDeleteLinkComponent } from '../components/link-toolbar/default-buttons/delete-link/bna-delete-link.component';
@@ -58,27 +65,9 @@ import {
   HlmMenuSeparatorComponent,
   HlmMenuShortcutComponent,
 } from '../ui';
-import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
 import { useSelectedBlocks } from '../util';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  BnaFileDeleteButtonComponent
-} from '../components/formatting-toolbar/default-buttons/file-delete-button/bna-file-delete-button.component';
-import {
-  BnaFileDownloadButtonComponent
-} from '../components/formatting-toolbar/default-buttons/file-download-button/bna-file-download-button.component';
-import {
-  BnaFileRenameButtonComponent
-} from '../components/formatting-toolbar/default-buttons/file-rename-button/bna-file-rename-button.component';
-import {
-  BnaFileCaptionButtonComponent
-} from '../components/formatting-toolbar/default-buttons/file-caption-button/bna-file-caption-button.component';
-import {
-  BnaFileReplaceButtonComponent
-} from '../components/formatting-toolbar/default-buttons/file-replace-button/bna-file-replace-button.component';
-import {
-  BnaFilePreviewButtonComponent
-} from '../components/formatting-toolbar/default-buttons/file-preview-button/bna-file-preview-button.component';
+import { useEditorContentOrSelectionChange } from '../util/use-editor-content-or-selection-change';
+import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
 
 type InitialContent<
   BSchema extends BlockSchema = DefaultBlockSchema,
@@ -250,10 +239,13 @@ export class BnaEditorComponent<
     });
     editor.onSelectionChange(() => {
       const selectedBlocks = useSelectedBlocks(editor);
-      console.log('selection changed', selectedBlocks);
-      this.blockNoteAngularService.selectedBlocks.set(selectedBlocks);
       this.selectedBlocks.emit(selectedBlocks);
     });
+
+    useEditorContentOrSelectionChange(() => {
+      const selectedBlocks = useSelectedBlocks(editor);
+      this.blockNoteAngularService.selectedBlocks.set(selectedBlocks);
+    }, editor);
   }
 
   private updateEditorsInitialContent(
