@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
@@ -11,6 +11,26 @@ import {
   HlmMenuGroupComponent,
 } from '../../../../ui';
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
+import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
+
+function checkLinkInSchema(
+  editor: BlockNoteEditor<any, any, any>
+): editor is BlockNoteEditor<
+  BlockSchema,
+  {
+    link: {
+      type: "link";
+      propSchema: any;
+      content: "styled";
+    };
+  },
+  StyleSchema
+> {
+  return (
+    "link" in editor.schema.inlineContentSchema &&
+    editor.schema.inlineContentSchema["link"] === "link"
+  );
+}
 
 @Component({
   selector: 'bna-create-link',
@@ -31,8 +51,24 @@ import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-f
       lucideLink,
     }),
   ],
+  host: {
+    '[class]': '_visibilityClass()',
+  },
 })
 export class BnaCreateLinkComponent {
+  _visibilityClass = computed(() => {
+    const editor = this.blockNoteAngularService.editor();
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    if (!checkLinkInSchema(editor)) {
+      return 'hidden';
+    }
+    for (const block of selectedBlocks) {
+      if (block.content === undefined) {
+        return 'hidden';
+      }
+    }
+    return '';
+  });
   initialValue = this.getInitialValue();
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {

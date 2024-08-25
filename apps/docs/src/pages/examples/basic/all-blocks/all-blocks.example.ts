@@ -6,7 +6,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
   standalone: true,
   selector: 'bna-all-blocks-example',
   imports: [CommonModule, BnaEditorComponent],
-  template: ` <bna-editor [initialContent]="initialContent" /> `,
+  template: ` <bna-editor [initialContent]="initialContent" [options]="{uploadFile}" /> `,
 })
 export class AllBlocksExample {
   initialContent = [
@@ -134,6 +134,20 @@ export class AllBlocksExample {
     },
     //TODO: remove casting
   ] as any;
+
+  async uploadFile(file: File) {
+    const body = new FormData();
+    body.append('file', file);
+
+    const ret = await fetch('https://tmpfiles.org/api/v1/upload', {
+      method: 'POST',
+      body: body,
+    });
+    return (await ret.json()).data.url.replace(
+      'tmpfiles.org/',
+      'tmpfiles.org/dl/'
+    );
+  }
 }
 
 export const allBlocksExampleCode = `import { CommonModule } from '@angular/common';

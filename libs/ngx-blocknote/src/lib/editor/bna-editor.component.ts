@@ -3,9 +3,10 @@ import {
   Component,
   forwardRef,
   Input,
-  OnChanges, OnInit,
+  OnChanges,
+  OnInit,
   output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import {
   Block,
@@ -60,6 +61,24 @@ import {
 import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
 import { useSelectedBlocks } from '../util';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  BnaFileDeleteButtonComponent
+} from '../components/formatting-toolbar/default-buttons/file-delete-button/bna-file-delete-button.component';
+import {
+  BnaFileDownloadButtonComponent
+} from '../components/formatting-toolbar/default-buttons/file-download-button/bna-file-download-button.component';
+import {
+  BnaFileRenameButtonComponent
+} from '../components/formatting-toolbar/default-buttons/file-rename-button/bna-file-rename-button.component';
+import {
+  BnaFileCaptionButtonComponent
+} from '../components/formatting-toolbar/default-buttons/file-caption-button/bna-file-caption-button.component';
+import {
+  BnaFileReplaceButtonComponent
+} from '../components/formatting-toolbar/default-buttons/file-replace-button/bna-file-replace-button.component';
+import {
+  BnaFilePreviewButtonComponent
+} from '../components/formatting-toolbar/default-buttons/file-preview-button/bna-file-preview-button.component';
 
 type InitialContent<
   BSchema extends BlockSchema = DefaultBlockSchema,
@@ -105,6 +124,12 @@ type InitialContent<
     BnaColorStyleButtonComponent,
     BnaBlockTypeSelectComponent,
     BnaTableHandlesController,
+    BnaFileDeleteButtonComponent,
+    BnaFileDownloadButtonComponent,
+    BnaFileRenameButtonComponent,
+    BnaFileCaptionButtonComponent,
+    BnaFileReplaceButtonComponent,
+    BnaFilePreviewButtonComponent,
   ],
   providers: [
     BlockNoteAngularService,
@@ -148,7 +173,7 @@ export class BnaEditorComponent<
   onTouch: any = () => {};
 
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
-    console.log("write content");
+    console.log('write content');
     this.updateEditorsInitialContent(initialContent);
   }
   registerOnChange(fn: unknown): void {
@@ -221,9 +246,12 @@ export class BnaEditorComponent<
     editor.onChange((data) => {
       this.contentChanged.emit(data.document);
       this.onChange(data.document);
+      //we also need to update
     });
     editor.onSelectionChange(() => {
       const selectedBlocks = useSelectedBlocks(editor);
+      console.log('selection changed', selectedBlocks);
+      this.blockNoteAngularService.selectedBlocks.set(selectedBlocks);
       this.selectedBlocks.emit(selectedBlocks);
     });
   }

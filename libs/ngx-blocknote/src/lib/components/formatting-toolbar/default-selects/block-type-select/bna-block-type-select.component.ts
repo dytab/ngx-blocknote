@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, signal } from '@angular/core';
-import { Block } from '@blocknote/core';
+import { Component, computed, input, signal } from '@angular/core';
+import { Dictionary } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
@@ -16,7 +16,6 @@ import {
   lucideType,
 } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { useSelectedBlocks } from '../../../../util/use-selected-blocks';
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
 import { BlockNoteAngularService } from '../../../../services';
 import {
@@ -24,10 +23,13 @@ import {
   HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
+  HlmMenuItemCheckboxDirective,
+  HlmMenuItemCheckComponent,
 } from '../../../../ui';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
 import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
+import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
 @Component({
   selector: 'bna-block-type-selection-button',
@@ -41,6 +43,8 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
     HlmMenuGroupComponent,
     BrnMenuTriggerDirective,
     HlmIconComponent,
+    HlmMenuItemCheckComponent,
+    HlmMenuItemCheckboxDirective,
   ],
   templateUrl: './bna-block-type-select.component.html',
   styleUrl: './bna-block-type-select.component.css',
@@ -59,43 +63,60 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
       lucideCheck,
     }),
   ],
+  host: {
+    '[class]': '_visibilityClass()',
+  },
 })
 export class BnaBlockTypeSelectComponent {
+  _visibilityClass = computed(() => {
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const firstBlock = selectedBlocks[0];
+    const filteredBlockTypes = this.filteredBlockTypes();
+    const hasItem =
+      filteredBlockTypes.find((item) => item.type === firstBlock?.type) !==
+      undefined;
+    return hasItem ? '' : 'hidden';
+  });
+  blockTypeSelectItems = input<(dict: Dictionary) => BlockTypeSelectItem[]>(
+    defaultBlockTypeSelectItems
+  );
+  filteredBlockTypes = computed(() => {
+    const editor = this.blockNoteAngularService.editor();
+    const dict = editor.dictionary;
+    const blockTypeSelectItems = this.blockTypeSelectItems();
+    return blockTypeSelectItems(dict).filter(
+      (item) => item.type in editor.schema.blockSchema
+    );
+  });
   currentBlockType = signal<BlockTypeSelectItem | undefined>(undefined);
-  @Input() blockTypeSelectItems = defaultBlockTypeSelectItems;
-  block?: Block;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService.editor().onSelectionChange(() => {
-      const selectedBlocks = useSelectedBlocks(
-        this.blockNoteAngularService.editor()
-      );
-      this.block = selectedBlocks[0];
-      this.currentBlockType.set(this.getBlockType(this.block));
-    });
+    this.updateCurrentBlockTypeOnChanges();
   }
 
-  private getBlockType(block: Block) {
-    return defaultBlockTypeSelectItems.find((a) => a.isSelected(block));
+  private updateCurrentBlockTypeOnChanges() {
+    const editor = this.blockNoteAngularService.editor();
+    useEditorContentOrSelectionChange(() => {
+      this.currentBlockType.set(
+        this.filteredBlockTypes().find((a) =>
+          a.isSelected(editor.getTextCursorPosition().block)
+        )
+      );
+    }, editor);
   }
 
   changeBlockType(
     type: string,
     props?: Record<string, boolean | number | string> | undefined
   ) {
-    let selectedBlocks = useSelectedBlocks(
-      this.blockNoteAngularService.editor()
-    );
-    this.blockNoteAngularService.editor().focus();
+    const editor = this.blockNoteAngularService.editor();
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    editor.focus();
     for (const block of selectedBlocks) {
-      this.blockNoteAngularService.editor().updateBlock(block, {
+      editor.updateBlock(block, {
         type: type as any,
         props: props,
       });
     }
-    //update selected blocks, because the type changed
-    selectedBlocks = useSelectedBlocks(this.blockNoteAngularService.editor());
-    this.block = selectedBlocks[0];
-    this.currentBlockType.set(this.getBlockType(this.block));
   }
 }

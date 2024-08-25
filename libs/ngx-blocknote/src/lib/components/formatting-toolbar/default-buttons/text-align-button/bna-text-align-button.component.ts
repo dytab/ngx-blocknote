@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import {
+  Block,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
@@ -12,6 +13,7 @@ import {
 } from '@ng-icons/lucide';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
+import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
 const icons = {
   left: 'lucideAlignLeft',
@@ -30,47 +32,57 @@ type Alignments = 'left' | 'center' | 'right';
   providers: [
     provideIcons({ lucideAlignLeft, lucideAlignCenter, lucideAlignRight }),
   ],
+  host: {
+    '[class]': '_visibilityClass()',
+  },
 })
 export class BnaTextAlignButtonComponent {
   alignment = input.required<Alignments>();
   icon = computed(() => {
     return icons[this.alignment()];
   });
-
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
-
-  toggleAlignment(textAlignment: Alignments) {
+  _visibilityClass = computed(() => {
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    // Also don't show when none of the selected blocks have text content
+    return selectedBlocks.find((block) => 'textAlignment' in block.props)
+      ? ''
+      : 'hidden';
+  });
+  alignmentBlock = signal<Block<any, any, any> | undefined>(undefined);
+  hasAlignment = computed(() => {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
-    this.blockNoteAngularService.editor().focus();
-    const selectedBlocks = editor.getSelection()?.blocks;
-    if (selectedBlocks) {
-      for (const block of selectedBlocks) {
-        if (checkBlockTypeHasDefaultProp('textAlignment', block.type, editor)) {
-          editor.updateBlock(block, {
-            props: { textAlignment: textAlignment },
-          });
-        }
-      }
-    }
-  }
-
-  hasAlignment() {
-    const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
-    const selectedBlocks = editor.getSelection()?.blocks;
-    const block = selectedBlocks?.[0];
+    const block = this.alignmentBlock();
     if (!block) {
       return false;
     }
     if (checkBlockHasDefaultProp('textAlignment', block, editor)) {
       return block.props.textAlignment === this.alignment();
-    } else {
-      return false;
+    }
+    return false;
+  });
+
+  _computedClass = computed(() => {
+    return this._visibilityClass() ? '' : 'hidden';
+  });
+
+  constructor(public blockNoteAngularService: BlockNoteAngularService) {
+    useEditorContentOrSelectionChange(() => {
+      this.alignmentBlock.set(
+        this.blockNoteAngularService.editor().getTextCursorPosition().block
+      );
+    }, this.blockNoteAngularService.editor());
+  }
+
+  toggleAlignment(textAlignment: Alignments) {
+    const editor = this.blockNoteAngularService.editor();
+    editor.focus();
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    for (const block of selectedBlocks) {
+      if (checkBlockTypeHasDefaultProp('textAlignment', block.type, editor)) {
+        editor.updateBlock(block, {
+          props: { textAlignment: textAlignment },
+        });
+      }
     }
   }
 }

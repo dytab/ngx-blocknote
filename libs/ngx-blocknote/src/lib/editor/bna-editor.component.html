@@ -6,6 +6,12 @@
     <ng-container *ngIf="!formattingToolbar.hasChildNodes()">
       <bna-formatting-toolbar-controller>
         <bna-formatting-toolbar>
+          <bna-file-caption-button/>
+          <bna-file-replace-button/>
+          <bna-file-rename-button/>
+          <bna-file-delete-button/>
+          <bna-file-download-button/>
+          <bna-file-preview-button/>
           <bna-block-type-selection-button />
           <bna-basic-text-style-button [basicTextStyle]="'bold'" />
           <bna-basic-text-style-button [basicTextStyle]="'italic'" />
@@ -34,7 +40,7 @@
       class="block ProseMirror bn-editor relative bn-default-styles"
     />
     <bna-file-panel-controller>
-      <bna-file-panel> </bna-file-panel>
+      <bna-file-panel />
     </bna-file-panel-controller>
     <bna-suggestions-menu-controller triggerCharacter="/" class="z-index-3">
       <bna-suggestions-menu triggerCharacter="/" />

@@ -1,4 +1,4 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, OnInit, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
@@ -30,38 +30,52 @@ import {
   ],
   templateUrl: './bna-file-panel.component.html',
 })
-export class BnaFilePanelComponent {
-  private focusedBlock?: BlockFromConfig<FileBlockConfig, any, any>;
+export class BnaFilePanelComponent implements OnInit {
+  focusedBlock = signal<BlockFromConfig<FileBlockConfig, any, any> | undefined>(
+    undefined
+  );
 
   embedInputText = '';
   fileControl = new FormControl();
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
+    console.log('build');
+    const editor = this.blockNoteAngularService.editor();
+    // useEditorContentOrSelectionChange(() => {
+    //   const block = editor.getTextCursorPosition().block;
+    //   const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    //   this.focusedBlock.set(block as any);
+    //   console.log(
+    //     'update focused block',
+    //     block,
+    //     selectedBlocks[0],
+    //     this.focusedBlock()
+    //   );
+    // }, editor);
+    editor.filePanel?.onUpdate(async (filePanelState) => {
+      if (!filePanelState.show) {
+        this.focusedBlock.set(undefined);
+      } else {
+        this.focusedBlock.set(filePanelState.block);
+      }
+    });
     effect(() => {
-      this.updateFocusedBlock();
+      console.log('changed', this.focusedBlock());
     });
   }
 
-  private updateFocusedBlock() {
+  ngOnInit() {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
-    editor.filePanel?.onUpdate(async (filePanelState) => {
-      if (!filePanelState.show) {
-        this.focusedBlock = undefined;
-      } else {
-        this.focusedBlock = filePanelState.block;
-      }
-    });
+    const block = editor.getTextCursorPosition().block;
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    this.focusedBlock.set(block as any);
   }
 
   async onFileInputChanged(event: Event) {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor) {
-      return;
-    }
-    if (!editor.uploadFile || !this.focusedBlock) {
+    const focusedBlock = this.focusedBlock();
+    console.log()
+    if (!editor.uploadFile || !focusedBlock) {
       console.error('uploadFile was not provided in editor options');
       return;
     }
@@ -71,16 +85,16 @@ export class BnaFilePanelComponent {
 
     const file = files[0];
     const fileUrl = await editor.uploadFile(file);
-
-    this.updateBlockWithEmbedFileUrl(this.focusedBlock, editor, fileUrl);
-    this.focusedBlock = undefined;
+    this.updateBlockWithEmbedFileUrl(focusedBlock, editor, fileUrl);
+    this.focusedBlock.set(undefined);
     this.fileControl.reset();
   }
 
   insertEmbedFile(embedFileUrl: string) {
     const editor = this.blockNoteAngularService.editor();
-    if (!editor || !this.focusedBlock) return;
-    this.updateBlockWithEmbedFileUrl(this.focusedBlock, editor, embedFileUrl);
+    const focusedBlock = this.focusedBlock();
+    if (!focusedBlock) return;
+    this.updateBlockWithEmbedFileUrl(focusedBlock, editor, embedFileUrl);
   }
 
   private updateBlockWithEmbedFileUrl(
@@ -93,7 +107,7 @@ export class BnaFilePanelComponent {
         url: embedFileUrl,
       },
     });
-
     editor.filePanel?.closeMenu();
+    editor.focus();
   }
 }
