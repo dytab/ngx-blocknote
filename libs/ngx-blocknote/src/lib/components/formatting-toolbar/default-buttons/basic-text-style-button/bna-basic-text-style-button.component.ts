@@ -9,13 +9,19 @@ import {
   lucideUnderline,
 } from '@ng-icons/lucide';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { HlmButtonDirective, HlmIconComponent, HlmTooltipComponent, HlmTooltipTriggerDirective } from '../../../../ui';
+import {
+  HlmButtonDirective,
+  HlmIconComponent,
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
+} from '../../../../ui';
 import {
   BlockNoteEditor,
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
 import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { HlmToggleDirective } from '../../../../ui/ui-toggle-helm/hlm-toggle.directive';
 
 const icons = {
   bold: 'lucideBold',
@@ -57,6 +63,7 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    HlmToggleDirective,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
   styleUrl: './bna-basic-text-style-button.component.css',
@@ -94,10 +101,19 @@ export class BnaBasicTextStyleButtonComponent {
       : 'hidden';
   });
 
-  basicTextStyleDict = computed(()=>{
-    const editor = this.blockNoteAngularService.editor()
+  hasTextStyle = computed(() => {
+    const editor = this.blockNoteAngularService.editor();
+    //needs to be here, so we update, when selectedBlocks update
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const selection = this.blockNoteAngularService.selectedBlocks();
+    const style = this.basicTextStyle();
+    return editor.getActiveStyles()[style];
+  });
+
+  basicTextStyleDict = computed(() => {
+    const editor = this.blockNoteAngularService.editor();
     return editor.dictionary.formatting_toolbar[this.basicTextStyle()];
-  })
+  });
 
   constructor(public blockNoteAngularService: BlockNoteAngularService) {}
 
