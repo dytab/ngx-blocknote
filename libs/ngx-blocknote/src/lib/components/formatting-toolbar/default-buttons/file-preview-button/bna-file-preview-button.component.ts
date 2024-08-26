@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 import { fileBlock } from '../../../../util/file-block.util';
-import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
+import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 import { lucideImagePlus } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
-import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
 @Component({
   selector: 'bna-file-preview-button',
@@ -34,31 +33,17 @@ export class BnaFilePreviewButtonComponent {
     );
   });
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.updateCurrentBlockTypeOnChanges();
-  }
-
-  private updateCurrentBlockTypeOnChanges() {
-    const editor = this.blockNoteAngularService.editor();
-    // useEditorContentOrSelectionChange(() => {
-    //   this.currentBlockType.set(
-    //     this.filteredBlockTypes().find((a) =>
-    //       a.isSelected(editor.getTextCursorPosition().block)
-    //     )
-    //   );
-    // }, editor);
-  }
+  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
 
   togglePreview() {
     const editor = this.blockNoteAngularService.editor();
     const fileBlock = this.fileBlock();
-    console.log(fileBlock)
     if (!fileBlock) {
       return;
     }
     editor.updateBlock(fileBlock, {
       props: {
-        showPreview: !fileBlock.props.showPreview ,
+        showPreview: !fileBlock.props.showPreview,
       },
     });
     editor.focus();

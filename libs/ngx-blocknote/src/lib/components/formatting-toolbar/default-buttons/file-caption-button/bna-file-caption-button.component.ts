@@ -58,16 +58,20 @@ export class BnaFileCaptionButtonComponent {
     private formBuilder: NonNullableFormBuilder
   ) {
     effect(() => {
-      const editor = this.blockNoteAngularService.editor();
-      const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
-      const firstBlock = selectedBlocks[0];
-      if (!firstBlock) {
-        return;
-      }
-      if (checkBlockIsFileBlock(firstBlock, editor)) {
-        this.form.setValue({ caption: firstBlock.props.caption });
-      }
+      this.patchFormValues();
     });
+  }
+
+  private patchFormValues() {
+    const editor = this.blockNoteAngularService.editor();
+    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const firstBlock = selectedBlocks[0];
+    if (!firstBlock) {
+      return;
+    }
+    if (checkBlockIsFileBlock(firstBlock, editor)) {
+      this.form.setValue({ caption: firstBlock.props.caption });
+    }
   }
 
   submit() {

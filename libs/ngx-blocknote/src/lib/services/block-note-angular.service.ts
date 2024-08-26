@@ -17,9 +17,6 @@ export class BlockNoteAngularService<
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
   SSchema extends StyleSchema = DefaultStyleSchema
 > {
-  fileBlock = computed(()=>{
-
-  })
   editor = signal<BlockNoteEditor<BSchema, ISchema, SSchema>>(null as never);
   options = signal<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>({});
   selectedBlocks = signal<Block<any, any, any>[]>([]);

@@ -66,6 +66,10 @@ export class BnaTextAlignButtonComponent {
   });
 
   constructor(public blockNoteAngularService: BlockNoteAngularService) {
+    this.updateAlignmentOnContentOrSelectionChange();
+  }
+
+  private updateAlignmentOnContentOrSelectionChange() {
     useEditorContentOrSelectionChange(() => {
       this.alignmentBlock.set(
         this.blockNoteAngularService.editor().getTextCursorPosition().block
