@@ -1,3 +1,21 @@
+## 0.19.0 (2024-08-26)
+
+
+### 🚀 Features
+
+- add ssr example ([46ba58a](https://github.com/dytab/ngx-blocknote/commit/46ba58a))
+- add image formatting toolbar buttons ([#4](https://github.com/dytab/ngx-blocknote/pull/4))
+- add tooltips to formatting toolbar ([e511dbd](https://github.com/dytab/ngx-blocknote/commit/e511dbd))
+
+### 🩹 Fixes
+
+- remove two times init, when using options and initContent ([5989dde](https://github.com/dytab/ngx-blocknote/commit/5989dde))
+
+### ❤️  Thank You
+
+- Matthias risto
+- Matthias Risto @m-risto
+
 ## 0.18.1 (2024-08-21)
 
 
