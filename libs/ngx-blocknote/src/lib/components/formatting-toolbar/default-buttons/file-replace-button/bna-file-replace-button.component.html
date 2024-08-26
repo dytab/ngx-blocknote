@@ -1,0 +1,18 @@
+<button
+  type="button"
+  hlmBtn
+  size="icon"
+  variant="ghost"
+  class="w-[30px] h-[30px]"
+  [brnMenuTriggerFor]="menu"
+>
+  <hlm-icon  size="sm" name="lucideImage"/>
+</button>
+
+<ng-template #menu>
+  <hlm-menu>
+    <hlm-menu-group>
+      <bna-file-panel />
+    </hlm-menu-group>
+  </hlm-menu>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import {
   Block,
   BlockNoteEditor,
@@ -19,6 +19,7 @@ export class BlockNoteAngularService<
 > {
   editor = signal<BlockNoteEditor<BSchema, ISchema, SSchema>>(null as never);
   options = signal<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>({});
+  selectedBlocks = signal<Block<any, any, any>[]>([]);
 
   setEditor(editor: BlockNoteEditor<any, any, any>) {
     this.editor.set(editor);
