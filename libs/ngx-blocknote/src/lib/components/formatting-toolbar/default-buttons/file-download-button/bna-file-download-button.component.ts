@@ -3,15 +3,27 @@ import { CommonModule } from '@angular/common';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 import { fileBlock } from '../../../../util/file-block.util';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
-import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
+import {
+  HlmButtonDirective,
+  HlmIconComponent,
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
+} from '../../../../ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 @Component({
   selector: 'bna-file-download-button',
   standalone: true,
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [
+    CommonModule,
+    HlmButtonDirective,
+    HlmIconComponent,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
+  ],
   templateUrl: './bna-file-download-button.component.html',
   styleUrl: './bna-file-download-button.component.css',
   providers: [provideIcons({ lucideDownload })],
@@ -26,12 +38,19 @@ export class BnaFileDownloadButtonComponent {
       this.blockNoteAngularService.selectedBlocks()
     );
   });
-
   _visibilityClass = computed(() => {
     return showFileBlock(
       this.blockNoteAngularService.editor(),
       this.fileBlock()
     );
+  });
+  tooltip = computed(() => {
+    const fileBlock = this.fileBlock();
+    if (!fileBlock) {
+      return '';
+    }
+    return this.blockNoteAngularService.editor().dictionary.formatting_toolbar
+      .file_download.tooltip[fileBlock.type];
   });
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {}

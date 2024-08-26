@@ -9,12 +9,13 @@ import {
   lucideUnderline,
 } from '@ng-icons/lucide';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
+import { HlmButtonDirective, HlmIconComponent, HlmTooltipComponent, HlmTooltipTriggerDirective } from '../../../../ui';
 import {
   BlockNoteEditor,
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 const icons = {
   bold: 'lucideBold',
@@ -49,7 +50,14 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
 @Component({
   selector: 'bna-basic-text-style-button',
   standalone: true,
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [
+    CommonModule,
+    HlmButtonDirective,
+    HlmIconComponent,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
+  ],
   templateUrl: './bna-basic-text-style-button.component.html',
   styleUrl: './bna-basic-text-style-button.component.css',
   providers: [
@@ -81,8 +89,15 @@ export class BnaBasicTextStyleButtonComponent {
       return '';
     }
     // Also don't show when none of the selected blocks have text content
-    return selectedBlocks.find((block) => block.content !== undefined) ? '': 'hidden';
+    return selectedBlocks.find((block) => block.content !== undefined)
+      ? ''
+      : 'hidden';
   });
+
+  basicTextStyleDict = computed(()=>{
+    const editor = this.blockNoteAngularService.editor()
+    return editor.dictionary.formatting_toolbar[this.basicTextStyle()];
+  })
 
   constructor(public blockNoteAngularService: BlockNoteAngularService) {}
 

@@ -1,11 +1,16 @@
+<hlm-tooltip>
   <button
     type="button"
     hlmBtn
     size="icon"
     variant="ghost"
     class="w-[30px] h-[30px]"
+    hlmTooltipTrigger
     (click)="deleteFile()"
   >
     <hlm-icon size="sm" name="lucideTrash" />
   </button>
-
+  <span *brnTooltipContent class="text-center">
+    <p>{{ tooltip() }}</p>
+  </span>
+</hlm-tooltip>

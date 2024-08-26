@@ -1,10 +1,16 @@
-<button
-  type="button"
-  hlmBtn
-  size="icon"
-  variant="ghost"
-  class="w-[30px] h-[30px]"
-  (click)="togglePreview()"
->
-  <hlm-icon  size="sm" name="lucideImagePlus"/>
-</button>
+<hlm-tooltip>
+  <button
+    type="button"
+    hlmBtn
+    size="icon"
+    variant="ghost"
+    class="w-[30px] h-[30px]"
+    (click)="togglePreview()"
+    hlmTooltipTrigger
+  >
+    <hlm-icon size="sm" name="lucideImagePlus" />
+  </button>
+  <span *brnTooltipContent class="text-center">
+    <p>{{ dict.formatting_toolbar.file_preview_toggle.tooltip }}</p>
+  </span>
+</hlm-tooltip>

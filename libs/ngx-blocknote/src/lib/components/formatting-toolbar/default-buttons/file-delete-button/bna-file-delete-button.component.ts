@@ -7,11 +7,23 @@ import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.dir
 import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
+import {
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
+} from '../../../../ui';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 @Component({
   selector: 'bna-file-delete-button',
   standalone: true,
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [
+    CommonModule,
+    HlmButtonDirective,
+    HlmIconComponent,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
+  ],
   templateUrl: './bna-file-delete-button.component.html',
   styleUrl: './bna-file-delete-button.component.css',
   providers: [provideIcons({ lucideTrash })],
@@ -32,6 +44,14 @@ export class BnaFileDeleteButtonComponent {
       this.blockNoteAngularService.editor(),
       this.fileBlock()
     );
+  });
+  tooltip = computed(() => {
+    const fileBlock = this.fileBlock();
+    if (!fileBlock) {
+      return '';
+    }
+    return this.blockNoteAngularService.editor().dictionary.formatting_toolbar
+      .file_delete.tooltip[fileBlock.type];
   });
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {}

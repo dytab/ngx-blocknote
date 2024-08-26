@@ -12,8 +12,14 @@ import {
   lucideAlignRight,
 } from '@ng-icons/lucide';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
+import {
+  HlmButtonDirective,
+  HlmIconComponent,
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
+} from '../../../../ui';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 const icons = {
   left: 'lucideAlignLeft',
@@ -26,7 +32,14 @@ type Alignments = 'left' | 'center' | 'right';
 @Component({
   selector: 'bna-text-align-button',
   standalone: true,
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [
+    CommonModule,
+    HlmButtonDirective,
+    HlmIconComponent,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
+  ],
   templateUrl: './bna-text-align-button.component.html',
   styleUrl: './bna-text-align-button.component.css',
   providers: [
@@ -61,8 +74,9 @@ export class BnaTextAlignButtonComponent {
     return false;
   });
 
-  _computedClass = computed(() => {
-    return this._visibilityClass() ? '' : 'hidden';
+  textAlignDict = computed(() => {
+    const editor = this.blockNoteAngularService.editor();
+    return editor.dictionary.formatting_toolbar[`align_${this.alignment()}`];
   });
 
   constructor(public blockNoteAngularService: BlockNoteAngularService) {

@@ -1,13 +1,19 @@
-<button
-  type="button"
-  hlmBtn
-  size="icon"
-  variant="ghost"
-  class="w-[30px] h-[30px]"
-  [ngClass]="{
-    'bg-gray-900 text-gray-100': hasAlignment()
-  }"
-  (click)="toggleAlignment(alignment())"
->
-  <hlm-icon size="sm" [name]="icon()" />
-</button>
+<hlm-tooltip>
+  <button
+    type="button"
+    hlmBtn
+    size="icon"
+    variant="ghost"
+    class="w-[30px] h-[30px]"
+    hlmTooltipTrigger
+    [ngClass]="{
+      'bg-gray-900 text-gray-100': hasAlignment()
+    }"
+    (click)="toggleAlignment(alignment())"
+  >
+    <hlm-icon size="sm" [name]="icon()" />
+  </button>
+  <span *brnTooltipContent class="text-center">
+    <p>{{ textAlignDict().tooltip }}</p>
+  </span>
+</hlm-tooltip>

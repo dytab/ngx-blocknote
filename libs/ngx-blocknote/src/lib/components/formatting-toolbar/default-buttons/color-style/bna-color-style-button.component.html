@@ -1,9 +1,11 @@
+<hlm-tooltip>
 <button
   type="button"
   hlmBtn
   size="icon"
   variant="ghost"
   class="w-[30px] h-[30px]"
+  hlmTooltipTrigger
   [brnMenuTriggerFor]="menu"
 >
   <bna-color-icon
@@ -19,3 +21,8 @@
     </hlm-menu-group>
   </hlm-menu>
 </ng-template>
+
+<span *brnTooltipContent class="text-center">
+    <p>{{ dict.formatting_toolbar.colors.tooltip }}</p>
+  </span>
+</hlm-tooltip>

@@ -8,7 +8,7 @@ import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmMenuComponent,
-  HlmMenuGroupComponent,
+  HlmMenuGroupComponent, HlmTooltipComponent, HlmTooltipTriggerDirective
 } from '../../../../ui';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
@@ -16,6 +16,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 @Component({
   selector: 'bna-file-rename-button',
@@ -29,6 +30,9 @@ import {
     HlmMenuComponent,
     HlmMenuGroupComponent,
     ReactiveFormsModule,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-rename-button.component.html',
   styleUrl: './bna-file-rename-button.component.css',
@@ -43,12 +47,19 @@ export class BnaFileRenameButtonComponent {
     const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
     return fileBlock(editor, selectedBlocks);
   });
-
   _visibilityClass = computed(() => {
     return showFileBlock(
       this.blockNoteAngularService.editor(),
       this.fileBlock()
     );
+  });
+  tooltip = computed(() => {
+    const fileBlock = this.fileBlock();
+    if (!fileBlock) {
+      return '';
+    }
+    return this.blockNoteAngularService.editor().dictionary.formatting_toolbar
+      .file_rename.tooltip[fileBlock.type];
   });
 
   constructor(

@@ -7,7 +7,7 @@ import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmMenuComponent,
-  HlmMenuGroupComponent,
+  HlmMenuGroupComponent, HlmTooltipComponent, HlmTooltipTriggerDirective
 } from '../../../../ui';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
@@ -17,6 +17,7 @@ import {
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 function checkColorInSchema<Color extends 'text' | 'background'>(
   color: Color,
@@ -58,6 +59,9 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
     HlmMenuGroupComponent,
     BnaColorIconComponent,
     BnaColorPickerComponent,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
   ],
   templateUrl: './bna-color-style-button.component.html',
   styleUrl: './bna-color-style-button.component.css',
@@ -82,8 +86,8 @@ export class BnaColorStyleButtonComponent {
     return 'hidden';
   });
 
-
   options: ColorOptions = this.getOptions();
+  dict = this.blockNoteAngularService.editor().dictionary;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
     this.blockNoteAngularService.editor().onSelectionChange(() => {

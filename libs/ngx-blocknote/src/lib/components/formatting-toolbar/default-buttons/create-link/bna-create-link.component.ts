@@ -8,10 +8,11 @@ import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmMenuComponent,
-  HlmMenuGroupComponent,
+  HlmMenuGroupComponent, HlmTooltipComponent, HlmTooltipTriggerDirective
 } from '../../../../ui';
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 function checkLinkInSchema(
   editor: BlockNoteEditor<any, any, any>
@@ -43,6 +44,9 @@ function checkLinkInSchema(
     BrnMenuTriggerDirective,
     HlmMenuGroupComponent,
     BnaLinkFormComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
+    HlmTooltipComponent,
   ],
   templateUrl: './bna-create-link.component.html',
   styleUrl: './bna-create-link.component.css',
@@ -70,8 +74,10 @@ export class BnaCreateLinkComponent {
     return '';
   });
   initialValue = this.getInitialValue();
+  dict = this.blockNoteAngularService.editor().dictionary;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
+    console.log(this.dict);
     this.blockNoteAngularService.editor().onSelectionChange(() => {
       this.initialValue = this.getInitialValue();
     });

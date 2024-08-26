@@ -1,3 +1,4 @@
+<hlm-tooltip>
   <button
     type="button"
     hlmBtn
@@ -5,6 +6,11 @@
     variant="ghost"
     class="w-[30px] h-[30px]"
     (click)="downloadFile()"
+    hlmTooltipTrigger
   >
     <hlm-icon size="sm" name="lucideDownload" />
   </button>
+  <span *brnTooltipContent class="text-center">
+    <p>{{ tooltip() }}</p>
+  </span>
+</hlm-tooltip>

@@ -1,3 +1,4 @@
+<hlm-tooltip>
   <button
     type="button"
     hlmBtn
@@ -5,9 +6,16 @@
     variant="ghost"
     class="w-[30px] h-[30px]"
     [brnMenuTriggerFor]="menu"
+    hlmTooltipTrigger
   >
     <hlm-icon size="sm" name="lucideLink" />
   </button>
+  <span *brnTooltipContent class="text-center">
+    <p>{{ dict.formatting_toolbar.link.tooltip }}</p>
+    <p class="text-xs">
+      {{ dict.formatting_toolbar.link.secondary_tooltip }}
+    </p>
+  </span>
 
   <ng-template #menu>
     <hlm-menu>
@@ -16,3 +24,4 @@
       </hlm-menu-group>
     </hlm-menu>
   </ng-template>
+</hlm-tooltip>

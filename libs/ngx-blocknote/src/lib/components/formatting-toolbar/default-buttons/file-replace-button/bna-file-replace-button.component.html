@@ -1,18 +1,23 @@
-<button
-  type="button"
-  hlmBtn
-  size="icon"
-  variant="ghost"
-  class="w-[30px] h-[30px]"
-  [brnMenuTriggerFor]="menu"
->
-  <hlm-icon  size="sm" name="lucideImage"/>
-</button>
-
-<ng-template #menu>
-  <hlm-menu>
-    <hlm-menu-group>
-      <bna-file-panel />
-    </hlm-menu-group>
-  </hlm-menu>
-</ng-template>
+<hlm-tooltip>
+  <button
+    type="button"
+    hlmBtn
+    size="icon"
+    variant="ghost"
+    class="w-[30px] h-[30px]"
+    [brnMenuTriggerFor]="menu"
+    hlmTooltipTrigger
+  >
+    <hlm-icon size="sm" name="lucideImage" />
+  </button>
+  <span *brnTooltipContent class="text-center">
+    <p>{{ tooltip() }}</p>
+  </span>
+  <ng-template #menu>
+    <hlm-menu>
+      <hlm-menu-group>
+        <bna-file-panel />
+      </hlm-menu-group>
+    </hlm-menu>
+  </ng-template>
+</hlm-tooltip>

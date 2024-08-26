@@ -1,21 +1,26 @@
 import { Component, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
-import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
+import {
+  HlmButtonDirective,
+  HlmIconComponent,
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
+} from '../../../../ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTextCursorInput } from '@ng-icons/lucide';
 import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 import { fileBlock } from '../../../../util/file-block.util';
-import { HlmMenuComponent } from '../../../../ui/ui-menu-helm/hlm-menu.component';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { HlmMenuGroupComponent } from '../../../../ui/ui-menu-helm/hlm-menu-group.component';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { checkBlockIsFileBlock } from '@blocknote/core';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 @Component({
   selector: 'bna-file-caption-button',
@@ -28,6 +33,9 @@ import { checkBlockIsFileBlock } from '@blocknote/core';
     BrnMenuTriggerDirective,
     HlmMenuGroupComponent,
     ReactiveFormsModule,
+    HlmTooltipComponent,
+    HlmTooltipTriggerDirective,
+    BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-caption-button.component.html',
   styleUrl: './bna-file-caption-button.component.css',
@@ -52,6 +60,7 @@ export class BnaFileCaptionButtonComponent {
   });
 
   form = this.formBuilder.group({ caption: ['', Validators.required] });
+  dict = this.blockNoteAngularService.editor().dictionary;
 
   constructor(
     private blockNoteAngularService: BlockNoteAngularService,
