@@ -1,3 +1,14 @@
+## 0.20.0 (2024-08-28)
+
+
+### 🚀 Features
+
+- editor can be overwritten ([2408604](https://github.com/dytab/ngx-blocknote/commit/2408604))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.19.0 (2024-08-26)
 
 
