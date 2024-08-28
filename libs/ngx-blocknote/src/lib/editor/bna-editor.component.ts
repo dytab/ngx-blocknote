@@ -148,7 +148,20 @@ export class BnaEditorComponent<
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
   onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
-  editor = this.createEditor(undefined);
+  @Input()
+  set editor(editor: BlockNoteEditor<BSchema, ISchema, SSchema>) {
+    this._editor = editor;
+    this.blockNoteAngularService.setEditor(editor);
+    this.createEditorListeners(editor);
+  }
+
+  get editor(): BlockNoteEditor<BSchema, ISchema, SSchema> {
+    return this._editor;
+  }
+
+  private _editor: BlockNoteEditor<BSchema, ISchema, SSchema> =
+    this.createEditor(undefined);
+
   firstTimeInitialized = false;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {

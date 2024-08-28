@@ -39,19 +39,7 @@ export class BnaFilePanelComponent implements OnInit {
   fileControl = new FormControl();
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    console.log('build');
     const editor = this.blockNoteAngularService.editor();
-    // useEditorContentOrSelectionChange(() => {
-    //   const block = editor.getTextCursorPosition().block;
-    //   const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
-    //   this.focusedBlock.set(block as any);
-    //   console.log(
-    //     'update focused block',
-    //     block,
-    //     selectedBlocks[0],
-    //     this.focusedBlock()
-    //   );
-    // }, editor);
     editor.filePanel?.onUpdate(async (filePanelState) => {
       if (!filePanelState.show) {
         this.focusedBlock.set(undefined);
@@ -59,22 +47,17 @@ export class BnaFilePanelComponent implements OnInit {
         this.focusedBlock.set(filePanelState.block);
       }
     });
-    effect(() => {
-      console.log('changed', this.focusedBlock());
-    });
   }
 
   ngOnInit() {
     const editor = this.blockNoteAngularService.editor();
     const block = editor.getTextCursorPosition().block;
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
     this.focusedBlock.set(block as any);
   }
 
   async onFileInputChanged(event: Event) {
     const editor = this.blockNoteAngularService.editor();
     const focusedBlock = this.focusedBlock();
-    console.log()
     if (!editor.uploadFile || !focusedBlock) {
       console.error('uploadFile was not provided in editor options');
       return;

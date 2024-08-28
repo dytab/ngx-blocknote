@@ -19,6 +19,7 @@ import { FormattingToolbarButtonsPage } from '../ui-components/formatting-toolba
 import { Example, ExampleGroup } from './example.type';
 import { FormPage } from '../basic/form/form.page';
 import { ServerSideRenderingPage } from '../backend/server-side-rendering/server-side-rendering.page';
+import { CustomEditorPage } from '../custom/custom-editor/custom-editor.page';
 
 //This will be added to The app routes and also to the links in the examples
 export const exampleLinks: Example[] = [
@@ -99,6 +100,12 @@ export const exampleLinks: Example[] = [
     url: 'custom/mentions-menu',
     name: 'Mentions Menu',
     component: MentionsMenuPage,
+  },
+  {
+    groupName: 'Custom',
+    url: 'custom/editor',
+    name: 'Custom Editor',
+    component: CustomEditorPage,
   },
   {
     groupName: 'Extensions',

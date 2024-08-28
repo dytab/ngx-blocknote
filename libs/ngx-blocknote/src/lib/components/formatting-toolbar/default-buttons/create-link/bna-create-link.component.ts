@@ -77,7 +77,6 @@ export class BnaCreateLinkComponent {
   dict = this.blockNoteAngularService.editor().dictionary;
 
   constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    console.log(this.dict);
     this.blockNoteAngularService.editor().onSelectionChange(() => {
       this.initialValue = this.getInitialValue();
     });
