@@ -148,9 +148,12 @@ export class BnaEditorComponent<
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
   onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
+  private hasCustomEditor = false;
+
   @Input()
   set editor(editor: BlockNoteEditor<BSchema, ISchema, SSchema>) {
     this._editor = editor;
+    this.hasCustomEditor = true;
     this.blockNoteAngularService.setEditor(editor);
     this.createEditorListeners(editor);
   }
@@ -189,7 +192,7 @@ export class BnaEditorComponent<
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['options']) {
+    if (!this.hasCustomEditor && changes['options']) {
       this.editor = this.createEditor(undefined);
       this.onEditorReady.emit(this.editor);
       this.firstTimeInitialized = true;

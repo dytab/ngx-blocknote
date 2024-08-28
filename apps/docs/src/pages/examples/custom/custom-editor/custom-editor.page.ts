@@ -6,8 +6,8 @@ import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
 import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
 import {
-  CustomEditorExample,
   apiContentBlockExampleCode,
+  CustomEditorExample,
 } from './custom-editor.example';
 import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
 
