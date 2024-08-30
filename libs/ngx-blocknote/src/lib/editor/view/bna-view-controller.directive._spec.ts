@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgxBlockNoteTestingModule } from '@dytab/ngx-blocknote';
+import { NgxBlockNoteTestingModule } from '../../services';
 import { BnaViewControllerDirective } from './bna-view-controller.directive';
 
 @Component({

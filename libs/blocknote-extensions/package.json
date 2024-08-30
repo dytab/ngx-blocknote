@@ -3,7 +3,6 @@
   "homepage": "https://dytab.github.io/ngx-blocknote",
   "version": "0.0.1",
   "dependencies": {
-    "@tiptap/core":  ">=2.6.0 <3.0.0",
     "prosemirror-model": ">=1.22.0 <2.0.0"
   },
   "peerDependencies": {

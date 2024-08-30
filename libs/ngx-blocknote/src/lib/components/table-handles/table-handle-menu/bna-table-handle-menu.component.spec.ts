@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgxBlockNoteTestingModule } from '@dytab/ngx-blocknote';
+import { NgxBlockNoteTestingModule } from '../../../services';
 import { BnaTableHandleMenuComponent } from './bna-table-handle-menu.component';
 
 describe('BnaTableHandleMenuComponent', () => {
