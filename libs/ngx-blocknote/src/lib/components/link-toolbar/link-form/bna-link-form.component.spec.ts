@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
 import { BnaLinkFormComponent } from './bna-link-form.component';
 
 describe('BnaLinkFormComponent', () => {
@@ -7,6 +8,7 @@ describe('BnaLinkFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [NgxBlocknoteService],
       imports: [BnaLinkFormComponent],
     }).compileComponents();
 

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlockNoteAngularService } from '../../../../../services/block-note-angular.service';
+import { NgxBlockNoteTestingModule } from '../../../../../services';
 import { BnaDeleteBlockItemComponent } from './bna-delete-block-item.component';
 
 describe('DeleteBlockItemComponent', () => {
@@ -8,8 +8,7 @@ describe('DeleteBlockItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaDeleteBlockItemComponent],
-      providers: [BlockNoteAngularService],
+      imports: [BnaDeleteBlockItemComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaDeleteBlockItemComponent);

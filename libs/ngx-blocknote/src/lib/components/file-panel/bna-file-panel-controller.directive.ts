@@ -1,6 +1,6 @@
 import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
@@ -9,7 +9,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 })
 export class BnaFilePanelControllerDirective {
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private ngxBlockNoteService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
@@ -19,7 +19,7 @@ export class BnaFilePanelControllerDirective {
   }
 
   private adjustVisibilityAndPosition() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     if (!editor) {
       return;
     }

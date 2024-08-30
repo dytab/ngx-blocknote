@@ -7,10 +7,11 @@
     class="w-[30px] h-[30px]"
     [brnMenuTriggerFor]="menu"
     hlmTooltipTrigger
+    aria-describedby="create-link-tooltip"
   >
     <hlm-icon size="sm" name="lucideLink" />
   </button>
-  <span *brnTooltipContent class="text-center">
+  <span *brnTooltipContent class="text-center" id="create-link-tooltip">
     <p>{{ dict.formatting_toolbar.link.tooltip }}</p>
     <p class="text-xs">
       {{ dict.formatting_toolbar.link.secondary_tooltip }}

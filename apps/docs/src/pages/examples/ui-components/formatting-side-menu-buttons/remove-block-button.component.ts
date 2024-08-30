@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
-import {
-  BlockNoteAngularService,
-} from '@dytab/ngx-blocknote';
+import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
+import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
-import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 
 @Component({
   selector: 'bna-remove-block-button',
@@ -20,9 +18,9 @@ import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 })
 export class RemoveBlockButtonComponent {
   block?: Block;
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
-      const editor = blockNoteAngularService.editor();
+      const editor = ngxBlockNoteService.editor();
       if (!editor) {
         return;
       }
@@ -33,10 +31,10 @@ export class RemoveBlockButtonComponent {
   }
 
   deleteBlock() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     if (!editor || !this.block) {
       return;
     }
-    this.blockNoteAngularService.editor()!.removeBlocks([this.block]);
+    this.ngxBlockNoteService.editor()!.removeBlocks([this.block]);
   }
 }

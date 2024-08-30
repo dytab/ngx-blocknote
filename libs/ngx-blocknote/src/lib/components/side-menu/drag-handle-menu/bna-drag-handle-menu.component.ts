@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockNoteAngularService } from '../../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
@@ -47,20 +47,20 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent {
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   openDragMenu() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     editor.sideMenu.freezeMenu();
   }
 
   dragStart($event: DragEvent) {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     editor.sideMenu.blockDragStart($event);
   }
 
   dragEnd() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     editor.sideMenu.blockDragEnd();
   }
 }

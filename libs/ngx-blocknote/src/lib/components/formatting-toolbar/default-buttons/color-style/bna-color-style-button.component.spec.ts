@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../../services';
 import { BnaColorStyleButtonComponent } from './bna-color-style-button.component';
 
 describe('BnaColorStyleButtonComponent', () => {
@@ -7,7 +8,7 @@ describe('BnaColorStyleButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaColorStyleButtonComponent],
+      imports: [BnaColorStyleButtonComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaColorStyleButtonComponent);

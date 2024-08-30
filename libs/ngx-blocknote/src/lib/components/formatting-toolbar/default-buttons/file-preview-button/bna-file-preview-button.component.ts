@@ -1,17 +1,17 @@
-import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { showFileBlock } from '../../../../util/show-file-block.util';
-import { fileBlock } from '../../../../util/file-block.util';
+import { Component, computed } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
+import { lucideImagePlus } from '@ng-icons/lucide';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
-import { lucideImagePlus } from '@ng-icons/lucide';
-import { provideIcons } from '@ng-icons/core';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { fileBlock } from '../../../../util/file-block.util';
+import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-preview-button',
@@ -34,23 +34,19 @@ import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 export class BnaFilePreviewButtonComponent {
   fileBlock = computed(() => {
     return fileBlock(
-      this.blockNoteAngularService.editor(),
-      this.blockNoteAngularService.selectedBlocks()
+      this.ngxBlockNoteService.editor(),
+      this.ngxBlockNoteService.selectedBlocks()
     );
   });
   _visibilityClass = computed(() => {
-    return showFileBlock(
-      this.blockNoteAngularService.editor(),
-      this.fileBlock()
-    );
+    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });
-  dict = this.blockNoteAngularService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor().dictionary;
 
-
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   togglePreview() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return;

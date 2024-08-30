@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlockNoteAngularService } from '../../../../services';
+import { NgxBlockNoteTestingModule } from '../../../../services';
 import { BnaBlockTypeSelectComponent } from './bna-block-type-select.component';
 
 describe('BnaBlockTypeSelectComponent', () => {
@@ -8,8 +8,7 @@ describe('BnaBlockTypeSelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaBlockTypeSelectComponent],
-      providers: [BlockNoteAngularService],
+      imports: [BnaBlockTypeSelectComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaBlockTypeSelectComponent);

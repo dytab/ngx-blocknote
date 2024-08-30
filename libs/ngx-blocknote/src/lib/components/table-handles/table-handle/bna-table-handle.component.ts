@@ -15,7 +15,7 @@ import { provideIcons } from '@ng-icons/core';
 import { lucideGripHorizontal, lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import { TableHandleOptions } from '../../../interfaces/table-handle-options.type';
-import { BlockNoteAngularService } from '../../../services';
+import { NgxBlocknoteService } from '../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 import { BnaTableHandleMenuComponent } from '../table-handle-menu/bna-table-handle-menu.component';
 
@@ -62,7 +62,7 @@ export class BnaTableHandleComponent {
       if (!clickedInside) {
         this.isMenuOpened = false;
         this.options().showOtherHandle();
-        this.blockNoteAngularService.editor().tableHandles!.unfreezeHandles();
+        this.ngxBlockNoteService.editor().tableHandles!.unfreezeHandles();
       }
     }
   }
@@ -74,7 +74,7 @@ export class BnaTableHandleComponent {
   button = viewChild<ElementRef<HTMLElement>>('button');
   menu = viewChild<ElementRef<HTMLElement>>('menu');
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
     effect(async () => {
       const button = this.button()?.nativeElement;
       const menu = this.menu()?.nativeElement;
@@ -102,7 +102,7 @@ export class BnaTableHandleComponent {
 
   openMenu(event: MouseEvent) {
     event.stopPropagation();
-    const tableHandles = this.blockNoteAngularService.editor().tableHandles;
+    const tableHandles = this.ngxBlockNoteService.editor().tableHandles;
     if (!tableHandles) {
       return;
     }

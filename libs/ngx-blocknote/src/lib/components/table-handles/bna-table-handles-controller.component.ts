@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { TableHandlesState } from '@blocknote/core/types/src/extensions/TableHandles/TableHandlesPlugin';
 import { TableHandleOptions } from '../../interfaces/table-handle-options.type';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { BnaTableHandleComponent } from './table-handle/bna-table-handle.component';
 import { useTableHandlesPositioning } from './use-table-handles-positioning.util';
 
@@ -67,7 +67,7 @@ export class BnaTableHandlesController implements AfterViewInit {
   });
 
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
@@ -135,7 +135,7 @@ export class BnaTableHandlesController implements AfterViewInit {
     this.toggleVisibility(false);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     editor.tableHandles?.onUpdate(async (tableHandles) => {
       this.tableHandles.set(tableHandles);
       const options: TableHandleOptions = {

@@ -6,11 +6,12 @@
     variant="ghost"
     class="w-[30px] h-[30px]"
     hlmTooltipTrigger
+    aria-describedby="file-rename-tooltip"
     [brnMenuTriggerFor]="menu"
   >
     A
   </button>
-  <span *brnTooltipContent class="text-center">
+  <span *brnTooltipContent class="text-center" id="file-rename-tooltip">
     <p>{{ tooltip() }}</p>
   </span>
   <ng-template #menu>

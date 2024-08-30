@@ -1,6 +1,6 @@
 import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
@@ -9,7 +9,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 })
 export class BnaSideMenuControllerDirective {
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private ngxBlockNoteService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
@@ -22,7 +22,7 @@ export class BnaSideMenuControllerDirective {
     let cleanup: () => void = () => {
       return;
     };
-    const editorSnapshot = this.blockNoteAngularService.editor();
+    const editorSnapshot = this.ngxBlockNoteService.editor();
     if (!editorSnapshot) {
       return;
     }
@@ -34,9 +34,7 @@ export class BnaSideMenuControllerDirective {
         cleanup();
       } else {
         //TODO: remove this and use editor directly
-        this.blockNoteAngularService.sideMenuFocusedBlock.set(
-          sideMenuState.block
-        );
+        this.ngxBlockNoteService.sideMenuFocusedBlock.set(sideMenuState.block);
         const updatePosition = async () => {
           const result = await computePosition(
             getVirtualElement(sideMenuState.referencePos),

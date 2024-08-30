@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services';
+import { NgxBlocknoteService } from '../../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 
@@ -25,12 +25,10 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 })
 export class BnaOpenLinkComponent {
   url?: string;
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService
-      .editor()
-      .linkToolbar.onUpdate((linkToolbar) => {
-        this.url = linkToolbar.url;
-      });
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
+      this.url = linkToolbar.url;
+    });
   }
 
   goToUrl() {

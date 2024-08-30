@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { TableContent } from '@blocknote/core';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
-import { BlockNoteAngularService } from '../../../../../services';
+import { NgxBlocknoteService } from '../../../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
 
 @Component({
@@ -14,7 +14,7 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
 })
 export class BnaDeleteButtonComponent {
   options = input.required<TableHandleOptions>();
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   deleteColumn() {
     const { editor, block, index } = this.getProperties('column');
@@ -59,7 +59,7 @@ export class BnaDeleteButtonComponent {
   }
 
   private getProperties(orientation: 'row' | 'column') {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const options = this.options();
     const block = options.tableHandles.block;
 

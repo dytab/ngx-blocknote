@@ -1,23 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { ColorOptions } from '../../../../interfaces/color-options.type';
-import { BlockNoteAngularService } from '../../../../services';
-import {
-  HlmButtonDirective,
-  HlmIconComponent,
-  HlmMenuComponent,
-  HlmMenuGroupComponent, HlmTooltipComponent, HlmTooltipTriggerDirective
-} from '../../../../ui';
-import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
-import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
-import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 import {
   BlockNoteEditor,
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
+import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { ColorOptions } from '../../../../interfaces/color-options.type';
+import { NgxBlocknoteService } from '../../../../services';
+import {
+  HlmButtonDirective,
+  HlmIconComponent,
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
+} from '../../../../ui';
+import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
+import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
+import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 
 function checkColorInSchema<Color extends 'text' | 'background'>(
   color: Color,
@@ -71,8 +73,8 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
 })
 export class BnaColorStyleButtonComponent {
   _visibilityClass = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const editor = this.ngxBlockNoteService.editor();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const textColorInSchema = checkColorInSchema('text', editor);
     const backgroundColorInSchema = checkColorInSchema('background', editor);
     if (!textColorInSchema && !backgroundColorInSchema) {
@@ -87,16 +89,16 @@ export class BnaColorStyleButtonComponent {
   });
 
   options: ColorOptions = this.getOptions();
-  dict = this.blockNoteAngularService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService.editor().onSelectionChange(() => {
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    this.ngxBlockNoteService.editor().onSelectionChange(() => {
       this.options = this.getOptions();
     });
   }
 
   private getOptions(): ColorOptions {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     return {
       text: {
         color: editor.getActiveStyles().textColor || 'default',

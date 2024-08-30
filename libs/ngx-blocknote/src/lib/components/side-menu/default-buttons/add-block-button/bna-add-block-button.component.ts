@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 @Component({
@@ -14,9 +14,9 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
   providers: [provideIcons({ lucidePlus })],
 })
 export class BnaAddBlockButtonComponent {
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   addNewBlock() {
-    this.blockNoteAngularService.editor()?.sideMenu.addBlock();
+    this.ngxBlockNoteService.editor()?.sideMenu.addBlock();
   }
 }

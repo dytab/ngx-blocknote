@@ -1,7 +1,7 @@
 import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
 import { LinkToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
@@ -10,7 +10,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 })
 export class BnaLinkToolbarControllerDirective {
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
@@ -26,7 +26,7 @@ export class BnaLinkToolbarControllerDirective {
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
     this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     editor.linkToolbar.onUpdate(async (linkToolbar) => {
       if (!linkToolbar.show) {
         cleanup();

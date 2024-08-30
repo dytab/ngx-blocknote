@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideUnlink } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 @Component({
@@ -18,9 +18,9 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
   ],
 })
 export class BnaDeleteLinkComponent {
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   unlink() {
-    this.blockNoteAngularService.editor().linkToolbar.deleteLink();
+    this.ngxBlockNoteService.editor().linkToolbar.deleteLink();
   }
 }

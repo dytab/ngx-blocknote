@@ -17,7 +17,7 @@ import {
 } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
-import { BlockNoteAngularService } from '../../../../services';
+import { NgxBlocknoteService } from '../../../../services';
 import {
   HlmButtonDirective,
   HlmIconComponent,
@@ -26,10 +26,10 @@ import {
   HlmMenuItemCheckboxDirective,
   HlmMenuItemCheckComponent,
 } from '../../../../ui';
+import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
 import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
-import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
 @Component({
   selector: 'bna-block-type-selection-button',
@@ -69,7 +69,7 @@ import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-c
 })
 export class BnaBlockTypeSelectComponent {
   _visibilityClass = computed(() => {
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const firstBlock = selectedBlocks[0];
     const filteredBlockTypes = this.filteredBlockTypes();
     const hasItem =
@@ -81,7 +81,7 @@ export class BnaBlockTypeSelectComponent {
     defaultBlockTypeSelectItems
   );
   filteredBlockTypes = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const dict = editor.dictionary;
     const blockTypeSelectItems = this.blockTypeSelectItems();
     return blockTypeSelectItems(dict).filter(
@@ -90,12 +90,12 @@ export class BnaBlockTypeSelectComponent {
   });
   currentBlockType = signal<BlockTypeSelectItem | undefined>(undefined);
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
     this.updateCurrentBlockTypeOnChanges();
   }
 
   private updateCurrentBlockTypeOnChanges() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     useEditorContentOrSelectionChange(() => {
       this.currentBlockType.set(
         this.filteredBlockTypes().find((a) =>
@@ -109,8 +109,8 @@ export class BnaBlockTypeSelectComponent {
     type: string,
     props?: Record<string, boolean | number | string> | undefined
   ) {
-    const editor = this.blockNoteAngularService.editor();
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const editor = this.ngxBlockNoteService.editor();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     editor.focus();
     for (const block of selectedBlocks) {
       editor.updateBlock(block, {

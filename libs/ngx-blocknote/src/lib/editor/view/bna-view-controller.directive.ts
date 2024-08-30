@@ -1,5 +1,5 @@
 import { Directive, effect, ElementRef } from '@angular/core';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Directive({
   selector: 'bna-view-controller',
@@ -7,11 +7,11 @@ import { BlockNoteAngularService } from '../../services/block-note-angular.servi
 })
 export class BnaViewControllerDirective {
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>
   ) {
     effect(() => {
-      const editorSnapshot = this.blockNoteAngularService.editor();
+      const editorSnapshot = this.ngxBlockNoteService.editor();
       if (!editorSnapshot) {
         return;
       }

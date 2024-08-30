@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../services';
 import { BnaTableHandlesController } from './bna-table-handles-controller.component';
 
 describe('BnaTableHandlesController', () => {
@@ -7,7 +8,7 @@ describe('BnaTableHandlesController', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaTableHandlesController],
+      imports: [BnaTableHandlesController, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaTableHandlesController);

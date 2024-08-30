@@ -6,14 +6,15 @@ import {
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 import { ColorOptions } from '../../../../../interfaces/color-options.type';
-import { BlockNoteAngularService } from '../../../../../services';
+import { NgxBlocknoteService } from '../../../../../services';
 import {
   HlmButtonDirective,
   HlmMenuComponent,
-  HlmMenuGroupComponent, HlmMenuItemDirective
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
 } from '../../../../../ui';
+import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-color-icon.component';
 
@@ -35,12 +36,12 @@ import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-c
 })
 export class BnaBlockColorStyleComponent {
   selectedBlocks = signal<Block[]>(
-    useSelectedBlocks(this.blockNoteAngularService.editor())
+    useSelectedBlocks(this.ngxBlockNoteService.editor())
   );
   options = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const sideMenuFocusedBlock =
-      this.blockNoteAngularService.sideMenuFocusedBlock();
+      this.ngxBlockNoteService.sideMenuFocusedBlock();
     let selectedBlocks = this.selectedBlocks();
     if (
       sideMenuFocusedBlock &&
@@ -104,10 +105,10 @@ export class BnaBlockColorStyleComponent {
     return colorOptions;
   });
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService.editor().onSelectionChange(() => {
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    this.ngxBlockNoteService.editor().onSelectionChange(() => {
       //Update selected blocks, when selection changes, so that we change the color of all selected blocks
-      const selected = useSelectedBlocks(this.blockNoteAngularService.editor());
+      const selected = useSelectedBlocks(this.ngxBlockNoteService.editor());
       this.selectedBlocks.set(selected);
     });
   }

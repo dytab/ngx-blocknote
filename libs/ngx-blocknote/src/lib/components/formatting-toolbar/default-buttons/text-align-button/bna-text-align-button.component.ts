@@ -11,7 +11,8 @@ import {
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
@@ -19,7 +20,6 @@ import {
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 const icons = {
   left: 'lucideAlignLeft',
@@ -55,7 +55,7 @@ export class BnaTextAlignButtonComponent {
     return icons[this.alignment()];
   });
   _visibilityClass = computed(() => {
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     // Also don't show when none of the selected blocks have text content
     return selectedBlocks.find((block) => 'textAlignment' in block.props)
       ? ''
@@ -63,7 +63,7 @@ export class BnaTextAlignButtonComponent {
   });
   alignmentBlock = signal<Block<any, any, any> | undefined>(undefined);
   hasAlignment = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const block = this.alignmentBlock();
     if (!block) {
       return false;
@@ -75,26 +75,26 @@ export class BnaTextAlignButtonComponent {
   });
 
   textAlignDict = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     return editor.dictionary.formatting_toolbar[`align_${this.alignment()}`];
   });
 
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     this.updateAlignmentOnContentOrSelectionChange();
   }
 
   private updateAlignmentOnContentOrSelectionChange() {
     useEditorContentOrSelectionChange(() => {
       this.alignmentBlock.set(
-        this.blockNoteAngularService.editor().getTextCursorPosition().block
+        this.ngxBlockNoteService.editor().getTextCursorPosition().block
       );
-    }, this.blockNoteAngularService.editor());
+    }, this.ngxBlockNoteService.editor());
   }
 
   toggleAlignment(textAlignment: Alignments) {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     editor.focus();
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     for (const block of selectedBlocks) {
       if (checkBlockTypeHasDefaultProp('textAlignment', block.type, editor)) {
         editor.updateBlock(block, {

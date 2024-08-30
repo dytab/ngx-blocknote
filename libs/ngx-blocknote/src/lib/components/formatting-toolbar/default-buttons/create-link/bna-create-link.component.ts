@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
+import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmMenuComponent,
-  HlmMenuGroupComponent, HlmTooltipComponent, HlmTooltipTriggerDirective
+  HlmMenuGroupComponent,
+  HlmTooltipComponent,
+  HlmTooltipTriggerDirective,
 } from '../../../../ui';
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
-import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 
 function checkLinkInSchema(
   editor: BlockNoteEditor<any, any, any>
@@ -20,16 +22,16 @@ function checkLinkInSchema(
   BlockSchema,
   {
     link: {
-      type: "link";
+      type: 'link';
       propSchema: any;
-      content: "styled";
+      content: 'styled';
     };
   },
   StyleSchema
 > {
   return (
-    "link" in editor.schema.inlineContentSchema &&
-    editor.schema.inlineContentSchema["link"] === "link"
+    'link' in editor.schema.inlineContentSchema &&
+    editor.schema.inlineContentSchema['link'] === 'link'
   );
 }
 
@@ -61,8 +63,8 @@ function checkLinkInSchema(
 })
 export class BnaCreateLinkComponent {
   _visibilityClass = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const editor = this.ngxBlockNoteService.editor();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     if (!checkLinkInSchema(editor)) {
       return 'hidden';
     }
@@ -74,16 +76,16 @@ export class BnaCreateLinkComponent {
     return '';
   });
   initialValue = this.getInitialValue();
-  dict = this.blockNoteAngularService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService.editor().onSelectionChange(() => {
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    this.ngxBlockNoteService.editor().onSelectionChange(() => {
       this.initialValue = this.getInitialValue();
     });
   }
 
   private getInitialValue() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
 
     return {
       url: editor.getSelectedLinkUrl(),

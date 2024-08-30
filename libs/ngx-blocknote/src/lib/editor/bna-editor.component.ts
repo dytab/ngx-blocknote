@@ -52,7 +52,7 @@ import { BnaSuggestionsMenuComponent } from '../components/suggestions-menu';
 import { BnaSuggestionsMenuControllerDirective } from '../components/suggestions-menu/bna-suggestions-menu-controller.directive';
 import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
-import { BlockNoteAngularService } from '../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmCardDirective,
@@ -121,7 +121,7 @@ type InitialContent<
     BnaFilePreviewButtonComponent,
   ],
   providers: [
-    BlockNoteAngularService,
+    NgxBlocknoteService,
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => BnaEditorComponent),
@@ -154,7 +154,7 @@ export class BnaEditorComponent<
   set editor(editor: BlockNoteEditor<BSchema, ISchema, SSchema>) {
     this._editor = editor;
     this.hasCustomEditor = true;
-    this.blockNoteAngularService.setEditor(editor);
+    this.ngxBlockNoteService.setEditor(editor);
     this.createEditorListeners(editor);
   }
 
@@ -167,8 +167,8 @@ export class BnaEditorComponent<
 
   firstTimeInitialized = false;
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService.setEditor(this.editor);
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    this.ngxBlockNoteService.setEditor(this.editor);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
@@ -197,7 +197,7 @@ export class BnaEditorComponent<
       this.onEditorReady.emit(this.editor);
       this.firstTimeInitialized = true;
 
-      this.blockNoteAngularService.setOptions(this.options ?? {});
+      this.ngxBlockNoteService.setOptions(this.options ?? {});
     }
 
     if (!changes['options'] && !this.firstTimeInitialized) {
@@ -240,7 +240,7 @@ export class BnaEditorComponent<
       initialContent: initialContent,
       uploadFile: this.options?.uploadFile,
     });
-    this.blockNoteAngularService.setEditor(editor);
+    this.ngxBlockNoteService.setEditor(editor);
     this.createEditorListeners(editor);
     return editor;
   }
@@ -260,7 +260,7 @@ export class BnaEditorComponent<
 
     useEditorContentOrSelectionChange(() => {
       const selectedBlocks = useSelectedBlocks(editor);
-      this.blockNoteAngularService.selectedBlocks.set(selectedBlocks);
+      this.ngxBlockNoteService.selectedBlocks.set(selectedBlocks);
     }, editor);
   }
 

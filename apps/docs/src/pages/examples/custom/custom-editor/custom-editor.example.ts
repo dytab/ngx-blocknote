@@ -12,7 +12,6 @@ import {
   PartialBlock,
 } from '@blocknote/core';
 import {
-  BlockNoteAngularService,
   BlockNoteEditorOptionsType,
   BnaAddBlockButtonComponent,
   BnaDeleteBlockItemComponent,
@@ -20,14 +19,8 @@ import {
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerDirective,
+  NgxBlocknoteService,
 } from '@dytab/ngx-blocknote';
-import {
-  BrnDialogContentDirective,
-  BrnDialogDescriptionDirective,
-  BrnDialogTitleDirective,
-  BrnDialogTriggerDirective,
-} from '@spartan-ng/ui-dialog-brain';
-import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
 import {
   HlmButtonDirective,
   HlmCheckboxComponent,
@@ -37,6 +30,13 @@ import {
   HlmDialogHeaderComponent,
   HlmInputDirective,
 } from '@dytab/ui';
+import {
+  BrnDialogContentDirective,
+  BrnDialogDescriptionDirective,
+  BrnDialogTitleDirective,
+  BrnDialogTriggerDirective,
+} from '@spartan-ng/ui-dialog-brain';
+import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
 import { alertBlock } from '../alert-block/alert-block';
 
 const schema = BlockNoteSchema.create({
@@ -73,7 +73,7 @@ const schema = BlockNoteSchema.create({
     ReactiveFormsModule,
     HlmInputDirective,
   ],
-  providers: [BlockNoteAngularService],
+  providers: [NgxBlocknoteService],
   template: `
     <bna-editor
       [initialContent]="initialContent"

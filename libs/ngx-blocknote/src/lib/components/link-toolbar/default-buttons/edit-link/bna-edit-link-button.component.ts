@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockNoteAngularService } from '../../../../services';
+import { NgxBlocknoteService } from '../../../../services';
 import {
   HlmButtonDirective,
   HlmMenuComponent,
@@ -26,11 +26,9 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 export class BnaEditLinkButtonComponent {
   initialValue: Partial<{ text: string; url: string }> = {};
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    this.blockNoteAngularService
-      .editor()
-      .linkToolbar.onUpdate((linkToolbar) => {
-        this.initialValue = { text: linkToolbar.text, url: linkToolbar.url };
-      });
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
+      this.initialValue = { text: linkToolbar.text, url: linkToolbar.url };
+    });
   }
 }

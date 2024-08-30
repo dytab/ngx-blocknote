@@ -6,7 +6,7 @@ import {
   offset,
   size,
 } from '@floating-ui/dom';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Directive({
@@ -16,7 +16,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 export class BnaSuggestionsMenuControllerDirective {
   @Input({ required: true }) triggerCharacter = '/';
   constructor(
-    private blockNoteEditorService: BlockNoteAngularService,
+    private blockNoteEditorService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {

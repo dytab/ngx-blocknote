@@ -6,11 +6,12 @@
     variant="ghost"
     class="w-[30px] h-[30px]"
     hlmTooltipTrigger
+    aria-describedby="file-delete-tooltip"
     (click)="deleteFile()"
   >
     <hlm-icon size="sm" name="lucideTrash" />
   </button>
-  <span *brnTooltipContent class="text-center">
+  <span *brnTooltipContent class="text-center" id="file-delete-tooltip">
     <p>{{ tooltip() }}</p>
   </span>
 </hlm-tooltip>

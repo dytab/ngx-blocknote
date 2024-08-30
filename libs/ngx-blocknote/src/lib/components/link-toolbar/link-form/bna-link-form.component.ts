@@ -10,7 +10,7 @@ import {
 import { provideIcons } from '@ng-icons/core';
 import { lucideLink, lucideType } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockNoteAngularService } from '../../../services';
+import { NgxBlocknoteService } from '../../../services';
 import {
   HlmIconComponent,
   HlmInputDirective,
@@ -51,7 +51,7 @@ export class BnaLinkFormComponent implements OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
-    private blockNoteAngularService: BlockNoteAngularService
+    private ngxBlockNoteService: NgxBlocknoteService
   ) {}
 
   ngOnChanges() {
@@ -59,7 +59,7 @@ export class BnaLinkFormComponent implements OnChanges {
   }
 
   submit() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     if (this.form.invalid) {
       return;
     }

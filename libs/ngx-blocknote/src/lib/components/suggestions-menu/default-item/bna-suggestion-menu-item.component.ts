@@ -17,7 +17,7 @@ import {
   lucideVideo,
 } from '@ng-icons/lucide';
 import { SuggestionItem } from '../../../interfaces/suggestion-item.type';
-import { BlockNoteAngularService } from '../../../services';
+import { NgxBlocknoteService } from '../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 
 const icons: Record<string, string> = {
@@ -72,12 +72,12 @@ export class BnaSuggestionMenuItemComponent {
   selected = input<boolean>(false);
   mouseEnter = output();
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   onClick() {
-    this.blockNoteAngularService.editor().suggestionMenus.clearQuery();
+    this.ngxBlockNoteService.editor().suggestionMenus.clearQuery();
     this.suggestionItem().onItemClick();
-    this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
+    this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
   }
 
   onMouseEnter() {

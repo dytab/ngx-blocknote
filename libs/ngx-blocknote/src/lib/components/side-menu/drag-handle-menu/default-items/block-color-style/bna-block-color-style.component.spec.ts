@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../../../services';
 import { BnaBlockColorStyleComponent } from './bna-block-color-style.component';
 
 describe('BnaBlockColorStyleComponent', () => {
@@ -7,7 +8,7 @@ describe('BnaBlockColorStyleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaBlockColorStyleComponent],
+      imports: [BnaBlockColorStyleComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaBlockColorStyleComponent);

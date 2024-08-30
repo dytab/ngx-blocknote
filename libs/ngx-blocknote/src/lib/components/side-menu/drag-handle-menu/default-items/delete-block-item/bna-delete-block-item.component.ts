@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
-import { BlockNoteAngularService } from '../../../../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
 import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../../ui';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
@@ -18,9 +18,9 @@ import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 export class BnaDeleteBlockItemComponent {
   dragBlock?: Block<any, any, any>;
 
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
-      const editor = blockNoteAngularService.editor();
+      const editor = ngxBlockNoteService.editor();
       if (!editor) {
         return;
       }
@@ -31,14 +31,14 @@ export class BnaDeleteBlockItemComponent {
   }
 
   deleteBlock() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const sideMenuFocusedBlock =
-      this.blockNoteAngularService.sideMenuFocusedBlock();
-    let selectedBlocks = useSelectedBlocks(editor)
+      this.ngxBlockNoteService.sideMenuFocusedBlock();
+    let selectedBlocks = useSelectedBlocks(editor);
     if (
       sideMenuFocusedBlock &&
       selectedBlocks.find((block) => block.id === sideMenuFocusedBlock.id) ===
-      undefined
+        undefined
     ) {
       //the current block where the side menu is opened is not in selection, then use this instead of selection
       selectedBlocks = [sideMenuFocusedBlock as Block];

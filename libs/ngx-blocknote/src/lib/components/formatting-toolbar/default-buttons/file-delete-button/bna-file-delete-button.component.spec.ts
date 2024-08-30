@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../../services';
 import { BnaFileDeleteButtonComponent } from './bna-file-delete-button.component';
 
 describe('BnaFileDeleteButtonComponent', () => {
@@ -7,7 +8,7 @@ describe('BnaFileDeleteButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaFileDeleteButtonComponent],
+      imports: [BnaFileDeleteButtonComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaFileDeleteButtonComponent);

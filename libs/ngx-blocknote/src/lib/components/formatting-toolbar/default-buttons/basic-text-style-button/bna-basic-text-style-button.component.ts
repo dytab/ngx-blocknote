@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+} from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import {
   lucideBold,
@@ -8,19 +13,14 @@ import {
   lucideStrikethrough,
   lucideUnderline,
 } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
-import {
-  BlockNoteEditor,
-  BlockSchema,
-  InlineContentSchema,
-} from '@blocknote/core';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 import { HlmToggleDirective } from '../../../../ui/ui-toggle-helm/hlm-toggle.directive';
 
 const icons = {
@@ -86,8 +86,8 @@ export class BnaBasicTextStyleButtonComponent {
     return icons[this.basicTextStyle()];
   });
   _visibilityClass = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const editor = this.ngxBlockNoteService.editor();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const basicTextStyleInSchema = checkBasicTextStyleInSchema(
       this.basicTextStyle(),
       editor
@@ -102,23 +102,23 @@ export class BnaBasicTextStyleButtonComponent {
   });
 
   hasTextStyle = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     //needs to be here, so we update, when selectedBlocks update
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const selection = this.blockNoteAngularService.selectedBlocks();
+    const selection = this.ngxBlockNoteService.selectedBlocks();
     const style = this.basicTextStyle();
     return editor.getActiveStyles()[style];
   });
 
   basicTextStyleDict = computed(() => {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     return editor.dictionary.formatting_toolbar[this.basicTextStyle()];
   });
 
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   toggleStyle(style: BasicTextStyle) {
-    this.blockNoteAngularService.editor().focus();
-    this.blockNoteAngularService.editor()?.toggleStyles({ [style]: true });
+    this.ngxBlockNoteService.editor().focus();
+    this.ngxBlockNoteService.editor()?.toggleStyles({ [style]: true });
   }
 }

@@ -14,7 +14,7 @@ import {
   getDefaultSlashMenuItems,
 } from '@blocknote/core';
 import { SuggestionItem } from '../../interfaces/suggestion-item.type';
-import { BlockNoteAngularService } from '../../services';
+import { NgxBlocknoteService } from '../../services';
 import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-menu-item.component';
 
 @Component({
@@ -65,13 +65,13 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
   };
 
   insertSelectedBlock() {
-    this.blockNoteAngularService.editor().suggestionMenus.closeMenu();
-    this.blockNoteAngularService.editor().suggestionMenus.clearQuery();
+    this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
+    this.ngxBlockNoteService.editor().suggestionMenus.clearQuery();
     this.filteredSlashMenuItems[this.selectedIndex].onItemClick();
     this.selectedIndex = 0;
   }
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
       this.filteredSlashMenuItems = filterSuggestionItems(
         this.getSlashMenuItems(),
@@ -84,7 +84,7 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
     if (changes['triggerCharacter']) {
       //remove old update listener before adding new on change
       this.cleanUpFn();
-      this.cleanUpFn = this.blockNoteAngularService
+      this.cleanUpFn = this.ngxBlockNoteService
         .editor()
         .suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
           if (this.query() !== state.query) {
@@ -101,11 +101,11 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
   getSlashMenuItems(): (Omit<DefaultSuggestionItem, 'key'> & {
     key: string;
   })[] {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     if (!editor) {
       return [];
     }
-    const getItems = this.blockNoteAngularService.options().getSuggestionItems;
+    const getItems = this.ngxBlockNoteService.options().getSuggestionItems;
     if (getItems) {
       return [...getItems(editor)];
     }

@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../services';
 import { BnaDragHandleMenuComponent } from './bna-drag-handle-menu.component';
 
-xdescribe('DragHandleMenuComponent', () => {
+describe('DragHandleMenuComponent', () => {
   let component: BnaDragHandleMenuComponent;
   let fixture: ComponentFixture<BnaDragHandleMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaDragHandleMenuComponent],
+      imports: [BnaDragHandleMenuComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaDragHandleMenuComponent);

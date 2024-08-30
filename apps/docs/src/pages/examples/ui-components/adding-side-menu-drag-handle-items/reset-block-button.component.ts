@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
-import {
-  BlockNoteAngularService,
-} from '@dytab/ngx-blocknote';
+import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
+import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
-import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 
 @Component({
   selector: 'bna-reset-block-button',
@@ -26,9 +24,9 @@ import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
 })
 export class ResetBlockButtonComponent {
   block?: Block;
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
-      const editor = blockNoteAngularService.editor();
+      const editor = ngxBlockNoteService.editor();
       if (!editor) {
         return;
       }
@@ -39,7 +37,7 @@ export class ResetBlockButtonComponent {
   }
 
   resetBlock() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     if (!this.block) {
       return;
     }

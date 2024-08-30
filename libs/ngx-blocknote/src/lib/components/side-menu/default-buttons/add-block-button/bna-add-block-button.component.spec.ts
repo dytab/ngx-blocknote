@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../../services';
 import { BnaAddBlockButtonComponent } from './bna-add-block-button.component';
 
 describe('AddBlockButtonComponent', () => {
@@ -7,7 +8,7 @@ describe('AddBlockButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaAddBlockButtonComponent],
+      imports: [BnaAddBlockButtonComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaAddBlockButtonComponent);

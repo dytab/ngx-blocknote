@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
-import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
-import { fileBlock } from '../../../../util/file-block.util';
-import { showFileBlock } from '../../../../util/show-file-block.util';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
+import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
+import { fileBlock } from '../../../../util/file-block.util';
+import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-delete-button',
@@ -34,30 +34,27 @@ import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 export class BnaFileDeleteButtonComponent {
   fileBlock = computed(() => {
     return fileBlock(
-      this.blockNoteAngularService.editor(),
-      this.blockNoteAngularService.selectedBlocks()
+      this.ngxBlockNoteService.editor(),
+      this.ngxBlockNoteService.selectedBlocks()
     );
   });
 
   _visibilityClass = computed(() => {
-    return showFileBlock(
-      this.blockNoteAngularService.editor(),
-      this.fileBlock()
-    );
+    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });
   tooltip = computed(() => {
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return '';
     }
-    return this.blockNoteAngularService.editor().dictionary.formatting_toolbar
+    return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_delete.tooltip[fileBlock.type];
   });
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   deleteFile() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return;

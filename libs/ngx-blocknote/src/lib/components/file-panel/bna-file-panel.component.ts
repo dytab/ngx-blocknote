@@ -1,11 +1,11 @@
-import { Component, effect, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
   BlockNoteEditor,
   FileBlockConfig,
 } from '@blocknote/core';
-import { BlockNoteAngularService } from '../../services/block-note-angular.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmInputDirective,
@@ -38,8 +38,8 @@ export class BnaFilePanelComponent implements OnInit {
   embedInputText = '';
   fileControl = new FormControl();
 
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {
-    const editor = this.blockNoteAngularService.editor();
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+    const editor = this.ngxBlockNoteService.editor();
     editor.filePanel?.onUpdate(async (filePanelState) => {
       if (!filePanelState.show) {
         this.focusedBlock.set(undefined);
@@ -50,13 +50,13 @@ export class BnaFilePanelComponent implements OnInit {
   }
 
   ngOnInit() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const block = editor.getTextCursorPosition().block;
     this.focusedBlock.set(block as any);
   }
 
   async onFileInputChanged(event: Event) {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const focusedBlock = this.focusedBlock();
     if (!editor.uploadFile || !focusedBlock) {
       console.error('uploadFile was not provided in editor options');
@@ -74,7 +74,7 @@ export class BnaFilePanelComponent implements OnInit {
   }
 
   insertEmbedFile(embedFileUrl: string) {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const focusedBlock = this.focusedBlock();
     if (!focusedBlock) return;
     this.updateBlockWithEmbedFileUrl(focusedBlock, editor, embedFileUrl);

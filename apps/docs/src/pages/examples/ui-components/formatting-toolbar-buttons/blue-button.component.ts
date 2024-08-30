@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BlockNoteAngularService } from '@dytab/ngx-blocknote';
+import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
 import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
@@ -13,11 +13,11 @@ import { HlmButtonDirective } from '@dytab/ui';
     variant="ghost"
     (click)="changeToBlue()"
     [ngClass]="{
-      'bg-gray-900 text-gray-100': blockNoteAngularService.editor()
-        ? blockNoteAngularService.editor()!.getActiveStyles().textColor ===
+      'bg-gray-900 text-gray-100': ngxBlockNoteService.editor()
+        ? ngxBlockNoteService.editor()!.getActiveStyles().textColor ===
             'blue' &&
-          blockNoteAngularService.editor()!.getActiveStyles()
-            .backgroundColor === 'blue'
+          ngxBlockNoteService.editor()!.getActiveStyles().backgroundColor ===
+            'blue'
         : false
     }"
   >
@@ -26,10 +26,10 @@ import { HlmButtonDirective } from '@dytab/ui';
   styles: ``,
 })
 export class BlueButtonComponent {
-  constructor(public blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   changeToBlue() {
-    this.blockNoteAngularService.editor()?.toggleStyles({
+    this.ngxBlockNoteService.editor()?.toggleStyles({
       textColor: 'blue',
       backgroundColor: 'blue',
     });

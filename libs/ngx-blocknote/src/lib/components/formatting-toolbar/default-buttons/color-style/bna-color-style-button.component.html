@@ -6,6 +6,7 @@
   variant="ghost"
   class="w-[30px] h-[30px]"
   hlmTooltipTrigger
+  aria-describedby="color-style-tooltip"
   [brnMenuTriggerFor]="menu"
 >
   <bna-color-icon
@@ -22,7 +23,7 @@
   </hlm-menu>
 </ng-template>
 
-<span *brnTooltipContent class="text-center">
+<span *brnTooltipContent class="text-center" id="color-style-tooltip">
     <p>{{ dict.formatting_toolbar.colors.tooltip }}</p>
   </span>
 </hlm-tooltip>

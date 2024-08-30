@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlockNoteAngularService } from '../../../services';
+import { NgxBlockNoteTestingModule } from '../../../services';
 import { BnaTableHandleComponent } from './bna-table-handle.component';
 
 describe('BnaTableHandleComponent', () => {
@@ -8,11 +8,11 @@ describe('BnaTableHandleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaTableHandleComponent],
-      providers: [BlockNoteAngularService],
+      imports: [BnaTableHandleComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaTableHandleComponent);
+    fixture.componentRef.setInput('options', {});
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

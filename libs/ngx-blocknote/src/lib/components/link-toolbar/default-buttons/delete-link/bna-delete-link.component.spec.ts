@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../../services';
 import { BnaDeleteLinkComponent } from './bna-delete-link.component';
 
 describe('BnaDeleteLinkComponent', () => {
@@ -7,7 +8,7 @@ describe('BnaDeleteLinkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaDeleteLinkComponent],
+      imports: [BnaDeleteLinkComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaDeleteLinkComponent);

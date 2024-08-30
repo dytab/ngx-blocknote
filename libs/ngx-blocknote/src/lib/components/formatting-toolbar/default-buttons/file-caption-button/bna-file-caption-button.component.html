@@ -7,10 +7,11 @@
     class="w-[30px] h-[30px]"
     [brnMenuTriggerFor]="menu"
     hlmTooltipTrigger
+    aria-describedby="file-caption-tooltip"
   >
     <hlm-icon size="sm" name="lucideTextCursorInput" />
   </button>
-  <span *brnTooltipContent class="text-center">
+  <span *brnTooltipContent class="text-center" id="file-caption-tooltip">
     <p>{{ dict.formatting_toolbar.file_caption.tooltip }}</p>
   </span>
 

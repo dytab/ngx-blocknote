@@ -1,5 +1,16 @@
-import { Component, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, computed, effect } from '@angular/core';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { checkBlockIsFileBlock } from '@blocknote/core';
+import { provideIcons } from '@ng-icons/core';
+import { lucideTextCursorInput } from '@ng-icons/lucide';
+import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
   HlmIconComponent,
@@ -8,19 +19,8 @@ import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
-import { provideIcons } from '@ng-icons/core';
-import { lucideTextCursorInput } from '@ng-icons/lucide';
-import { BlockNoteAngularService } from '../../../../services/block-note-angular.service';
-import { showFileBlock } from '../../../../util/show-file-block.util';
 import { fileBlock } from '../../../../util/file-block.util';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { checkBlockIsFileBlock } from '@blocknote/core';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-caption-button',
@@ -47,23 +47,20 @@ import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 export class BnaFileCaptionButtonComponent {
   fileBlock = computed(() => {
     return fileBlock(
-      this.blockNoteAngularService.editor(),
-      this.blockNoteAngularService.selectedBlocks()
+      this.ngxBlockNoteService.editor(),
+      this.ngxBlockNoteService.selectedBlocks()
     );
   });
 
   _visibilityClass = computed(() => {
-    return showFileBlock(
-      this.blockNoteAngularService.editor(),
-      this.fileBlock()
-    );
+    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });
 
   form = this.formBuilder.group({ caption: ['', Validators.required] });
-  dict = this.blockNoteAngularService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor().dictionary;
 
   constructor(
-    private blockNoteAngularService: BlockNoteAngularService,
+    private ngxBlockNoteService: NgxBlocknoteService,
     private formBuilder: NonNullableFormBuilder
   ) {
     effect(() => {
@@ -72,8 +69,8 @@ export class BnaFileCaptionButtonComponent {
   }
 
   private patchFormValues() {
-    const editor = this.blockNoteAngularService.editor();
-    const selectedBlocks = this.blockNoteAngularService.selectedBlocks();
+    const editor = this.ngxBlockNoteService.editor();
+    const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const firstBlock = selectedBlocks[0];
     if (!firstBlock) {
       return;
@@ -84,7 +81,7 @@ export class BnaFileCaptionButtonComponent {
   }
 
   submit() {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     const caption = this.form.controls.caption.value;
     const fileBlock = this.fileBlock();
     if (!fileBlock) {

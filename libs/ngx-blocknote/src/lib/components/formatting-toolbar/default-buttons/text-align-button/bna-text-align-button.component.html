@@ -6,6 +6,7 @@
     variant="ghost"
     class="w-[30px] h-[30px]"
     hlmTooltipTrigger
+    aria-describedby="text-align-{{alignment()}}-tooltip"
     [ngClass]="{
       'bg-gray-900 text-gray-100': hasAlignment()
     }"
@@ -13,7 +14,7 @@
   >
     <hlm-icon size="sm" [name]="icon()" />
   </button>
-  <span *brnTooltipContent class="text-center">
+  <span *brnTooltipContent class="text-center" id="text-align-{{alignment()}}-tooltip">
     <p>{{ textAlignDict().tooltip }}</p>
   </span>
 </hlm-tooltip>

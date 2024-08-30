@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlockNoteAngularService } from '../../../../../services';
+import { NgxBlockNoteTestingModule } from '../../../../../services';
 import { BnaDeleteButtonComponent } from './bna-delete-button.component';
 
 describe('BnaDeleteButtonComponent', () => {
@@ -8,11 +8,11 @@ describe('BnaDeleteButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaDeleteButtonComponent],
-      providers: [BlockNoteAngularService],
+      imports: [BnaDeleteButtonComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaDeleteButtonComponent);
+    fixture.componentRef.setInput('options', {});
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,10 +7,11 @@
     class="w-[30px] h-[30px]"
     (click)="downloadFile()"
     hlmTooltipTrigger
+    aria-describedby="file-download-tooltip"
   >
     <hlm-icon size="sm" name="lucideDownload" />
   </button>
-  <span *brnTooltipContent class="text-center">
+  <span *brnTooltipContent class="text-center"  id="file-download-tooltip">
     <p>{{ tooltip() }}</p>
   </span>
 </hlm-tooltip>

@@ -4,7 +4,7 @@ import { TableContent } from '@blocknote/core';
 import type { InlineContentSchema } from '@blocknote/core/src/schema/inlineContent/types';
 import type { StyleSchema } from '@blocknote/core/src/schema/styles/types';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
-import { BlockNoteAngularService } from '../../../../../services';
+import { NgxBlocknoteService } from '../../../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
 
 @Component({
@@ -16,7 +16,7 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
 })
 export class BnaAddButtonComponent {
   options = input.required<TableHandleOptions>();
-  constructor(private blockNoteAngularService: BlockNoteAngularService) {}
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   addColumn(side: 'right' | 'left') {
     const { editor, block, index } = this.getProperties('column');
@@ -69,7 +69,7 @@ export class BnaAddButtonComponent {
   }
 
   private getProperties(orientation: 'row' | 'column') {
-    const editor = this.blockNoteAngularService.editor();
+    const editor = this.ngxBlockNoteService.editor();
     //TODO: get the block
     const options = this.options();
     const block = options.tableHandles.block;

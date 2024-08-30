@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import {
   Block,
   BlockNoteEditor,
@@ -12,7 +12,7 @@ import {
 import { BlockNoteEditorOptionsType } from '../interfaces';
 
 @Injectable()
-export class BlockNoteAngularService<
+export class NgxBlocknoteService<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
   SSchema extends StyleSchema = DefaultStyleSchema

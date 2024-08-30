@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxBlockNoteTestingModule } from '../../../../services';
 import { BnaFilePreviewButtonComponent } from './bna-file-preview-button.component';
 
 describe('BnaFilePreviewButtonComponent', () => {
@@ -7,7 +8,7 @@ describe('BnaFilePreviewButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaFilePreviewButtonComponent],
+      imports: [BnaFilePreviewButtonComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaFilePreviewButtonComponent);
