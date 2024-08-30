@@ -1,3 +1,14 @@
+# 1.0.0 (2024-08-30)
+
+
+### 🩹 Fixes
+
+- do not rebuild editor, on custom editor ([a6b3d3f](https://github.com/dytab/ngx-blocknote/commit/a6b3d3f))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 0.20.0 (2024-08-28)
 
 
