@@ -139,9 +139,9 @@ export class ApiContentBlockExample {
   @Input() editor?: BlockNoteEditor<typeof schema.blockSchema>;
 
   formGroup = new FormGroup({
-    name: new FormControl(this.block?.props.name),
-    age: new FormControl(this.block?.props.age),
-    address: new FormControl(this.block?.props.address),
+    name: new FormControl(this.block?.props['name']),
+    age: new FormControl(this.block?.props['age']),
+    address: new FormControl(this.block?.props['address']),
   });
 
   initialContent: PartialBlock<typeof schema.blockSchema>[] = [

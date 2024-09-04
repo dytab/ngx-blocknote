@@ -2,85 +2,56 @@
   "name": "docs",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "docs",
-  "sourceRoot": "apps/docs/src",
-  "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/docs",
-        "index": "apps/docs/src/index.html",
-        "browser": "apps/docs/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/docs/tsconfig.app.json",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "apps/docs/public"
-          }
-        ],
-        "styles": [
-          "apps/docs/src/styles/styles.css"
-        ],
-        "scripts": [],
-        "server": "apps/docs/src/main.server.ts",
-        "prerender": true,
-        "ssr": false
-      },
+      "executor": "@analogjs/platform:vite",
+      "defaultConfiguration": "production",
       "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "1.5mb",
-              "maximumError": "2mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all",
-          "baseHref": "/ngx-blocknote/"
-        },
         "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
+          "mode": "development"
+        },
+        "production": {
+          "sourcemap": false,
+          "mode": "production"
         }
       },
-      "defaultConfiguration": "production"
+      "outputs": [
+        "{options.outputPath}",
+        "{workspaceRoot}/dist/apps/docs/.nitro",
+        "{workspaceRoot}/dist/apps/docs/ssr",
+        "{workspaceRoot}/dist/apps/docs/analog"
+      ],
+      "options": {
+        "main": "apps/docs/src/main.ts",
+        "configFile": "apps/docs/vite.config.ts",
+        "outputPath": "dist/apps/docs/client",
+        "tsConfig": "apps/docs/tsconfig.app.json"
+      }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@analogjs/platform:vite-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "docs:build",
+        "port": 4200
+      },
       "configurations": {
+        "development": {
+          "buildTarget": "docs:build:development",
+          "hmr": true
+        },
         "production": {
           "buildTarget": "docs:build:production"
-        },
-        "development": {
-          "buildTarget": "docs:build:development"
         }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "docs:build"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/docs/jest.config.ts"
-      }
+      "executor": "@analogjs/vitest-angular:test",
+      "outputs": [
+        "{projectRoot}/coverage"
+      ]
     }
-  }
+  },
+  "tags": [],
+  "sourceRoot": "./apps/docs/src"
 }

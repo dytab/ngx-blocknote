@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
-import { ExamplesPage } from '../pages/examples/examples.page';
-import { exampleLinks } from '../pages/examples/shared/examples';
-import { OverviewPage } from '../pages/overview.page';
+import { ExamplesPage } from './pages/examples/examples.page';
+import { exampleLinks } from './pages/examples/shared/examples';
+import { OverviewPage } from './pages/overview.page';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
