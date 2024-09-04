@@ -12,7 +12,7 @@ describe('BnaTableHandleComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaTableHandleComponent);
-    fixture.componentRef.setInput('options', {});
+    fixture.componentRef.setInput('options', {orientation:'row'});
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,6 +5,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "dependencies": {
     "@floating-ui/dom": "^1.6.8",
     "@ng-icons/core": "^25.1.0",
@@ -22,14 +23,15 @@
   "devDependencies": {
     "@nx/angular": "^19.0.0",
     "@testing-library/angular": "^17.0.0",
-    "jest-preset-angular": "^14.0.0"
+    "jest-preset-angular": "^14.0.0",
+    "vite": "^5.0.0",
+    "@analogjs/vite-plugin-angular": "^1.7.3"
   },
   "peerDependencies": {
     "@angular/cdk": "^18.0.0",
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
     "@angular/forms": "^18.0.0",
-    "@angular/platform-browser": "^18.0.0",
     "@blocknote/core": ">=0.14.0 <0.16.0"
   },
   "peerDependenciesMeta": {

@@ -20,7 +20,9 @@
             "ignoredDependencies": [
               "@testing-library/angular",
               "jest-preset-angular",
-              "@nx/angular"
+              "@nx/angular",
+              "vite",
+              "@analogjs/vite-plugin-angular"
             ], // these libs will be omitted from checks
             "ignoredFiles": ["tailwind.config.js"], // list of files that should be skipped for check
             "includeTransitiveDependencies": true, // collect dependencies transitively from children
