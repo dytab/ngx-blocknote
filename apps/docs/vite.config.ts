@@ -1,17 +1,17 @@
 /// <reference types="vitest" />
 
 import analog from '@analogjs/platform';
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
     root: __dirname,
-    cacheDir: `../node_modules/.vite`,
+    cacheDir: `../../node_modules/.vite`,
 
     build: {
-      outDir: '../dist/./apps/docs/client',
+      outDir: '../../dist/apps/docs/client',
       reportCompressedSize: true,
       target: ['es2020'],
     },
