@@ -35,12 +35,11 @@ export class BnaSuggestionsMenuControllerDirective {
       return;
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
-    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
+    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     this.renderer2.addClass(this.elRef.nativeElement, 'flex');
     editor.suggestionMenus.onUpdate(
       this.triggerCharacter,
       async (suggestionMenuState) => {
-        console.log(suggestionMenuState);
         if (!suggestionMenuState.show) {
           cleanup();
         } else {
@@ -49,6 +48,7 @@ export class BnaSuggestionsMenuControllerDirective {
               getVirtualElement(suggestionMenuState.referencePos),
               this.elRef.nativeElement,
               {
+                strategy:'fixed',
                 placement: 'bottom-start',
                 middleware: [
                   offset(10),

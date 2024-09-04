@@ -51,7 +51,8 @@ export class BnaFormattingToolbarControllerDirective {
         this.elRef.nativeElement,
         {
           placement: 'top',
-          middleware: [flip(), offset(15)],
+          strategy:'fixed',
+          middleware: [flip(), offset( 15)],
         }
       );
       this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
