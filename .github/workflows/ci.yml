@@ -26,8 +26,11 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - name: lint & test & build
-        run: npx nx affected -t lint test build --output-style=static
+      - name: lint & test
+        run: npx nx affected -t lint test
+
+      - name: build
+        run: npx nx run-many -t build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
