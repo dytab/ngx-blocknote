@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: 'github-pages'
-          path: 'dist/apps/docs/client'
+          path: 'dist/apps/docs/analog/public'
 
   publish-gh-pages:
     needs: main
