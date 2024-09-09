@@ -1,16 +1,8 @@
 /// <reference types="vitest" />
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import fs from 'fs';
 import analog from '@analogjs/platform';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
-const links = fs
-  .readFileSync('apps/docs/src/app/pages/examples/shared/examples.ts', 'utf-8')
-  .split('\n')
-  .filter((line: string) => line.trim().match(/url:\s*'([^']+)'/))
-  .map((line: string) => line.trim().split("url: '")[1].split("'")[0]);
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -32,11 +24,17 @@ export default defineConfig(({ mode }) => {
       analog({
         static: true,
         prerender: {
-          routes: [
-            '/',
-            '/overview',
-            ...links.map((link: string) => `/examples/${link}`),
-          ],
+          discover: true,
+          routes: ['/'],
+        },
+        nitro: {
+          logLevel: 3,
+          hooks: {
+            'prerender:generate': (route) => {
+              route.fileName = route.fileName?.replace('/ngx-blocknote', '');
+              return route;
+            },
+          },
         },
       }),
       nxViteTsPaths(),
