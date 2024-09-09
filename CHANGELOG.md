@@ -1,3 +1,14 @@
+## 1.0.1 (2024-09-09)
+
+
+### 🩹 Fixes
+
+- add support for fixed formatting toolbar and suggestion menu ([ad62b04](https://github.com/dytab/ngx-blocknote/commit/ad62b04))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 # 1.0.0 (2024-08-30)
 
 
