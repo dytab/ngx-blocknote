@@ -6,3 +6,9 @@ export * from './default-selects/block-type-select/default-block-type-select-ite
 export * from './default-selects/block-type-select/bna-block-type-select.component';
 export * from './default-buttons/create-link/bna-create-link.component';
 export * from './default-buttons/color-style/bna-color-style-button.component';
+export * from './default-buttons/file-caption-button/bna-file-caption-button.component';
+export * from './default-buttons/file-delete-button/bna-file-delete-button.component';
+export * from './default-buttons/file-preview-button/bna-file-preview-button.component';
+export * from './default-buttons/file-replace-button/bna-file-replace-button.component';
+export * from './default-buttons/file-rename-button/bna-file-rename-button.component';
+export * from './default-buttons/file-download-button/bna-file-download-button.component';
