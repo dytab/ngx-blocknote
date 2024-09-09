@@ -1,3 +1,14 @@
+## 1.0.2 (2024-09-09)
+
+
+### 🩹 Fixes
+
+- export file formatting toolbar buttons ([6feb91f](https://github.com/dytab/ngx-blocknote/commit/6feb91f))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.0.1 (2024-09-09)
 
 
