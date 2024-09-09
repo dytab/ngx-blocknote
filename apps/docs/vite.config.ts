@@ -20,7 +20,15 @@ export default defineConfig(({ mode }) => {
         allow: ['.'],
       },
     },
-    plugins: [analog(), nxViteTsPaths(), splitVendorChunkPlugin()],
+    plugins: [
+      analog({
+        prerender: {
+          routes: ['/', '/overview', '/examples'],
+        },
+      }),
+      nxViteTsPaths(),
+      splitVendorChunkPlugin(),
+    ],
     test: {
       globals: true,
       environment: 'jsdom',
