@@ -12,7 +12,8 @@
         },
         "production": {
           "sourcemap": false,
-          "mode": "production"
+          "mode": "production",
+          "baseHref": "/ngx-blocknote/"
         }
       },
       "outputs": [
@@ -47,9 +48,7 @@
     },
     "test": {
       "executor": "@analogjs/vitest-angular:test",
-      "outputs": [
-        "{projectRoot}/coverage"
-      ]
+      "outputs": ["{projectRoot}/coverage"]
     }
   },
   "tags": [],
