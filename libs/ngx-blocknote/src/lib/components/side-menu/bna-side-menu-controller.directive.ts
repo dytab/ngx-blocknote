@@ -28,7 +28,7 @@ export class BnaSideMenuControllerDirective {
     }
     this.toggleVisibility(true);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
-    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
+    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     editorSnapshot.sideMenu.onUpdate(async (sideMenuState) => {
       if (!sideMenuState.show) {
         cleanup();
@@ -40,6 +40,7 @@ export class BnaSideMenuControllerDirective {
             getVirtualElement(sideMenuState.referencePos),
             this.elRef.nativeElement,
             {
+              strategy:'fixed',
               placement: 'left',
               middleware: [flip()],
             }

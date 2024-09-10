@@ -25,7 +25,7 @@ export class BnaLinkToolbarControllerDirective {
       return;
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
-    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
+    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     const editor = this.ngxBlockNoteService.editor();
     editor.linkToolbar.onUpdate(async (linkToolbar) => {
       if (!linkToolbar.show) {
@@ -48,6 +48,7 @@ export class BnaLinkToolbarControllerDirective {
         getVirtualElement(linkToolbar.referencePos),
         this.elRef.nativeElement,
         {
+          strategy: 'fixed',
           placement: 'top',
           middleware: [flip()],
         }

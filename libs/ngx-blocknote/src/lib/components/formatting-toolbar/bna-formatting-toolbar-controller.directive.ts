@@ -25,7 +25,7 @@ export class BnaFormattingToolbarControllerDirective {
       return;
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
-    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
+    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     const editor = this.ngxBlockNoteService.editor();
     if (editor) {
       editor.formattingToolbar.onUpdate(async (formattingToolbar) => {

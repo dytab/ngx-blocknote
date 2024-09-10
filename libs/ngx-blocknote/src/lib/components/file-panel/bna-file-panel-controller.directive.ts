@@ -28,7 +28,7 @@ export class BnaFilePanelControllerDirective {
       return;
     };
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
-    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
+    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     editor.filePanel?.onUpdate(async (filePanelState) => {
       if (!filePanelState.show) {
         cleanup();
@@ -38,6 +38,7 @@ export class BnaFilePanelControllerDirective {
             getVirtualElement(filePanelState.referencePos),
             this.elRef.nativeElement,
             {
+              strategy:'fixed',
               placement: 'bottom',
               middleware: [offset(10), flip()],
             }
