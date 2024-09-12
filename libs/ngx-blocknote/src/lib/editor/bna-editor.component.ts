@@ -199,6 +199,10 @@ export class BnaEditorComponent<
 
       this.ngxBlockNoteService.setOptions(this.options ?? {});
     }
+    //just update the options, when a custom editor is used. Suggestion menu depends on it
+    if (this.hasCustomEditor && changes['options']) {
+      this.ngxBlockNoteService.setOptions(this.options ?? {});
+    }
 
     if (!changes['options'] && !this.firstTimeInitialized) {
       this.firstTimeInitialized = true;
