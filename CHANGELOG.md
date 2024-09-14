@@ -1,3 +1,16 @@
+## 1.0.3 (2024-09-14)
+
+
+### 🩹 Fixes
+
+- use fixed instead of absolute, sow overflow:hidden does not cut editor ui components ([d1db893](https://github.com/dytab/ngx-blocknote/commit/d1db893))
+- add option to add custom suggestion items with custom editor ([5af5f3a](https://github.com/dytab/ngx-blocknote/commit/5af5f3a))
+
+### ❤️  Thank You
+
+- Matthias risto
+- Matthias Risto
+
 ## 1.0.2 (2024-09-09)
 
 
