@@ -1,3 +1,14 @@
+## 1.1.0 (2024-09-14)
+
+
+### 🚀 Features
+
+- do not render controller content, when not shown ([b298186](https://github.com/dytab/ngx-blocknote/commit/b298186))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.0.3 (2024-09-14)
 
 
