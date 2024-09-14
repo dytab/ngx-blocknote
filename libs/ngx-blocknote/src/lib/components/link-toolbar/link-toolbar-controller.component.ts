@@ -1,14 +1,28 @@
-import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import { LinkToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
-@Directive({
+@Component({
+  imports: [CommonModule],
   selector: 'bna-link-toolbar-controller',
   standalone: true,
+  host: {
+    class: 'z-40 fixed',
+  },
+  template: `@if(show()){<ng-content />}`,
 })
 export class BnaLinkToolbarControllerDirective {
+  show = signal(false);
+
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>,
@@ -20,14 +34,12 @@ export class BnaLinkToolbarControllerDirective {
   }
 
   adjustVisibilityAndPosition() {
-    this.toggleVisibility(false);
     let cleanup: () => void = () => {
       return;
     };
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
-    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     const editor = this.ngxBlockNoteService.editor();
     editor.linkToolbar.onUpdate(async (linkToolbar) => {
+      this.show.set(linkToolbar.show);
       if (!linkToolbar.show) {
         cleanup();
       } else {
@@ -38,7 +50,6 @@ export class BnaLinkToolbarControllerDirective {
           updatePosition
         );
       }
-      this.toggleVisibility(linkToolbar.show);
     });
   }
 
@@ -60,15 +71,5 @@ export class BnaLinkToolbarControllerDirective {
         `${result.x}px`
       );
     };
-  }
-
-  private toggleVisibility(state: boolean): void {
-    if (state) {
-      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.addClass(this.elRef.nativeElement, 'block');
-    } else {
-      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
-    }
   }
 }

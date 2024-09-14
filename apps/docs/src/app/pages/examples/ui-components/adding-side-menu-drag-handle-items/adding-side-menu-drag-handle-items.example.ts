@@ -8,7 +8,7 @@ import {
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
-  BnaSideMenuControllerDirective,
+  BnaSideMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
 import { HlmButtonDirective, HlmMenuComponent, HlmMenuGroupComponent, HlmMenuItemDirective } from '@dytab/ui';
@@ -21,7 +21,7 @@ import { HlmButtonDirective, HlmMenuComponent, HlmMenuGroupComponent, HlmMenuIte
     BnaEditorComponent,
     BnaBasicTextStyleButtonComponent,
     HlmButtonDirective,
-    BnaSideMenuControllerDirective,
+    BnaSideMenuControllerComponent,
     BnaSideMenuComponent,
     BnaAddBlockButtonComponent,
     ResetBlockButtonComponent,

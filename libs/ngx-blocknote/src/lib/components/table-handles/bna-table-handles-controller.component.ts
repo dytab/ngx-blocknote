@@ -21,6 +21,9 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
   templateUrl: 'bna-table-handle-controller.component.html',
   styleUrl: 'bna-table-handle-controller.component.css',
   standalone: true,
+  host:{
+    class: 'z-40 fixed'
+  },
 })
 export class BnaTableHandlesController implements AfterViewInit {
   rowHandleElement = viewChild<ElementRef>('rowHandle');
@@ -68,7 +71,6 @@ export class BnaTableHandlesController implements AfterViewInit {
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
-    protected elRef: ElementRef<HTMLElement>,
     private renderer2: Renderer2
   ) {
     effect(async () => {
@@ -89,8 +91,8 @@ export class BnaTableHandlesController implements AfterViewInit {
 
   private async adjustTableHandlePositions(
     tableHandles: TableHandlesState<any, any>,
-    rowElement: ElementRef<any>,
-    colElement: ElementRef<any>
+    rowElement: ElementRef,
+    colElement: ElementRef
   ) {
     const result = await useTableHandlesPositioning(
       tableHandles.referencePosCell,
@@ -132,9 +134,6 @@ export class BnaTableHandlesController implements AfterViewInit {
   }
 
   adjustVisibilityAndOptions() {
-    this.toggleVisibility(false);
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
-    this.renderer2.addClass(this.elRef.nativeElement, 'absolute');
     const editor = this.ngxBlockNoteService.editor();
     editor.tableHandles?.onUpdate(async (tableHandles) => {
       this.tableHandles.set(tableHandles);
@@ -146,17 +145,6 @@ export class BnaTableHandlesController implements AfterViewInit {
         hideOtherHandle: () => undefined,
       };
       this.options.set(options);
-      this.toggleVisibility(tableHandles.show);
     });
-  }
-
-  private toggleVisibility(state: boolean): void {
-    if (state) {
-      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.addClass(this.elRef.nativeElement, 'block');
-    } else {
-      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
-    }
   }
 }

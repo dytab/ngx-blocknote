@@ -44,7 +44,6 @@ export class BnaTableHandleComponent {
     const options: TableHandleOptions = {
       ...this.options(),
       closeMenu: () => {
-        console.log('close menu');
         this.closeMenu();
       },
     };
@@ -83,7 +82,7 @@ export class BnaTableHandleComponent {
       }
       const result = await computePosition(button, menu, {
         placement: this.options().orientation === 'row' ? 'top' : 'left',
-        strategy: 'absolute',
+        strategy: 'fixed',
         middleware: [flip()],
       });
       this.styles.set(this.getStyles(result.y, result.x));

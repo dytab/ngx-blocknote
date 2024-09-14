@@ -7,7 +7,7 @@ import {
   BnaBasicTextStyleButtonComponent,
   BnaEditorComponent,
   BnaFormattingToolbarComponent,
-  BnaFormattingToolbarControllerDirective,
+  BnaFormattingToolbarControllerComponent,
 } from '@dytab/ngx-blocknote';
 
 @Component({
@@ -16,7 +16,7 @@ import {
   imports: [
     CommonModule,
     BnaEditorComponent,
-    BnaFormattingToolbarControllerDirective,
+    BnaFormattingToolbarControllerComponent,
     BnaBasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
     HlmButtonDirective,

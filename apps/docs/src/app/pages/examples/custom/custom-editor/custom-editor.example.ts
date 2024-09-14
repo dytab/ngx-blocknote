@@ -18,7 +18,7 @@ import {
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
-  BnaSideMenuControllerDirective,
+  BnaSideMenuControllerComponent,
   NgxBlocknoteService,
 } from '@dytab/ngx-blocknote';
 import {
@@ -59,7 +59,7 @@ const schema = BlockNoteSchema.create({
     BnaDeleteBlockItemComponent,
     BnaDragHandleMenuComponent,
     BnaSideMenuComponent,
-    BnaSideMenuControllerDirective,
+    BnaSideMenuControllerComponent,
     ResetBlockButtonComponent,
     HlmDialogComponent,
     HlmDialogContentComponent,

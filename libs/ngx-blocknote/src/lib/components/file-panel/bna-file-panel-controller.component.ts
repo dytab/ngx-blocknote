@@ -1,13 +1,26 @@
-import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Renderer2, signal
+} from '@angular/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
+import { CommonModule } from '@angular/common';
 
-@Directive({
+@Component({
+  imports:[CommonModule],
   selector: 'bna-file-panel-controller',
   standalone: true,
+  host:{
+    class: 'z-30 fixed'
+  },
+  template: `@if(show()){<ng-content />}`,
 })
-export class BnaFilePanelControllerDirective {
+export class BnaFilePanelControllerComponent {
+  show = signal(false);
+
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
@@ -23,13 +36,11 @@ export class BnaFilePanelControllerDirective {
     if (!editor) {
       return;
     }
-    this.toggleVisibility(false);
     let cleanup: () => void = () => {
       return;
     };
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
-    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     editor.filePanel?.onUpdate(async (filePanelState) => {
+      this.show.set(filePanelState.show);
       if (!filePanelState.show) {
         cleanup();
       } else {
@@ -60,17 +71,6 @@ export class BnaFilePanelControllerDirective {
           updatePosition
         );
       }
-      this.toggleVisibility(filePanelState.show);
     });
-  }
-
-  private toggleVisibility(state: boolean): void {
-    if (state) {
-      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.addClass(this.elRef.nativeElement, 'block');
-    } else {
-      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
-    }
   }
 }

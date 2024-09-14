@@ -1,13 +1,24 @@
-import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
-@Directive({
+@Component({
+  imports: [CommonModule],
   selector: 'bna-side-menu-controller',
   standalone: true,
+  template: `@if(show()){<ng-content />}`,
 })
-export class BnaSideMenuControllerDirective {
+export class BnaSideMenuControllerComponent {
+  show = signal(false);
+
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
@@ -26,10 +37,10 @@ export class BnaSideMenuControllerDirective {
     if (!editorSnapshot) {
       return;
     }
-    this.toggleVisibility(true);
     this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
     this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     editorSnapshot.sideMenu.onUpdate(async (sideMenuState) => {
+      this.show.set(sideMenuState.show);
       if (!sideMenuState.show) {
         cleanup();
       } else {
@@ -40,7 +51,7 @@ export class BnaSideMenuControllerDirective {
             getVirtualElement(sideMenuState.referencePos),
             this.elRef.nativeElement,
             {
-              strategy:'fixed',
+              strategy: 'fixed',
               placement: 'left',
               middleware: [flip()],
             }
@@ -57,17 +68,6 @@ export class BnaSideMenuControllerDirective {
           updatePosition
         );
       }
-      this.toggleVisibility(sideMenuState.show);
     });
-  }
-
-  private toggleVisibility(state: boolean): void {
-    if (state) {
-      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.addClass(this.elRef.nativeElement, 'block');
-    } else {
-      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
-    }
   }
 }

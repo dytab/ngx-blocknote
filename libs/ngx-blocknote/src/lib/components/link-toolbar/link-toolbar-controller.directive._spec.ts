@@ -1,4 +1,4 @@
-import { BnaLinkToolbarControllerDirective } from './link-toolbar-controller.directive';
+import { BnaLinkToolbarControllerDirective } from './link-toolbar-controller.component';
 
 describe('BnaLinkToolbarControllerDirective', () => {
   it('should create an instance', () => {

@@ -81,45 +81,9 @@ async function useTableHandlePosition(
       middleware: [offset(orientation === 'row' ? -5 : -12)],
     }
   );
-  // const { refs, update, context, floatingStyles } = computePosition({
-  //   open: show,
-  //   placement: orientation === 'row' ? 'left' : 'top',
-  //   middleware: [offset(orientation === 'row' ? -10 : -12)],
-  // });
-  //
-  // const { isMounted, styles } = useTransitionStyles(context);
-  //
-  // useEffect(() => {
-  //   update();
-  // }, [referencePosCell, referencePosTable, update]);
-  //
-  // useEffect(() => {
-  //   // Will be null on initial render when used in UI component controllers.
-  //   if (referencePosCell === null || referencePosTable === null) {
-  //     return;
-  //   }
-  //
-  //   refs.setReference({
-  //     getBoundingClientRect: () => {
-  //       const fn =
-  //         orientation === 'row'
-  //           ? getBoundingClientRectRow
-  //           : getBoundingClientRectCol;
-  //       return fn(referencePosCell, referencePosTable, draggingState);
-  //     },
-  //   });
-  // }, [draggingState, orientation, referencePosCell, referencePosTable, refs]);
 
   return {
     position,
-    // isMounted: isMounted,
-    // ref: refs.setFloating,
-    // style: {
-    //   display: 'flex',
-    //   ...styles,
-    //   ...floatingStyles,
-    //   zIndex: 10000,
-    // },
   };
 }
 

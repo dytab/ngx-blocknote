@@ -6,7 +6,7 @@ import {
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
-  BnaSideMenuControllerDirective,
+  BnaSideMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
 import { RemoveBlockButtonComponent } from './remove-block-button.component';
 import { HlmButtonDirective } from '@dytab/ui';
@@ -19,7 +19,7 @@ import { HlmButtonDirective } from '@dytab/ui';
     BnaEditorComponent,
     BnaBasicTextStyleButtonComponent,
     HlmButtonDirective,
-    BnaSideMenuControllerDirective,
+    BnaSideMenuControllerComponent,
     BnaSideMenuComponent,
     RemoveBlockButtonComponent,
     BnaDragHandleMenuComponent,

@@ -24,9 +24,9 @@ import {
   PartialBlock,
   StyleSchema,
 } from '@blocknote/core';
-import { BnaFilePanelControllerDirective } from '../components/file-panel/bna-file-panel-controller.directive';
+import { BnaFilePanelControllerComponent } from '../components/file-panel/bna-file-panel-controller.component';
 import { BnaFilePanelComponent } from '../components/file-panel/bna-file-panel.component';
-import { BnaFormattingToolbarControllerDirective } from '../components/formatting-toolbar/bna-formatting-toolbar-controller.directive';
+import { BnaFormattingToolbarControllerComponent } from '../components/formatting-toolbar/bna-formatting-toolbar-controller.component';
 import { BnaFormattingToolbarComponent } from '../components/formatting-toolbar/bna-formatting-toolbar.component';
 import { BnaBasicTextStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/basic-text-style-button/bna-basic-text-style-button.component';
 import { BnaColorStyleButtonComponent } from '../components/formatting-toolbar/default-buttons/color-style/bna-color-style-button.component';
@@ -42,14 +42,14 @@ import { BnaBlockTypeSelectComponent } from '../components/formatting-toolbar/de
 import { BnaDeleteLinkComponent } from '../components/link-toolbar/default-buttons/delete-link/bna-delete-link.component';
 import { BnaEditLinkButtonComponent } from '../components/link-toolbar/default-buttons/edit-link/bna-edit-link-button.component';
 import { BnaOpenLinkComponent } from '../components/link-toolbar/default-buttons/open-link/bna-open-link.component';
-import { BnaLinkToolbarControllerDirective } from '../components/link-toolbar/link-toolbar-controller.directive';
+import { BnaLinkToolbarControllerDirective } from '../components/link-toolbar/link-toolbar-controller.component';
 import { BnaLinkToolbarComponent } from '../components/link-toolbar/link-toolbar.component';
-import { BnaSideMenuControllerDirective } from '../components/side-menu/bna-side-menu-controller.directive';
+import { BnaSideMenuControllerComponent } from '../components/side-menu/bna-side-menu-controller.component';
 import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.component';
 import { BnaAddBlockButtonComponent } from '../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSuggestionsMenuComponent } from '../components/suggestions-menu';
-import { BnaSuggestionsMenuControllerDirective } from '../components/suggestions-menu/bna-suggestions-menu-controller.directive';
+import { BnaSuggestionsMenuControllerComponent } from '../components/suggestions-menu/bna-suggestions-menu-controller.component';
 import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { NgxBlocknoteService } from '../services/ngx-blocknote.service';
@@ -82,11 +82,11 @@ type InitialContent<
   imports: [
     CommonModule,
     BnaViewControllerDirective,
-    BnaSideMenuControllerDirective,
+    BnaSideMenuControllerComponent,
     BnaAddBlockButtonComponent,
     BnaDragHandleMenuComponent,
-    BnaSuggestionsMenuControllerDirective,
-    BnaFormattingToolbarControllerDirective,
+    BnaSuggestionsMenuControllerComponent,
+    BnaFormattingToolbarControllerComponent,
     HlmCardDirective,
     HlmButtonDirective,
     BnaBasicTextStyleButtonComponent,
@@ -100,7 +100,7 @@ type InitialContent<
     BnaTextAlignButtonComponent,
     BnaFilePanelComponent,
     HlmInputDirective,
-    BnaFilePanelControllerDirective,
+    BnaFilePanelControllerComponent,
     BnaFormattingToolbarComponent,
     BnaSideMenuComponent,
     BnaSuggestionsMenuComponent,

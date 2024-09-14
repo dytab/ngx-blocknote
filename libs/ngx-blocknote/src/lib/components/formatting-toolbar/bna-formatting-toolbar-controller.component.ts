@@ -1,14 +1,28 @@
-import { Directive, effect, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import { FormattingToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
+import { CommonModule } from '@angular/common';
 
-@Directive({
+@Component({
+  imports: [CommonModule],
   selector: 'bna-formatting-toolbar-controller',
   standalone: true,
+  template: `@if(show()){<ng-content />}`,
+  host:{
+    class: 'z-40 fixed'
+  }
 })
-export class BnaFormattingToolbarControllerDirective {
+export class BnaFormattingToolbarControllerComponent {
+  show = signal(false);
+
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>,
@@ -20,15 +34,13 @@ export class BnaFormattingToolbarControllerDirective {
   }
 
   adjustVisibilityAndPosition() {
-    this.toggleVisibility(false);
     let cleanup: () => void = () => {
       return;
     };
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-40');
-    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
     const editor = this.ngxBlockNoteService.editor();
     if (editor) {
       editor.formattingToolbar.onUpdate(async (formattingToolbar) => {
+        this.show.set(formattingToolbar.show);
         if (!formattingToolbar.show) {
           cleanup();
         } else {
@@ -39,7 +51,6 @@ export class BnaFormattingToolbarControllerDirective {
             updatePosition
           );
         }
-        this.toggleVisibility(formattingToolbar.show);
       });
     }
   }
@@ -51,8 +62,8 @@ export class BnaFormattingToolbarControllerDirective {
         this.elRef.nativeElement,
         {
           placement: 'top',
-          strategy:'fixed',
-          middleware: [flip(), offset( 15)],
+          strategy: 'fixed',
+          middleware: [flip(), offset(15)],
         }
       );
       this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
@@ -62,15 +73,5 @@ export class BnaFormattingToolbarControllerDirective {
         `${result.x}px`
       );
     };
-  }
-
-  private toggleVisibility(state: boolean): void {
-    if (state) {
-      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.addClass(this.elRef.nativeElement, 'block');
-    } else {
-      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
-    }
   }
 }

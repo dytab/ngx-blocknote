@@ -1,4 +1,11 @@
-import { Directive, effect, ElementRef, Input, Renderer2 } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  Input,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import {
   autoUpdate,
   computePosition,
@@ -8,12 +15,20 @@ import {
 } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
+import { CommonModule } from '@angular/common';
 
-@Directive({
+@Component({
+  imports: [CommonModule],
   selector: 'bna-suggestions-menu-controller',
   standalone: true,
+  host:{
+    class: 'z-30 fixed flex'
+  },
+  template: `@if(show()){<ng-content />}`,
 })
-export class BnaSuggestionsMenuControllerDirective {
+export class BnaSuggestionsMenuControllerComponent {
+  show = signal(false);
+
   @Input({ required: true }) triggerCharacter = '/';
   constructor(
     private blockNoteEditorService: NgxBlocknoteService,
@@ -30,16 +45,13 @@ export class BnaSuggestionsMenuControllerDirective {
     if (!editor) {
       return;
     }
-    this.toggleVisibility(false);
     let cleanup: () => void = () => {
       return;
     };
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
-    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
-    this.renderer2.addClass(this.elRef.nativeElement, 'flex');
     editor.suggestionMenus.onUpdate(
       this.triggerCharacter,
       async (suggestionMenuState) => {
+        this.show.set(suggestionMenuState.show);
         if (!suggestionMenuState.show) {
           cleanup();
         } else {
@@ -48,7 +60,7 @@ export class BnaSuggestionsMenuControllerDirective {
               getVirtualElement(suggestionMenuState.referencePos),
               this.elRef.nativeElement,
               {
-                strategy:'fixed',
+                strategy: 'fixed',
                 placement: 'bottom-start',
                 middleware: [
                   offset(10),
@@ -82,25 +94,7 @@ export class BnaSuggestionsMenuControllerDirective {
             updatePosition
           );
         }
-        if (!suggestionMenuState.show) {
-          //hide after executing functions inside menu
-          setTimeout(() => {
-            this.toggleVisibility(suggestionMenuState.show);
-          }, 250);
-        } else {
-          this.toggleVisibility(true);
-        }
       }
     );
-  }
-
-  private toggleVisibility(state: boolean): void {
-    if (state) {
-      this.renderer2.removeClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.addClass(this.elRef.nativeElement, 'block');
-    } else {
-      this.renderer2.addClass(this.elRef.nativeElement, 'hidden');
-      this.renderer2.removeClass(this.elRef.nativeElement, 'block');
-    }
   }
 }

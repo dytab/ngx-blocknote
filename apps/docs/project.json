@@ -34,7 +34,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "docs:build",
-        "port": 4200
+        "port": 4255
       },
       "configurations": {
         "development": {
