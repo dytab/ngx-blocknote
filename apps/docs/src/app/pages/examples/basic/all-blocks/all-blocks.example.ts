@@ -6,7 +6,9 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
   standalone: true,
   selector: 'bna-all-blocks-example',
   imports: [CommonModule, BnaEditorComponent],
-  template: ` <bna-editor [initialContent]="initialContent" [options]="{uploadFile}" /> `,
+  template: `
+    <bna-editor [initialContent]="initialContent" [options]="{ uploadFile }" />
+  `,
 })
 export class AllBlocksExample {
   initialContent = [
@@ -145,7 +147,7 @@ export class AllBlocksExample {
     });
     return (await ret.json()).data.url.replace(
       'tmpfiles.org/',
-      'tmpfiles.org/dl/'
+      'tmpfiles.org/dl/',
     );
   }
 }

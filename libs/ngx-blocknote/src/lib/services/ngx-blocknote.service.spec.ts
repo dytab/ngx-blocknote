@@ -8,7 +8,7 @@ describe('NgxBlocknoteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [NgxBlocknoteService] });
     service = TestBed.inject(
-      NgxBlocknoteService
+      NgxBlocknoteService,
       //TODO: remove this strange cast
     ) as any;
   });

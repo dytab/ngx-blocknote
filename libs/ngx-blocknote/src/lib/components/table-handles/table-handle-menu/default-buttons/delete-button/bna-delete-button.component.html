@@ -1,9 +1,24 @@
-@if(options().orientation === 'row'){
-<button (click)="deleteRow()" type="button" hlmBtn variant="ghost" size="xs" class="w-full justify-start">
-  Delete Row
-</button>
-} @if(options().orientation === 'column'){
-<button (click)="deleteColumn()" type="button" hlmBtn variant="ghost" size="xs" class="w-full justify-start">
-  Delete Column
-</button>
+@if (options().orientation === 'row') {
+  <button
+    (click)="deleteRow()"
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+  >
+    Delete Row
+  </button>
+}
+@if (options().orientation === 'column') {
+  <button
+    (click)="deleteColumn()"
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+  >
+    Delete Column
+  </button>
 }

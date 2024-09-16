@@ -17,7 +17,7 @@ import {
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 
 function checkLinkInSchema(
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ): editor is BlockNoteEditor<
   BlockSchema,
   {

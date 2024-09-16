@@ -18,7 +18,7 @@ import { HlmButtonDirective } from '@dytab/ui';
             'blue' &&
           ngxBlockNoteService.editor()!.getActiveStyles().backgroundColor ===
             'blue'
-        : false
+        : false,
     }"
   >
     Blue<button></button>

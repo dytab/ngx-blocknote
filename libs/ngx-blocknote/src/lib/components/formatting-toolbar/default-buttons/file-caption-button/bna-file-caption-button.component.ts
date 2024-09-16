@@ -48,7 +48,7 @@ export class BnaFileCaptionButtonComponent {
   fileBlock = computed(() => {
     return fileBlock(
       this.ngxBlockNoteService.editor(),
-      this.ngxBlockNoteService.selectedBlocks()
+      this.ngxBlockNoteService.selectedBlocks(),
     );
   });
 
@@ -61,7 +61,7 @@ export class BnaFileCaptionButtonComponent {
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
-    private formBuilder: NonNullableFormBuilder
+    private formBuilder: NonNullableFormBuilder,
   ) {
     effect(() => {
       this.patchFormValues();

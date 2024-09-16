@@ -30,7 +30,7 @@ export const buttonVariants = cva(
       variant: 'default',
       size: 'default',
     },
-  }
+  },
 );
 export type ButtonVariants = VariantProps<typeof buttonVariants>;
 
@@ -49,8 +49,8 @@ export class HlmButtonDirective {
     hlm(
       buttonVariants({ variant: this._variant(), size: this._size() }),
       this._settableClass(),
-      this.userClass()
-    )
+      this.userClass(),
+    ),
   );
 
   setClass(value: ClassValue) {

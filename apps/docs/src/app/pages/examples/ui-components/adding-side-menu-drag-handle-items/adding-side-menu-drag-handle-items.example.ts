@@ -11,7 +11,12 @@ import {
   BnaSideMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
-import { HlmButtonDirective, HlmMenuComponent, HlmMenuGroupComponent, HlmMenuItemDirective } from '@dytab/ui';
+import {
+  HlmButtonDirective,
+  HlmMenuComponent,
+  HlmMenuGroupComponent,
+  HlmMenuItemDirective,
+} from '@dytab/ui';
 
 @Component({
   selector: 'bna-adding-side-menu-drag-handle-items-example',
@@ -37,9 +42,8 @@ import { HlmButtonDirective, HlmMenuComponent, HlmMenuGroupComponent, HlmMenuIte
         <bna-add-block-btn />
         <bna-drag-handle-menu-btn>
           <bna-delete-block-item />
-          <bna-reset-block-button />
-        </bna-drag-handle-menu-btn></bna-side-menu
-      >
+          <bna-reset-block-button /> </bna-drag-handle-menu-btn
+      ></bna-side-menu>
     </bna-side-menu-controller>
   </bna-editor> `,
 })

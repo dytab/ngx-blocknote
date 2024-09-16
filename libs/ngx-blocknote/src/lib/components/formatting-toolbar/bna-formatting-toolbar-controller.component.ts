@@ -15,10 +15,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   selector: 'bna-formatting-toolbar-controller',
   standalone: true,
-  template: `@if(show()){<ng-content />}`,
-  host:{
-    class: 'z-40 fixed'
-  }
+  template: `@if (show()) {
+    <ng-content />
+  }`,
+  host: {
+    class: 'z-40 fixed',
+  },
 })
 export class BnaFormattingToolbarControllerComponent {
   show = signal(false);
@@ -26,7 +28,7 @@ export class BnaFormattingToolbarControllerComponent {
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
   ) {
     effect(() => {
       this.adjustVisibilityAndPosition();
@@ -48,7 +50,7 @@ export class BnaFormattingToolbarControllerComponent {
           cleanup = autoUpdate(
             getVirtualElement(formattingToolbar.referencePos),
             this.elRef.nativeElement,
-            updatePosition
+            updatePosition,
           );
         }
       });
@@ -64,13 +66,13 @@ export class BnaFormattingToolbarControllerComponent {
           placement: 'top',
           strategy: 'fixed',
           middleware: [flip(), offset(15)],
-        }
+        },
       );
       this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
       this.renderer2.setStyle(
         this.elRef.nativeElement,
         'left',
-        `${result.x}px`
+        `${result.x}px`,
       );
     };
   }

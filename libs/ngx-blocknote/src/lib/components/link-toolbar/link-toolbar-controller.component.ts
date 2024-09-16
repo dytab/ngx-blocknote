@@ -18,7 +18,9 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   host: {
     class: 'z-40 fixed',
   },
-  template: `@if(show()){<ng-content />}`,
+  template: `@if (show()) {
+    <ng-content />
+  }`,
 })
 export class BnaLinkToolbarControllerDirective {
   show = signal(false);
@@ -26,7 +28,7 @@ export class BnaLinkToolbarControllerDirective {
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     protected elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
   ) {
     effect(() => {
       this.adjustVisibilityAndPosition();
@@ -47,7 +49,7 @@ export class BnaLinkToolbarControllerDirective {
         cleanup = autoUpdate(
           getVirtualElement(linkToolbar.referencePos),
           this.elRef.nativeElement,
-          updatePosition
+          updatePosition,
         );
       }
     });
@@ -62,13 +64,13 @@ export class BnaLinkToolbarControllerDirective {
           strategy: 'fixed',
           placement: 'top',
           middleware: [flip()],
-        }
+        },
       );
       this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
       this.renderer2.setStyle(
         this.elRef.nativeElement,
         'left',
-        `${result.x}px`
+        `${result.x}px`,
       );
     };
   }

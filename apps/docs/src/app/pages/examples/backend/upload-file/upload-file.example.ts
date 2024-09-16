@@ -1,19 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
-import {
-  HlmButtonDirective,
-} from '@dytab/ui';
-import {
-  BnaEditorComponent,
-} from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@dytab/ui';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-upload-file-example',
   standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
-    <bna-editor [initialContent]="initialContent" [options]="{uploadFile}" />
+    <bna-editor [initialContent]="initialContent" [options]="{ uploadFile }" />
   `,
 })
 export class UploadFileExample {
@@ -45,7 +41,7 @@ export class UploadFileExample {
     });
     return (await ret.json()).data.url.replace(
       'tmpfiles.org/',
-      'tmpfiles.org/dl/'
+      'tmpfiles.org/dl/',
     );
   }
 }

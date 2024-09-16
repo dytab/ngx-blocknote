@@ -15,23 +15,23 @@ declare module '@tiptap/core' {
       BNSplitBlock: (
         posInBlock: number,
         keepType?: boolean,
-        keepProps?: boolean
+        keepProps?: boolean,
       ) => ReturnType;
       BNUpdateBlock: <
         BSchema extends BlockSchema,
         I extends InlineContentSchema,
-        S extends StyleSchema
+        S extends StyleSchema,
       >(
         posInBlock: number,
-        block: PartialBlock<BSchema, I, S>
+        block: PartialBlock<BSchema, I, S>,
       ) => ReturnType;
       BNCreateOrUpdateBlock: <
         BSchema extends BlockSchema,
         I extends InlineContentSchema,
-        S extends StyleSchema
+        S extends StyleSchema,
       >(
         posInBlock: number,
-        block: PartialBlock<BSchema, I, S>
+        block: PartialBlock<BSchema, I, S>,
       ) => ReturnType;
     };
   }

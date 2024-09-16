@@ -32,7 +32,7 @@ import {
 })
 export class BnaFilePanelComponent implements OnInit {
   focusedBlock = signal<BlockFromConfig<FileBlockConfig, any, any> | undefined>(
-    undefined
+    undefined,
   );
 
   embedInputText = '';
@@ -83,7 +83,7 @@ export class BnaFilePanelComponent implements OnInit {
   private updateBlockWithEmbedFileUrl(
     block: BlockFromConfig<FileBlockConfig, any, any>,
     editor: BlockNoteEditor<any, any, any>,
-    embedFileUrl: string | Record<string, any>
+    embedFileUrl: string | Record<string, any>,
   ) {
     editor.updateBlock(block, {
       props: {

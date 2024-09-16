@@ -152,15 +152,18 @@ export const exampleLinks: Example[] = [
 ];
 
 function groupByGroupName(links: Example[]): ExampleGroup[] {
-  const groups: Record<string, Example[]> = links.reduce((acc, link) => {
-    if (!acc[link.groupName]) {
-      acc[link.groupName] = [];
-    }
+  const groups: Record<string, Example[]> = links.reduce(
+    (acc, link) => {
+      if (!acc[link.groupName]) {
+        acc[link.groupName] = [];
+      }
 
-    acc[link.groupName].push(link);
+      acc[link.groupName].push(link);
 
-    return acc;
-  }, {} as Record<string, Example[]>);
+      return acc;
+    },
+    {} as Record<string, Example[]>,
+  );
 
   return Object.entries(groups).map(([groupName, links]) => ({
     groupName,

@@ -36,7 +36,7 @@ import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-c
 })
 export class BnaBlockColorStyleComponent {
   selectedBlocks = signal<Block[]>(
-    useSelectedBlocks(this.ngxBlockNoteService.editor())
+    useSelectedBlocks(this.ngxBlockNoteService.editor()),
   );
   options = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
@@ -61,7 +61,7 @@ export class BnaBlockColorStyleComponent {
       checkBlockTypeHasDefaultProp(
         'textColor',
         firstSelectedBlock.type,
-        editor
+        editor,
       ) &&
       checkBlockHasDefaultProp('textColor', firstSelectedBlock, editor)
     ) {
@@ -83,7 +83,7 @@ export class BnaBlockColorStyleComponent {
       checkBlockTypeHasDefaultProp(
         'backgroundColor',
         firstSelectedBlock.type,
-        editor
+        editor,
       ) &&
       checkBlockHasDefaultProp('backgroundColor', firstSelectedBlock, editor)
     ) {

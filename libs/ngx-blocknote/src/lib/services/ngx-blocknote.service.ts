@@ -15,7 +15,7 @@ import { BlockNoteEditorOptionsType } from '../interfaces';
 export class NgxBlocknoteService<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
-  SSchema extends StyleSchema = DefaultStyleSchema
+  SSchema extends StyleSchema = DefaultStyleSchema,
 > {
   editor = signal<BlockNoteEditor<BSchema, ISchema, SSchema>>(null as never);
   options = signal<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>({});

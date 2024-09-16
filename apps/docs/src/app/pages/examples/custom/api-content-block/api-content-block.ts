@@ -25,7 +25,7 @@ export const apiContentBlockConfig = {
 
 const apiContentRender = (
   block: BlockFromConfig<typeof apiContentBlockConfig, any, any>,
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ) => {
   const div = document.createElement('div');
   // Render content in div
@@ -62,7 +62,7 @@ const apiContentRender = (
 };
 
 export const apiContentParse = (
-  element: HTMLElement
+  element: HTMLElement,
 ): Partial<Props<typeof apiContentBlockConfig.propSchema>> | undefined => {
   return undefined;
 };

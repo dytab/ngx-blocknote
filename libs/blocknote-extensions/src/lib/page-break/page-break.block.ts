@@ -15,7 +15,7 @@ export const pageBreakBlockConfig = {
 
 const render = (
   block: BlockFromConfig<typeof pageBreakBlockConfig, any, any>,
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ) => {
   const pageBreakWrapper = document.createElement('div');
   pageBreakWrapper.style.pageBreakAfter = 'always';

@@ -63,7 +63,7 @@ export class BnaFileRenameButtonComponent {
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
-    private formBuilder: NonNullableFormBuilder
+    private formBuilder: NonNullableFormBuilder,
   ) {}
 
   submit() {

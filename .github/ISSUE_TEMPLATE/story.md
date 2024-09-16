@@ -16,14 +16,10 @@ As a, I want to , so that
   - **When**
     - **then**
 
-
 ## Risk Mitigation Tasks
 
 - [ ]
 
-
 ## Tasks
-
-
 
 ## Screenshots, Mockups

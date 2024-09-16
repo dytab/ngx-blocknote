@@ -1,73 +1,66 @@
 ## 1.1.0 (2024-09-14)
 
-
 ### 🚀 Features
 
 - do not render controller content, when not shown ([b298186](https://github.com/dytab/ngx-blocknote/commit/b298186))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 1.0.3 (2024-09-14)
-
 
 ### 🩹 Fixes
 
 - use fixed instead of absolute, sow overflow:hidden does not cut editor ui components ([d1db893](https://github.com/dytab/ngx-blocknote/commit/d1db893))
 - add option to add custom suggestion items with custom editor ([5af5f3a](https://github.com/dytab/ngx-blocknote/commit/5af5f3a))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 - Matthias Risto
 
 ## 1.0.2 (2024-09-09)
 
-
 ### 🩹 Fixes
 
 - export file formatting toolbar buttons ([6feb91f](https://github.com/dytab/ngx-blocknote/commit/6feb91f))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 1.0.1 (2024-09-09)
 
-
 ### 🩹 Fixes
 
 - add support for fixed formatting toolbar and suggestion menu ([ad62b04](https://github.com/dytab/ngx-blocknote/commit/ad62b04))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 # 1.0.0 (2024-08-30)
 
-
 ### 🩹 Fixes
 
 - do not rebuild editor, on custom editor ([a6b3d3f](https://github.com/dytab/ngx-blocknote/commit/a6b3d3f))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.20.0 (2024-08-28)
 
-
 ### 🚀 Features
 
 - editor can be overwritten ([2408604](https://github.com/dytab/ngx-blocknote/commit/2408604))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.19.0 (2024-08-26)
-
 
 ### 🚀 Features
 
@@ -79,13 +72,12 @@
 
 - remove two times init, when using options and initContent ([5989dde](https://github.com/dytab/ngx-blocknote/commit/5989dde))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 - Matthias Risto @m-risto
 
 ## 0.18.1 (2024-08-21)
-
 
 ### 🩹 Fixes
 
@@ -93,23 +85,21 @@
 - editor ready is triggered first time on initialization or editor recreate ([54a54c4](https://github.com/dytab/ngx-blocknote/commit/54a54c4))
 - init editor, even when no input was given ([b88230d](https://github.com/dytab/ngx-blocknote/commit/b88230d))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.18.0 (2024-08-21)
 
-
 ### 🚀 Features
 
 - make editor work with angular forms ([b3dd2d7](https://github.com/dytab/ngx-blocknote/commit/b3dd2d7))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.17.0 (2024-08-20)
-
 
 ### 🚀 Features
 
@@ -121,12 +111,11 @@
 - remove wrong return type from getPageBreakSuggestionItem ([c85374d](https://github.com/dytab/ngx-blocknote/commit/c85374d))
 - adjust docs imports to new path ([cba486d](https://github.com/dytab/ngx-blocknote/commit/cba486d))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.16.0 (2024-08-19)
-
 
 ### 🚀 Features
 
@@ -136,12 +125,11 @@
 
 - update types to match blocknote ([597fcde](https://github.com/dytab/ngx-blocknote/commit/597fcde))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.15.0 (2024-08-19)
-
 
 ### 🚀 Features
 
@@ -154,24 +142,22 @@
 - export missing types slash-menu-items ([8e75a98](https://github.com/dytab/ngx-blocknote/commit/8e75a98))
 - add missing exports from formatting toolbar ([0990528](https://github.com/dytab/ngx-blocknote/commit/0990528))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.14.2 (2024-08-18)
-
 
 ### 🩹 Fixes
 
 - export block type select ([7fbee1e](https://github.com/dytab/ngx-blocknote/commit/7fbee1e))
 - **docs:** focus block after reset ([a568180](https://github.com/dytab/ngx-blocknote/commit/a568180))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.14.1 (2024-08-18)
-
 
 ### 🩹 Fixes
 
@@ -180,12 +166,11 @@
 - unfreeze side menu and focus editor after delete ([2aeda6b](https://github.com/dytab/ngx-blocknote/commit/2aeda6b))
 - export color picker and useSelectedBlocks ([42f79dc](https://github.com/dytab/ngx-blocknote/commit/42f79dc))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias risto
 
 ## 0.14.0 (2024-08-16)
-
 
 ### 🚀 Features
 
@@ -193,34 +178,31 @@
 - mouse changes selected suggestion item ([e8994ed](https://github.com/dytab/ngx-blocknote/commit/e8994ed))
 - add offset to toolbar, so that the block content is more readable ([6655e51](https://github.com/dytab/ngx-blocknote/commit/6655e51))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.13.0 (2024-08-16)
 
-
 ### 🚀 Features
 
 - add styles to build step, so that consumers can add it ([7309c69](https://github.com/dytab/ngx-blocknote/commit/7309c69))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.12.0 (2024-08-16)
 
-
 ### 🚀 Features
 
 - side menu should be a menu, so buttons should match the style ([4eef223](https://github.com/dytab/ngx-blocknote/commit/4eef223))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.11.1 (2024-08-16)
-
 
 ### 🚀 Features
 
@@ -231,12 +213,11 @@
 
 - drag menu color shows correctly block colors ([abd8f45](https://github.com/dytab/ngx-blocknote/commit/abd8f45))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.11.0 (2024-08-15)
-
 
 ### 🚀 Features
 
@@ -249,35 +230,32 @@
 - add ng-content if its not specific, so that mention opens ([14a5c08](https://github.com/dytab/ngx-blocknote/commit/14a5c08))
 - **docs:** adjust z-index on nav, so that main contents does not get over it ([a48af98](https://github.com/dytab/ngx-blocknote/commit/a48af98))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.10.0 (2024-08-15)
-
 
 ### 🚀 Features
 
 - add color picker to switch block and inline colors ([3281cd8](https://github.com/dytab/ngx-blocknote/commit/3281cd8))
 - **docs:** change browser title to match examples ([911b1af](https://github.com/dytab/ngx-blocknote/commit/911b1af))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.9.0 (2024-08-14)
 
-
 ### 🚀 Features
 
 - proper readme ([78b8783](https://github.com/dytab/ngx-blocknote/commit/78b8783))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Johannes Klein
 
 ## 0.8.0 (2024-08-14)
-
 
 ### 🚀 Features
 
@@ -285,12 +263,11 @@
 - add link toolbar, to add inline links ([6abb56c](https://github.com/dytab/ngx-blocknote/commit/6abb56c))
 - **docs:** change browser title to match examples ([4eb5ff7](https://github.com/dytab/ngx-blocknote/commit/4eb5ff7))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.7.0 (2024-08-14)
-
 
 ### 🚀 Features
 
@@ -305,12 +282,11 @@
 - focus is not lost, when formatting toolbar button was clicked ([fcb678e](https://github.com/dytab/ngx-blocknote/commit/fcb678e))
 - suggestion menu focus block, remove query ([0b76d8b](https://github.com/dytab/ngx-blocknote/commit/0b76d8b))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.6.0 (2024-08-13)
-
 
 ### 🚀 Features
 
@@ -324,23 +300,21 @@
 - top bar is not over suggestion menu ([84ad75d](https://github.com/dytab/ngx-blocknote/commit/84ad75d))
 - remove duplicated slash menu item ([47518e6](https://github.com/dytab/ngx-blocknote/commit/47518e6))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.5.0 (2024-08-12)
 
-
 ### 🚀 Features
 
 - add basic mentions menu example ([572aed7](https://github.com/dytab/ngx-blocknote/commit/572aed7))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.4.0 (2024-08-09)
-
 
 ### 🚀 Features
 
@@ -353,13 +327,12 @@
 - remove json from basic setup so its not shown in overview ([e2f8f69](https://github.com/dytab/ngx-blocknote/commit/e2f8f69))
 - add active link to drag handle menu items link ([26dea53](https://github.com/dytab/ngx-blocknote/commit/26dea53))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - FMuks
 - Matthias Risto
 
 ## 0.3.0 (2024-08-08)
-
 
 ### 🚀 Features
 
@@ -380,7 +353,7 @@
 - reset file upload form after file was uploaded ([c5a8073](https://github.com/dytab/ngx-blocknote/commit/c5a8073))
 - make active navigation links visible ([26acb8f](https://github.com/dytab/ngx-blocknote/commit/26acb8f))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - FMuks
 - Markus Falk
@@ -388,61 +361,55 @@
 
 ## 0.2.5 (2024-08-07)
 
-
 ### 🩹 Fixes
 
 - add fix to test release script ([532fa29](https://github.com/dytab/ngx-blocknote/commit/532fa29))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.2.4 (2024-08-07)
 
-
 ### 🩹 Fixes
 
 - add test fix for release testings ([feb1d21](https://github.com/dytab/ngx-blocknote/commit/feb1d21))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.2.3 (2024-08-06)
 
-
 ### 🩹 Fixes
 
 - test release script ([3eaeb6a](https://github.com/dytab/ngx-blocknote/commit/3eaeb6a))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.2.2 (2024-08-06)
 
-
 ### 🩹 Fixes
 
 - delete the row which has an opened side menu if its not in selected rows ([22688b1](https://github.com/dytab/ngx-blocknote/commit/22688b1))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.2.1 (2024-08-06)
 
-
 ### 🩹 Fixes
 
 - delete removes the block ([5463d3f](https://github.com/dytab/ngx-blocknote/commit/5463d3f))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Matthias Risto
 
 ## 0.2.0 (2024-08-06)
-
 
 ### 🚀 Features
 
@@ -450,16 +417,15 @@
 
 ### 🩹 Fixes
 
-- add "**" to router ([4bbaed4](https://github.com/dytab/ngx-blocknote/commit/4bbaed4))
+- add "\*\*" to router ([4bbaed4](https://github.com/dytab/ngx-blocknote/commit/4bbaed4))
 - use correct base href ([cde3699](https://github.com/dytab/ngx-blocknote/commit/cde3699))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Johannes Klein
 - Matthias Risto
 
 ## 0.1.0 (2024-08-06)
-
 
 ### 🚀 Features
 
@@ -490,7 +456,7 @@
 - add correct heading for all blocks example ([f9943bf](https://github.com/dytab/ngx-blocknote/commit/f9943bf))
 - add correct position for ui elements with floating ui ([9ce0e2d](https://github.com/dytab/ngx-blocknote/commit/9ce0e2d))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - FMuks
 - Johann Töws

@@ -24,7 +24,7 @@ export class ThemeService {
   private _renderer = inject(RendererFactory2).createRenderer(null, null);
   private _document = inject(DOCUMENT);
   private _query = inject(MediaMatcher).matchMedia(
-    '(prefers-color-scheme: dark)'
+    '(prefers-color-scheme: dark)',
   );
   private _darkMode$ = new ReplaySubject<'light' | 'dark' | 'system'>(1);
   private _systemDarkMode$ = new ReplaySubject<'light' | 'dark' | 'system'>(1);
@@ -44,7 +44,7 @@ export class ThemeService {
   private syncInitialStateFromLocalStorage(): void {
     if (isPlatformBrowser(this._platformId)) {
       this._darkMode$.next(
-        (localStorage.getItem('darkMode') as DarkMode) ?? 'system'
+        (localStorage.getItem('darkMode') as DarkMode) ?? 'system',
       );
       this.setTheme((localStorage.getItem('theme') as Theme) ?? 'default');
     }

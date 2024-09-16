@@ -6,14 +6,14 @@ function getBoundingClientRectRow(
   draggingState?: {
     draggedCellOrientation: 'row' | 'col';
     mousePos: number;
-  }
+  },
 ) {
   if (draggingState && draggingState.draggedCellOrientation === 'row') {
     return new DOMRect(
       referencePosTable!.x,
       draggingState.mousePos,
       referencePosTable!.width,
-      0
+      0,
     );
   }
 
@@ -21,7 +21,7 @@ function getBoundingClientRectRow(
     referencePosTable!.x,
     referencePosCell!.y,
     referencePosTable!.width,
-    referencePosCell!.height
+    referencePosCell!.height,
   );
 }
 
@@ -31,14 +31,14 @@ function getBoundingClientRectCol(
   draggingState?: {
     draggedCellOrientation: 'row' | 'col';
     mousePos: number;
-  }
+  },
 ) {
   if (draggingState && draggingState.draggedCellOrientation === 'col') {
     return new DOMRect(
       draggingState.mousePos,
       referencePosTable!.y,
       0,
-      referencePosTable!.height
+      referencePosTable!.height,
     );
   }
 
@@ -46,7 +46,7 @@ function getBoundingClientRectCol(
     referencePosCell!.x,
     referencePosTable!.y,
     referencePosCell!.width,
-    referencePosTable!.height
+    referencePosTable!.height,
   );
 }
 
@@ -61,7 +61,7 @@ async function useTableHandlePosition(
   draggingState?: {
     draggedCellOrientation: 'row' | 'col';
     mousePos: number;
-  }
+  },
 ) {
   // Will be null on initial render when used in UI component controllers.
   if (referencePosCell === null || referencePosTable === null) {
@@ -77,10 +77,10 @@ async function useTableHandlePosition(
     },
     floatings[orientation],
     {
-      strategy:'fixed',
+      strategy: 'fixed',
       placement: orientation === 'row' ? 'left' : 'top',
       middleware: [offset(orientation === 'row' ? -5 : -12)],
-    }
+    },
   );
 
   return {
@@ -98,21 +98,21 @@ export const useTableHandlesPositioning = async (
   draggingState?: {
     draggedCellOrientation: 'row' | 'col';
     mousePos: number;
-  }
+  },
 ) => {
   const rowHandle = await useTableHandlePosition(
     'row',
     referencePosCell,
     referencePosTable,
     floatings,
-    draggingState
+    draggingState,
   );
   const colHandle = await useTableHandlePosition(
     'col',
     referencePosCell,
     referencePosTable,
     floatings,
-    draggingState
+    draggingState,
   );
   return { rowHandle, colHandle };
 };

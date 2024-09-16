@@ -78,14 +78,14 @@ export class BnaBlockTypeSelectComponent {
     return hasItem ? '' : 'hidden';
   });
   blockTypeSelectItems = input<(dict: Dictionary) => BlockTypeSelectItem[]>(
-    defaultBlockTypeSelectItems
+    defaultBlockTypeSelectItems,
   );
   filteredBlockTypes = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const dict = editor.dictionary;
     const blockTypeSelectItems = this.blockTypeSelectItems();
     return blockTypeSelectItems(dict).filter(
-      (item) => item.type in editor.schema.blockSchema
+      (item) => item.type in editor.schema.blockSchema,
     );
   });
   currentBlockType = signal<BlockTypeSelectItem | undefined>(undefined);
@@ -99,15 +99,15 @@ export class BnaBlockTypeSelectComponent {
     useEditorContentOrSelectionChange(() => {
       this.currentBlockType.set(
         this.filteredBlockTypes().find((a) =>
-          a.isSelected(editor.getTextCursorPosition().block)
-        )
+          a.isSelected(editor.getTextCursorPosition().block),
+        ),
       );
     }, editor);
   }
 
   changeBlockType(
     type: string,
-    props?: Record<string, boolean | number | string> | undefined
+    props?: Record<string, boolean | number | string> | undefined,
   ) {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();

@@ -1,3 +1,4 @@
-.bn-toolbar, .bn-link-toolbar {
+.bn-toolbar,
+.bn-link-toolbar {
   @apply flex flex-nowrap gap-1 p-1 bg-background justify-center items-center w-fit rounded-sm border border-border shadow-lg shadow-border;
 }

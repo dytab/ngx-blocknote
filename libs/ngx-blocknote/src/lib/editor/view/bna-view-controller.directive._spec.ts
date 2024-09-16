@@ -24,7 +24,7 @@ describe('BnaViewControllerDirective', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     bnaViewController = fixture.nativeElement.querySelector(
-      'bna-view-controller'
+      'bna-view-controller',
     );
   });
 

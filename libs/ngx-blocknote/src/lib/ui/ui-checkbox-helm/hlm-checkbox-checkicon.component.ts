@@ -7,29 +7,27 @@ import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
 import { provideIcons } from '@ng-icons/core';
 
 @Component({
-	selector: 'hlm-checkbox-checkicon',
-	standalone: true,
+  selector: 'hlm-checkbox-checkicon',
+  standalone: true,
   imports: [HlmIconComponent, HlmIconComponent],
-	providers: [provideIcons({ lucideCheck })],
-	host: {
-		'[class]': '_computedClass()',
-	},
-	template: `
-		<hlm-icon size="sm" [name]="iconName()" />
-	`,
+  providers: [provideIcons({ lucideCheck })],
+  host: {
+    '[class]': '_computedClass()',
+  },
+  template: ` <hlm-icon size="sm" [name]="iconName()" /> `,
 })
 export class HlmCheckboxCheckIconComponent {
-	private _brnCheckbox = inject(BrnCheckboxComponent);
-	protected _checked = this._brnCheckbox?.isChecked;
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
+  private _brnCheckbox = inject(BrnCheckboxComponent);
+  protected _checked = this._brnCheckbox?.isChecked;
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-	public readonly iconName = input<string>('lucideCheck');
+  public readonly iconName = input<string>('lucideCheck');
 
-	protected _computedClass = computed(() =>
-		hlm(
-			'h-4 w-4 leading-none group-data-[state=unchecked]:opacity-0',
-			this._checked() === 'indeterminate' ? 'opacity-50' : '',
-			this.userClass(),
-		),
-	);
+  protected _computedClass = computed(() =>
+    hlm(
+      'h-4 w-4 leading-none group-data-[state=unchecked]:opacity-0',
+      this._checked() === 'indeterminate' ? 'opacity-50' : '',
+      this.userClass(),
+    ),
+  );
 }

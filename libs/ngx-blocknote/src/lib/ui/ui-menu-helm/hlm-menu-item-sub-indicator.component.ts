@@ -20,6 +20,6 @@ import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
 export class HlmMenuItemSubIndicatorComponent {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() =>
-    hlm('inline-block ml-auto h-4 w-4', this.userClass())
+    hlm('inline-block ml-auto h-4 w-4', this.userClass()),
   );
 }

@@ -12,10 +12,7 @@ import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
 import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
-import {
-  FormExample,
-  basicSetupExampleCode,
-} from './form.example';
+import { FormExample, basicSetupExampleCode } from './form.example';
 
 @Component({
   standalone: true,

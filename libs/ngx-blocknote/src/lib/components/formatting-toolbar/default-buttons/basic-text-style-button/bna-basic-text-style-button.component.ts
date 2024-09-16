@@ -35,7 +35,7 @@ type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
 
 function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   style: Style,
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ): editor is BlockNoteEditor<
   BlockSchema,
   InlineContentSchema,
@@ -90,7 +90,7 @@ export class BnaBasicTextStyleButtonComponent {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const basicTextStyleInSchema = checkBasicTextStyleInSchema(
       this.basicTextStyle(),
-      editor
+      editor,
     );
     if (!basicTextStyleInSchema) {
       return '';

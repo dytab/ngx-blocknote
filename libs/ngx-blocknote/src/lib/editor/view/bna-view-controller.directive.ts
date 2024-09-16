@@ -8,7 +8,7 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 export class BnaViewControllerDirective {
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
-    protected elRef: ElementRef<HTMLElement>
+    protected elRef: ElementRef<HTMLElement>,
   ) {
     effect(() => {
       const editorSnapshot = this.ngxBlockNoteService.editor();

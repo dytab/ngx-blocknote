@@ -1,12 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
-import {
-  BnaEditorComponent,
-} from '@dytab/ngx-blocknote';
-import {
-  HlmButtonDirective,
-} from '@dytab/ui';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',
@@ -50,7 +46,7 @@ export class ManipulatingBlocksExample {
         },
       ],
       this.editor.document[0],
-      'before'
+      'before',
     );
   }
 
@@ -72,7 +68,7 @@ export class ManipulatingBlocksExample {
           content:
             'This block was replaced at ' + new Date().toLocaleTimeString(),
         },
-      ]
+      ],
     );
   }
 }

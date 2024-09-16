@@ -23,7 +23,7 @@ import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-f
 
 function checkColorInSchema<Color extends 'text' | 'background'>(
   color: Color,
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ): editor is BlockNoteEditor<
   BlockSchema,
   InlineContentSchema,

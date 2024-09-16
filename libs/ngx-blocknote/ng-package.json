@@ -4,7 +4,7 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies":[
+  "allowedNonPeerDependencies": [
     "@floating-ui/dom",
     "@ng-icons/core",
     "@ng-icons/lucide",

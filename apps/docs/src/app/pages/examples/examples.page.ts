@@ -21,17 +21,18 @@ import { exampleGroupedLinks } from './shared/examples';
   >
     <aside class="flex flex-col">
       @for (exampleGroup of exampleGroupedLinks; track exampleGroup.groupName) {
-      <div>{{ exampleGroup.groupName }}</div>
-      @for (example of exampleGroup.links; track example.url) {
-      <a
-        hlmBtn
-        variant="link"
-        routerLinkActive="!text-foreground"
-        [routerLink]="example.url"
-        class="justify-start text-muted-foreground"
-        >{{ example.name }}</a
-      >
-      } }
+        <div>{{ exampleGroup.groupName }}</div>
+        @for (example of exampleGroup.links; track example.url) {
+          <a
+            hlmBtn
+            variant="link"
+            routerLinkActive="!text-foreground"
+            [routerLink]="example.url"
+            class="justify-start text-muted-foreground"
+            >{{ example.name }}</a
+          >
+        }
+      }
     </aside>
     <main class="overflow-hidden py-6">
       <router-outlet class="hidden"></router-outlet>

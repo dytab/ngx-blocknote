@@ -14,7 +14,9 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   imports: [CommonModule],
   selector: 'bna-side-menu-controller',
   standalone: true,
-  template: `@if(show()){<ng-content />}`,
+  template: `@if (show()) {
+    <ng-content />
+  }`,
 })
 export class BnaSideMenuControllerComponent {
   show = signal(false);
@@ -22,7 +24,7 @@ export class BnaSideMenuControllerComponent {
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
   ) {
     effect(() => {
       this.adjustVisibilityAndPosition();
@@ -54,18 +56,18 @@ export class BnaSideMenuControllerComponent {
               strategy: 'fixed',
               placement: 'left',
               middleware: [flip()],
-            }
+            },
           );
           this.renderer2.setStyle(
             this.elRef.nativeElement,
             'top',
-            `${result.y}px`
+            `${result.y}px`,
           );
         };
         cleanup = autoUpdate(
           getVirtualElement(sideMenuState.referencePos),
           this.elRef.nativeElement,
-          updatePosition
+          updatePosition,
         );
       }
     });

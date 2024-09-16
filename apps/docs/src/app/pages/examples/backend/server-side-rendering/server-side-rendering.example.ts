@@ -20,7 +20,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     </button>
     <bna-editor [formControl]="control" />
     SSR Output
-    <div class="bg">{{ssrContent}}</div>
+    <div class="bg">{{ ssrContent }}</div>
   `,
 })
 export class ServerSideRenderingExample {

@@ -63,10 +63,10 @@ const schema = BlockNoteSchema.create({
       <div
         class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
       >
-        @for(item of filteredItems();track item.title){
-        <button hlmBtn variant="ghost" size="sm" (click)="item.onItemClick()">
-          {{ item.title }}
-        </button>
+        @for (item of filteredItems(); track item.title) {
+          <button hlmBtn variant="ghost" size="sm" (click)="item.onItemClick()">
+            {{ item.title }}
+          </button>
         }
       </div>
     </bna-suggestions-menu-controller></bna-editor

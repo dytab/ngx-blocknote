@@ -23,4 +23,3 @@ To build and run the extension locally when developing, you should follow these 
 ## License
 
 This project is licensed under the [MIT License](LICENSE.md).
-

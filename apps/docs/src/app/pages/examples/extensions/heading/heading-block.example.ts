@@ -12,10 +12,7 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/ngx-blocknote';
-import {
-  getHeadingSlashMenuItems,
-  Heading,
-} from '@dytab/blocknote-extensions';
+import { getHeadingSlashMenuItems, Heading } from '@dytab/blocknote-extensions';
 import { HlmButtonDirective } from '@dytab/ui';
 
 const schema = BlockNoteSchema.create({
@@ -50,7 +47,7 @@ export class HeadingBlockExample {
     typeof schema.styleSchema
   > = {
     schema,
-    getSuggestionItems: (editor  ) => [
+    getSuggestionItems: (editor) => [
       ...getHeadingSlashMenuItems(editor),
       ...getDefaultSlashMenuItems(editor),
     ],

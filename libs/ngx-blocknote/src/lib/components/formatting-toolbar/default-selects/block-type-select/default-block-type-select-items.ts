@@ -1,7 +1,9 @@
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
 import { Dictionary } from '@blocknote/core';
 
-export const defaultBlockTypeSelectItems =(  dict: Dictionary): BlockTypeSelectItem[] => [
+export const defaultBlockTypeSelectItems = (
+  dict: Dictionary,
+): BlockTypeSelectItem[] => [
   {
     name: dict.slash_menu.paragraph.title,
     type: 'paragraph',

@@ -8,7 +8,7 @@ import {
 import { TOCItem } from './toc-item.type';
 
 export const getTableOfContents = (
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ): TOCItem[] => {
   const blocks = editor.document;
 

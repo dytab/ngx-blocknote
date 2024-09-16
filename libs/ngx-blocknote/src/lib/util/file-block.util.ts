@@ -8,7 +8,7 @@ import {
 
 export const fileBlock = (
   editor: BlockNoteEditor<any, any, any>,
-  selectedBlocks: Block<any, any, any>[]
+  selectedBlocks: Block<any, any, any>[],
 ): BlockFromConfig<FileBlockConfig, any, any> | undefined => {
   if (selectedBlocks.length !== 1) {
     return undefined;

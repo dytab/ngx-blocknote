@@ -22,7 +22,7 @@ function scrollToHeadingElement(entry: TOCItem) {
 
 function renderTableOfContent(
   editor: BlockNoteEditor<any, any, any>,
-  tocWrapper: HTMLElement
+  tocWrapper: HTMLElement,
 ) {
   //TODO: check if there is a way to clear this better;
   tocWrapper.innerHTML = '';
@@ -57,7 +57,7 @@ export const tableOfContentsBlockConfig = {
 
 const render = (
   block: BlockFromConfig<typeof tableOfContentsBlockConfig, any, any>,
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ) => {
   const tocWrapperElement = document.createElement('div');
   tocWrapperElement.className = 'toc';
@@ -83,7 +83,7 @@ const tableOfContentsSchema = getBlockSchemaFromSpecs({
 });
 
 export const getTableOfContentSuggestionItem = (
-  editor: BlockNoteEditor<typeof tableOfContentsSchema>
+  editor: BlockNoteEditor<typeof tableOfContentsSchema>,
 ) => ({
   onItemClick: () => {
     insertOrUpdateBlock(editor, {

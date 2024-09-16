@@ -10,5 +10,4 @@ Run `nx build block-note-extensions` to build the library.
 
 Run `nx test block-note-extensions` to execute the unit tests via [Vitest](https://vitest.dev/).
 
-
 add test fix

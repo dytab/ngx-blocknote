@@ -21,8 +21,8 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
   templateUrl: 'bna-table-handle-controller.component.html',
   styleUrl: 'bna-table-handle-controller.component.css',
   standalone: true,
-  host:{
-    class: 'z-40 fixed'
+  host: {
+    class: 'z-40 fixed',
   },
 })
 export class BnaTableHandlesController implements AfterViewInit {
@@ -71,7 +71,7 @@ export class BnaTableHandlesController implements AfterViewInit {
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
   ) {
     effect(async () => {
       const tableHandles = this.tableHandles();
@@ -83,7 +83,7 @@ export class BnaTableHandlesController implements AfterViewInit {
       await this.adjustTableHandlePositions(
         tableHandles,
         rowElement,
-        colElement
+        colElement,
       );
     });
     this.adjustVisibilityAndOptions();
@@ -92,7 +92,7 @@ export class BnaTableHandlesController implements AfterViewInit {
   private async adjustTableHandlePositions(
     tableHandles: TableHandlesState<any, any>,
     rowElement: ElementRef,
-    colElement: ElementRef
+    colElement: ElementRef,
   ) {
     const result = await useTableHandlesPositioning(
       tableHandles.referencePosCell,
@@ -100,31 +100,31 @@ export class BnaTableHandlesController implements AfterViewInit {
       {
         row: rowElement.nativeElement,
         col: colElement.nativeElement,
-      }
+      },
     );
 
     if (result.rowHandle?.position) {
       this.renderer2.setStyle(
         rowElement.nativeElement,
         'top',
-        `${result.rowHandle.position.y}px`
+        `${result.rowHandle.position.y}px`,
       );
       this.renderer2.setStyle(
         rowElement.nativeElement,
         'left',
-        `${result.rowHandle.position.x}px`
+        `${result.rowHandle.position.x}px`,
       );
     }
     if (result.colHandle?.position) {
       this.renderer2.setStyle(
         colElement.nativeElement,
         'top',
-        `${result.colHandle.position.y}px`
+        `${result.colHandle.position.y}px`,
       );
       this.renderer2.setStyle(
         colElement.nativeElement,
         'left',
-        `${result.colHandle.position.x}px`
+        `${result.colHandle.position.x}px`,
       );
     }
   }

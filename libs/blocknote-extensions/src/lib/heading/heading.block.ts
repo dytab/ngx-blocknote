@@ -59,7 +59,8 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            chain().BNUpdateBlock(state.selection.from, {
+            chain()
+              .BNUpdateBlock(state.selection.from, {
                 type: 'heading',
                 props: {
                   level: level as any,
@@ -89,7 +90,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
             props: {
               level: 1 as any,
             },
-          }
+          },
         );
       },
       'Mod-Alt-2': () => {
@@ -106,7 +107,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
             props: {
               level: 2 as any,
             },
-          }
+          },
         );
       },
       'Mod-Alt-3': () => {
@@ -122,7 +123,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
             props: {
               level: 3 as any,
             },
-          }
+          },
         );
       },
     };
@@ -156,7 +157,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
         ...(this.options.domAttributes?.blockContent || {}),
         ...x.HTMLAttributes,
       },
-      this.options.domAttributes?.inlineContent || {}
+      this.options.domAttributes?.inlineContent || {},
     );
     //add id to element, but how to access id here?
     return element;
@@ -165,7 +166,7 @@ const HeadingBlockContent = createStronglyTypedTiptapNode({
 
 export const Heading = createBlockSpecFromStronglyTypedTiptapNode(
   HeadingBlockContent,
-  headingPropSchema
+  headingPropSchema,
 );
 
 const headingSchema = getBlockSchemaFromSpecs({
@@ -174,7 +175,7 @@ const headingSchema = getBlockSchemaFromSpecs({
 });
 
 export const getHeadingSlashMenuItems = (
-  editor: BlockNoteEditor<typeof headingSchema>
+  editor: BlockNoteEditor<typeof headingSchema>,
 ) => [
   {
     onItemClick: () => {

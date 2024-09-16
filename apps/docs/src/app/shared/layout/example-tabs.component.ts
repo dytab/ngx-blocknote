@@ -63,7 +63,7 @@ export class TabsComponent {
   secondTab = '';
   public readonly value = input('');
   protected _tabValue = computed(() =>
-    this.value() === '' ? this.firstTab : this.value()
+    this.value() === '' ? this.firstTab : this.value(),
   );
   @Output()
   tabActivated = new EventEmitter<string>();

@@ -1,45 +1,43 @@
-@if(options().orientation === 'column'){
-<button
-  (click)="addColumn('right')"
-  type="button"
-  hlmBtn
-  variant="ghost"
-  size="xs"
-  class="w-full justify-start"
->
-  Add Column Right
-</button>
-<button
-  (click)="addColumn('left')"
-  type="button"
-  hlmBtn
-  variant="ghost"
-  size="xs"
-  class="w-full justify-start"
-
->
-  Add Column Left
-</button>
-} @else if (options().orientation === 'row'){
-<button
-  (click)="addRow('above')"
-  type="button"
-  hlmBtn
-  variant="ghost"
-  size="xs"
-  class="w-full justify-start"
-
->
-  Add Row above
-</button>
-<button
-  (click)="addRow('below')"
-  type="button"
-  hlmBtn
-  variant="ghost"
-  size="xs"
-  class="w-full justify-start"
->
-  Add Row below
-</button>
+@if (options().orientation === 'column') {
+  <button
+    (click)="addColumn('right')"
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+  >
+    Add Column Right
+  </button>
+  <button
+    (click)="addColumn('left')"
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+  >
+    Add Column Left
+  </button>
+} @else if (options().orientation === 'row') {
+  <button
+    (click)="addRow('above')"
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+  >
+    Add Row above
+  </button>
+  <button
+    (click)="addRow('below')"
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+  >
+    Add Row below
+  </button>
 }

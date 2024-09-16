@@ -14,7 +14,7 @@ export const mentionConfig = {
 export type MentionConfigType = typeof mentionConfig;
 
 const render = (
-  inlineContent: InlineContentFromConfig<MentionConfigType, any>
+  inlineContent: InlineContentFromConfig<MentionConfigType, any>,
 ) => {
   const div = document.createElement('span');
   div.style.backgroundColor = '#9d9';

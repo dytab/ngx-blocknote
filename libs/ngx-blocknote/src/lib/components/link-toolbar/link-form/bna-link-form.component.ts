@@ -51,7 +51,7 @@ export class BnaLinkFormComponent implements OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
-    private ngxBlockNoteService: NgxBlocknoteService
+    private ngxBlockNoteService: NgxBlocknoteService,
   ) {}
 
   ngOnChanges() {

@@ -35,7 +35,7 @@ export class BnaFileDeleteButtonComponent {
   fileBlock = computed(() => {
     return fileBlock(
       this.ngxBlockNoteService.editor(),
-      this.ngxBlockNoteService.selectedBlocks()
+      this.ngxBlockNoteService.selectedBlocks(),
     );
   });
 

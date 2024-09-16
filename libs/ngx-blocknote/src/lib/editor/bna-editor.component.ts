@@ -279,16 +279,16 @@ export class BnaEditorComponent<
         const selectedBlocks = useSelectedBlocks(editor);
         this.ngxBlockNoteService.selectedBlocks.set(selectedBlocks);
       }, editor),
-      editor.filePanel?.onUpdate( (state) => {
+      editor.filePanel?.onUpdate((state) => {
         this.filePanelShown.set(state.show);
       }),
-      editor.formattingToolbar.onUpdate( (state) => {
+      editor.formattingToolbar.onUpdate((state) => {
         this.formattingToolbarShown.set(state.show);
       }),
-      editor.sideMenu.onUpdate( (state) => {
+      editor.sideMenu.onUpdate((state) => {
         this.sideMenuShown.set(state.show);
       }),
-      editor.linkToolbar.onUpdate( (state) => {
+      editor.linkToolbar.onUpdate((state) => {
         this.linkToolbarShown.set(state.show);
       }),
     );

@@ -7,7 +7,6 @@
 @import '../../../../libs/blocknote-extensions/src/lib/page-break/page-break.css';
 @import '../../../../libs/blocknote-extensions/src/lib/heading/heading.css';
 
-
-body{
+body {
   @apply h-full bg-background text-foreground;
 }

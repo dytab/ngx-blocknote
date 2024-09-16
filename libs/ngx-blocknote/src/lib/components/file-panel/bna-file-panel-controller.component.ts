@@ -2,7 +2,8 @@ import {
   Component,
   effect,
   ElementRef,
-  Renderer2, signal
+  Renderer2,
+  signal,
 } from '@angular/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
@@ -10,13 +11,15 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  imports:[CommonModule],
+  imports: [CommonModule],
   selector: 'bna-file-panel-controller',
   standalone: true,
-  host:{
-    class: 'z-30 fixed'
+  host: {
+    class: 'z-30 fixed',
   },
-  template: `@if(show()){<ng-content />}`,
+  template: `@if (show()) {
+    <ng-content />
+  }`,
 })
 export class BnaFilePanelControllerComponent {
   show = signal(false);
@@ -24,7 +27,7 @@ export class BnaFilePanelControllerComponent {
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
   ) {
     effect(() => {
       this.adjustVisibilityAndPosition();
@@ -49,26 +52,26 @@ export class BnaFilePanelControllerComponent {
             getVirtualElement(filePanelState.referencePos),
             this.elRef.nativeElement,
             {
-              strategy:'fixed',
+              strategy: 'fixed',
               placement: 'bottom',
               middleware: [offset(10), flip()],
-            }
+            },
           );
           this.renderer2.setStyle(
             this.elRef.nativeElement,
             'top',
-            `${result.y}px`
+            `${result.y}px`,
           );
           this.renderer2.setStyle(
             this.elRef.nativeElement,
             'left',
-            `${result.x}px`
+            `${result.x}px`,
           );
         };
         cleanup = autoUpdate(
           getVirtualElement(filePanelState.referencePos),
           this.elRef.nativeElement,
-          updatePosition
+          updatePosition,
         );
       }
     });

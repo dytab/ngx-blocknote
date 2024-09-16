@@ -1,10 +1,7 @@
-import {
-  BlockNoteEditor,
-  insertOrUpdateBlock,
-} from '@blocknote/core';
+import { BlockNoteEditor, insertOrUpdateBlock } from '@blocknote/core';
 
 export const getPageBreakSuggestionItem = (
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ) => ({
   onItemClick: () => {
     insertOrUpdateBlock(editor, {
