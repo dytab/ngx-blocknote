@@ -9,9 +9,6 @@ import { SelectionBlocksPage } from '../basic/selection-blocks/selection-blocks.
 import { AlertBlockPage } from '../custom/alert-block/alert-block.page';
 import { ApiContentBlockPage } from '../custom/api-content-block/api-content-block.page';
 import { MentionsMenuPage } from '../custom/mentions-menu/mentions-menu.page';
-import { HeadingBlockPage } from '../extensions/heading/heading-block.page';
-import { PageBreakBlockPage } from '../extensions/page-break/page-break-block.page';
-import { TableOfContentsBlockPage } from '../extensions/table-of-contents/table-of-contents-block.page';
 import { ConvertToHtmlPage } from '../interoperability/convert-to-html/convert-to-html.page';
 import { AddingSideMenuDragHandleItemsPage } from '../ui-components/adding-side-menu-drag-handle-items/adding-side-menu-drag-handle-items.page';
 import { FormattingSideMenuButtonsPage } from '../ui-components/formatting-side-menu-buttons/formatting-side-menu-buttons.page';
@@ -106,24 +103,6 @@ export const exampleLinks: Example[] = [
     url: 'custom/editor',
     name: 'Custom Editor',
     component: CustomEditorPage,
-  },
-  {
-    groupName: 'Extensions',
-    url: 'extensions/heading-block',
-    name: 'Heading Block',
-    component: HeadingBlockPage,
-  },
-  {
-    groupName: 'Extensions',
-    url: 'extensions/table-of-contents',
-    name: 'Table Of Contents',
-    component: TableOfContentsBlockPage,
-  },
-  {
-    groupName: 'Extensions',
-    url: 'extensions/page-break',
-    name: 'Page Break',
-    component: PageBreakBlockPage,
   },
   {
     groupName: 'Interoperability',
