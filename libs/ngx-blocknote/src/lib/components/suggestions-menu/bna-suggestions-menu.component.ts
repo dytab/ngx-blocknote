@@ -65,8 +65,9 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
   };
 
   insertSelectedBlock() {
-    this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
-    this.ngxBlockNoteService.editor().suggestionMenus.clearQuery();
+    const editor = this.ngxBlockNoteService.editor();
+    editor.suggestionMenus.closeMenu();
+    editor.suggestionMenus.clearQuery();
     this.filteredSlashMenuItems[this.selectedIndex].onItemClick();
     this.selectedIndex = 0;
   }
@@ -75,7 +76,7 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
     effect(() => {
       this.filteredSlashMenuItems = filterSuggestionItems(
         this.getSlashMenuItems(),
-        this.query()
+        this.query(),
       );
     });
   }
@@ -92,6 +93,7 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
             this.selectedIndex = 0;
           }
           if (this.isShown() !== state.show) {
+            this.selectedIndex = 0;
             this.isShown.set(state.show);
           }
         });

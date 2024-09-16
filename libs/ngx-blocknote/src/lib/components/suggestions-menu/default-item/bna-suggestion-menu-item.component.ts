@@ -66,7 +66,7 @@ export class BnaSuggestionMenuItemComponent {
     if (!item) {
       return 'lucideLayoutPanelTop';
     }
-    const icon = icons[item?.key];
+    const icon = icons[item.key];
     return icon ? icon : 'lucideLayoutPanelTop';
   });
   selected = input<boolean>(false);
@@ -74,10 +74,13 @@ export class BnaSuggestionMenuItemComponent {
 
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
-  onClick() {
-    this.ngxBlockNoteService.editor().suggestionMenus.clearQuery();
+  onClick($event: Event) {
+    $event.preventDefault();
+    const editor = this.ngxBlockNoteService.editor();
+    editor.suggestionMenus.clearQuery();
     this.suggestionItem().onItemClick();
-    this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
+    editor.suggestionMenus.closeMenu();
+    editor.focus();
   }
 
   onMouseEnter() {
