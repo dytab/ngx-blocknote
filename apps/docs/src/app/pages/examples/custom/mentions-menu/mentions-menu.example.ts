@@ -15,8 +15,8 @@ import {
   BnaSuggestionsMenuComponent,
   BnaSuggestionsMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
-import { Mention } from './mentions';
 import { HlmButtonDirective } from '@dytab/ui';
+import { Mention } from './mentions';
 
 const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
   const users = ['Steve', 'Bob', 'Joe', 'Mike'];
@@ -64,7 +64,12 @@ const schema = BlockNoteSchema.create({
         class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
       >
         @for (item of filteredItems(); track item.title) {
-          <button hlmBtn variant="ghost" size="sm" (click)="item.onItemClick()">
+          <button
+            hlmBtn
+            variant="ghost"
+            size="sm"
+            (mousedown)="addItem($event, item)"
+          >
             {{ item.title }}
           </button>
         }
@@ -117,6 +122,11 @@ export class MentionsMenuExample {
     $event.suggestionMenus.onUpdate('@', (state) => {
       this.query.set(state.query);
     });
+  }
+
+  addItem($event: Event, item: { title: string; onItemClick: () => void }) {
+    $event.preventDefault();
+    item.onItemClick();
   }
 }
 
@@ -186,7 +196,7 @@ const schema = BlockNoteSchema.create({
         class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
       >
         @for(item of filteredItems();track item.title){
-        <button hlmBtn variant="ghost" size="sm" (click)="item.onItemClick()">
+        <button hlmBtn variant="ghost" size="sm" (mousedown)="addItem($event,item)">
           {{ item.title }}
         </button>
         }
@@ -239,5 +249,9 @@ export class MentionsMenuExample {
     $event.suggestionMenus.onUpdate('@', (state) => {
       this.query.set(state.query);
     });
+  
+  addItem($event: Event, item:{title:string, onItemClick: () => void} ) {
+    $event.preventDefault()
+    item.onItemClick();
   }
 }`;
