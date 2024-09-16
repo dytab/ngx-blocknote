@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   effect,
@@ -15,16 +16,17 @@ import {
 } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
-import { CommonModule } from '@angular/common';
 
 @Component({
   imports: [CommonModule],
   selector: 'bna-suggestions-menu-controller',
   standalone: true,
-  host:{
-    class: 'z-30 fixed flex'
+  host: {
+    class: 'z-30 fixed flex',
   },
-  template: `@if(show()){<ng-content />}`,
+  template: `@if (show()) {
+    <ng-content />
+  }`,
 })
 export class BnaSuggestionsMenuControllerComponent {
   show = signal(false);
@@ -33,7 +35,7 @@ export class BnaSuggestionsMenuControllerComponent {
   constructor(
     private blockNoteEditorService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
   ) {
     effect(() => {
       this.adjustVisibilityAndPosition();
@@ -70,31 +72,31 @@ export class BnaSuggestionsMenuControllerComponent {
                       this.renderer2.setStyle(
                         this.elRef.nativeElement,
                         'maxHeight',
-                        `${availableHeight - 10}px`
+                        `${availableHeight - 10}px`,
                       );
                     },
                   }),
                 ],
-              }
+              },
             );
             this.renderer2.setStyle(
               this.elRef.nativeElement,
               'top',
-              `${result.y}px`
+              `${result.y}px`,
             );
             this.renderer2.setStyle(
               this.elRef.nativeElement,
               'left',
-              `${result.x}px`
+              `${result.x}px`,
             );
           };
           cleanup = autoUpdate(
             getVirtualElement(suggestionMenuState.referencePos),
             this.elRef.nativeElement,
-            updatePosition
+            updatePosition,
           );
         }
-      }
+      },
     );
   }
 }

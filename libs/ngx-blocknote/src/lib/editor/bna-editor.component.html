@@ -1,58 +1,69 @@
 <div class="block h-full py-3 bn-container">
-  @if(firstTimeInitialized){
-  <div #formattingToolbar>
-    <ng-content select="bna-formatting-toolbar-controller" />
-  </div>
-  @if(!formattingToolbar.hasChildNodes()){
-  <bna-formatting-toolbar-controller>
-    <bna-formatting-toolbar>
-      <bna-file-caption-button />
-      <bna-file-replace-button />
-      <bna-file-rename-button />
-      <bna-file-delete-button />
-      <bna-file-download-button />
-      <bna-file-preview-button />
-      <bna-block-type-selection-button />
-      <bna-basic-text-style-button [basicTextStyle]="'bold'" />
-      <bna-basic-text-style-button [basicTextStyle]="'italic'" />
-      <bna-basic-text-style-button [basicTextStyle]="'underline'" />
-      <bna-basic-text-style-button [basicTextStyle]="'strike'" />
-      <bna-text-align-button [alignment]="'left'" />
-      <bna-text-align-button [alignment]="'center'" />
-      <bna-text-align-button [alignment]="'right'" />
-      <bna-color-style-button />
-      <bna-create-link />
-    </bna-formatting-toolbar>
-  </bna-formatting-toolbar-controller>
-  }
-  <div #sideMenuController>
-    <ng-content select="bna-side-menu-controller"></ng-content>
-  </div>
-  @if(!sideMenuController.hasChildNodes()){
-  <bna-side-menu-controller>
-    <bna-side-menu>
-      <bna-add-block-btn />
-      <bna-drag-handle-menu-btn />
-    </bna-side-menu>
-  </bna-side-menu-controller>
-  }
-  <bna-view-controller
-    class="block ProseMirror bn-editor relative bn-default-styles"
-  />
-  <bna-file-panel-controller>
-    <bna-file-panel />
-  </bna-file-panel-controller>
-  <bna-suggestions-menu-controller triggerCharacter="/" class="z-index-3">
-    <bna-suggestions-menu triggerCharacter="/" />
-  </bna-suggestions-menu-controller>
-  <bna-link-toolbar-controller
-    ><bna-link-toolbar>
-      <bna-edit-link-button />
-      <bna-open-link />
-      <bna-delete-link /> </bna-link-toolbar
-  ></bna-link-toolbar-controller>
-  <bna-table-handles-controller></bna-table-handles-controller>
-  <!--  All the other things just render them here-->
-  <ng-content></ng-content>
+  @if (firstTimeInitialized) {
+    <div #formattingToolbar>
+      <ng-content select="bna-formatting-toolbar-controller" />
+    </div>
+    @if (!formattingToolbar.hasChildNodes()) {
+      <bna-formatting-toolbar-controller>
+        @if (formattingToolbarShown()) {
+          <bna-formatting-toolbar>
+            <bna-file-caption-button />
+            <bna-file-replace-button />
+            <bna-file-rename-button />
+            <bna-file-delete-button />
+            <bna-file-download-button />
+            <bna-file-preview-button />
+            <bna-block-type-selection-button />
+            <bna-basic-text-style-button [basicTextStyle]="'bold'" />
+            <bna-basic-text-style-button [basicTextStyle]="'italic'" />
+            <bna-basic-text-style-button [basicTextStyle]="'underline'" />
+            <bna-basic-text-style-button [basicTextStyle]="'strike'" />
+            <bna-text-align-button [alignment]="'left'" />
+            <bna-text-align-button [alignment]="'center'" />
+            <bna-text-align-button [alignment]="'right'" />
+            <bna-color-style-button />
+            <bna-create-link />
+          </bna-formatting-toolbar>
+        }
+      </bna-formatting-toolbar-controller>
+    }
+    <div #sideMenuController>
+      <ng-content select="bna-side-menu-controller"></ng-content>
+    </div>
+    @if (!sideMenuController.hasChildNodes()) {
+      <bna-side-menu-controller>
+        @if (sideMenuShown()) {
+          <bna-side-menu>
+            <bna-add-block-btn />
+            <bna-drag-handle-menu-btn />
+          </bna-side-menu>
+        }
+      </bna-side-menu-controller>
+    }
+    <bna-view-controller
+      class="block ProseMirror bn-editor relative bn-default-styles"
+    />
+    <bna-file-panel-controller>
+      @if (filePanelShown()) {
+        <bna-file-panel />
+      }
+    </bna-file-panel-controller>
+    <bna-suggestions-menu-controller triggerCharacter="/" class="z-index-3">
+      @if (suggestionMenuShown()) {
+        <bna-suggestions-menu triggerCharacter="/" />
+      }
+    </bna-suggestions-menu-controller>
+    <bna-link-toolbar-controller>
+      @if (linkToolbarShown()) {
+        <bna-link-toolbar>
+          <bna-edit-link-button />
+          <bna-open-link />
+          <bna-delete-link />
+        </bna-link-toolbar>
+      }
+    </bna-link-toolbar-controller>
+    <bna-table-handles-controller></bna-table-handles-controller>
+    <!--  All the other things just render them here-->
+    <ng-content></ng-content>
   }
 </div>

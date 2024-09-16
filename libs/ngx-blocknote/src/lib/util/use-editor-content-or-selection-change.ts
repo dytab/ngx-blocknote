@@ -2,8 +2,9 @@ import { BlockNoteEditor } from '@blocknote/core';
 
 export const useEditorContentOrSelectionChange = (
   callback: () => void,
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ) => {
-  editor.onChange(callback);
-  editor.onSelectionChange(callback);
+  const cleanupOnChange = editor.onChange(callback);
+  const cleanupOnSelectionChange = editor.onSelectionChange(callback);
+  return [cleanupOnChange, cleanupOnSelectionChange];
 };

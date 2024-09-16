@@ -6,6 +6,7 @@ import {
   OnChanges,
   OnInit,
   output,
+  signal,
   SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -72,7 +73,7 @@ import { BnaViewControllerDirective } from './view/bna-view-controller.directive
 type InitialContent<
   BSchema extends BlockSchema = DefaultBlockSchema,
   ISchema extends InlineContentSchema = DefaultInlineContentSchema,
-  SSchema extends StyleSchema = DefaultStyleSchema
+  SSchema extends StyleSchema = DefaultStyleSchema,
 > =
   | Block<BSchema, ISchema, SSchema>[]
   | PartialBlock<BSchema, ISchema, SSchema>[]
@@ -134,10 +135,11 @@ type InitialContent<
   templateUrl: './bna-editor.component.html',
 })
 export class BnaEditorComponent<
-  BSchema extends BlockSchema = DefaultBlockSchema,
-  ISchema extends InlineContentSchema = DefaultInlineContentSchema,
-  SSchema extends StyleSchema = DefaultStyleSchema
-> implements OnChanges, ControlValueAccessor, OnInit
+    BSchema extends BlockSchema = DefaultBlockSchema,
+    ISchema extends InlineContentSchema = DefaultInlineContentSchema,
+    SSchema extends StyleSchema = DefaultStyleSchema,
+  >
+  implements OnChanges, ControlValueAccessor, OnInit
 {
   @Input()
   options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
@@ -149,6 +151,14 @@ export class BnaEditorComponent<
   onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   private hasCustomEditor = false;
+
+  suggestionMenuShown = signal(false);
+  filePanelShown = signal(false);
+  formattingToolbarShown = signal(false);
+  sideMenuShown = signal(false);
+  linkToolbarShown = signal(false);
+
+  private onChangeCallbackListeners: Array<() => void | undefined> = [];
 
   @Input()
   set editor(editor: BlockNoteEditor<BSchema, ISchema, SSchema>) {
@@ -226,7 +236,7 @@ export class BnaEditorComponent<
     initialContent:
       | Block<BSchema, ISchema, SSchema>[]
       | PartialBlock<BSchema, ISchema, SSchema>[]
-      | undefined
+      | undefined,
   ) {
     const schema = this.options?.schema;
     const editor = BlockNoteEditor.create({
@@ -250,26 +260,54 @@ export class BnaEditorComponent<
   }
 
   private createEditorListeners(
-    editor: BlockNoteEditor<BSchema, ISchema, SSchema>
+    editor: BlockNoteEditor<BSchema, ISchema, SSchema>,
   ) {
-    editor.onChange((data) => {
-      this.contentChanged.emit(data.document);
-      this.onChange(data.document);
-      //we also need to update
-    });
-    editor.onSelectionChange(() => {
-      const selectedBlocks = useSelectedBlocks(editor);
-      this.selectedBlocks.emit(selectedBlocks);
-    });
+    this.cleanupOnChangeListeners();
+    this.registerChangeListener(
+      editor.onChange((data) => {
+        this.contentChanged.emit(data.document);
+        this.onChange(data.document);
+      }),
+      editor.onSelectionChange(() => {
+        const selectedBlocks = useSelectedBlocks(editor);
+        this.selectedBlocks.emit(selectedBlocks);
+      }),
+      editor.suggestionMenus.onUpdate('/', (state) => {
+        this.suggestionMenuShown.set(state.show);
+      }),
+      ...useEditorContentOrSelectionChange(() => {
+        const selectedBlocks = useSelectedBlocks(editor);
+        this.ngxBlockNoteService.selectedBlocks.set(selectedBlocks);
+      }, editor),
+      editor.filePanel?.onUpdate( (state) => {
+        this.filePanelShown.set(state.show);
+      }),
+      editor.formattingToolbar.onUpdate( (state) => {
+        this.formattingToolbarShown.set(state.show);
+      }),
+      editor.sideMenu.onUpdate( (state) => {
+        this.sideMenuShown.set(state.show);
+      }),
+      editor.linkToolbar.onUpdate( (state) => {
+        this.linkToolbarShown.set(state.show);
+      }),
+    );
+  }
 
-    useEditorContentOrSelectionChange(() => {
-      const selectedBlocks = useSelectedBlocks(editor);
-      this.ngxBlockNoteService.selectedBlocks.set(selectedBlocks);
-    }, editor);
+  private registerChangeListener(...callbacks: ((() => void) | undefined)[]) {
+    const definedCallbacks = callbacks.filter(
+      (callback) => callback !== undefined,
+    );
+    this.onChangeCallbackListeners.push(...definedCallbacks);
+  }
+
+  private cleanupOnChangeListeners() {
+    this.onChangeCallbackListeners.forEach((fn) => fn());
+    this.onChangeCallbackListeners = [];
   }
 
   private updateEditorsInitialContent(
-    initialContent: InitialContent<BSchema, ISchema, SSchema>
+    initialContent: InitialContent<BSchema, ISchema, SSchema>,
   ) {
     return this.editor.replaceBlocks(
       [...this.editor.document],
@@ -277,7 +315,7 @@ export class BnaEditorComponent<
         {
           type: 'paragraph',
         },
-      ]
+      ],
     );
   }
 }
