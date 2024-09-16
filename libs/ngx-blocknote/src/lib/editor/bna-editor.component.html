@@ -48,11 +48,16 @@
         <bna-file-panel />
       }
     </bna-file-panel-controller>
-    <bna-suggestions-menu-controller triggerCharacter="/" class="z-index-3">
-      @if (suggestionMenuShown()) {
-        <bna-suggestions-menu triggerCharacter="/" />
-      }
-    </bna-suggestions-menu-controller>
+    <div #slashMenu>
+      <ng-content select="bna-formatting-toolbar-controller" />
+    </div>
+    @if (!slashMenu.hasChildNodes()) {
+      <bna-suggestions-menu-controller triggerCharacter="/" class="z-index-3">
+        @if (suggestionMenuShown()) {
+          <bna-suggestions-menu triggerCharacter="/" />
+        }
+      </bna-suggestions-menu-controller>
+    }
     <bna-link-toolbar-controller>
       @if (linkToolbarShown()) {
         <bna-link-toolbar>
