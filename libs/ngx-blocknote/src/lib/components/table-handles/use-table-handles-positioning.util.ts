@@ -77,6 +77,7 @@ async function useTableHandlePosition(
     },
     floatings[orientation],
     {
+      strategy:'fixed',
       placement: orientation === 'row' ? 'left' : 'top',
       middleware: [offset(orientation === 'row' ? -5 : -12)],
     }

@@ -11,11 +11,10 @@
     <hlm-icon size="sm" [name]="icon()" />
   </button>
   <div
-    class="absolute inset-y-0 left-[40px]"
+    class="absolute inset-y-0 left-[40px] border border-border"
     #menu
     [ngClass]="{ hidden: !isMenuOpened }"
   >
     <bna-table-handle-menu class="w-full" [options]="optionsWithCloseMenu()" />
-
   </div>
 </div>

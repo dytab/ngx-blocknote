@@ -1,11 +1,14 @@
-@if(tableHandles()?.show){ @if(showRowHandle() && rowOptions()){
-<div #rowHandle class="absolute">
-  <!--  This is already checked, that its not undefined-->
-  <bna-table-handle [options]="$any(rowOptions())" />
-</div>
-} @if(showColumnHandle() && columnOptions()){
-<div #colHandle class="absolute">
-  <!--  This is already checked, that its not undefined-->
-  <bna-table-handle [options]="$any(columnOptions())" />
-</div>
-} }
+@if (tableHandles()?.show) {
+  @if (showRowHandle() && rowOptions()) {
+    <div #rowHandle class="fixed">
+      <!--  This is already checked, that its not undefined-->
+      <bna-table-handle [options]="$any(rowOptions())" />
+    </div>
+  }
+  @if (showColumnHandle() && columnOptions()) {
+    <div #colHandle class="fixed">
+      <!--  This is already checked, that its not undefined-->
+      <bna-table-handle [options]="$any(columnOptions())" />
+    </div>
+  }
+}

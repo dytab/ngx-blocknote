@@ -39,9 +39,9 @@ export class BnaTableHandlesController implements AfterViewInit {
     if (!options) {
       return;
     }
-    const columnHandleOptions: TableHandleOptions = {
+    const rowHandleOptions: TableHandleOptions = {
       ...options,
-      orientation: 'column',
+      orientation: 'row',
       showOtherHandle: () => {
         this.showColumnHandle.set(true);
       },
@@ -49,7 +49,7 @@ export class BnaTableHandlesController implements AfterViewInit {
         this.showColumnHandle.set(false);
       },
     };
-    return columnHandleOptions;
+    return rowHandleOptions;
   });
   columnOptions = computed(() => {
     const options = this.options();
