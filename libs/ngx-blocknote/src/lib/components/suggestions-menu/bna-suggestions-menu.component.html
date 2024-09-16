@@ -11,13 +11,12 @@
     ) {
       <div class="px-2 py-1">{{ item.group }}</div>
     }
-
     <bna-suggestion-menu-item
       [suggestionItem]="item"
       [selected]="selectedIndex === index"
       (mouseEnter)="selectedIndex = index"
     />
   } @empty {
-    <div class="px-2 py-1">No Items found</div>
+    <div class="px-2 py-1">{{ dict().suggestion_menu.no_items_title }}</div>
   }
 </div>

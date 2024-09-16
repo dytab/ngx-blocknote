@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  computed,
   effect,
   HostListener,
   Input,
@@ -25,6 +26,9 @@ import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-me
   styleUrl: './bna-suggestions-menu.component.css',
 })
 export class BnaSuggestionsMenuComponent implements OnChanges {
+  dict = computed(() => {
+    return this.ngxBlockNoteService.editor().dictionary;
+  });
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     const menuShown = this.isShown();
