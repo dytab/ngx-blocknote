@@ -6,7 +6,8 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { Block } from '@blocknote/core';
+import { computePosition } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
@@ -14,6 +15,9 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   imports: [CommonModule],
   selector: 'bna-side-menu-controller',
   standalone: true,
+  host: {
+    class: 'z-30 fixed',
+  },
   template: `@if (show()) {
     <ng-content />
   }`,
@@ -32,44 +36,37 @@ export class BnaSideMenuControllerComponent {
   }
 
   private adjustVisibilityAndPosition() {
-    let cleanup: () => void = () => {
-      return;
-    };
-    const editorSnapshot = this.ngxBlockNoteService.editor();
-    if (!editorSnapshot) {
-      return;
-    }
-    this.renderer2.addClass(this.elRef.nativeElement, 'z-30');
-    this.renderer2.addClass(this.elRef.nativeElement, 'fixed');
-    editorSnapshot.sideMenu.onUpdate(async (sideMenuState) => {
-      this.show.set(sideMenuState.show);
-      if (!sideMenuState.show) {
-        cleanup();
-      } else {
-        //TODO: remove this and use editor directly
-        this.ngxBlockNoteService.sideMenuFocusedBlock.set(sideMenuState.block);
-        const updatePosition = async () => {
-          const result = await computePosition(
-            getVirtualElement(sideMenuState.referencePos),
-            this.elRef.nativeElement,
-            {
-              strategy: 'fixed',
-              placement: 'left',
-              middleware: [flip()],
-            },
-          );
-          this.renderer2.setStyle(
-            this.elRef.nativeElement,
-            'top',
-            `${result.y}px`,
-          );
-        };
-        cleanup = autoUpdate(
-          getVirtualElement(sideMenuState.referencePos),
-          this.elRef.nativeElement,
-          updatePosition,
-        );
+    const editor = this.ngxBlockNoteService.editor();
+    editor.sideMenu.onUpdate(async (sideMenuState) => {
+      this.updateShowSideMenuOnChange(sideMenuState.show);
+      this.updateSideMenuFocusedBlockOnChange(sideMenuState.block);
+      if (sideMenuState.show) {
+        await this.getUpdateSideMenuPositionFn(sideMenuState.referencePos);
       }
     });
+  }
+
+  private updateShowSideMenuOnChange(show: boolean) {
+    if (this.show() !== show) {
+      this.show.set(show);
+    }
+  }
+
+  private updateSideMenuFocusedBlockOnChange(block: Block<any, any, any>) {
+    if (this.ngxBlockNoteService.sideMenuFocusedBlock() !== block) {
+      this.ngxBlockNoteService.sideMenuFocusedBlock.set(block);
+    }
+  }
+
+  private async getUpdateSideMenuPositionFn(referencePos: DOMRect) {
+    const result = await computePosition(
+      getVirtualElement(referencePos),
+      this.elRef.nativeElement,
+      {
+        strategy: 'fixed',
+        placement: 'left',
+      },
+    );
+    this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
   }
 }
