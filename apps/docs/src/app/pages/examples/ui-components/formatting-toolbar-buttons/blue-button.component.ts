@@ -21,7 +21,7 @@ import { HlmButtonDirective } from '@dytab/ui';
         : false,
     }"
   >
-    Blue<button></button>
+    Blue
   </button>`,
   styles: ``,
 })

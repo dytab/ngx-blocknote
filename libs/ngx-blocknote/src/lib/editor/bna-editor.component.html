@@ -49,14 +49,14 @@
       }
     </bna-file-panel-controller>
     <div #slashMenu>
-      <ng-content select="bna-formatting-toolbar-controller" />
+      <ng-content select="bna-slash-menu-controller" />
     </div>
     @if (!slashMenu.hasChildNodes()) {
-      <bna-suggestions-menu-controller triggerCharacter="/" class="z-index-3">
+      <bna-slash-menu-controller>
         @if (suggestionMenuShown()) {
           <bna-suggestions-menu triggerCharacter="/" />
         }
-      </bna-suggestions-menu-controller>
+      </bna-slash-menu-controller>
     }
     <bna-link-toolbar-controller>
       @if (linkToolbarShown()) {

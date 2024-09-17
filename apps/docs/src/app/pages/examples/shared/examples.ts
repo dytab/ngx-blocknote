@@ -13,6 +13,7 @@ import { ConvertToHtmlPage } from '../interoperability/convert-to-html/convert-t
 import { AddingSideMenuDragHandleItemsPage } from '../ui-components/adding-side-menu-drag-handle-items/adding-side-menu-drag-handle-items.page';
 import { FormattingSideMenuButtonsPage } from '../ui-components/formatting-side-menu-buttons/formatting-side-menu-buttons.page';
 import { FormattingToolbarButtonsPage } from '../ui-components/formatting-toolbar-buttons/formatting-toolbar-buttons.page';
+import { ReplacingSlashMenuPage } from '../ui-components/replacing-slash-menu/replacing-slash-menu.page';
 import { Example, ExampleGroup } from './example.type';
 import { FormPage } from '../basic/form/form.page';
 import { ServerSideRenderingPage } from '../backend/server-side-rendering/server-side-rendering.page';
@@ -127,6 +128,12 @@ export const exampleLinks: Example[] = [
     url: 'ui-components/adding-side-menu-drag-handle-items',
     name: 'Adding Drag Handle Menu Items',
     component: AddingSideMenuDragHandleItemsPage,
+  },
+  {
+    groupName: 'Ui Components',
+    url: 'ui-components/replacing-slash-menu',
+    name: 'Replacing Slash Menu',
+    component: ReplacingSlashMenuPage,
   },
 ];
 

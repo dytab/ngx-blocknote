@@ -50,6 +50,7 @@ import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.comp
 import { BnaAddBlockButtonComponent } from '../components/side-menu/default-buttons/add-block-button/bna-add-block-button.component';
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSuggestionsMenuComponent } from '../components/suggestions-menu';
+import { BnaSlashMenuControllerComponent } from '../components/suggestions-menu/bna-slash-menu-controller.component';
 import { BnaSuggestionsMenuControllerComponent } from '../components/suggestions-menu/bna-suggestions-menu-controller.component';
 import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
@@ -120,6 +121,7 @@ type InitialContent<
     BnaFileCaptionButtonComponent,
     BnaFileReplaceButtonComponent,
     BnaFilePreviewButtonComponent,
+    BnaSlashMenuControllerComponent,
   ],
   providers: [
     NgxBlocknoteService,
