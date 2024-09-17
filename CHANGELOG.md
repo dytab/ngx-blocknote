@@ -1,3 +1,15 @@
+## 1.2.1 (2024-09-17)
+
+
+### 🩹 Fixes
+
+- only override slash menu with slash-menu-controller ([cf89262](https://github.com/dytab/ngx-blocknote/commit/cf89262))
+- set initial value on block type select component ([63bc7f1](https://github.com/dytab/ngx-blocknote/commit/63bc7f1))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.2.0 (2024-09-17)
 
 
