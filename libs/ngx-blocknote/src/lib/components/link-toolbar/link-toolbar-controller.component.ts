@@ -3,6 +3,7 @@ import {
   Component,
   effect,
   ElementRef,
+  OnDestroy,
   Renderer2,
   signal,
 } from '@angular/core';
@@ -22,8 +23,11 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
     <ng-content />
   }`,
 })
-export class BnaLinkToolbarControllerDirective {
+export class BnaLinkToolbarControllerDirective implements OnDestroy {
   show = signal(false);
+  cleanup: () => void = () => {
+    return;
+  };
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
@@ -35,24 +39,29 @@ export class BnaLinkToolbarControllerDirective {
     });
   }
 
-  adjustVisibilityAndPosition() {
-    let cleanup: () => void = () => {
-      return;
-    };
+  ngOnDestroy() {
+    this.cleanup();
+  }
+
+  private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
-    editor.linkToolbar.onUpdate(async (linkToolbar) => {
-      this.show.set(linkToolbar.show);
-      if (!linkToolbar.show) {
-        cleanup();
-      } else {
-        const updatePosition = this.getUpdatePositionFn(linkToolbar);
-        cleanup = autoUpdate(
+    editor.linkToolbar.onUpdate((linkToolbar) => {
+      this.updateLinkToolbarOnChange(linkToolbar.show);
+      this.cleanup();
+      if (linkToolbar.show) {
+        this.cleanup = autoUpdate(
           getVirtualElement(linkToolbar.referencePos),
           this.elRef.nativeElement,
-          updatePosition,
+          this.getUpdatePositionFn(linkToolbar),
         );
       }
     });
+  }
+
+  private updateLinkToolbarOnChange(show: boolean) {
+    if (this.show() !== show) {
+      this.show.set(show);
+    }
   }
 
   private getUpdatePositionFn(linkToolbar: LinkToolbarState) {
