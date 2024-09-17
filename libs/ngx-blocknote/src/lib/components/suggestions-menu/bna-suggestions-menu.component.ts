@@ -56,6 +56,10 @@ export class BnaSuggestionsMenuComponent implements OnInit, OnDestroy {
       event.preventDefault();
       this.insertSelectedBlock();
       return;
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
+      return;
     }
   }
   selectedIndex = 0;
