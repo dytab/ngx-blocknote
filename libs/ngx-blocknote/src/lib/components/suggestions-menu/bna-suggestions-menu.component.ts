@@ -73,9 +73,10 @@ export class BnaSuggestionsMenuComponent implements OnInit, OnDestroy {
 
   insertSelectedBlock() {
     const editor = this.ngxBlockNoteService.editor();
+    const item = this.filteredSlashMenuItems[this.selectedIndex];
     editor.suggestionMenus.closeMenu();
     editor.suggestionMenus.clearQuery();
-    this.filteredSlashMenuItems[this.selectedIndex].onItemClick();
+    item.onItemClick();
     this.selectedIndex = 0;
   }
 
