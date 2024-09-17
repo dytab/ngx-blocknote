@@ -4,13 +4,14 @@ import {
   effect,
   ElementRef,
   Input,
+  OnDestroy,
   Renderer2,
   signal,
 } from '@angular/core';
 import {
+  autoPlacement,
   autoUpdate,
   computePosition,
-  flip,
   offset,
   size,
 } from '@floating-ui/dom';
@@ -22,15 +23,17 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   selector: 'bna-suggestions-menu-controller',
   standalone: true,
   host: {
-    class: 'z-30 fixed flex',
+    class: 'z-30 fixed flex top-0 left-0',
   },
   template: `@if (show()) {
     <ng-content />
   }`,
 })
-export class BnaSuggestionsMenuControllerComponent {
+export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
   show = signal(false);
-
+  cleanup: () => void = () => {
+    return;
+  };
   @Input({ required: true }) triggerCharacter = '/';
   constructor(
     private blockNoteEditorService: NgxBlocknoteService,
@@ -42,61 +45,63 @@ export class BnaSuggestionsMenuControllerComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.cleanup();
+  }
+
   private adjustVisibilityAndPosition() {
     const editor = this.blockNoteEditorService.editor();
-    if (!editor) {
-      return;
-    }
-    let cleanup: () => void = () => {
-      return;
-    };
     editor.suggestionMenus.onUpdate(
       this.triggerCharacter,
       async (suggestionMenuState) => {
-        this.show.set(suggestionMenuState.show);
-        if (!suggestionMenuState.show) {
-          cleanup();
-        } else {
-          const updatePosition = async () => {
-            const result = await computePosition(
-              getVirtualElement(suggestionMenuState.referencePos),
-              this.elRef.nativeElement,
-              {
-                strategy: 'fixed',
-                placement: 'bottom-start',
-                middleware: [
-                  offset(10),
-                  flip(),
-                  size({
-                    apply: ({ availableWidth, availableHeight, elements }) => {
-                      this.renderer2.setStyle(
-                        this.elRef.nativeElement,
-                        'maxHeight',
-                        `${availableHeight - 10}px`,
-                      );
-                    },
-                  }),
-                ],
-              },
-            );
-            this.renderer2.setStyle(
-              this.elRef.nativeElement,
-              'top',
-              `${result.y}px`,
-            );
-            this.renderer2.setStyle(
-              this.elRef.nativeElement,
-              'left',
-              `${result.x}px`,
-            );
-          };
-          cleanup = autoUpdate(
-            getVirtualElement(suggestionMenuState.referencePos),
-            this.elRef.nativeElement,
-            updatePosition,
-          );
-        }
+        this.updateShowSuggestionMenuOnChange(suggestionMenuState.show);
+        this.cleanup();
+        const updatePosition = this.getUpdatePositionFn(
+          suggestionMenuState.referencePos,
+        );
+        this.cleanup = autoUpdate(
+          getVirtualElement(suggestionMenuState.referencePos),
+          this.elRef.nativeElement,
+          updatePosition,
+        );
       },
     );
+  }
+
+  private getUpdatePositionFn(referencePos: DOMRect) {
+    return async () => {
+      const result = await computePosition(
+        getVirtualElement(referencePos),
+        this.elRef.nativeElement,
+        {
+          strategy: 'fixed',
+          middleware: [
+            offset(10),
+            autoPlacement({ allowedPlacements: ['top-start', 'bottom-start'] }),
+            size({
+              apply: ({ availableHeight }) => {
+                this.renderer2.setStyle(
+                  this.elRef.nativeElement,
+                  'maxHeight',
+                  `${availableHeight - 10}px`,
+                );
+              },
+            }),
+          ],
+        },
+      );
+      this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+      this.renderer2.setStyle(
+        this.elRef.nativeElement,
+        'left',
+        `${result.x}px`,
+      );
+    };
+  }
+
+  private updateShowSuggestionMenuOnChange(show: boolean) {
+    if (this.show() !== show) {
+      this.show.set(show);
+    }
   }
 }
