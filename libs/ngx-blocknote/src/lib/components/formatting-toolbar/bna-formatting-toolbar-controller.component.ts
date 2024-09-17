@@ -50,15 +50,17 @@ export class BnaFormattingToolbarControllerComponent {
       cleanup();
       //TODO: remove auto update
       //had the problem that the first set position was not good
-      cleanup = autoUpdate(
-        getVirtualElement(formattingToolbar.referencePos),
-        this.elRef.nativeElement,
-        async () => {
-          await this.updateFormattingToolbarPosition(
-            formattingToolbar.referencePos,
-          );
-        },
-      );
+      if(formattingToolbar.show){
+        cleanup = autoUpdate(
+          getVirtualElement(formattingToolbar.referencePos),
+          this.elRef.nativeElement,
+          async () => {
+            await this.updateFormattingToolbarPosition(
+              formattingToolbar.referencePos,
+            );
+          },
+        );
+      }
     });
   }
 
