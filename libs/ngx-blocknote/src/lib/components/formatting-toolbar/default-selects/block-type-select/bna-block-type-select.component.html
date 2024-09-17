@@ -17,13 +17,17 @@
   <hlm-menu>
     <hlm-menu-group class="px-2">
       <div class="flex flex-col w-full">
-        @for (blockType of filteredBlockTypes(); track blockType.name) {
+        @for (
+          blockType of filteredBlockTypes();
+          track blockType.name;
+          let index = $index
+        ) {
           <button
             type="button"
             hlmMenuItemCheckbox
             class="gap-2 flex justify-start"
             (click)="changeBlockType(blockType.type, blockType.props)"
-            [checked]="currentBlockType() === blockType"
+            [checked]="currentBlockTypeIndex() === index"
           >
             <hlm-menu-item-check />
             <div

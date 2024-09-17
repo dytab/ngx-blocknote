@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
-import { Dictionary } from '@blocknote/core';
+import { BlockNoteEditor, Dictionary } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
@@ -88,12 +88,12 @@ export class BnaBlockTypeSelectComponent {
       (item) => item.type in editor.schema.blockSchema,
     );
   });
-  currentBlockType = signal<BlockTypeSelectItem | undefined>(
-    this.filteredBlockTypes().find((a) =>
-      a.isSelected(
-        this.ngxBlockNoteService.editor().getTextCursorPosition().block,
-      ),
-    ),
+  currentBlockType = computed(() => {
+    const index = this.currentBlockTypeIndex();
+    return index !== undefined ? this.filteredBlockTypes()[index] : undefined;
+  });
+  currentBlockTypeIndex = signal<number | undefined>(
+    this.getCurrentBlockIndex(this.ngxBlockNoteService.editor()),
   );
 
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {
@@ -103,12 +103,14 @@ export class BnaBlockTypeSelectComponent {
   private updateCurrentBlockTypeOnChanges() {
     const editor = this.ngxBlockNoteService.editor();
     useEditorContentOrSelectionChange(() => {
-      this.currentBlockType.set(
-        this.filteredBlockTypes().find((a) =>
-          a.isSelected(editor.getTextCursorPosition().block),
-        ),
-      );
+      this.currentBlockTypeIndex.set(this.getCurrentBlockIndex(editor));
     }, editor);
+  }
+
+  private getCurrentBlockIndex(editor: BlockNoteEditor<any, any, any>) {
+    return this.filteredBlockTypes().findIndex((a) =>
+      a.isSelected(editor.getTextCursorPosition().block),
+    );
   }
 
   changeBlockType(
