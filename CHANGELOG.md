@@ -1,3 +1,27 @@
+## 1.3.0 (2024-09-17)
+
+
+### 🚀 Features
+
+- close slash menu on escape ([e73afff](https://github.com/dytab/ngx-blocknote/commit/e73afff))
+- set side menu to left-top on big block elements ([5c47f58](https://github.com/dytab/ngx-blocknote/commit/5c47f58))
+
+### 🩹 Fixes
+
+- slash menu keybindings ([28314a5](https://github.com/dytab/ngx-blocknote/commit/28314a5))
+- open correct selected item in slash menu ([a221934](https://github.com/dytab/ngx-blocknote/commit/a221934))
+- check for selected block type with index ([9aaf77e](https://github.com/dytab/ngx-blocknote/commit/9aaf77e))
+- improve performance on side menu calculate position ([2ac7a67](https://github.com/dytab/ngx-blocknote/commit/2ac7a67))
+- improve performance on formatting toolbar calculate position ([9a8761e](https://github.com/dytab/ngx-blocknote/commit/9a8761e))
+- adjust toolbar placement and add visibility check ([c836292](https://github.com/dytab/ngx-blocknote/commit/c836292))
+- only update position, when formatting toolbar is shown ([b5a6c16](https://github.com/dytab/ngx-blocknote/commit/b5a6c16))
+- improve performance on suggestions menu calculate position ([efae43a](https://github.com/dytab/ngx-blocknote/commit/efae43a))
+- improve performance on link toolbar calculate position ([b087705](https://github.com/dytab/ngx-blocknote/commit/b087705))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.2.1 (2024-09-17)
 
 
