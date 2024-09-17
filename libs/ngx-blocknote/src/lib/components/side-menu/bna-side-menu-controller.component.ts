@@ -59,12 +59,13 @@ export class BnaSideMenuControllerComponent {
   }
 
   private async getUpdateSideMenuPositionFn(referencePos: DOMRect) {
+    const placement = referencePos.height < 80 ? 'left' : 'left-start';
     const result = await computePosition(
       getVirtualElement(referencePos),
       this.elRef.nativeElement,
       {
         strategy: 'fixed',
-        placement: 'left',
+        placement: placement,
       },
     );
     this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
