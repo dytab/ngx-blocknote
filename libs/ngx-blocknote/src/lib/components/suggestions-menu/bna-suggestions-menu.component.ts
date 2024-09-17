@@ -4,10 +4,9 @@ import {
   computed,
   effect,
   HostListener,
-  Input,
-  OnChanges,
+  OnDestroy,
+  OnInit,
   signal,
-  SimpleChanges,
 } from '@angular/core';
 import {
   DefaultSuggestionItem,
@@ -25,7 +24,7 @@ import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-me
   templateUrl: './bna-suggestions-menu.component.html',
   styleUrl: './bna-suggestions-menu.component.css',
 })
-export class BnaSuggestionsMenuComponent implements OnChanges {
+export class BnaSuggestionsMenuComponent implements OnInit, OnDestroy {
   dict = computed(() => {
     return this.ngxBlockNoteService.editor().dictionary;
   });
@@ -60,7 +59,7 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
     }
   }
   selectedIndex = 0;
-  @Input({ required: true }) triggerCharacter = '/';
+  triggerCharacter = '/';
   query = signal('');
   isShown = signal(false);
   filteredSlashMenuItems: SuggestionItem[] = [];
@@ -85,26 +84,26 @@ export class BnaSuggestionsMenuComponent implements OnChanges {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['triggerCharacter']) {
-      //remove old update listener before adding new on change
-      this.cleanUpFn();
-      this.cleanUpFn = this.ngxBlockNoteService
-        .editor()
-        .suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
-          if (this.query() !== state.query) {
-            this.query.set(state.query);
-            this.selectedIndex = 0;
-          }
-          if (this.isShown() !== state.show) {
-            this.selectedIndex = 0;
-            this.isShown.set(state.show);
-          }
-        });
-    }
+  ngOnInit() {
+    this.cleanUpFn = this.ngxBlockNoteService
+      .editor()
+      .suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
+        if (this.query() !== state.query) {
+          this.query.set(state.query);
+          this.selectedIndex = 0;
+        }
+        if (this.isShown() !== state.show) {
+          this.selectedIndex = 0;
+          this.isShown.set(state.show);
+        }
+      });
   }
 
-  getSlashMenuItems(): (Omit<DefaultSuggestionItem, 'key'> & {
+  ngOnDestroy() {
+    this.cleanUpFn();
+  }
+
+  private getSlashMenuItems(): (Omit<DefaultSuggestionItem, 'key'> & {
     key: string;
   })[] {
     const editor = this.ngxBlockNoteService.editor();

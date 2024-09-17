@@ -53,9 +53,7 @@
     </div>
     @if (!slashMenu.hasChildNodes()) {
       <bna-slash-menu-controller>
-        @if (suggestionMenuShown()) {
-          <bna-suggestions-menu triggerCharacter="/" />
-        }
+        <bna-suggestions-menu />
       </bna-slash-menu-controller>
     }
     <bna-link-toolbar-controller>
