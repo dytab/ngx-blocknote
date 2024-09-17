@@ -41,7 +41,7 @@ export class BnaSideMenuControllerComponent {
       this.updateShowSideMenuOnChange(sideMenuState.show);
       this.updateSideMenuFocusedBlockOnChange(sideMenuState.block);
       if (sideMenuState.show) {
-        await this.getUpdateSideMenuPositionFn(sideMenuState.referencePos);
+        await this.updateSideMenuPosition(sideMenuState.referencePos);
       }
     });
   }
@@ -58,7 +58,7 @@ export class BnaSideMenuControllerComponent {
     }
   }
 
-  private async getUpdateSideMenuPositionFn(referencePos: DOMRect) {
+  private async updateSideMenuPosition(referencePos: DOMRect) {
     const placement = referencePos.height < 80 ? 'left' : 'left-start';
     const result = await computePosition(
       getVirtualElement(referencePos),
