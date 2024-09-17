@@ -88,7 +88,13 @@ export class BnaBlockTypeSelectComponent {
       (item) => item.type in editor.schema.blockSchema,
     );
   });
-  currentBlockType = signal<BlockTypeSelectItem | undefined>(undefined);
+  currentBlockType = signal<BlockTypeSelectItem | undefined>(
+    this.filteredBlockTypes().find((a) =>
+      a.isSelected(
+        this.ngxBlockNoteService.editor().getTextCursorPosition().block,
+      ),
+    ),
+  );
 
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {
     this.updateCurrentBlockTypeOnChanges();
