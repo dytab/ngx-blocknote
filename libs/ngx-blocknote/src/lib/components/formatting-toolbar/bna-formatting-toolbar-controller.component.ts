@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   effect,
@@ -5,11 +6,30 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { FormattingToolbarState } from '@blocknote/core';
-import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
+import { Block, DefaultProps } from '@blocknote/core';
+import {
+  autoPlacement,
+  autoUpdate,
+  computePosition,
+  offset,
+} from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
-import { CommonModule } from '@angular/common';
+
+const textAlignmentToPlacement = (
+  textAlignment: DefaultProps['textAlignment'],
+) => {
+  switch (textAlignment) {
+    case 'left':
+      return 'top-start';
+    case 'center':
+      return 'top';
+    case 'right':
+      return 'top-end';
+    default:
+      return 'top-start';
+  }
+};
 
 @Component({
   imports: [CommonModule],
@@ -40,40 +60,42 @@ export class BnaFormattingToolbarControllerComponent {
       return;
     };
     const editor = this.ngxBlockNoteService.editor();
-    if (editor) {
-      editor.formattingToolbar.onUpdate(async (formattingToolbar) => {
-        this.show.set(formattingToolbar.show);
-        if (!formattingToolbar.show) {
-          cleanup();
-        } else {
-          const updatePosition = this.getUpdatePositionFn(formattingToolbar);
-          cleanup = autoUpdate(
-            getVirtualElement(formattingToolbar.referencePos),
-            this.elRef.nativeElement,
-            updatePosition,
+    editor.formattingToolbar.onUpdate(async (formattingToolbar) => {
+      this.updateShowFormattingToolbarOnChange(formattingToolbar.show);
+      cleanup();
+      //TODO: remove auto update
+      //had the problem that the first set position was not good
+      cleanup = autoUpdate(
+        getVirtualElement(formattingToolbar.referencePos),
+        this.elRef.nativeElement,
+        async () => {
+          await this.updateFormattingToolbarPosition(
+            formattingToolbar.referencePos,
           );
-        }
-      });
+        },
+      );
+    });
+  }
+
+  private updateShowFormattingToolbarOnChange(show: boolean) {
+    if (this.show() !== show) {
+      this.show.set(show);
     }
   }
 
-  private getUpdatePositionFn(formattingToolbar: FormattingToolbarState) {
-    return async () => {
-      const result = await computePosition(
-        getVirtualElement(formattingToolbar.referencePos),
-        this.elRef.nativeElement,
-        {
-          placement: 'top',
-          strategy: 'fixed',
-          middleware: [flip(), offset(15)],
-        },
-      );
-      this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
-      this.renderer2.setStyle(
-        this.elRef.nativeElement,
-        'left',
-        `${result.x}px`,
-      );
-    };
+  private async updateFormattingToolbarPosition(
+    referencePos: DOMRect,
+  ) {
+    const result = await computePosition(
+      getVirtualElement(referencePos),
+      this.elRef.nativeElement,
+      {
+        strategy: 'fixed',
+        placement: 'top',
+        middleware: [offset(15), autoPlacement()],
+      },
+    );
+    this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+    this.renderer2.setStyle(this.elRef.nativeElement, 'left', `${result.x}px`);
   }
 }
