@@ -36,7 +36,7 @@ const icons: Record<string, string> = {
 };
 
 @Component({
-  selector: 'bna-suggestion-menu-item',
+  selector: 'bna-slash-menu-item',
   standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   providers: [
@@ -56,10 +56,10 @@ const icons: Record<string, string> = {
       lucideListOrdered,
     }),
   ],
-  templateUrl: './bna-suggestion-menu-item.component.html',
-  styleUrl: './bna-suggestion-menu-item.component.css',
+  templateUrl: './bna-slash-menu-item.component.html',
+  styleUrl: './bna-slash-menu-item.component.css',
 })
-export class BnaSuggestionMenuItemComponent {
+export class BnaSlashMenuItemComponent {
   suggestionItem = input.required<SuggestionItem>();
   iconName = computed(() => {
     const item = this.suggestionItem();

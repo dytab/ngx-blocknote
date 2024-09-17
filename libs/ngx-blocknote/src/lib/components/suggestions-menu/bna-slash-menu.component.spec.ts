@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxBlockNoteTestingModule } from '../../services';
-import { BnaSuggestionsMenuComponent } from './bna-suggestions-menu.component';
+import { BnaSlashMenuComponent } from './bna-slash-menu.component';
 
-describe('BnaSuggestionsMenuComponent', () => {
-  let component: BnaSuggestionsMenuComponent;
-  let fixture: ComponentFixture<BnaSuggestionsMenuComponent>;
+describe('BnaSlashMenuComponent', () => {
+  let component: BnaSlashMenuComponent;
+  let fixture: ComponentFixture<BnaSlashMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaSuggestionsMenuComponent, NgxBlockNoteTestingModule],
+      imports: [BnaSlashMenuComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BnaSuggestionsMenuComponent);
+    fixture = TestBed.createComponent(BnaSlashMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

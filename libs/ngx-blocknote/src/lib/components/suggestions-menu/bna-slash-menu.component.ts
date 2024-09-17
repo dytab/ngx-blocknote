@@ -15,16 +15,16 @@ import {
 } from '@blocknote/core';
 import { SuggestionItem } from '../../interfaces/suggestion-item.type';
 import { NgxBlocknoteService } from '../../services';
-import { BnaSuggestionMenuItemComponent } from './default-item/bna-suggestion-menu-item.component';
+import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.component';
 
 @Component({
-  selector: 'bna-suggestions-menu',
+  selector: 'bna-slash-menu',
   standalone: true,
-  imports: [CommonModule, BnaSuggestionMenuItemComponent],
-  templateUrl: './bna-suggestions-menu.component.html',
-  styleUrl: './bna-suggestions-menu.component.css',
+  imports: [CommonModule, BnaSlashMenuItemComponent],
+  templateUrl: './bna-slash-menu.component.html',
+  styleUrl: './bna-slash-menu.component.css',
 })
-export class BnaSuggestionsMenuComponent implements OnInit, OnDestroy {
+export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   dict = computed(() => {
     return this.ngxBlockNoteService.editor().dictionary;
   });

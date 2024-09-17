@@ -12,7 +12,7 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-  BnaSuggestionsMenuComponent,
+  BnaSlashMenuComponent,
   BnaSuggestionsMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
 import { HlmButtonDirective } from '@dytab/ui';
@@ -53,7 +53,7 @@ const schema = BlockNoteSchema.create({
     BnaEditorComponent,
     HlmButtonDirective,
     BnaSuggestionsMenuControllerComponent,
-    BnaSuggestionsMenuComponent,
+    BnaSlashMenuComponent,
   ],
   template: `<bna-editor
     [initialContent]="initialContent"
