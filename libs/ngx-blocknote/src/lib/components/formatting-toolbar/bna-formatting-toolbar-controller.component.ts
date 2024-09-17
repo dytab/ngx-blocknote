@@ -6,30 +6,15 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { Block, DefaultProps } from '@blocknote/core';
 import {
   autoPlacement,
   autoUpdate,
   computePosition,
+  hide,
   offset,
 } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
-
-const textAlignmentToPlacement = (
-  textAlignment: DefaultProps['textAlignment'],
-) => {
-  switch (textAlignment) {
-    case 'left':
-      return 'top-start';
-    case 'center':
-      return 'top';
-    case 'right':
-      return 'top-end';
-    default:
-      return 'top-start';
-  }
-};
 
 @Component({
   imports: [CommonModule],
@@ -83,16 +68,26 @@ export class BnaFormattingToolbarControllerComponent {
     }
   }
 
-  private async updateFormattingToolbarPosition(
-    referencePos: DOMRect,
-  ) {
+  private async updateFormattingToolbarPosition(referencePos: DOMRect) {
     const result = await computePosition(
       getVirtualElement(referencePos),
       this.elRef.nativeElement,
       {
         strategy: 'fixed',
-        placement: 'top',
-        middleware: [offset(15), autoPlacement()],
+        middleware: [
+          offset(10),
+          autoPlacement({
+            allowedPlacements: [
+              'top-start',
+              'top',
+              'top-end',
+              'bottom-start',
+              'bottom',
+              'bottom-end',
+            ],
+          }),
+          hide({}),
+        ],
       },
     );
     this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
