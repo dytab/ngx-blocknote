@@ -1,3 +1,22 @@
+## 1.2.0 (2024-09-17)
+
+
+### 🚀 Features
+
+- do not initialize menus and toolbars, when not shown ([2d911f9](https://github.com/dytab/ngx-blocknote/commit/2d911f9))
+- use dictionary for no items found ([e9f14a2](https://github.com/dytab/ngx-blocknote/commit/e9f14a2))
+- add option to override suggestions-menu ([d7855e6](https://github.com/dytab/ngx-blocknote/commit/d7855e6))
+
+### 🩹 Fixes
+
+- table rows can not be added ([dc1aa87](https://github.com/dytab/ngx-blocknote/commit/dc1aa87))
+- suggestion menu click add the block and focuses it ([0933db4](https://github.com/dytab/ngx-blocknote/commit/0933db4))
+- make mentions menu example clickable again ([ffc10d9](https://github.com/dytab/ngx-blocknote/commit/ffc10d9))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.1.0 (2024-09-14)
 
 ### 🚀 Features
