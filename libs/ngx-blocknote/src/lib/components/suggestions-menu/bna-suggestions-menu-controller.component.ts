@@ -34,6 +34,7 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
   cleanup: () => void = () => {
     return;
   };
+
   @Input({ required: true }) triggerCharacter = '/';
   constructor(
     private blockNoteEditorService: NgxBlocknoteService,
@@ -54,55 +55,44 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
     editor.suggestionMenus.onUpdate(
       this.triggerCharacter,
       async (suggestionMenuState) => {
-        this.updateShowSuggestionMenuOnChange(suggestionMenuState.show);
         this.cleanup();
-        const updatePosition = this.getUpdatePositionFn(
-          suggestionMenuState.referencePos,
-        );
-        this.cleanup = autoUpdate(
-          getVirtualElement(suggestionMenuState.referencePos),
-          this.elRef.nativeElement,
-          updatePosition,
-        );
+
+        this.show.set(suggestionMenuState.show);
+        if (suggestionMenuState.show) {
+          this.cleanup = autoUpdate(
+            getVirtualElement(suggestionMenuState.referencePos),
+            this.elRef.nativeElement,
+            async () =>
+              await this.updatePosition(suggestionMenuState.referencePos),
+          );
+        }
       },
     );
   }
 
-  private getUpdatePositionFn(referencePos: DOMRect) {
-    return async () => {
-      const result = await computePosition(
-        getVirtualElement(referencePos),
-        this.elRef.nativeElement,
-        {
-          strategy: 'fixed',
-          placement: 'bottom-start',
-          middleware: [
-            offset(10),
-            autoPlacement({ allowedPlacements: ['bottom-start', 'top-start'] }),
-            size({
-              apply: ({ availableHeight }) => {
-                this.renderer2.setStyle(
-                  this.elRef.nativeElement,
-                  'maxHeight',
-                  `${availableHeight - 10}px`,
-                );
-              },
-            }),
-          ],
-        },
-      );
-      this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
-      this.renderer2.setStyle(
-        this.elRef.nativeElement,
-        'left',
-        `${result.x}px`,
-      );
-    };
-  }
-
-  private updateShowSuggestionMenuOnChange(show: boolean) {
-    if (this.show() !== show) {
-      this.show.set(show);
-    }
+  private async updatePosition(referencePos: DOMRect) {
+    const result = await computePosition(
+      getVirtualElement(referencePos),
+      this.elRef.nativeElement,
+      {
+        strategy: 'fixed',
+        placement: 'bottom-start',
+        middleware: [
+          offset(10),
+          autoPlacement({ allowedPlacements: ['bottom-start', 'top-start'] }),
+          size({
+            apply: ({ availableHeight }) => {
+              this.renderer2.setStyle(
+                this.elRef.nativeElement,
+                'maxHeight',
+                `${availableHeight - 10}px`,
+              );
+            },
+          }),
+        ],
+      },
+    );
+    this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+    this.renderer2.setStyle(this.elRef.nativeElement, 'left', `${result.x}px`);
   }
 }

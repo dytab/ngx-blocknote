@@ -190,7 +190,6 @@ export class BnaEditorComponent<
   onTouch: any = () => {};
 
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
-    console.log('write content');
     this.updateEditorsInitialContent(initialContent);
   }
   registerOnChange(fn: unknown): void {

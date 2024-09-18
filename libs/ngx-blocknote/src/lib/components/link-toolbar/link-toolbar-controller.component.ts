@@ -46,26 +46,20 @@ export class BnaLinkToolbarControllerDirective implements OnDestroy {
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
     editor.linkToolbar.onUpdate((linkToolbar) => {
-      this.updateLinkToolbarOnChange(linkToolbar.show);
       this.cleanup();
+
+      this.show.set(linkToolbar.show);
       if (linkToolbar.show) {
         this.cleanup = autoUpdate(
           getVirtualElement(linkToolbar.referencePos),
           this.elRef.nativeElement,
-          this.getUpdatePositionFn(linkToolbar),
+          async ()=>await this.updatePosition(linkToolbar),
         );
       }
     });
   }
 
-  private updateLinkToolbarOnChange(show: boolean) {
-    if (this.show() !== show) {
-      this.show.set(show);
-    }
-  }
-
-  private getUpdatePositionFn(linkToolbar: LinkToolbarState) {
-    return async () => {
+  private async updatePosition(linkToolbar: LinkToolbarState) {
       const result = await computePosition(
         getVirtualElement(linkToolbar.referencePos),
         this.elRef.nativeElement,
@@ -82,5 +76,4 @@ export class BnaLinkToolbarControllerDirective implements OnDestroy {
         `${result.x}px`,
       );
     };
-  }
 }

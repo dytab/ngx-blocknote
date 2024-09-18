@@ -3,6 +3,7 @@ import {
   Component,
   effect,
   ElementRef,
+  OnDestroy,
   Renderer2,
   signal,
 } from '@angular/core';
@@ -27,8 +28,11 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
     class: 'z-40 fixed',
   },
 })
-export class BnaFormattingToolbarControllerComponent {
+export class BnaFormattingToolbarControllerComponent implements OnDestroy {
   show = signal(false);
+  cleanup: () => void = () => {
+    return;
+  };
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
@@ -40,34 +44,28 @@ export class BnaFormattingToolbarControllerComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.cleanup();
+  }
+
   adjustVisibilityAndPosition() {
-    let cleanup: () => void = () => {
-      return;
-    };
     const editor = this.ngxBlockNoteService.editor();
     editor.formattingToolbar.onUpdate(async (formattingToolbar) => {
-      this.updateShowFormattingToolbarOnChange(formattingToolbar.show);
-      cleanup();
+      this.show.set(formattingToolbar.show);
+      this.cleanup();
       //TODO: remove auto update
       //had the problem that the first set position was not good
-      if(formattingToolbar.show){
-        cleanup = autoUpdate(
+      if (formattingToolbar.show) {
+        this.cleanup = autoUpdate(
           getVirtualElement(formattingToolbar.referencePos),
           this.elRef.nativeElement,
-          async () => {
+          async () =>
             await this.updateFormattingToolbarPosition(
               formattingToolbar.referencePos,
-            );
-          },
+            ),
         );
       }
     });
-  }
-
-  private updateShowFormattingToolbarOnChange(show: boolean) {
-    if (this.show() !== show) {
-      this.show.set(show);
-    }
   }
 
   private async updateFormattingToolbarPosition(referencePos: DOMRect) {

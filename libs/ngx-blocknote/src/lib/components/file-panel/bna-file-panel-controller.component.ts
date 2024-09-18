@@ -1,14 +1,14 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   effect,
-  ElementRef,
+  ElementRef, OnDestroy,
   Renderer2,
-  signal,
+  signal
 } from '@angular/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
-import { CommonModule } from '@angular/common';
 
 @Component({
   imports: [CommonModule],
@@ -21,8 +21,11 @@ import { CommonModule } from '@angular/common';
     <ng-content />
   }`,
 })
-export class BnaFilePanelControllerComponent {
+export class BnaFilePanelControllerComponent implements OnDestroy{
   show = signal(false);
+  cleanup: () => void = () => {
+    return;
+  }
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
@@ -34,46 +37,38 @@ export class BnaFilePanelControllerComponent {
     });
   }
 
+  ngOnDestroy(){
+    this.cleanup();
+  }
+
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
-    if (!editor) {
-      return;
-    }
-    let cleanup: () => void = () => {
-      return;
-    };
     editor.filePanel?.onUpdate(async (filePanelState) => {
       this.show.set(filePanelState.show);
-      if (!filePanelState.show) {
-        cleanup();
-      } else {
-        const updatePosition = async () => {
-          const result = await computePosition(
-            getVirtualElement(filePanelState.referencePos),
-            this.elRef.nativeElement,
-            {
-              strategy: 'fixed',
-              placement: 'bottom',
-              middleware: [offset(10), flip()],
-            },
-          );
-          this.renderer2.setStyle(
-            this.elRef.nativeElement,
-            'top',
-            `${result.y}px`,
-          );
-          this.renderer2.setStyle(
-            this.elRef.nativeElement,
-            'left',
-            `${result.x}px`,
-          );
-        };
-        cleanup = autoUpdate(
+      this.cleanup();
+      if (filePanelState.show) {
+        this.cleanup = autoUpdate(
           getVirtualElement(filePanelState.referencePos),
           this.elRef.nativeElement,
-          updatePosition,
+          async () => {
+            await this.updatePosition(filePanelState.referencePos);
+          },
         );
       }
     });
+  }
+
+  private async updatePosition(referencePos: DOMRect) {
+    const result = await computePosition(
+      getVirtualElement(referencePos),
+      this.elRef.nativeElement,
+      {
+        strategy: 'fixed',
+        placement: 'bottom',
+        middleware: [offset(10), flip()],
+      },
+    );
+    this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+    this.renderer2.setStyle(this.elRef.nativeElement, 'left', `${result.x}px`);
   }
 }
