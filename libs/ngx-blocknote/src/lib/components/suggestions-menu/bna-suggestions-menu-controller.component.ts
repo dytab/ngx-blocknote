@@ -24,7 +24,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   selector: 'bna-suggestions-menu-controller',
   standalone: true,
   host: {
-    class: 'z-30 fixed flex top-0 left-0 min-h-[300px]',
+    class: 'z-30 fixed flex min-h-[300px]',
   },
   template: `@if (show()) {
     <ng-content />
