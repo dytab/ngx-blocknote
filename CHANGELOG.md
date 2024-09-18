@@ -1,3 +1,14 @@
+## 1.3.2 (2024-09-18)
+
+
+### 🩹 Fixes
+
+- remove top-0 and left-0 defaults from suggestion-menu ([ac5afe5](https://github.com/dytab/ngx-blocknote/commit/ac5afe5))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.3.1 (2024-09-18)
 
 
