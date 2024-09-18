@@ -3,11 +3,11 @@ import {
   Component,
   effect,
   ElementRef,
+  OnDestroy,
   Renderer2,
   signal,
 } from '@angular/core';
-import { Block } from '@blocknote/core';
-import { computePosition } from '@floating-ui/dom';
+import { autoUpdate, computePosition } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
@@ -22,8 +22,11 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
     <ng-content />
   }`,
 })
-export class BnaSideMenuControllerComponent {
+export class BnaSideMenuControllerComponent implements OnDestroy {
   show = signal(false);
+  cleanup: () => void = () => {
+    return;
+  };
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
@@ -35,27 +38,29 @@ export class BnaSideMenuControllerComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.cleanup();
+  }
+
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
     editor.sideMenu.onUpdate(async (sideMenuState) => {
-      this.updateShowSideMenuOnChange(sideMenuState.show);
-      this.updateSideMenuFocusedBlockOnChange(sideMenuState.block);
+      this.cleanup();
+
+      this.show.set(sideMenuState.show);
+      this.ngxBlockNoteService.sideMenuFocusedBlock.set(sideMenuState.block);
       if (sideMenuState.show) {
-        await this.updateSideMenuPosition(sideMenuState.referencePos);
+        //TODO: remove auto update
+        //had the problem that the first set position was not good
+        this.cleanup = autoUpdate(
+          getVirtualElement(sideMenuState.referencePos),
+          this.elRef.nativeElement,
+          async () => {
+            await this.updateSideMenuPosition(sideMenuState.referencePos);
+          },
+        );
       }
     });
-  }
-
-  private updateShowSideMenuOnChange(show: boolean) {
-    if (this.show() !== show) {
-      this.show.set(show);
-    }
-  }
-
-  private updateSideMenuFocusedBlockOnChange(block: Block<any, any, any>) {
-    if (this.ngxBlockNoteService.sideMenuFocusedBlock() !== block) {
-      this.ngxBlockNoteService.sideMenuFocusedBlock.set(block);
-    }
   }
 
   private async updateSideMenuPosition(referencePos: DOMRect) {
