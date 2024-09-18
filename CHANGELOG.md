@@ -1,3 +1,14 @@
+## 1.3.1 (2024-09-18)
+
+
+### 🩹 Fixes
+
+- revert suggestions menu to flip middleware ([58d55fc](https://github.com/dytab/ngx-blocknote/commit/58d55fc))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.3.0 (2024-09-17)
 
 
