@@ -12,7 +12,6 @@ import {
   autoPlacement,
   autoUpdate,
   computePosition,
-  flip,
   offset,
   size,
 } from '@floating-ui/dom';
@@ -24,7 +23,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   selector: 'bna-suggestions-menu-controller',
   standalone: true,
   host: {
-    class: 'z-30 fixed flex min-h-[300px]',
+    class: 'z-30 fixed flex',
   },
   template: `@if (show()) {
     <ng-content />
@@ -79,7 +78,7 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
           placement: 'bottom-start',
           middleware: [
             offset(10),
-            flip(),
+            autoPlacement({ allowedPlacements: ['bottom-start', 'top-start'] }),
             size({
               apply: ({ availableHeight }) => {
                 this.renderer2.setStyle(
