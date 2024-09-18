@@ -1,3 +1,17 @@
+## 1.3.3 (2024-09-18)
+
+
+### 🩹 Fixes
+
+- remove min-height resulting in problems with "no items found" ([95f26b8](https://github.com/dytab/ngx-blocknote/commit/95f26b8))
+- solve first strange side menu position ([3e84ad2](https://github.com/dytab/ngx-blocknote/commit/3e84ad2))
+- cleanup also on destroy, remove unnecessary check before setting signals ([25b376e](https://github.com/dytab/ngx-blocknote/commit/25b376e))
+- cleanup also on destroy, remove unnecessary check before setting signals ([717bd84](https://github.com/dytab/ngx-blocknote/commit/717bd84))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.3.2 (2024-09-18)
 
 
