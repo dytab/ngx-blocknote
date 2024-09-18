@@ -3,30 +3,25 @@ import {
   Component,
   effect,
   ElementRef,
-  OnDestroy,
   Renderer2,
   signal,
 } from '@angular/core';
-import { autoUpdate, computePosition } from '@floating-ui/dom';
+import { Block, BlockNoteEditor } from '@blocknote/core';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
-import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
   imports: [CommonModule],
   selector: 'bna-side-menu-controller',
   standalone: true,
   host: {
-    class: 'z-30 fixed',
+    class: 'bn-side-menu',
   },
   template: `@if (show()) {
     <ng-content />
   }`,
 })
-export class BnaSideMenuControllerComponent implements OnDestroy {
-  show = signal(false);
-  cleanup: () => void = () => {
-    return;
-  };
+export class BnaSideMenuControllerComponent {
+  show = signal(true);
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
@@ -38,41 +33,59 @@ export class BnaSideMenuControllerComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.cleanup();
-  }
-
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
     editor.sideMenu.onUpdate(async (sideMenuState) => {
-      this.cleanup();
-
       this.show.set(sideMenuState.show);
       this.ngxBlockNoteService.sideMenuFocusedBlock.set(sideMenuState.block);
       if (sideMenuState.show) {
-        //TODO: remove auto update
-        //had the problem that the first set position was not good
-        this.cleanup = autoUpdate(
-          getVirtualElement(sideMenuState.referencePos),
+        this.updateSideMenuAttributesWithBlock(editor, sideMenuState.block);
+        this.renderer2.setStyle(
           this.elRef.nativeElement,
-          async () => {
-            await this.updateSideMenuPosition(sideMenuState.referencePos);
-          },
+          'top',
+          `${sideMenuState.referencePos.y}px`,
         );
       }
     });
   }
 
-  private async updateSideMenuPosition(referencePos: DOMRect) {
-    const placement = referencePos.height < 80 ? 'left' : 'left-start';
-    const result = await computePosition(
-      getVirtualElement(referencePos),
+  private updateSideMenuAttributesWithBlock(
+    editor: BlockNoteEditor,
+    block: Block,
+  ) {
+    this.renderer2.setAttribute(
       this.elRef.nativeElement,
-      {
-        strategy: 'fixed',
-        placement: placement,
-      },
+      'data-block-type',
+      block.type,
     );
-    this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+
+    if (block.type === 'heading') {
+      this.renderer2.setAttribute(
+        this.elRef.nativeElement,
+        'data-level',
+        block.props.level.toString(),
+      );
+    } else {
+      this.renderer2.removeAttribute(this.elRef.nativeElement, 'data-level');
+    }
+    //TODO: remove any cast
+    if ((editor.schema.blockSchema[block.type] as any).isFileBlock) {
+      //TODO: remove any cast
+      if ((block.props as any).url) {
+        this.renderer2.setAttribute(
+          this.elRef.nativeElement,
+          'data-url',
+          'true',
+        );
+      } else {
+        this.renderer2.setAttribute(
+          this.elRef.nativeElement,
+          'data-url',
+          'false',
+        );
+      }
+    } else {
+      this.renderer2.removeAttribute(this.elRef.nativeElement, 'data-url');
+    }
   }
 }
