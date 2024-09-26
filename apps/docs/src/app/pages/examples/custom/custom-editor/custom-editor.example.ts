@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
+  Block,
   BlockNoteEditor,
   BlockNoteSchema,
   defaultBlockSpecs,
@@ -75,8 +76,20 @@ const schema = BlockNoteSchema.create({
   ],
   providers: [NgxBlocknoteService],
   template: `
+    <div>{{editor.isEditable | json}}</div>
+    <div class="flex gap-2">
+      <button type="button" hlmBtn size="sm" (click)="patchFormValue()">
+        Patch Value
+      </button>
+      <button type="button" hlmBtn size="sm" (click)="disableForm()">
+        Disable
+      </button>
+      <button type="button" hlmBtn size="sm" (click)="enableForm()">
+        Enable
+      </button>
+    </div>
     <bna-editor
-      [initialContent]="initialContent"
+      [formControl]="form.controls.editor"
       [editor]="editor"
       [options]="options"
       (onEditorReady)="onEditorReady($event)"
@@ -85,20 +98,16 @@ const schema = BlockNoteSchema.create({
 })
 export class CustomEditorExample {
   editor = BlockNoteEditor.create({ schema });
-
-  initialContent: PartialBlock<typeof schema.blockSchema>[] = [
-    {
-      type: 'paragraph',
-      content: 'test',
-    },
-    {
-      type: 'alert',
-      props: {
-        type: 'warning',
+  form = this.formBuilder.group({
+    editor: new FormControl<
+      Block<any, any, any>[] | PartialBlock<any, any, any>[]
+    >([
+      {
+        type: 'paragraph',
+        content: 'test',
       },
-      content: 'Hallo Welt.',
-    },
-  ];
+    ]),
+  });
 
   options: BlockNoteEditorOptionsType<
     typeof schema.blockSchema,
@@ -131,8 +140,40 @@ export class CustomEditorExample {
     ],
   };
 
-  onEditorReady(editor: BlockNoteEditor<typeof schema.blockSchema>) {
+  constructor(private formBuilder: FormBuilder) {
+    this.form.disable();
+  }
+
+  onEditorReady(editor: BlockNoteEditor<any,any,any>) {
     console.log('editor ready', editor);
+  }
+
+  patchFormValue() {
+    this.form.patchValue({
+      editor: [
+        {
+          type: 'paragraph',
+          content: [
+            'Hello, ',
+            {
+              type: 'text',
+              text: 'new Content!',
+              styles: {
+                bold: true,
+              },
+            },
+          ],
+        },
+      ],
+    });
+  }
+
+  disableForm() {
+    this.form.disable();
+  }
+
+  enableForm() {
+    this.form.enable();
   }
 }
 

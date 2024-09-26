@@ -50,7 +50,13 @@ export class BnaFormattingToolbarControllerComponent implements OnDestroy {
 
   adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
+    console.log("editor updated", editor);
     editor.formattingToolbar.onUpdate(async (formattingToolbar) => {
+      console.log("trigger formatting toolbar",editor.isEditable);
+      //TODO: remove workaround
+      if(!editor.isEditable){
+        return;
+      }
       this.show.set(formattingToolbar.show);
       this.cleanup();
       //TODO: remove auto update
