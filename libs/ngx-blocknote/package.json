@@ -32,7 +32,7 @@
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
     "@angular/forms": "^18.0.0",
-    "@blocknote/core": ">=0.14.0 <0.16.0"
+    "@blocknote/core": ">=0.14.0 <0.17.0"
   },
   "peerDependenciesMeta": {
     "@angular/platform-browser": {
