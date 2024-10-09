@@ -1,3 +1,16 @@
+## 1.3.4 (2024-10-09)
+
+
+### 🩹 Fixes
+
+- add missing aria-described-by ([51387e8](https://github.com/dytab/ngx-blocknote/commit/51387e8))
+- bump blocknote ([7510141](https://github.com/dytab/ngx-blocknote/commit/7510141))
+
+### ❤️  Thank You
+
+- Johannes Klein
+- Matthias risto
+
 ## 1.3.3 (2024-09-18)
 
 
