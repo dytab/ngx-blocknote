@@ -1,3 +1,15 @@
+## 1.3.5 (2024-10-28)
+
+
+### 🩹 Fixes
+
+- use block from opened file panel ([b49520d](https://github.com/dytab/ngx-blocknote/commit/b49520d))
+- update @blocknote/core dependency range ([aaf7906](https://github.com/dytab/ngx-blocknote/commit/aaf7906))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.3.4 (2024-10-09)
 
 
