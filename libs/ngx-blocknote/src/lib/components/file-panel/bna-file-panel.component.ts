@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
@@ -30,7 +30,7 @@ import {
   ],
   templateUrl: './bna-file-panel.component.html',
 })
-export class BnaFilePanelComponent implements OnInit {
+export class BnaFilePanelComponent {
   focusedBlock = signal<BlockFromConfig<FileBlockConfig, any, any> | undefined>(
     undefined,
   );
@@ -40,20 +40,20 @@ export class BnaFilePanelComponent implements OnInit {
 
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {
     const editor = this.ngxBlockNoteService.editor();
-    editor.filePanel?.onUpdate(async (filePanelState) => {
-      if (!filePanelState.show) {
-        this.focusedBlock.set(undefined);
-      } else {
-        this.focusedBlock.set(filePanelState.block);
-      }
-    });
+    if(editor.filePanel){
+      //TODO: remove the workaround
+      //Workaround use view state from file panel to get the block
+      this.focusedBlock.set((editor.filePanel! as any).view.state.block)
+      editor.filePanel.onUpdate(async (filePanelState) => {
+        if (!filePanelState.show) {
+          this.focusedBlock.set(undefined);
+        } else {
+          this.focusedBlock.set(filePanelState.block);
+        }
+      });
+    }
   }
 
-  ngOnInit() {
-    const editor = this.ngxBlockNoteService.editor();
-    const block = editor.getTextCursorPosition().block;
-    this.focusedBlock.set(block as any);
-  }
 
   async onFileInputChanged(event: Event) {
     const editor = this.ngxBlockNoteService.editor();
