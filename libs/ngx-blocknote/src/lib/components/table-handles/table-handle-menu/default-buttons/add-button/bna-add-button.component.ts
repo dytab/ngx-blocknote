@@ -23,8 +23,13 @@ export class BnaAddButtonComponent {
     if (!block) {
       return;
     }
+    if(index === undefined){
+      //TODO: when can this be?
+      return;
+    }
     console.log(block.content);
     const content: TableContent<InlineContentSchema, StyleSchema> = {
+      ...block.content,
       type: 'tableContent',
       rows: block.content.rows.map((row) => {
         const cells = [...row.cells];
@@ -47,6 +52,10 @@ export class BnaAddButtonComponent {
   addRow(side: 'above' | 'below') {
     const { editor, block, index } = this.getProperties('row');
     if (!block) {
+      return;
+    }
+    if(index === undefined){
+      //TODO: when can index be undefined?
       return;
     }
     const emptyCol = block.content.rows[index].cells.map(() => []);

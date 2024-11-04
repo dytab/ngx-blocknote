@@ -95,7 +95,7 @@ export class BnaTableHandlesController implements AfterViewInit {
     colElement: ElementRef,
   ) {
     const result = await useTableHandlesPositioning(
-      tableHandles.referencePosCell,
+      tableHandles.referencePosCell ?? null,
       tableHandles.referencePosTable,
       {
         row: rowElement.nativeElement,

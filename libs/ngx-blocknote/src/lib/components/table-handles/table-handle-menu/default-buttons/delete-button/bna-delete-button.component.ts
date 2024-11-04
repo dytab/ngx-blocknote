@@ -22,6 +22,7 @@ export class BnaDeleteButtonComponent {
       return;
     }
     const content: TableContent<any> = {
+      ...block.content,
       type: 'tableContent',
       rows: block.content.rows.map((row) => ({
         cells: row.cells.filter((_, cellIndex) => cellIndex !== index),
@@ -44,6 +45,7 @@ export class BnaDeleteButtonComponent {
       return;
     }
     const content: TableContent<any> = {
+      ...block.content,
       type: 'tableContent',
       rows: block.content.rows.filter((_, rowIndex) => rowIndex !== index),
     };
