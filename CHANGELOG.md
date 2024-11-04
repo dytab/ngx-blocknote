@@ -1,3 +1,14 @@
+## 1.4.0 (2024-10-28)
+
+
+### 🚀 Features
+
+- export file block and show file block util ([4061381](https://github.com/dytab/ngx-blocknote/commit/4061381))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.3.5 (2024-10-28)
 
 
