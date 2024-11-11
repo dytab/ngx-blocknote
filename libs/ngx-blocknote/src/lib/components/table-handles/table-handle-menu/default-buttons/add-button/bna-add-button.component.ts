@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { TableContent } from '@blocknote/core';
+import { PartialTableContent, TableContent } from '@blocknote/core';
 import type { InlineContentSchema } from '@blocknote/core/src/schema/inlineContent/types';
 import type { StyleSchema } from '@blocknote/core/src/schema/styles/types';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
@@ -27,7 +27,6 @@ export class BnaAddButtonComponent {
       //TODO: when can this be?
       return;
     }
-    console.log(block.content);
     const content: TableContent<InlineContentSchema, StyleSchema> = {
       ...block.content,
       type: 'tableContent',
@@ -79,10 +78,8 @@ export class BnaAddButtonComponent {
 
   private getProperties(orientation: 'row' | 'column') {
     const editor = this.ngxBlockNoteService.editor();
-    //TODO: get the block
     const options = this.options();
     const block = options.tableHandles.block;
-    console.log(block);
 
     const index =
       orientation === 'row'
