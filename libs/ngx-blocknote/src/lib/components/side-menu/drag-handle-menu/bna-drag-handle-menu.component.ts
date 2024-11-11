@@ -56,7 +56,11 @@ export class BnaDragHandleMenuComponent {
 
   dragStart($event: DragEvent) {
     const editor = this.ngxBlockNoteService.editor();
-    editor.sideMenu.blockDragStart($event);
+    const block = this.ngxBlockNoteService.sideMenuFocusedBlock();
+    if (!block) {
+      return;
+    }
+    editor.sideMenu.blockDragStart($event, block as any);
   }
 
   dragEnd() {
