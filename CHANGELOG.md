@@ -1,3 +1,14 @@
+## 1.4.1 (2024-11-11)
+
+
+### 🩹 Fixes
+
+- remove unused console logs ([e3cb838](https://github.com/dytab/ngx-blocknote/commit/e3cb838))
+
+### ❤️  Thank You
+
+- Matthias risto
+
 ## 1.4.0 (2024-10-28)
 
 
