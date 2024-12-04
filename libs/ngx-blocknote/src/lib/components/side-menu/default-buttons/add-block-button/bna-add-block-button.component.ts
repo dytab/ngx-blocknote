@@ -17,9 +17,18 @@ export class BnaAddBlockButtonComponent {
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   addNewBlock() {
-    const currentBlock = this.ngxBlockNoteService.editor().getTextCursorPosition().block;
-    this.ngxBlockNoteService.editor().insertBlocks([{
-      type: "paragraph",
-    }], currentBlock, "after");
+    const editor = this.ngxBlockNoteService.editor();
+    const currentBlock = editor.getTextCursorPosition().block;
+    const insertedBlock = editor.insertBlocks(
+      [
+        {
+          type: 'paragraph',
+        },
+      ],
+      currentBlock,
+      'after',
+    )[0];
+    editor.setTextCursorPosition(insertedBlock);
+    editor.openSuggestionMenu('/');
   }
 }
