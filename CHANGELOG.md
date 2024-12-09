@@ -1,3 +1,14 @@
+## 1.4.2 (2024-12-09)
+
+### 🩹 Fixes
+
+- open suggestion menu on add block click ([d3f5acc](https://github.com/dytab/ngx-blocknote/commit/d3f5acc))
+- adjust package.json of library ([8a876dc](https://github.com/dytab/ngx-blocknote/commit/8a876dc))
+
+### ❤️ Thank You
+
+- Matthias Risto
+
 ## 1.4.1 (2024-11-11)
 
 
