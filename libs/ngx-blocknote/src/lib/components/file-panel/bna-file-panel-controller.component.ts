@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   effect,
-  ElementRef, OnDestroy,
+  ElementRef,
+  OnDestroy,
   Renderer2,
-  signal
+  signal,
 } from '@angular/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
@@ -20,11 +21,11 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
     <ng-content />
   }`,
 })
-export class BnaFilePanelControllerComponent implements OnDestroy{
+export class BnaFilePanelControllerComponent implements OnDestroy {
   show = signal(false);
   cleanup: () => void = () => {
     return;
-  }
+  };
 
   constructor(
     private ngxBlockNoteService: NgxBlocknoteService,
@@ -36,7 +37,7 @@ export class BnaFilePanelControllerComponent implements OnDestroy{
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.cleanup();
   }
 

@@ -22,7 +22,7 @@ export class BnaAddButtonComponent {
     if (!block) {
       return;
     }
-    if(index === undefined){
+    if (index === undefined) {
       //TODO: when can this be?
       return;
     }
@@ -52,7 +52,7 @@ export class BnaAddButtonComponent {
     if (!block) {
       return;
     }
-    if(index === undefined){
+    if (index === undefined) {
       //TODO: when can index be undefined?
       return;
     }

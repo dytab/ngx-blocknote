@@ -39,10 +39,10 @@ export class BnaFilePanelComponent {
 
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {
     const editor = this.ngxBlockNoteService.editor();
-    if(editor.filePanel){
+    if (editor.filePanel) {
       //TODO: remove the workaround
       //Workaround use view state from file panel to get the block
-      this.focusedBlock.set((editor.filePanel! as any).view.state.block)
+      this.focusedBlock.set((editor.filePanel! as any).view.state.block);
       editor.filePanel.onUpdate(async (filePanelState) => {
         if (!filePanelState.show) {
           this.focusedBlock.set(undefined);
@@ -52,7 +52,6 @@ export class BnaFilePanelComponent {
       });
     }
   }
-
 
   async onFileInputChanged(event: Event) {
     const editor = this.ngxBlockNoteService.editor();

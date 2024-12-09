@@ -16,7 +16,7 @@ import { HlmButtonDirective } from '@dytab/ui';
           hlmBtn
           size="icon"
           variant="ghost"
-          (mousedown)="addItem($event,item)"
+          (mousedown)="addItem($event, item)"
           class="w-full"
         >
           {{ item.title }}
@@ -32,11 +32,11 @@ export class CustomSlashMenuComponent {
   );
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
-  addItem($event: Event,item: { title: string; onItemClick: () => void }){
+  addItem($event: Event, item: { title: string; onItemClick: () => void }) {
     $event.preventDefault();
     this.ngxBlockNoteService.editor().suggestionMenus.clearQuery();
     item.onItemClick();
     this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
-    this.ngxBlockNoteService.editor().focus()
+    this.ngxBlockNoteService.editor().focus();
   }
 }

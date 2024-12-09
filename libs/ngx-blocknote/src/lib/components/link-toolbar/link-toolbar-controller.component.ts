@@ -52,27 +52,23 @@ export class BnaLinkToolbarControllerDirective implements OnDestroy {
         this.cleanup = autoUpdate(
           getVirtualElement(linkToolbar.referencePos),
           this.elRef.nativeElement,
-          async ()=>await this.updatePosition(linkToolbar),
+          async () => await this.updatePosition(linkToolbar),
         );
       }
     });
   }
 
   private async updatePosition(linkToolbar: LinkToolbarState) {
-      const result = await computePosition(
-        getVirtualElement(linkToolbar.referencePos),
-        this.elRef.nativeElement,
-        {
-          strategy: 'fixed',
-          placement: 'top',
-          middleware: [flip()],
-        },
-      );
-      this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
-      this.renderer2.setStyle(
-        this.elRef.nativeElement,
-        'left',
-        `${result.x}px`,
-      );
-    };
+    const result = await computePosition(
+      getVirtualElement(linkToolbar.referencePos),
+      this.elRef.nativeElement,
+      {
+        strategy: 'fixed',
+        placement: 'top',
+        middleware: [flip()],
+      },
+    );
+    this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);
+    this.renderer2.setStyle(this.elRef.nativeElement, 'left', `${result.x}px`);
+  }
 }
