@@ -18,7 +18,6 @@ import {
 } from './upload-file.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

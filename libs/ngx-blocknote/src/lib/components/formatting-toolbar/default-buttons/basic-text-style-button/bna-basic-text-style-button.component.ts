@@ -55,7 +55,6 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
 
 @Component({
   selector: 'bna-basic-text-style-button',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

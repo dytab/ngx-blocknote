@@ -24,7 +24,6 @@ import { DarkMode, ThemeService } from './theme.service';
   ],
   providers: [provideIcons({ lucideMoon, lucideMonitor, lucideSun })],
   selector: 'bna-theme-switch',
-  standalone: true,
   template: `
     <button
       size="sm"

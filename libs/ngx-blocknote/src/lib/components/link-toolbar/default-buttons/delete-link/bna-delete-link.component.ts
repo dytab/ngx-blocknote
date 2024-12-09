@@ -7,7 +7,6 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 @Component({
   selector: 'bna-delete-link',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   templateUrl: './bna-delete-link.component.html',
   styleUrl: './bna-delete-link.component.css',

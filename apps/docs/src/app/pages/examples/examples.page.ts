@@ -5,7 +5,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 import { exampleGroupedLinks } from './shared/examples';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     RouterOutlet,

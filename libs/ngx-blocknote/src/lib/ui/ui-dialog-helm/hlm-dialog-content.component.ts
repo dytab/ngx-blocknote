@@ -21,7 +21,6 @@ import {
 
 @Component({
   selector: 'hlm-dialog-content',
-  standalone: true,
   imports: [
     NgComponentOutlet,
     BrnDialogCloseDirective,

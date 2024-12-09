@@ -9,7 +9,6 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
 
 @Component({
   selector: 'bna-add-button',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   templateUrl: './bna-add-button.component.html',
   styleUrl: './bna-add-button.component.css',

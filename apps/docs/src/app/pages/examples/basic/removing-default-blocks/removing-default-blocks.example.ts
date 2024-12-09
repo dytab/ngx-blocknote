@@ -9,7 +9,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-removing-default-blocks-example',
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <bna-editor [initialContent]="initialContent" [options]="options" />

@@ -8,7 +8,6 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 
 @Component({
   selector: 'bna-open-link',
-  standalone: true,
   imports: [
     CommonModule,
     BnaLinkFormComponent,

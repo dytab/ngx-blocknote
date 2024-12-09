@@ -6,7 +6,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <div class="flex gap-2">

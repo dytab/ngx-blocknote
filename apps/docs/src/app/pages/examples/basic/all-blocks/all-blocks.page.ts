@@ -8,7 +8,6 @@ import { SectionIntroComponent } from '../../../../shared/layout/section-intro.c
 import { AllBlocksExample, allBlocksExampleCode } from './all-blocks.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

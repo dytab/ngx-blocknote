@@ -49,7 +49,6 @@ const schema = BlockNoteSchema.create({
 
 @Component({
   selector: 'bna-api-content-block-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

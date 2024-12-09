@@ -33,7 +33,6 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
 
 @Component({
   selector: 'bna-block-type-selection-button',
-  standalone: true,
   imports: [
     CommonModule,
     BnaColorIconComponent,

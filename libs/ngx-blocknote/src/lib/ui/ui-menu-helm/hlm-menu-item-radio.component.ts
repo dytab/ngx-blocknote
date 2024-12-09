@@ -7,7 +7,6 @@ import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
 
 @Component({
   selector: 'hlm-menu-item-radio',
-  standalone: true,
   providers: [provideIcons({ lucideCircle })],
   imports: [HlmIconComponent],
   template: `

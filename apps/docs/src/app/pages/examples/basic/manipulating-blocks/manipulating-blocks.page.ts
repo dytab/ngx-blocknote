@@ -18,7 +18,6 @@ import {
 } from './manipulating-blocks.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

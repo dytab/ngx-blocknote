@@ -7,7 +7,6 @@ import { BrnTooltipDirective } from '@spartan-ng/ui-tooltip-brain';
 
 @Component({
   selector: 'hlm-tooltip',
-  standalone: true,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],

@@ -22,7 +22,6 @@ import { listVariants } from './hlm-tabs-list.component';
 
 @Component({
   selector: 'hlm-paginated-tabs-list',
-  standalone: true,
   imports: [CdkObserveContent, HlmIconComponent],
   providers: [provideIcons({ lucideChevronRight, lucideChevronLeft })],
   template: `

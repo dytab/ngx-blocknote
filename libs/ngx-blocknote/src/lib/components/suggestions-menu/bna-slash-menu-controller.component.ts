@@ -5,7 +5,6 @@ import { BnaSuggestionsMenuControllerComponent } from './bna-suggestions-menu-co
 @Component({
   imports: [CommonModule, BnaSuggestionsMenuControllerComponent],
   selector: 'bna-slash-menu-controller',
-  standalone: true,
   template: `<bna-suggestions-menu-controller triggerCharacter="/"
     ><ng-content></ng-content
   ></bna-suggestions-menu-controller>`,

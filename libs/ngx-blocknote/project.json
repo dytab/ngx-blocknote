@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/ngx-blocknote"],
       "options": {
-        "project": "libs/ngx-blocknote/ng-package.json",
-        "tailwindConfig": "libs/ngx-blocknote/tailwind.config.js"
+        "project": "libs/ngx-blocknote/ng-package.json"
       },
       "configurations": {
         "production": {

@@ -8,7 +8,6 @@ import { lucideTrash } from '@ng-icons/lucide';
 
 @Component({
   selector: 'bna-remove-block-button',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   providers: [provideIcons({ lucideTrash })],
   template: ` <button hlmBtn size="xs" variant="ghost" (click)="deleteBlock()">

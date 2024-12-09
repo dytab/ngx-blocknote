@@ -15,7 +15,6 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 @Component({
   imports: [CommonModule],
   selector: 'bna-link-toolbar-controller',
-  standalone: true,
   host: {
     class: 'z-40 fixed',
   },

@@ -27,7 +27,6 @@ const schema = BlockNoteSchema.create({
 });
 @Component({
   selector: 'bna-alert-block-example',
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `<bna-editor
     [initialContent]="initialContent"

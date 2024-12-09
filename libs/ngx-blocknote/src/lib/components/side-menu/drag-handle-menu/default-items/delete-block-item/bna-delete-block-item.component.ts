@@ -7,7 +7,6 @@ import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',
-  standalone: true,
   imports: [CommonModule, HlmMenuItemDirective, HlmButtonDirective],
   templateUrl: './bna-delete-block-item.component.html',
   styleUrl: './bna-delete-block-item.component.css',

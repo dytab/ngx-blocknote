@@ -50,7 +50,6 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
 
 @Component({
   selector: 'bna-color-style-button',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

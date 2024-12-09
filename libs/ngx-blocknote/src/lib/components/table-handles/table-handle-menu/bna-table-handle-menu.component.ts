@@ -6,7 +6,6 @@ import { BnaDeleteButtonComponent } from './default-buttons/delete-button/bna-de
 
 @Component({
   selector: 'bna-table-handle-menu',
-  standalone: true,
   imports: [CommonModule, BnaDeleteButtonComponent, BnaAddButtonComponent],
   templateUrl: './bna-table-handle-menu.component.html',
   styleUrl: './bna-table-handle-menu.component.css',

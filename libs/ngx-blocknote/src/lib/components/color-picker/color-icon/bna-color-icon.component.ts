@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'bna-color-icon',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './bna-color-icon.component.html',
   styleUrl: './bna-color-icon.component.css',

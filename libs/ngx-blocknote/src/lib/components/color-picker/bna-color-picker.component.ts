@@ -21,7 +21,6 @@ const colors = [
 
 @Component({
   selector: 'bna-color-picker',
-  standalone: true,
   imports: [
     CommonModule,
     BnaColorIconComponent,

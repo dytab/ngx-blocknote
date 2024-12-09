@@ -22,7 +22,6 @@ export const HLM_CHECKBOX_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'hlm-checkbox',
-  standalone: true,
   imports: [BrnCheckboxComponent, HlmCheckboxCheckIconComponent],
   template: `
     <brn-checkbox

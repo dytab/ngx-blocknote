@@ -17,7 +17,6 @@ import {
 
 @Component({
   selector: 'bna-file-panel',
-  standalone: true,
   imports: [
     HlmInputDirective,
     HlmTabsComponent,

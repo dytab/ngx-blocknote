@@ -24,7 +24,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-caption-button',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

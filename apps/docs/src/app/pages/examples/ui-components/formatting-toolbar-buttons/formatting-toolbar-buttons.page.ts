@@ -18,7 +18,6 @@ import {
 } from './formatting-toolbar-buttons.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

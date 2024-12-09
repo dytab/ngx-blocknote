@@ -5,7 +5,6 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-basic-setup-example',
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent],
   templateUrl: 'basic-setup.example.html',
 })

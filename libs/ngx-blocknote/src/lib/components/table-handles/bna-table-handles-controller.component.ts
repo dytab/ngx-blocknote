@@ -20,7 +20,6 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
   selector: 'bna-table-handles-controller',
   templateUrl: 'bna-table-handle-controller.component.html',
   styleUrl: 'bna-table-handle-controller.component.css',
-  standalone: true,
   host: {
     class: 'z-40 fixed',
   },

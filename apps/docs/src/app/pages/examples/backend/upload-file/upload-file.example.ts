@@ -6,7 +6,6 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-upload-file-example',
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <bna-editor [initialContent]="initialContent" [options]="{ uploadFile }" />

@@ -20,7 +20,6 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 @Component({
   imports: [CommonModule],
   selector: 'bna-formatting-toolbar-controller',
-  standalone: true,
   template: `@if (show()) {
     <ng-content />
   }`,

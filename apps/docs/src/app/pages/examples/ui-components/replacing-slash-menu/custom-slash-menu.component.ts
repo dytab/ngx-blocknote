@@ -6,7 +6,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-custom-slash-menu',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective],
   template: `
     <div

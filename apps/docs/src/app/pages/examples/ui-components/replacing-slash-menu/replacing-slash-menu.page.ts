@@ -18,7 +18,6 @@ import {
 } from './replacing-slash-menu.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

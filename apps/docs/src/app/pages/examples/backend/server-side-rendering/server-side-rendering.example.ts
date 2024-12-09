@@ -7,7 +7,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'bna-server-side-rendering-example',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -21,7 +21,6 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
 @Component({
   imports: [CommonModule],
   selector: 'bna-suggestions-menu-controller',
-  standalone: true,
   host: {
     class: 'z-30 fixed flex',
   },

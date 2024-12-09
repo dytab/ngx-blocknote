@@ -132,7 +132,6 @@ type InitialContent<
     },
   ],
   selector: 'bna-editor',
-  standalone: true,
   styleUrl: './bna-editor.component.css',
   templateUrl: './bna-editor.component.html',
 })

@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
-  standalone: true,
   selector: 'bna-all-blocks-example',
   imports: [CommonModule, BnaEditorComponent],
   template: `

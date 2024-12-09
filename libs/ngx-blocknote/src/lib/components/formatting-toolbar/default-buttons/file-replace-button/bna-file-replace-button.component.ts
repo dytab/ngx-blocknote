@@ -20,7 +20,6 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
 
 @Component({
   selector: 'bna-file-replace-button',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

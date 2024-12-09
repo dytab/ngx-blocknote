@@ -14,21 +14,27 @@
         "@nx/dependency-checks": [
           "error",
           {
-            "checkMissingDependencies": true, // toggle to disable
-            "checkObsoleteDependencies": true, // toggle to disable
-            "checkVersionMismatches": true, // toggle to disable
+            "checkMissingDependencies": true,
+            "checkObsoleteDependencies": true,
+            "checkVersionMismatches": true,
             "ignoredDependencies": [
               "@testing-library/angular",
               "jest-preset-angular",
               "@nx/angular",
               "vite",
               "@analogjs/vite-plugin-angular"
-            ], // these libs will be omitted from checks
-            "ignoredFiles": ["tailwind.config.js"], // list of files that should be skipped for check
-            "includeTransitiveDependencies": true, // collect dependencies transitively from children
-            "useLocalPathsForWorkspaceDependencies": true // toggle to disable
+            ],
+            "ignoredFiles": ["tailwind.config.js"],
+            "includeTransitiveDependencies": true,
+            "useLocalPathsForWorkspaceDependencies": true
           }
         ]
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "@angular-eslint/prefer-standalone": "off"
       }
     }
   ]

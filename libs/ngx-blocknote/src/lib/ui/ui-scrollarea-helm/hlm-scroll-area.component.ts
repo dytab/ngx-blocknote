@@ -13,7 +13,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
   selector: 'hlm-scroll-area',
-  standalone: true,
   imports: [NgScrollbarModule],
   template: `
     <ng-scrollbar
