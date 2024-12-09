@@ -28,10 +28,10 @@
     "@analogjs/vite-plugin-angular": "^1.7.3"
   },
   "peerDependencies": {
-    "@angular/cdk": "^18.0.0",
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0",
-    "@angular/forms": "^18.0.0",
+    "@angular/cdk": "^19.0.2",
+    "@angular/common": "^19.0.3",
+    "@angular/core": "^19.0.3",
+    "@angular/forms": "^19.0.3",
     "@blocknote/core": "^0.20.0"
   },
   "peerDependenciesMeta": {
