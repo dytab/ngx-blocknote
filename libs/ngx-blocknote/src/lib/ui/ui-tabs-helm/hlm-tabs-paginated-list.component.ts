@@ -6,12 +6,14 @@ import {
   ElementRef,
   input,
   QueryList,
+  Signal,
   ViewChild,
 } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/ui-core';
 import {
+  BrnPaginatedTabHeaderItem,
   BrnTabsPaginatedListDirective,
   BrnTabsTriggerDirective,
 } from '@spartan-ng/ui-tabs-brain';
@@ -19,6 +21,7 @@ import { ClassValue } from 'clsx';
 import { buttonVariants } from '../ui-button-helm/hlm-button.directive';
 import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
 import { listVariants } from './hlm-tabs-list.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hlm-paginated-tabs-list',
@@ -82,13 +85,20 @@ import { listVariants } from './hlm-tabs-list.component';
 })
 export class HlmTabsPaginatedListComponent extends BrnTabsPaginatedListDirective {
   @ContentChildren(BrnTabsTriggerDirective, { descendants: false })
-  _items!: QueryList<BrnTabsTriggerDirective>;
+  _items!: Signal<readonly BrnPaginatedTabHeaderItem[]>;
+  _itemsChanges!: Observable<readonly BrnPaginatedTabHeaderItem[]>;
   @ViewChild('tabListContainer', { static: true })
-  _tabListContainer!: ElementRef;
-  @ViewChild('tabList', { static: true }) _tabList!: ElementRef;
-  @ViewChild('tabListInner', { static: true }) _tabListInner!: ElementRef;
-  @ViewChild('nextPaginator') _nextPaginator!: ElementRef<HTMLElement>;
-  @ViewChild('previousPaginator') _previousPaginator!: ElementRef<HTMLElement>;
+  _tabListContainer!: Signal<ElementRef<HTMLElement>>;
+  @ViewChild('tabList', { static: true }) _tabList!: Signal<
+    ElementRef<HTMLElement>
+  >;
+  @ViewChild('tabListInner', { static: true }) _tabListInner!: Signal<
+    ElementRef<HTMLElement>
+  >;
+  @ViewChild('nextPaginator') _nextPaginator!: Signal<ElementRef<HTMLElement>>;
+  @ViewChild('previousPaginator') _previousPaginator!: Signal<
+    ElementRef<HTMLElement>
+  >;
 
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() =>
