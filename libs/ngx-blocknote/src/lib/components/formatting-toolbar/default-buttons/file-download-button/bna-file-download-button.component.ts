@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
@@ -21,7 +20,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-download-button.component.html',
   styleUrl: './bna-file-download-button.component.css',
