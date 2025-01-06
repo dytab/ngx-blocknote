@@ -52,7 +52,8 @@ export class BnaFileDownloadButtonComponent {
   downloadFile() {
     const editor = this.ngxBlockNoteService.editor();
     const fileBlock = this.fileBlock();
-    if (fileBlock && fileBlock.props.url) {
+    // TODO: check if download button is still needed when .resolveFileUrl() is undefined
+    if (editor.resolveFileUrl && fileBlock && fileBlock.props.url) {
       editor.focus();
       editor
         .resolveFileUrl(fileBlock.props.url)
