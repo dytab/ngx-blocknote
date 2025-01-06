@@ -1,3 +1,13 @@
+## 1.4.3 (2025-01-06)
+
+### 🩹 Fixes
+
+- file download condition in bna-file-download-button ([ae3f132](https://github.com/dytab/ngx-blocknote/commit/ae3f132))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.4.2 (2024-12-09)
 
 ### 🩹 Fixes
