@@ -1,3 +1,13 @@
+## 1.5.0 (2025-01-30)
+
+### 🚀 Features
+
+- update @blocknote to 0.23.1 ([3e451c9](https://github.com/dytab/ngx-blocknote/commit/3e451c9))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.4.3 (2025-01-06)
 
 ### 🩹 Fixes
