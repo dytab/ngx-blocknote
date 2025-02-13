@@ -9,15 +9,7 @@ import {
   HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
-  HlmMenuItemDirective,
-  HlmMenuItemSubIndicatorComponent,
-  HlmMenuLabelComponent,
-  HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
-  HlmSubMenuComponent,
 } from '../../../ui';
-import { BnaFormattingToolbarControllerComponent } from '../../formatting-toolbar/bna-formatting-toolbar-controller.component';
-import { BnaFormattingToolbarComponent } from '../../formatting-toolbar/bna-formatting-toolbar.component';
 import { BnaBlockColorStyleComponent } from './default-items/block-color-style/bna-block-color-style.component';
 import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/bna-delete-block-item.component';
 
@@ -30,15 +22,7 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     BrnMenuTriggerDirective,
     HlmIconComponent,
     HlmMenuComponent,
-    HlmSubMenuComponent,
-    HlmMenuItemDirective,
-    HlmMenuItemSubIndicatorComponent,
-    HlmMenuLabelComponent,
-    HlmMenuShortcutComponent,
-    HlmMenuSeparatorComponent,
     HlmMenuGroupComponent,
-    BnaFormattingToolbarComponent,
-    BnaFormattingToolbarControllerComponent,
     BnaDeleteBlockItemComponent,
     BnaBlockColorStyleComponent,
   ],
@@ -47,24 +31,22 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent {
+  editor = this.ngxBlockNoteService.editor;
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   openDragMenu() {
-    const editor = this.ngxBlockNoteService.editor();
-    editor.sideMenu.freezeMenu();
+    this.editor().sideMenu.freezeMenu();
   }
 
   dragStart($event: DragEvent) {
-    const editor = this.ngxBlockNoteService.editor();
     const block = this.ngxBlockNoteService.sideMenuFocusedBlock();
     if (!block) {
       return;
     }
-    editor.sideMenu.blockDragStart($event, block as any);
+    this.editor().sideMenu.blockDragStart($event, block as any);
   }
 
   dragEnd() {
-    const editor = this.ngxBlockNoteService.editor();
-    editor.sideMenu.blockDragEnd();
+    this.editor().sideMenu.blockDragEnd();
   }
 }
