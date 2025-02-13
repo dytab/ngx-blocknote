@@ -1,12 +1,12 @@
 import {
-  Component,
-  EventEmitter,
-  Output,
   booleanAttribute,
+  Component,
   computed,
+  EventEmitter,
   forwardRef,
   input,
   model,
+  Output,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BrnCheckboxComponent } from '@spartan-ng/ui-checkbox-brain';

@@ -1,11 +1,11 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  Input,
-  ViewEncapsulation,
-  booleanAttribute,
   computed,
+  Input,
   signal,
+  ViewEncapsulation,
 } from '@angular/core';
 import { hlm } from '@spartan-ng/ui-core';
 import type { ClassValue } from 'clsx';

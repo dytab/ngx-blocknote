@@ -1,6 +1,6 @@
-import { Directive, Input, computed, input, signal } from '@angular/core';
+import { computed, Directive, Input, input, signal } from '@angular/core';
 import { hlm } from '@spartan-ng/ui-core';
-import { type VariantProps, cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 
 export const inputVariants = cva(

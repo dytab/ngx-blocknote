@@ -12,23 +12,19 @@ import {
   HlmButtonDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
-  HlmMenuItemDirective,
 } from '../../../../../ui';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-picker.component';
-import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-color-icon.component';
 
 @Component({
   selector: 'bna-block-color-style',
   imports: [
     CommonModule,
-    BnaColorIconComponent,
     BnaColorPickerComponent,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,
-    HlmMenuItemDirective,
   ],
   templateUrl: './bna-block-color-style.component.html',
   styleUrl: './bna-block-color-style.component.css',

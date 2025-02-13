@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
-import { HlmButtonDirective, HlmMenuItemDirective } from '../../../../../ui';
+import { HlmButtonDirective } from '../../../../../ui';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',
-  imports: [CommonModule, HlmMenuItemDirective, HlmButtonDirective],
+  imports: [CommonModule, HlmButtonDirective],
   templateUrl: './bna-delete-block-item.component.html',
   styleUrl: './bna-delete-block-item.component.css',
   host: {

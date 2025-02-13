@@ -27,16 +27,12 @@ import {
   HlmMenuItemCheckComponent,
 } from '../../../../ui';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
-import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
-import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
 import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
 
 @Component({
   selector: 'bna-block-type-selection-button',
   imports: [
     CommonModule,
-    BnaColorIconComponent,
-    BnaColorPickerComponent,
     HlmButtonDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,

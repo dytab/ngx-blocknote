@@ -2,14 +2,14 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
+  inject,
   Input,
   type OnDestroy,
   PLATFORM_ID,
-  ViewEncapsulation,
-  computed,
-  inject,
   signal,
+  ViewEncapsulation,
 } from '@angular/core';
 import { type IconName, NgIconComponent } from '@ng-icons/core';
 import { hlm } from '@spartan-ng/ui-core';

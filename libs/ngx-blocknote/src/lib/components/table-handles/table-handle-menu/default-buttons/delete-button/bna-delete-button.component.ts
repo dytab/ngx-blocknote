@@ -3,11 +3,11 @@ import { Component, input } from '@angular/core';
 import { TableContent } from '@blocknote/core';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
+import { HlmButtonDirective } from '../../../../../ui';
 
 @Component({
   selector: 'bna-delete-button',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [CommonModule, HlmButtonDirective],
   templateUrl: './bna-delete-button.component.html',
   styleUrl: './bna-delete-button.component.css',
 })

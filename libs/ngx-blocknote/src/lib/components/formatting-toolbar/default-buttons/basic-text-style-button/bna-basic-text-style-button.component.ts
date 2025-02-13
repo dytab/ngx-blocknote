@@ -21,7 +21,6 @@ import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
-import { HlmToggleDirective } from '../../../../ui/ui-toggle-helm/hlm-toggle.directive';
 
 const icons = {
   bold: 'lucideBold',
@@ -62,7 +61,6 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
-    HlmToggleDirective,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
   styleUrl: './bna-basic-text-style-button.component.css',

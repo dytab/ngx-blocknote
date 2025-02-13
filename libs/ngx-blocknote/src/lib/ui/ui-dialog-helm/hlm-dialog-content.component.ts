@@ -2,10 +2,10 @@ import { NgComponentOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
   computed,
   inject,
   input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { lucideX } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/ui-core';

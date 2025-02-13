@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { PartialTableContent, TableContent } from '@blocknote/core';
+import { TableContent } from '@blocknote/core';
 import type { InlineContentSchema } from '@blocknote/core/src/schema/inlineContent/types';
 import type { StyleSchema } from '@blocknote/core/src/schema/styles/types';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../../../ui';
+import { HlmButtonDirective } from '../../../../../ui';
 
 @Component({
   selector: 'bna-add-button',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [CommonModule, HlmButtonDirective],
   templateUrl: './bna-add-button.component.html',
   styleUrl: './bna-add-button.component.css',
 })

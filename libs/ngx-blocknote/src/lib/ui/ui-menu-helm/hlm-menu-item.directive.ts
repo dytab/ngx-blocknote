@@ -1,14 +1,14 @@
 import {
-  Directive,
-  Input,
   booleanAttribute,
   computed,
+  Directive,
+  Input,
   input,
   signal,
 } from '@angular/core';
 import { hlm } from '@spartan-ng/ui-core';
 import { BrnMenuItemDirective } from '@spartan-ng/ui-menu-brain';
-import { type VariantProps, cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 
 export const hlmMenuItemVariants = cva(

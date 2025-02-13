@@ -11,7 +11,6 @@ import { ColorOptions } from '../../../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../../../services';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmTooltipComponent,
@@ -19,7 +18,6 @@ import {
 } from '../../../../ui';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
-import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 
 function checkColorInSchema<Color extends 'text' | 'background'>(
   color: Color,
@@ -53,9 +51,7 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     BrnMenuTriggerDirective,
-    BnaLinkFormComponent,
     HlmMenuComponent,
     HlmMenuGroupComponent,
     BnaColorIconComponent,

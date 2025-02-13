@@ -51,22 +51,9 @@ import { BnaAddBlockButtonComponent } from '../components/side-menu/default-butt
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSlashMenuComponent } from '../components/suggestions-menu';
 import { BnaSlashMenuControllerComponent } from '../components/suggestions-menu/bna-slash-menu-controller.component';
-import { BnaSuggestionsMenuControllerComponent } from '../components/suggestions-menu/bna-suggestions-menu-controller.component';
 import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { NgxBlocknoteService } from '../services/ngx-blocknote.service';
-import {
-  HlmButtonDirective,
-  HlmCardDirective,
-  HlmInputDirective,
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemDirective,
-  HlmMenuItemSubIndicatorComponent,
-  HlmMenuLabelComponent,
-  HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
-} from '../ui';
 import { useSelectedBlocks } from '../util';
 import { useEditorContentOrSelectionChange } from '../util/use-editor-content-or-selection-change';
 import { BnaViewControllerDirective } from './view/bna-view-controller.directive';
@@ -87,21 +74,10 @@ type InitialContent<
     BnaSideMenuControllerComponent,
     BnaAddBlockButtonComponent,
     BnaDragHandleMenuComponent,
-    BnaSuggestionsMenuControllerComponent,
     BnaFormattingToolbarControllerComponent,
-    HlmCardDirective,
-    HlmButtonDirective,
     BnaBasicTextStyleButtonComponent,
-    HlmMenuComponent,
-    HlmMenuLabelComponent,
-    HlmMenuSeparatorComponent,
-    HlmMenuGroupComponent,
-    HlmMenuItemDirective,
-    HlmMenuShortcutComponent,
-    HlmMenuItemSubIndicatorComponent,
     BnaTextAlignButtonComponent,
     BnaFilePanelComponent,
-    HlmInputDirective,
     BnaFilePanelControllerComponent,
     BnaFormattingToolbarComponent,
     BnaSideMenuComponent,

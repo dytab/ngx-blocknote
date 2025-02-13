@@ -10,7 +10,6 @@ import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmTooltipComponent,
@@ -18,15 +17,12 @@ import {
 } from '../../../../ui';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
-import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 
 @Component({
   selector: 'bna-file-rename-button',
   imports: [
     CommonModule,
-    BnaLinkFormComponent,
     HlmButtonDirective,
-    HlmIconComponent,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,

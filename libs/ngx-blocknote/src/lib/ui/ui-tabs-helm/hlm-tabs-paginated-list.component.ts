@@ -5,7 +5,6 @@ import {
   ContentChildren,
   ElementRef,
   input,
-  QueryList,
   Signal,
   ViewChild,
 } from '@angular/core';

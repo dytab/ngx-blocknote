@@ -1,8 +1,8 @@
 import {
-  Component,
-  Input,
   booleanAttribute,
+  Component,
   computed,
+  Input,
   input,
   signal,
 } from '@angular/core';

@@ -9,29 +9,12 @@ import {
 } from '@angular/forms';
 import { provideIcons } from '@ng-icons/core';
 import { lucideLink, lucideType } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import { NgxBlocknoteService } from '../../../services';
-import {
-  HlmIconComponent,
-  HlmInputDirective,
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemDirective,
-} from '../../../ui';
+import { HlmIconComponent } from '../../../ui';
 
 @Component({
   selector: 'bna-link-form',
-  imports: [
-    CommonModule,
-    HlmIconComponent,
-    HlmMenuComponent,
-    BrnMenuTriggerDirective,
-    HlmMenuGroupComponent,
-    HlmMenuItemDirective,
-    HlmInputDirective,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, HlmIconComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './bna-link-form.component.html',
   styleUrl: './bna-link-form.component.css',
   providers: [

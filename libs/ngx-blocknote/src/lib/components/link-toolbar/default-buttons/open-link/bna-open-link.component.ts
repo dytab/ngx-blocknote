@@ -4,16 +4,10 @@ import { provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
-import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 
 @Component({
   selector: 'bna-open-link',
-  imports: [
-    CommonModule,
-    BnaLinkFormComponent,
-    HlmButtonDirective,
-    HlmIconComponent,
-  ],
+  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   templateUrl: './bna-open-link.component.html',
   styleUrl: './bna-open-link.component.css',
   providers: [

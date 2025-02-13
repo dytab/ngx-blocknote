@@ -13,7 +13,6 @@ import {
 import { computePosition, flip } from '@floating-ui/dom';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripHorizontal, lucideGripVertical } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import { TableHandleOptions } from '../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../services';
 import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
@@ -30,7 +29,6 @@ const icons = {
     CommonModule,
     HlmButtonDirective,
     HlmIconComponent,
-    BrnMenuTriggerDirective,
     BnaTableHandleMenuComponent,
   ],
   templateUrl: './bna-table-handle.component.html',
