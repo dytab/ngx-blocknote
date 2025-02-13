@@ -3,7 +3,6 @@ import { HlmCardDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-demo-box',
-  standalone: true,
   host: {
     class: 'preview flex w-full justify-center items-center',
   },

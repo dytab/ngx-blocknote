@@ -15,7 +15,6 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

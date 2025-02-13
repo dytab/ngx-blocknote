@@ -12,7 +12,6 @@ import {
 import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

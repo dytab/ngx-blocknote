@@ -31,7 +31,6 @@ type Alignments = 'left' | 'center' | 'right';
 
 @Component({
   selector: 'bna-text-align-button',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

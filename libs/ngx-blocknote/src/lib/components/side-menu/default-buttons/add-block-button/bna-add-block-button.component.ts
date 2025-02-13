@@ -7,7 +7,6 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 @Component({
   selector: 'bna-add-block-btn',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   templateUrl: './bna-add-block-button.component.html',
   styleUrl: './bna-add-block-button.component.css',

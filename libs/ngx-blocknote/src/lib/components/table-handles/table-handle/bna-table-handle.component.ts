@@ -26,7 +26,6 @@ const icons = {
 
 @Component({
   selector: 'bna-table-handle',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

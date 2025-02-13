@@ -18,7 +18,6 @@ import {
 } from './server-side-rendering.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

@@ -47,7 +47,6 @@ const TAILWIND_H_W_PATTERN = /\b(h-\d+|w-\d+)\b/g;
 
 @Component({
   selector: 'hlm-icon',
-  standalone: true,
   imports: [NgIconComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

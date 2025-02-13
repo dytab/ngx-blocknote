@@ -18,7 +18,6 @@ import {
 } from './basic-setup.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

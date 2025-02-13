@@ -18,7 +18,6 @@ import {
 } from './replacing-slash-menu.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,
@@ -35,10 +34,12 @@ import {
   template: `
     <bna-section-intro name="Replacing Slash Menu">
       <p class="${hlmP} mb-8">
-        In this example, we replace the default Slash Menu component with a basic custom one.
+        In this example, we replace the default Slash Menu component with a
+        basic custom one.
       </p>
       <p>
-        <strong>Try it out</strong>: Press the "/" key to see the new Slash Menu!
+        <strong>Try it out</strong>: Press the "/" key to see the new Slash
+        Menu!
       </p>
     </bna-section-intro>
     <hlm-tabs tab="preview">

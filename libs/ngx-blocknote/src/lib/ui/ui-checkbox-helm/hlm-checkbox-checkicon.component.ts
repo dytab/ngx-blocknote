@@ -8,7 +8,6 @@ import { provideIcons } from '@ng-icons/core';
 
 @Component({
   selector: 'hlm-checkbox-checkicon',
-  standalone: true,
   imports: [HlmIconComponent, HlmIconComponent],
   providers: [provideIcons({ lucideCheck })],
   host: {

@@ -7,7 +7,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-form-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

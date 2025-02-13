@@ -9,7 +9,6 @@ import {
 import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.example';
 
 @Component({
-  standalone: true,
   imports: [
     RouterLink,
     HlmButtonDirective,

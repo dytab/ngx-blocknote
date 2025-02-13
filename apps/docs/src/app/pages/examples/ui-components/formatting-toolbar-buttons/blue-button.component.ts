@@ -5,7 +5,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-blue-button',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective],
   template: ` <button
     hlmBtn

@@ -12,7 +12,6 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 @Component({
   imports: [CommonModule],
   selector: 'bna-side-menu-controller',
-  standalone: true,
   host: {
     class: 'bn-side-menu',
   },

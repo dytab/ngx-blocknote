@@ -18,7 +18,6 @@ import {
 } from './adding-side-menu-drag-handle-items.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

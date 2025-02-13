@@ -18,7 +18,6 @@ import { Highlight } from 'ngx-highlightjs';
 
 @Component({
   selector: 'bna-code',
-  standalone: true,
   imports: [
     HlmScrollAreaComponent,
     HlmButtonDirective,

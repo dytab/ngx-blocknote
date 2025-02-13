@@ -22,7 +22,6 @@ import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-f
 
 @Component({
   selector: 'bna-file-rename-button',
-  standalone: true,
   imports: [
     CommonModule,
     BnaLinkFormComponent,

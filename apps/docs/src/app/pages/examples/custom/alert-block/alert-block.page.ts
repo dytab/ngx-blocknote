@@ -12,7 +12,6 @@ import {
 } from './alert-block.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

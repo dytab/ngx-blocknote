@@ -5,7 +5,6 @@ import { ThemeSwitchComponent } from './shared/layout/theme/theme-switch.compone
 import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
-  standalone: true,
   imports: [
     RouterModule,
     NgOptimizedImage,

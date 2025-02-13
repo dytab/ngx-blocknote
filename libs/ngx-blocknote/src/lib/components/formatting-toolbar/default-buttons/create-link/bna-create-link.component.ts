@@ -37,7 +37,6 @@ function checkLinkInSchema(
 
 @Component({
   selector: 'bna-create-link',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

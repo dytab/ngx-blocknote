@@ -19,7 +19,6 @@ import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.co
 
 @Component({
   selector: 'bna-slash-menu',
-  standalone: true,
   imports: [CommonModule, BnaSlashMenuItemComponent],
   templateUrl: './bna-slash-menu.component.html',
   styleUrl: './bna-slash-menu.component.css',

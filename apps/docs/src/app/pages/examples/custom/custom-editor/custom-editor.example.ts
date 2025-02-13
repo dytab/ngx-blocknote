@@ -50,7 +50,6 @@ const schema = BlockNoteSchema.create({
 
 @Component({
   selector: 'bna-custom-editor-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

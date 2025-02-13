@@ -18,7 +18,6 @@ import {
 } from './saving-and-loading.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

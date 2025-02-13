@@ -47,7 +47,6 @@ const schema = BlockNoteSchema.create({
 });
 @Component({
   selector: 'bna-mentions-menu-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,
@@ -249,7 +248,7 @@ export class MentionsMenuExample {
     $event.suggestionMenus.onUpdate('@', (state) => {
       this.query.set(state.query);
     });
-  
+
   addItem($event: Event, item:{title:string, onItemClick: () => void} ) {
     $event.preventDefault()
     item.onItemClick();

@@ -9,7 +9,6 @@ import { CustomSlashMenuComponent } from './custom-slash-menu.component';
 
 @Component({
   selector: 'bna-replacing-slash-menu-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

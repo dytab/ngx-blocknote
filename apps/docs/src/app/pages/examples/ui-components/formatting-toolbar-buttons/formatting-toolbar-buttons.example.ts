@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'bna-formatting-toolbar-buttons-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

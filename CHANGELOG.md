@@ -1,3 +1,34 @@
+## 1.5.0 (2025-01-30)
+
+### 🚀 Features
+
+- update @blocknote to 0.23.1 ([3e451c9](https://github.com/dytab/ngx-blocknote/commit/3e451c9))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.4.3 (2025-01-06)
+
+### 🩹 Fixes
+
+- file download condition in bna-file-download-button ([ae3f132](https://github.com/dytab/ngx-blocknote/commit/ae3f132))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.4.2 (2024-12-09)
+
+### 🩹 Fixes
+
+- open suggestion menu on add block click ([d3f5acc](https://github.com/dytab/ngx-blocknote/commit/d3f5acc))
+- adjust package.json of library ([8a876dc](https://github.com/dytab/ngx-blocknote/commit/8a876dc))
+
+### ❤️ Thank You
+
+- Matthias Risto
+
 ## 1.4.1 (2024-11-11)
 
 

@@ -11,7 +11,6 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 
 @Component({
   selector: 'bna-edit-link-button',
-  standalone: true,
   imports: [
     CommonModule,
     BnaLinkFormComponent,

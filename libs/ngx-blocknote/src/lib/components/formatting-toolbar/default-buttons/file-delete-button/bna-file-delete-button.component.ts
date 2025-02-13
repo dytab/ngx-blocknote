@@ -15,7 +15,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-delete-button',
-  standalone: true,
   imports: [
     CommonModule,
     HlmButtonDirective,

@@ -21,7 +21,6 @@ import {
 
 @Component({
   selector: 'bna-link-form',
-  standalone: true,
   imports: [
     CommonModule,
     HlmIconComponent,

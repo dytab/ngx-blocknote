@@ -13,7 +13,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-formatting-side-menu-buttons-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

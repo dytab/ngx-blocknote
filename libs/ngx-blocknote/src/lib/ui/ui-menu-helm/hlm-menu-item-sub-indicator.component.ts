@@ -7,7 +7,6 @@ import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
 
 @Component({
   selector: 'hlm-menu-item-sub-indicator',
-  standalone: true,
   providers: [provideIcons({ lucideChevronRight })],
   imports: [HlmIconComponent],
   template: `

@@ -7,7 +7,6 @@ import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
 
 @Component({
   selector: 'hlm-menu-item-check',
-  standalone: true,
   providers: [provideIcons({ lucideCheck })],
   imports: [HlmIconComponent],
   template: `

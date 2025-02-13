@@ -20,7 +20,6 @@ import { BnaColorIconComponent } from '../../../../color-picker/color-icon/bna-c
 
 @Component({
   selector: 'bna-block-color-style',
-  standalone: true,
   imports: [
     CommonModule,
     BnaColorIconComponent,

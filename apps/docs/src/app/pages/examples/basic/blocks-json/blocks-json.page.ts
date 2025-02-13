@@ -17,7 +17,6 @@ import {
 } from './blocks-json.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

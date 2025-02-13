@@ -6,7 +6,6 @@ import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-saving-and-loading-example',
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <bna-editor

@@ -18,7 +18,6 @@ import {
 } from './removing-default-blocks.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

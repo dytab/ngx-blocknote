@@ -15,7 +15,6 @@ import { SectionIntroComponent } from '../../../../shared/layout/section-intro.c
 import { FormExample, basicSetupExampleCode } from './form.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

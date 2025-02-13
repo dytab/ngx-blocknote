@@ -18,7 +18,6 @@ import {
 } from './formatting-side-menu-buttons.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,

@@ -20,7 +20,6 @@ import {
 
 @Component({
   selector: 'bna-adding-side-menu-drag-handle-items-example',
-  standalone: true,
   imports: [
     CommonModule,
     BnaEditorComponent,

@@ -37,7 +37,6 @@ const icons: Record<string, string> = {
 
 @Component({
   selector: 'bna-slash-menu-item',
-  standalone: true,
   imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
   providers: [
     provideIcons({

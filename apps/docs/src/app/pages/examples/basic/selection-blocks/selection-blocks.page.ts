@@ -18,7 +18,6 @@ import {
 } from './selection-blocks.example';
 
 @Component({
-  standalone: true,
   imports: [
     CommonModule,
     SectionIntroComponent,
