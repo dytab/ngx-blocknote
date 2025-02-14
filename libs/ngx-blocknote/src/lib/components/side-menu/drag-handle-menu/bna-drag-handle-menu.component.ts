@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
@@ -31,10 +31,29 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
 })
 export class BnaDragHandleMenuComponent {
   editor = this.ngxBlockNoteService.editor;
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
+  constructor(
+    public ngxBlockNoteService: NgxBlocknoteService,
+    private elementRef: ElementRef,
+  ) {}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.editor().sideMenu.unfreezeMenu();
+    }
+  }
 
   openDragMenu() {
-    this.editor().sideMenu.freezeMenu();
+    this.toggleMenuFrozenState();
+  }
+
+  private toggleMenuFrozenState() {
+    if (this.editor().sideMenu.view?.menuFrozen) {
+      this.editor().sideMenu.unfreezeMenu();
+    } else {
+      this.editor().sideMenu.freezeMenu();
+    }
   }
 
   dragStart($event: DragEvent) {
@@ -47,5 +66,9 @@ export class BnaDragHandleMenuComponent {
 
   dragEnd() {
     this.editor().sideMenu.blockDragEnd();
+  }
+
+  onOutsideClick($event: MouseEvent) {
+    console.log('outside click', $event);
   }
 }
