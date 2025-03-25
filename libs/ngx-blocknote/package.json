@@ -6,20 +6,7 @@
     "access": "public"
   },
   "type": "module",
-  "dependencies": {
-    "@floating-ui/dom": "^1.6.8",
-    "@ng-icons/core": "^25.1.0",
-    "@ng-icons/lucide": "^26.5.0",
-    "@spartan-ng/ui-checkbox-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-core": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-dialog-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-menu-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-tabs-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-tooltip-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "class-variance-authority": ">=0.6.0 <1.0.0",
-    "clsx": "^2.1.1",
-    "ngx-scrollbar": "^13.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@nx/angular": "^20.0.0",
     "@testing-library/angular": "^17.0.0",
@@ -27,14 +14,7 @@
     "vite": "^5.0.0",
     "@analogjs/vite-plugin-angular": "^1.7.3"
   },
-  "peerDependencies": {
-    "@angular/cdk": "^19.0.2",
-    "@angular/common": "^19.0.3",
-    "@angular/core": "^19.0.3",
-    "@angular/forms": "^19.0.3",
-    "@blocknote/core": "0.23.6",
-    "rxjs": "~7.8.0"
-  },
+  "peerDependencies": {},
   "peerDependenciesMeta": {
     "@angular/platform-browser": {
       "optional": true
