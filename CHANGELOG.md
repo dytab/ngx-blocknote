@@ -1,3 +1,19 @@
+## 1.6.0 (2025-04-02)
+
+### 🚀 Features
+
+- integrate dictionary for localized labels ([3fd5a76](https://github.com/dytab/ngx-blocknote/commit/3fd5a76))
+
+### 🩹 Fixes
+
+- add block below block with opened side menu ([e7a78ad](https://github.com/dytab/ngx-blocknote/commit/e7a78ad))
+- unfreeze menu, when clicking outside ([b9ce5cc](https://github.com/dytab/ngx-blocknote/commit/b9ce5cc))
+
+### ❤️ Thank You
+
+- Johannes Klein
+- Matthias risto
+
 ## 1.5.0 (2025-01-30)
 
 ### 🚀 Features
