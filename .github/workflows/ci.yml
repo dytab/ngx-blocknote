@@ -27,10 +27,14 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - name: lint & test
-        run: npx nx affected -t lint test
+        run: npx nx affected -t lint,test
+        env:
+          NX_PARALLEL: 2
 
       - name: build
         run: npx nx run-many -t build
+        env:
+          NX_PARALLEL: 2
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

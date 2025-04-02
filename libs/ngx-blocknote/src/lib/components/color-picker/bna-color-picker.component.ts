@@ -5,6 +5,7 @@ import { lucideCheck } from '@ng-icons/lucide';
 import { ColorOptions } from '../../interfaces/color-options.type';
 import { HlmButtonDirective, HlmIconComponent } from '../../ui';
 import { BnaColorIconComponent } from './color-icon/bna-color-icon.component';
+import { NgxBlocknoteService } from '../../services';
 
 const colors = [
   'default',
@@ -37,5 +38,8 @@ const colors = [
 })
 export class BnaColorPickerComponent {
   colors = colors;
+  dict = this.ngxBlockNoteService.editor().dictionary;
   @Input() options: ColorOptions = {};
+
+  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 }
