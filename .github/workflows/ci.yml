@@ -2,8 +2,6 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   main:
@@ -37,12 +35,14 @@ jobs:
           NX_PARALLEL: 2
 
       - name: Upload artifact
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: actions/upload-pages-artifact@v3
         with:
           name: 'github-pages'
           path: 'dist/apps/docs/analog/public'
 
   publish-gh-pages:
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: main
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
