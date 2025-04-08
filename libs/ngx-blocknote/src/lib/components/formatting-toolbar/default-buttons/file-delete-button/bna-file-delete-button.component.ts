@@ -1,15 +1,16 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
 import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
-import { HlmIconComponent } from '../../../../ui/ui-icon-helm/hlm-icon.component';
+import { HlmIconDirective } from '../../../../ui/ui-icon-helm/hlm-icon.component';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
@@ -18,7 +19,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,

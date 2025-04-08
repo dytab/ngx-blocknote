@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges } from '@angular/core';
 import {
@@ -10,11 +11,17 @@ import {
 import { provideIcons } from '@ng-icons/core';
 import { lucideLink, lucideType } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmIconComponent } from '../../../ui';
+import { HlmIconDirective } from '../../../ui';
 
 @Component({
   selector: 'bna-link-form',
-  imports: [CommonModule, HlmIconComponent, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgIcon,
+    HlmIconDirective,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './bna-link-form.component.html',
   styleUrl: './bna-link-form.component.css',
   providers: [

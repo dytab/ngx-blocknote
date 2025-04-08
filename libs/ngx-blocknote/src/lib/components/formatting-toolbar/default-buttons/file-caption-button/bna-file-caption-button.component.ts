@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect } from '@angular/core';
 import {
@@ -8,12 +9,12 @@ import {
 import { checkBlockIsFileBlock } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTextCursorInput } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmTooltipComponent,
@@ -27,7 +28,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
     HlmMenuGroupComponent,

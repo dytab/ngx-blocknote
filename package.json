@@ -30,12 +30,7 @@
     "@nestjs/platform-express": "^10.0.2",
     "@ng-icons/core": "^25.1.0",
     "@ng-icons/lucide": "^26.3.0",
-    "@spartan-ng/ui-checkbox-brain": "^0.0.1-alpha.357",
     "@spartan-ng/ui-core": "^0.0.1-alpha.372",
-    "@spartan-ng/ui-dialog-brain": "^0.0.1-alpha.372",
-    "@spartan-ng/ui-menu-brain": "^0.0.1-alpha.372",
-    "@spartan-ng/ui-tabs-brain": "^0.0.1-alpha.372",
-    "@spartan-ng/ui-tooltip-brain": "^0.0.1-alpha.372",
     "axios": "^1.6.0",
     "class-variance-authority": "^0.6.0",
     "clsx": "^2.1.1",
@@ -49,7 +44,8 @@
     "prismjs": "^1.29.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.4.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "@spartan-ng/brain": "^0.0.1-alpha.372"
   },
   "devDependencies": {
     "@analogjs/platform": "1.14.1",

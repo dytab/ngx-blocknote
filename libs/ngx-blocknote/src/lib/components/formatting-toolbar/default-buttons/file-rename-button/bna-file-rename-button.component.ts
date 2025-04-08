@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,

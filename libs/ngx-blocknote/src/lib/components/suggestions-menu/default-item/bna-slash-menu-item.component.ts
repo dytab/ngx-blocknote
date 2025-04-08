@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
@@ -18,7 +19,7 @@ import {
 } from '@ng-icons/lucide';
 import { SuggestionItem } from '../../../interfaces/suggestion-item.type';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
+import { HlmButtonDirective, HlmIconDirective } from '../../../ui';
 
 const icons: Record<string, string> = {
   heading: 'lucideHeading1',
@@ -37,7 +38,7 @@ const icons: Record<string, string> = {
 
 @Component({
   selector: 'bna-slash-menu-item',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
   providers: [
     provideIcons({
       lucideHeading1,

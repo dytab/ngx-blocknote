@@ -1,24 +1,14 @@
-@if (options().orientation === 'row') {
-  <button
-    (click)="deleteRow()"
-    type="button"
-    hlmBtn
-    variant="ghost"
-    size="xs"
-    class="w-full justify-start"
-  >
-    Delete Row
-  </button>
-}
-@if (options().orientation === 'column') {
-  <button
-    (click)="deleteColumn()"
-    type="button"
-    hlmBtn
-    variant="ghost"
-    size="xs"
-    class="w-full justify-start"
-  >
-    Delete Column
-  </button>
-}
+<button
+  (click)="removeRowOrColumn(options().orientation)"
+  type="button"
+  hlmBtn
+  variant="ghost"
+  size="xs"
+  class="w-full justify-start"
+>
+  {{
+    options().orientation === 'row'
+      ? dict().table_handle.delete_row_menuitem
+      : dict().table_handle.delete_column_menuitem
+  }}
+</button>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { NgxBlocknoteService } from '../../../../services';
 import {
   HlmButtonDirective,

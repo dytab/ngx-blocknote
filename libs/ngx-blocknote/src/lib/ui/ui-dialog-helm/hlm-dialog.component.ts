@@ -7,7 +7,7 @@ import {
 import {
   BrnDialogComponent,
   BrnDialogOverlayComponent,
-} from '@spartan-ng/ui-dialog-brain';
+} from '@spartan-ng/brain/dialog';
 import { HlmDialogOverlayDirective } from './hlm-dialog-overlay.directive';
 
 @Component({

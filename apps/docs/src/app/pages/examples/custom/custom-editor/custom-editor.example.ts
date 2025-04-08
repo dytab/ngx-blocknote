@@ -35,7 +35,7 @@ import {
   BrnDialogDescriptionDirective,
   BrnDialogTitleDirective,
   BrnDialogTriggerDirective,
-} from '@spartan-ng/ui-dialog-brain';
+} from '@spartan-ng/brain/dialog';
 import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
 import { alertBlock } from '../alert-block/alert-block';
 

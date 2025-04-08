@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   Component,
@@ -10,21 +11,21 @@ import {
 } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
-import { hlm } from '@spartan-ng/ui-core';
+import { hlm } from '@spartan-ng/brain/core';
 import {
   BrnPaginatedTabHeaderItem,
   BrnTabsPaginatedListDirective,
   BrnTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-brain';
+} from '@spartan-ng/brain/tabs';
 import { ClassValue } from 'clsx';
 import { buttonVariants } from '../ui-button-helm/hlm-button.directive';
-import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
+import { HlmIconDirective } from '../ui-icon-helm/hlm-icon.component';
 import { listVariants } from './hlm-tabs-list.component';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hlm-paginated-tabs-list',
-  imports: [CdkObserveContent, HlmIconComponent],
+  imports: [CdkObserveContent, NgIcon, HlmIconDirective],
   providers: [provideIcons({ lucideChevronRight, lucideChevronLeft })],
   template: `
     <button
@@ -41,7 +42,7 @@ import { Observable } from 'rxjs';
       (mousedown)="_handlePaginatorPress('before', $event)"
       (touchend)="_stopInterval()"
     >
-      <hlm-icon size="base" name="lucideChevronLeft" />
+      <ng-icon hlm size="base" name="lucideChevronLeft" />
     </button>
 
     <div
@@ -75,7 +76,7 @@ import { Observable } from 'rxjs';
       (mousedown)="_handlePaginatorPress('after', $event)"
       (touchend)="_stopInterval()"
     >
-      <hlm-icon size="base" name="lucideChevronRight" />
+      <ng-icon hlm size="base" name="lucideChevronRight" />
     </button>
   `,
   host: {

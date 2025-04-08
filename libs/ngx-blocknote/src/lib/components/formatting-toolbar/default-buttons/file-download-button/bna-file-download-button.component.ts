@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
@@ -5,7 +6,7 @@ import { lucideDownload } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
@@ -17,7 +18,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
   ],

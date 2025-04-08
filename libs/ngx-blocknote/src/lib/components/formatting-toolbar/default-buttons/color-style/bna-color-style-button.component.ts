@@ -5,8 +5,8 @@ import {
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { ColorOptions } from '../../../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../../../services';
 import {

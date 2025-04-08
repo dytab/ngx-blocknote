@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -15,7 +16,7 @@ import { provideIcons } from '@ng-icons/core';
 import { lucideGripHorizontal, lucideGripVertical } from '@ng-icons/lucide';
 import { TableHandleOptions } from '../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
+import { HlmButtonDirective, HlmIconDirective } from '../../../ui';
 import { BnaTableHandleMenuComponent } from '../table-handle-menu/bna-table-handle-menu.component';
 
 const icons = {
@@ -28,7 +29,8 @@ const icons = {
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     BnaTableHandleMenuComponent,
   ],
   templateUrl: './bna-table-handle.component.html',

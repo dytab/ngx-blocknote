@@ -1,14 +1,15 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideIcons } from '@ng-icons/core';
 import { lucideImage } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmTooltipComponent,
@@ -25,7 +26,8 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
     ReactiveFormsModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmMenuGroupComponent,
     HlmMenuComponent,
     BnaFilePanelComponent,

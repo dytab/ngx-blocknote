@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import { BlockNoteEditor, Dictionary } from '@blocknote/core';
@@ -15,12 +16,12 @@ import {
   lucideListOrdered,
   lucideType,
 } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
 import { NgxBlocknoteService } from '../../../../services';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmMenuItemCheckboxDirective,
@@ -37,7 +38,8 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
     HlmMenuComponent,
     HlmMenuGroupComponent,
     BrnMenuTriggerDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmMenuItemCheckComponent,
     HlmMenuItemCheckboxDirective,
   ],

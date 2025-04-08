@@ -1,16 +1,17 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, computed, input } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
-import { hlm } from '@spartan-ng/ui-core';
+import { hlm } from '@spartan-ng/brain/core';
 import type { ClassValue } from 'clsx';
-import { HlmIconComponent } from '../ui-icon-helm/hlm-icon.component';
+import { HlmIconDirective } from '../ui-icon-helm/hlm-icon.component';
 
 @Component({
   selector: 'hlm-menu-item-sub-indicator',
   providers: [provideIcons({ lucideChevronRight })],
-  imports: [HlmIconComponent],
+  imports: [NgIcon, HlmIconDirective],
   template: `
-    <hlm-icon size="none" class="w-full h-full" name="lucideChevronRight" />
+    <ng-icon hlm size="none" class="w-full h-full" name="lucideChevronRight" />
   `,
   host: {
     '[class]': '_computedClass()',

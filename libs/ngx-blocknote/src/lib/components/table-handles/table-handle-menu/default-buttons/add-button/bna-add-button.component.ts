@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { TableContent } from '@blocknote/core';
-import type { InlineContentSchema } from '@blocknote/core/src/schema/inlineContent/types';
-import type { StyleSchema } from '@blocknote/core/src/schema/styles/types';
+import { Component, computed, input } from '@angular/core';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
 import { HlmButtonDirective } from '../../../../../ui';
@@ -11,44 +8,27 @@ import { HlmButtonDirective } from '../../../../../ui';
   selector: 'bna-add-button',
   imports: [CommonModule, HlmButtonDirective],
   templateUrl: './bna-add-button.component.html',
-  styleUrl: './bna-add-button.component.css',
 })
 export class BnaAddButtonComponent {
   options = input.required<TableHandleOptions>();
+  dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   addColumn(side: 'right' | 'left') {
-    const { editor, block, index } = this.getProperties('column');
-    if (!block) {
-      return;
-    }
-    if (index === undefined) {
-      //TODO: when can this be?
-      return;
-    }
-    const content: TableContent<InlineContentSchema, StyleSchema> = {
-      ...block.content,
-      type: 'tableContent',
-      rows: block.content.rows.map((row) => {
-        const cells = [...row.cells];
-        cells.splice(index + (side === 'right' ? 1 : 0), 0, []);
-        return { cells };
-      }),
-    };
-
-    editor.updateBlock(block, {
-      type: 'table',
-      //TODO: remove this
-      content: content as any,
-    });
-    editor.tableHandles?.unfreezeHandles();
-    editor.focus();
-    this.options().closeMenu();
-    this.options().showOtherHandle();
+    return this.addColumnOrRow({ orientation: 'column', side });
   }
 
   addRow(side: 'above' | 'below') {
-    const { editor, block, index } = this.getProperties('row');
+    return this.addColumnOrRow({ orientation: 'row', side });
+  }
+
+  addColumnOrRow(
+    params:
+      | { orientation: 'row'; side: 'above' | 'below' }
+      | { orientation: 'column'; side: 'left' | 'right' },
+  ) {
+    const { editor, block, index } = this.getProperties(params.orientation);
     if (!block) {
       return;
     }
@@ -56,23 +36,18 @@ export class BnaAddButtonComponent {
       //TODO: when can index be undefined?
       return;
     }
-    const emptyCol = block.content.rows[index].cells.map(() => []);
-    const rows = [...block.content.rows];
-    rows.splice(index + (side === 'below' ? 1 : 0), 0, {
-      cells: emptyCol,
-    });
+    const tableHandles = editor.tableHandles;
+    if (!tableHandles) {
+      return null;
+    }
 
-    editor.updateBlock(block, {
-      type: 'table',
-      content: {
-        type: 'tableContent',
-        rows,
-      } as any,
-    });
-    editor.tableHandles?.unfreezeHandles();
-    editor.focus();
+    const result = tableHandles.addRowOrColumn(index, params);
+
+    // editor.tableHandles?.unfreezeHandles();
+    // editor.focus();
     this.options().closeMenu();
     this.options().showOtherHandle();
+    return result;
   }
 
   private getProperties(orientation: 'row' | 'column') {

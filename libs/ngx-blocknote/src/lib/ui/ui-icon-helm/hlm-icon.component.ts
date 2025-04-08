@@ -12,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { type IconName, NgIconComponent } from '@ng-icons/core';
-import { hlm } from '@spartan-ng/ui-core';
+import { hlm } from '@spartan-ng/brain/core';
 import { cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 

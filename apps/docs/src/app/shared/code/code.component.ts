@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgIf } from '@angular/common';
 import {
@@ -9,7 +10,7 @@ import {
 } from '@angular/core';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmScrollAreaComponent,
 } from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
@@ -21,7 +22,8 @@ import { Highlight } from 'ngx-highlightjs';
   imports: [
     HlmScrollAreaComponent,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     NgIf,
     Highlight,
   ],
@@ -37,7 +39,11 @@ import { Highlight } from 'ngx-highlightjs';
       variant="ghost"
       class="absolute w-10 h-10 p-1 right-2 top-2"
     >
-      <hlm-icon size="xs" [name]="copied ? 'lucideCheck' : 'lucideClipboard'" />
+      <ng-icon
+        hlm
+        size="xs"
+        [name]="copied ? 'lucideCheck' : 'lucideClipboard'"
+      />
     </button>
     <pre class="max-h-[650px] w-full overflow-auto p-4">
       <code

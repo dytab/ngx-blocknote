@@ -1,6 +1,6 @@
 import { createGlobPatternsForDependencies } from '@nx/angular/tailwind';
 import { dirname, join } from 'path';
-import generated from '@spartan-ng/ui-core/hlm-tailwind-preset';
+import generated from '@spartan-ng/brain/hlm-tailwind-preset';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);

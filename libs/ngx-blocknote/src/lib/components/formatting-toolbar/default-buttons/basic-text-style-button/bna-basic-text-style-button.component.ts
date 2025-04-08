@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import {
@@ -13,11 +14,11 @@ import {
   lucideStrikethrough,
   lucideUnderline,
 } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
@@ -57,7 +58,8 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,

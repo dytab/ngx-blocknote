@@ -1,12 +1,13 @@
+import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
 import {
   HlmButtonDirective,
-  HlmIconComponent,
+  HlmIconDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
 } from '../../../ui';
@@ -19,7 +20,8 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     CommonModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,
     BnaDeleteBlockItemComponent,
