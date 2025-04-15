@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import { NgComponentOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -8,17 +7,17 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
-import type { ClassValue } from 'clsx';
-import { HlmDialogCloseDirective } from './hlm-dialog-close.directive';
-import { HlmIconDirective } from '../ui-icon-helm/hlm-icon.component';
-import { provideIcons } from '@ng-icons/core';
 import {
   BrnDialogCloseDirective,
   BrnDialogRef,
   injectBrnDialogContext,
 } from '@spartan-ng/brain/dialog';
+import type { ClassValue } from 'clsx';
+import { HlmIconDirective } from '../ui-icon-helm/hlm-icon.directive';
+import { HlmDialogCloseDirective } from './hlm-dialog-close.directive';
 
 @Component({
   selector: 'hlm-dialog-content',

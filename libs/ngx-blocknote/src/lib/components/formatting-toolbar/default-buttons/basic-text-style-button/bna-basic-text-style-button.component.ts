@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import {
@@ -6,10 +5,10 @@ import {
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideBold,
-  lucideCode2,
+  lucideCode,
   lucideItalic,
   lucideStrikethrough,
   lucideUnderline,
@@ -28,7 +27,7 @@ const icons = {
   italic: 'lucideItalic',
   underline: 'lucideUnderline',
   strike: 'lucideStrikethrough',
-  code: 'lucideCode2',
+  code: 'lucideCode',
 } as const;
 
 type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
@@ -72,7 +71,7 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
       lucideItalic,
       lucideUnderline,
       lucideStrikethrough,
-      lucideCode2,
+      lucideCode,
     }),
   ],
   host: {

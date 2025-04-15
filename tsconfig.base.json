@@ -11,15 +11,31 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"],
-      "@dytab/ui": ["libs/ngx-blocknote/src/lib/ui/index.ts"]
+      "@dytab/ngx-blocknote": [
+        "libs/ngx-blocknote/src/index.ts"
+      ],
+      "@dytab/ui": [
+        "libs/ngx-blocknote/src/lib/ui/index.ts"
+      ],
+      "@spartan-ng/ui-menu-helm": [
+        "libs/ui/ui-menu-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-icon-helm": [
+        "libs/ui/ui-icon-helm/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

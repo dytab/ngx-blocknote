@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import {
   Component,
@@ -9,7 +8,7 @@ import {
   Signal,
   ViewChild,
 } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
 import {
@@ -18,10 +17,10 @@ import {
   BrnTabsTriggerDirective,
 } from '@spartan-ng/brain/tabs';
 import { ClassValue } from 'clsx';
-import { buttonVariants } from '../ui-button-helm/hlm-button.directive';
-import { HlmIconDirective } from '../ui-icon-helm/hlm-icon.component';
-import { listVariants } from './hlm-tabs-list.component';
 import { Observable } from 'rxjs';
+import { buttonVariants } from '../ui-button-helm/hlm-button.directive';
+import { HlmIconDirective } from '../ui-icon-helm/hlm-icon.directive';
+import { listVariants } from './hlm-tabs-list.component';
 
 @Component({
   selector: 'hlm-paginated-tabs-list',

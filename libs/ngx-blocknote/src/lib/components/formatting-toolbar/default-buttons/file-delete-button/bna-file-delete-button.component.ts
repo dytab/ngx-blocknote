@@ -1,7 +1,6 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
 import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
@@ -10,7 +9,7 @@ import {
   HlmTooltipTriggerDirective,
 } from '../../../../ui';
 import { HlmButtonDirective } from '../../../../ui/ui-button-helm/hlm-button.directive';
-import { HlmIconDirective } from '../../../../ui/ui-icon-helm/hlm-icon.component';
+import { HlmIconDirective } from '../../../../ui/ui-icon-helm/hlm-icon.directive';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 

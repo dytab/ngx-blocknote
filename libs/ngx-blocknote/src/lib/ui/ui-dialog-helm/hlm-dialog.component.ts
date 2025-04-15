@@ -7,6 +7,7 @@ import {
 import {
   BrnDialogComponent,
   BrnDialogOverlayComponent,
+  provideBrnDialogDefaultOptions,
 } from '@spartan-ng/brain/dialog';
 import { HlmDialogOverlayDirective } from './hlm-dialog-overlay.directive';
 
@@ -18,6 +19,9 @@ import { HlmDialogOverlayDirective } from './hlm-dialog-overlay.directive';
       provide: BrnDialogComponent,
       useExisting: forwardRef(() => HlmDialogComponent),
     },
+    provideBrnDialogDefaultOptions({
+      // add custom options here
+    }),
   ],
   template: `
     <brn-dialog-overlay hlm />
@@ -27,9 +31,4 @@ import { HlmDialogOverlayDirective } from './hlm-dialog-overlay.directive';
   encapsulation: ViewEncapsulation.None,
   exportAs: 'hlmDialog',
 })
-export class HlmDialogComponent extends BrnDialogComponent {
-  constructor() {
-    super();
-    this.closeDelay = 100;
-  }
-}
+export class HlmDialogComponent extends BrnDialogComponent {}
