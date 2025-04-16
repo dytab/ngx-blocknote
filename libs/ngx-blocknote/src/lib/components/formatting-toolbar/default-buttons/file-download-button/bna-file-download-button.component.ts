@@ -1,7 +1,6 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
@@ -24,7 +23,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipTriggerDirective,
   ],
   templateUrl: './bna-file-download-button.component.html',
-  styleUrl: './bna-file-download-button.component.css',
   providers: [provideIcons({ lucideDownload })],
   host: {
     '[class]': '_visibilityClass()',

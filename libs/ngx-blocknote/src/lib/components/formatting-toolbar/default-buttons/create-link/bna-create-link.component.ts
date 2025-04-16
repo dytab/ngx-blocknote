@@ -1,8 +1,7 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
@@ -52,7 +51,6 @@ function checkLinkInSchema(
     HlmTooltipComponent,
   ],
   templateUrl: './bna-create-link.component.html',
-  styleUrl: './bna-create-link.component.css',
   providers: [
     provideIcons({
       lucideLink,

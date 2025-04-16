@@ -1,7 +1,6 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
@@ -28,7 +27,6 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     BnaBlockColorStyleComponent,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',
-  styleUrl: './bna-drag-handle-menu.component.css',
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent {

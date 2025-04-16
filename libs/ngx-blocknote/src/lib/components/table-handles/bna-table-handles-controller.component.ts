@@ -19,7 +19,6 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
   imports: [CommonModule, BnaTableHandleComponent],
   selector: 'bna-table-handles-controller',
   templateUrl: 'bna-table-handle-controller.component.html',
-  styleUrl: 'bna-table-handle-controller.component.css',
   host: {
     class: 'z-40 fixed',
   },

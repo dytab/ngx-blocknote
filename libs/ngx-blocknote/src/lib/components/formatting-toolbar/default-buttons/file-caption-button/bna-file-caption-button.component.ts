@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect } from '@angular/core';
 import {
@@ -7,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { checkBlockIsFileBlock } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTextCursorInput } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
@@ -39,7 +38,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-caption-button.component.html',
-  styleUrl: './bna-file-caption-button.component.css',
   providers: [provideIcons({ lucideTextCursorInput })],
   host: {
     '[class]': '_visibilityClass()',

@@ -64,7 +64,6 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
-  styleUrl: './bna-basic-text-style-button.component.css',
   providers: [
     provideIcons({
       lucideBold,

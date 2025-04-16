@@ -5,7 +5,6 @@ import { Component, Input } from '@angular/core';
   selector: 'bna-color-icon',
   imports: [CommonModule],
   templateUrl: './bna-color-icon.component.html',
-  styleUrl: './bna-color-icon.component.css',
 })
 export class BnaColorIconComponent {
   @Input() textColor = 'default';

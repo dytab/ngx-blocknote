@@ -1,7 +1,6 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideFileAudio,
   lucideHeading1,
@@ -57,7 +56,6 @@ const icons: Record<string, string> = {
     }),
   ],
   templateUrl: './bna-slash-menu-item.component.html',
-  styleUrl: './bna-slash-menu-item.component.css',
 })
 export class BnaSlashMenuItemComponent {
   suggestionItem = input.required<SuggestionItem>();

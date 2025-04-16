@@ -1,12 +1,11 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { ColorOptions } from '../../interfaces/color-options.type';
+import { NgxBlocknoteService } from '../../services';
 import { HlmButtonDirective, HlmIconDirective } from '../../ui';
 import { BnaColorIconComponent } from './color-icon/bna-color-icon.component';
-import { NgxBlocknoteService } from '../../services';
 
 const colors = [
   'default',
@@ -31,7 +30,6 @@ const colors = [
     HlmIconDirective,
   ],
   templateUrl: './bna-color-picker.component.html',
-  styleUrl: './bna-color-picker.component.css',
   providers: [
     provideIcons({
       lucideCheck,

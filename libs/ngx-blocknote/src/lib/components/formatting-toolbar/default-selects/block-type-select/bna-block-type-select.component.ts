@@ -1,8 +1,7 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import { BlockNoteEditor, Dictionary } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
   lucideHeading1,
@@ -44,7 +43,6 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
     HlmMenuItemCheckboxDirective,
   ],
   templateUrl: './bna-block-type-select.component.html',
-  styleUrl: './bna-block-type-select.component.css',
   providers: [
     provideIcons({
       lucideType,

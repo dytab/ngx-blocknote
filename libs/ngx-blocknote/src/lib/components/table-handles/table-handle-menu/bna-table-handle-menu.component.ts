@@ -8,9 +8,7 @@ import { BnaDeleteButtonComponent } from './default-buttons/delete-button/bna-de
   selector: 'bna-table-handle-menu',
   imports: [CommonModule, BnaDeleteButtonComponent, BnaAddButtonComponent],
   templateUrl: './bna-table-handle-menu.component.html',
-  styleUrl: './bna-table-handle-menu.component.css',
   host: {
-    //TODO: change to class not tailwind classes
     class: 'block bg-background shadow-xl p-2 rounded',
   },
 })

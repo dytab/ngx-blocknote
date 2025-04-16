@@ -1,8 +1,7 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImage } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
@@ -36,7 +35,6 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-replace-button.component.html',
-  styleUrl: './bna-file-replace-button.component.css',
   providers: [provideIcons({ lucideImage })],
   host: {
     '[class]': '_visibilityClass()',

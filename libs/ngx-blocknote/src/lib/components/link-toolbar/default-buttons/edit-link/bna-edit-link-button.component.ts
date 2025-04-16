@@ -20,7 +20,6 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
     HlmMenuGroupComponent,
   ],
   templateUrl: './bna-edit-link-button.component.html',
-  styleUrl: './bna-edit-link-button.component.css',
 })
 export class BnaEditLinkButtonComponent {
   initialValue: Partial<{ text: string; url: string }> = {};

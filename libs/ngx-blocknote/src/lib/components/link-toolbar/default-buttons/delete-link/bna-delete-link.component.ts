@@ -1,7 +1,6 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUnlink } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { HlmButtonDirective, HlmIconDirective } from '../../../../ui';
@@ -10,7 +9,6 @@ import { HlmButtonDirective, HlmIconDirective } from '../../../../ui';
   selector: 'bna-delete-link',
   imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-delete-link.component.html',
-  styleUrl: './bna-delete-link.component.css',
   providers: [
     provideIcons({
       lucideUnlink,

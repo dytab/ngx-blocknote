@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges } from '@angular/core';
 import {
@@ -8,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink, lucideType } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../services';
 import { HlmIconDirective } from '../../../ui';
@@ -23,7 +22,6 @@ import { HlmIconDirective } from '../../../ui';
     ReactiveFormsModule,
   ],
   templateUrl: './bna-link-form.component.html',
-  styleUrl: './bna-link-form.component.css',
   providers: [
     provideIcons({
       lucideLink,

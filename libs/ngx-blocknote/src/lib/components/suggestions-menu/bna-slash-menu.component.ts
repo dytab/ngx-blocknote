@@ -21,7 +21,6 @@ import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.co
   selector: 'bna-slash-menu',
   imports: [CommonModule, BnaSlashMenuItemComponent],
   templateUrl: './bna-slash-menu.component.html',
-  styleUrl: './bna-slash-menu.component.css',
 })
 export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   dict = computed(() => {

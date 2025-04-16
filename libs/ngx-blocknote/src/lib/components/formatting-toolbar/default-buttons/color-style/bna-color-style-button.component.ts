@@ -61,7 +61,6 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-color-style-button.component.html',
-  styleUrl: './bna-color-style-button.component.css',
   host: {
     '[class]': '_visibilityClass()',
   },

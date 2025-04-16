@@ -27,7 +27,6 @@ import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-pick
     HlmMenuGroupComponent,
   ],
   templateUrl: './bna-block-color-style.component.html',
-  styleUrl: './bna-block-color-style.component.css',
 })
 export class BnaBlockColorStyleComponent {
   selectedBlocks = signal<Block[]>(

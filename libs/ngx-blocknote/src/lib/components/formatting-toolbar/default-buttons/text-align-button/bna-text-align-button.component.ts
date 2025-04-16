@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import {
@@ -6,7 +5,7 @@ import {
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideAlignCenter,
   lucideAlignLeft,
@@ -42,7 +41,6 @@ type Alignments = 'left' | 'center' | 'right';
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-text-align-button.component.html',
-  styleUrl: './bna-text-align-button.component.css',
   providers: [
     provideIcons({ lucideAlignLeft, lucideAlignCenter, lucideAlignRight }),
   ],

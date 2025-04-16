@@ -25,7 +25,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-delete-button.component.html',
-  styleUrl: './bna-file-delete-button.component.css',
   providers: [provideIcons({ lucideTrash })],
   host: {
     '[class]': '_visibilityClass()',

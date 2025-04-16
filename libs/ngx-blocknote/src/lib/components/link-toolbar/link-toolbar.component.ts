@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   selector: 'bna-link-toolbar',
   imports: [CommonModule],
   templateUrl: './link-toolbar.component.html',
-  styleUrl: './link-toolbar.component.css',
   host: {
     class: 'bn-link-toolbar',
   },

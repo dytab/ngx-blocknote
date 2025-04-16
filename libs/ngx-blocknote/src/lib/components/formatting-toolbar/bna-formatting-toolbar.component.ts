@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   selector: 'bna-formatting-toolbar',
   imports: [CommonModule],
   templateUrl: './bna-formatting-toolbar.component.html',
-  styleUrl: './bna-formatting-toolbar.component.css',
   host: {
     class: 'bn-toolbar',
   },

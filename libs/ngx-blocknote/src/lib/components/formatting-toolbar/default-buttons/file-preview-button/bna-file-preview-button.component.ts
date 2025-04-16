@@ -1,7 +1,6 @@
-import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImagePlus } from '@ng-icons/lucide';
 import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
@@ -26,7 +25,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-preview-button.component.html',
-  styleUrl: './bna-file-preview-button.component.css',
   providers: [provideIcons({ lucideImagePlus })],
   host: {
     '[class]': '_visibilityClass()',
