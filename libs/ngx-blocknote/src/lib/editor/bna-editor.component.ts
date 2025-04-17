@@ -8,6 +8,7 @@ import {
   output,
   signal,
   SimpleChanges,
+  input
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
@@ -117,10 +118,8 @@ export class BnaEditorComponent<
   >
   implements OnChanges, ControlValueAccessor, OnInit
 {
-  @Input()
-  options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
-  @Input()
-  initialContent?: InitialContent<BSchema, ISchema, SSchema>;
+  readonly options = input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
+  readonly initialContent = input<InitialContent<BSchema, ISchema, SSchema>>();
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
@@ -177,16 +176,17 @@ export class BnaEditorComponent<
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    const options = this.options();
     if (!this.hasCustomEditor && changes['options']) {
       this.editor = this.createEditor(undefined);
       this.onEditorReady.emit(this.editor);
       this.firstTimeInitialized = true;
 
-      this.ngxBlockNoteService.setOptions(this.options ?? {});
+      this.ngxBlockNoteService.setOptions(options ?? {});
     }
     //just update the options, when a custom editor is used. Suggestion menu depends on it
     if (this.hasCustomEditor && changes['options']) {
-      this.ngxBlockNoteService.setOptions(this.options ?? {});
+      this.ngxBlockNoteService.setOptions(options ?? {});
     }
 
     if (!changes['options'] && !this.firstTimeInitialized) {
@@ -213,7 +213,8 @@ export class BnaEditorComponent<
       | PartialBlock<BSchema, ISchema, SSchema>[]
       | undefined,
   ) {
-    const schema = this.options?.schema;
+    const options = this.options();
+    const schema = options?.schema;
     const editor = BlockNoteEditor.create({
       schema: schema
         ? schema
@@ -227,7 +228,7 @@ export class BnaEditorComponent<
             //TODO: remove casting
           }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
-      uploadFile: this.options?.uploadFile,
+      uploadFile: options?.uploadFile,
     });
     this.ngxBlockNoteService.setEditor(editor);
     this.createEditorListeners(editor);
