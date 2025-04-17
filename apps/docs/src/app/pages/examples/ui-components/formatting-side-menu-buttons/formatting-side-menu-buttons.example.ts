@@ -2,27 +2,24 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
-  BnaBasicTextStyleButtonComponent,
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
-  BnaSideMenuControllerComponent,
+  BnaSideMenuControllerComponent
 } from '@dytab/ngx-blocknote';
 import { RemoveBlockButtonComponent } from './remove-block-button.component';
-import { HlmButtonDirective } from '@dytab/ui';
+
 
 @Component({
   selector: 'bna-formatting-side-menu-buttons-example',
   imports: [
     CommonModule,
     BnaEditorComponent,
-    BnaBasicTextStyleButtonComponent,
-    HlmButtonDirective,
     BnaSideMenuControllerComponent,
     BnaSideMenuComponent,
     RemoveBlockButtonComponent,
-    BnaDragHandleMenuComponent,
-  ],
+    BnaDragHandleMenuComponent
+],
   template: `<bna-editor [initialContent]="initialContent">
     <bna-side-menu-controller>
       <bna-side-menu>

@@ -5,11 +5,11 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+
 
 @Component({
   selector: 'bna-removing-default-blocks-example',
-  imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
+  imports: [CommonModule, BnaEditorComponent],
   template: `
     <bna-editor [initialContent]="initialContent" [options]="options" />
   `,

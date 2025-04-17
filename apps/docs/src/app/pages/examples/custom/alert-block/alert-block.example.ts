@@ -14,7 +14,7 @@ import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
 } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+
 import { alertBlock } from './alert-block';
 
 const schema = BlockNoteSchema.create({
@@ -27,7 +27,7 @@ const schema = BlockNoteSchema.create({
 });
 @Component({
   selector: 'bna-alert-block-example',
-  imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
+  imports: [CommonModule, BnaEditorComponent],
   template: `<bna-editor
     [initialContent]="initialContent"
     [options]="options"

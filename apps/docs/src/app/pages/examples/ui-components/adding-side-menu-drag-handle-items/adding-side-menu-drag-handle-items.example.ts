@@ -3,38 +3,27 @@ import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
   BnaAddBlockButtonComponent,
-  BnaBasicTextStyleButtonComponent,
   BnaDeleteBlockItemComponent,
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
-  BnaSideMenuControllerComponent,
+  BnaSideMenuControllerComponent
 } from '@dytab/ngx-blocknote';
 import { ResetBlockButtonComponent } from './reset-block-button.component';
-import {
-  HlmButtonDirective,
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemDirective,
-} from '@dytab/ui';
+
 
 @Component({
   selector: 'bna-adding-side-menu-drag-handle-items-example',
   imports: [
     CommonModule,
     BnaEditorComponent,
-    BnaBasicTextStyleButtonComponent,
-    HlmButtonDirective,
     BnaSideMenuControllerComponent,
     BnaSideMenuComponent,
     BnaAddBlockButtonComponent,
     ResetBlockButtonComponent,
     BnaDragHandleMenuComponent,
-    BnaDeleteBlockItemComponent,
-    HlmMenuComponent,
-    HlmMenuGroupComponent,
-    HlmMenuItemDirective,
-  ],
+    BnaDeleteBlockItemComponent
+],
   template: `<bna-editor [initialContent]="initialContent">
     <bna-side-menu-controller>
       <bna-side-menu>

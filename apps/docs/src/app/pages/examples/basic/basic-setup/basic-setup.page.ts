@@ -2,12 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   hlmP,
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
+  HlmTabsComponent
 } from '@dytab/ui';
-import { Highlight } from 'ngx-highlightjs';
+
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -23,14 +20,10 @@ import {
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmTabsContentDirective,
-    HlmTabsTriggerDirective,
     TabsComponent,
     CodeComponent,
-    BasicSetupExample,
-    Highlight,
-  ],
+    BasicSetupExample
+],
   template: `
     <bna-section-intro name="Basic Setup">
       <p class="${hlmP} mb-8">

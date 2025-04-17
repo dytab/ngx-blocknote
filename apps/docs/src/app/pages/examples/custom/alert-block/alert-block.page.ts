@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
+
+import { hlmP, HlmTabsComponent } from '@dytab/ui';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -14,15 +14,13 @@ import {
 @Component({
   imports: [
     CommonModule,
-    BnaEditorComponent,
-    HlmButtonDirective,
     SectionIntroComponent,
     CodeComponent,
     DemoBoxComponent,
     HlmTabsComponent,
     TabsComponent,
-    AlertBlockExample,
-  ],
+    AlertBlockExample
+],
   template: `<bna-section-intro name="Alert Block">
       <p class="${hlmP} mb-8">
         In this example, we create a custom Alert block which is used to

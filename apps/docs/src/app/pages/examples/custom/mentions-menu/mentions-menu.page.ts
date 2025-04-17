@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/ngx-blocknote';
+
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -9,20 +9,18 @@ import {
   MentionsMenuExample,
   mentionsMenuExampleCode,
 } from './mentions-menu.example';
-import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
+import { hlmP, HlmTabsComponent } from '@dytab/ui';
 
 @Component({
   imports: [
     CommonModule,
-    BnaEditorComponent,
-    HlmButtonDirective,
     SectionIntroComponent,
     CodeComponent,
     DemoBoxComponent,
     HlmTabsComponent,
     TabsComponent,
-    MentionsMenuExample,
-  ],
+    MentionsMenuExample
+],
   template: `<bna-section-intro name="Mentions Menu">
       <p class="${hlmP} mb-8">
         In this example, we create a custom Mention inline content type which is

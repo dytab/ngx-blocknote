@@ -1,6 +1,6 @@
 import { NgIcon } from '@ng-icons/core';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { NgIf } from '@angular/common';
+
 import {
   booleanAttribute,
   Component,
@@ -10,8 +10,7 @@ import {
 } from '@angular/core';
 import {
   HlmButtonDirective,
-  HlmIconDirective,
-  HlmScrollAreaComponent,
+  HlmIconDirective
 } from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
@@ -20,13 +19,11 @@ import { Highlight } from 'ngx-highlightjs';
 @Component({
   selector: 'bna-code',
   imports: [
-    HlmScrollAreaComponent,
     HlmButtonDirective,
     NgIcon,
     HlmIconDirective,
-    NgIf,
-    Highlight,
-  ],
+    Highlight
+],
   providers: [provideIcons({ lucideClipboard, lucideCheck })],
   host: {
     class:

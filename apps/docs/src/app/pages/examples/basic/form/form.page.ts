@@ -2,12 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   hlmP,
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
+  HlmTabsComponent
 } from '@dytab/ui';
-import { Highlight } from 'ngx-highlightjs';
+
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -20,14 +17,10 @@ import { FormExample, basicSetupExampleCode } from './form.example';
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmTabsContentDirective,
-    HlmTabsTriggerDirective,
     TabsComponent,
     CodeComponent,
-    FormExample,
-    Highlight,
-  ],
+    FormExample
+],
   template: `
     <bna-section-intro name="Form">
       <p class="${hlmP} mb-8">

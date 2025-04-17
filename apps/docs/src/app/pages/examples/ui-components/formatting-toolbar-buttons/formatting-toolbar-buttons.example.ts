@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
-import { HlmButtonDirective } from '@dytab/ui';
+
 import { BlueButtonComponent } from './blue-button.component';
 import {
   BnaBasicTextStyleButtonComponent,
@@ -18,9 +18,8 @@ import {
     BnaFormattingToolbarControllerComponent,
     BnaBasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
-    HlmButtonDirective,
-    BlueButtonComponent,
-  ],
+    BlueButtonComponent
+],
   template: `<bna-editor [initialContent]="initialContent">
     <bna-formatting-toolbar-controller>
       <bna-formatting-toolbar>

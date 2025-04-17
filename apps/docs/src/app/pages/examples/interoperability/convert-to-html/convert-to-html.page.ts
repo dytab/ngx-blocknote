@@ -1,9 +1,6 @@
 import {
   hlmP,
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
+  HlmTabsComponent
 } from '@dytab/ui';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -22,13 +19,10 @@ import { Component } from '@angular/core';
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmTabsContentDirective,
-    HlmTabsTriggerDirective,
     TabsComponent,
     CodeComponent,
-    ConvertToHtmlExample,
-  ],
+    ConvertToHtmlExample
+],
   template: `
     <bna-section-intro name="Convert Blocks to HTML">
       <p class="${hlmP} mb-8">

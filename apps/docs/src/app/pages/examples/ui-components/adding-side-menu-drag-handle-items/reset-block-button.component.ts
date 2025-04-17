@@ -1,15 +1,15 @@
-import { NgIcon } from '@ng-icons/core';
+
 import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective, HlmIconDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@dytab/ui';
 import { provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
 
 @Component({
   selector: 'bna-reset-block-button',
-  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [CommonModule, HlmButtonDirective],
   providers: [provideIcons({ lucideTrash })],
   template: ` <button
     hlmBtn

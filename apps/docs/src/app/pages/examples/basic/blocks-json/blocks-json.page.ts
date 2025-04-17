@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   hlmP,
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
+  HlmTabsComponent
 } from '@dytab/ui';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
@@ -22,13 +19,10 @@ import {
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmTabsContentDirective,
-    HlmTabsTriggerDirective,
     TabsComponent,
     CodeComponent,
-    BlocksJsonExample,
-  ],
+    BlocksJsonExample
+],
   template: `
     <bna-section-intro name="Displaying Document JSON">
       <p class="${hlmP} mb-8">
