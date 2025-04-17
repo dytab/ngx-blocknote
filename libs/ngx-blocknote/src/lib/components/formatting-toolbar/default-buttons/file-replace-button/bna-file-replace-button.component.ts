@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -21,7 +21,6 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
 @Component({
   selector: 'bna-file-replace-button',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
@@ -32,8 +31,8 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
     BnaFilePanelComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-  ],
+    BrnTooltipContentDirective
+],
   templateUrl: './bna-file-replace-button.component.html',
   providers: [provideIcons({ lucideImage })],
   host: {

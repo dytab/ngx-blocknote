@@ -8,7 +8,7 @@
   hlmBtn
   variant="ghost"
   size="xs"
->
+  >
   <ng-icon hlm size="sm" [name]="'lucideGripVertical'" />
 </button>
 <ng-template #menu>
@@ -17,10 +17,10 @@
       <div #dragHandleMenuItems>
         <ng-content></ng-content>
       </div>
-      <ng-container *ngIf="!dragHandleMenuItems.hasChildNodes()">
+      @if (!dragHandleMenuItems.hasChildNodes()) {
         <bna-delete-block-item />
         <bna-block-color-style />
-      </ng-container>
+      }
     </hlm-menu-group>
   </hlm-menu>
 </ng-template>

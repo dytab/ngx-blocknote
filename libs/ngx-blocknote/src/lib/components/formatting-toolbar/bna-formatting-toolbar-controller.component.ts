@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, ElementRef, OnDestroy, Renderer2, signal, inject } from '@angular/core';
 import {
   autoPlacement,
@@ -11,7 +11,7 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
-  imports: [CommonModule],
+  imports: [],
   selector: 'bna-formatting-toolbar-controller',
   template: `@if (show()) {
     <ng-content />

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, input, signal, inject } from '@angular/core';
 import { BlockNoteEditor, Dictionary } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -32,7 +32,6 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
 @Component({
   selector: 'bna-block-type-selection-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,
@@ -40,8 +39,8 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
     NgIcon,
     HlmIconDirective,
     HlmMenuItemCheckComponent,
-    HlmMenuItemCheckboxDirective,
-  ],
+    HlmMenuItemCheckboxDirective
+],
   templateUrl: './bna-block-type-select.component.html',
   providers: [
     provideIcons({

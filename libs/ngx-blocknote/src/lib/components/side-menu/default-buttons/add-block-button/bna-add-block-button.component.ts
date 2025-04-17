@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
@@ -7,7 +7,7 @@ import { HlmButtonDirective, HlmIconDirective } from '../../../../ui';
 
 @Component({
   selector: 'bna-add-block-btn',
-  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-add-block-button.component.html',
   providers: [provideIcons({ lucidePlus })],
 })

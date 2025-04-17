@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
@@ -16,14 +16,13 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 @Component({
   selector: 'bna-file-delete-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     NgIcon,
     HlmIconDirective,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-  ],
+    BrnTooltipContentDirective
+],
   templateUrl: './bna-file-delete-button.component.html',
   providers: [provideIcons({ lucideTrash })],
   host: {

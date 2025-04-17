@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, ElementRef, Renderer2, signal, inject } from '@angular/core';
 import { Block, BlockNoteEditor } from '@blocknote/core';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Component({
-  imports: [CommonModule],
+  imports: [],
   selector: 'bna-side-menu-controller',
   host: {
     class: 'bn-side-menu',

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
@@ -15,13 +15,12 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 @Component({
   selector: 'bna-file-download-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     NgIcon,
     HlmIconDirective,
     HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-  ],
+    HlmTooltipTriggerDirective
+],
   templateUrl: './bna-file-download-button.component.html',
   providers: [provideIcons({ lucideDownload })],
   host: {

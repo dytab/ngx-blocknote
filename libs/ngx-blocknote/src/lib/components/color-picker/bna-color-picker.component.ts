@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
@@ -23,12 +23,11 @@ const colors = [
 @Component({
   selector: 'bna-color-picker',
   imports: [
-    CommonModule,
     BnaColorIconComponent,
     HlmButtonDirective,
     NgIcon,
-    HlmIconDirective,
-  ],
+    HlmIconDirective
+],
   templateUrl: './bna-color-picker.component.html',
   providers: [
     provideIcons({

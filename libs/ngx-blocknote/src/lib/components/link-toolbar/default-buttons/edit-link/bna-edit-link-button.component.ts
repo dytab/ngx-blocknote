@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { NgxBlocknoteService } from '../../../../services';
@@ -12,13 +12,12 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 @Component({
   selector: 'bna-edit-link-button',
   imports: [
-    CommonModule,
     BnaLinkFormComponent,
     HlmButtonDirective,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
-    HlmMenuGroupComponent,
-  ],
+    HlmMenuGroupComponent
+],
   templateUrl: './bna-edit-link-button.component.html',
 })
 export class BnaEditLinkButtonComponent {

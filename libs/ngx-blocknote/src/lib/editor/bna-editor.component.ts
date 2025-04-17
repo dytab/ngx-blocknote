@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, forwardRef, Input, OnChanges, OnInit, output, signal, SimpleChanges, input, inject } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
@@ -60,7 +60,6 @@ type InitialContent<
 
 @Component({
   imports: [
-    CommonModule,
     BnaViewControllerDirective,
     BnaSideMenuControllerComponent,
     BnaAddBlockButtonComponent,
@@ -88,8 +87,8 @@ type InitialContent<
     BnaFileCaptionButtonComponent,
     BnaFileReplaceButtonComponent,
     BnaFilePreviewButtonComponent,
-    BnaSlashMenuControllerComponent,
-  ],
+    BnaSlashMenuControllerComponent
+],
   providers: [
     NgxBlocknoteService,
     {

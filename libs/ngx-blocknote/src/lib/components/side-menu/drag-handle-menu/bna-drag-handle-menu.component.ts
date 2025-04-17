@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
@@ -16,7 +16,6 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
 @Component({
   selector: 'bna-drag-handle-menu-btn',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     NgIcon,
@@ -24,8 +23,8 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     HlmMenuComponent,
     HlmMenuGroupComponent,
     BnaDeleteBlockItemComponent,
-    BnaBlockColorStyleComponent,
-  ],
+    BnaBlockColorStyleComponent
+],
   templateUrl: './bna-drag-handle-menu.component.html',
   providers: [provideIcons({ lucideGripVertical })],
 })

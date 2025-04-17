@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'bna-link-toolbar',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './link-toolbar.component.html',
   host: {
     class: 'bn-link-toolbar',

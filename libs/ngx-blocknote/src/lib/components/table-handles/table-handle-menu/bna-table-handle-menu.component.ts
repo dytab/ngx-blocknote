@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input } from '@angular/core';
 import { TableHandleOptions } from '../../../interfaces/table-handle-options.type';
 import { BnaAddButtonComponent } from './default-buttons/add-button/bna-add-button.component';
@@ -6,7 +6,7 @@ import { BnaDeleteButtonComponent } from './default-buttons/delete-button/bna-de
 
 @Component({
   selector: 'bna-table-handle-menu',
-  imports: [CommonModule, BnaDeleteButtonComponent, BnaAddButtonComponent],
+  imports: [BnaDeleteButtonComponent, BnaAddButtonComponent],
   templateUrl: './bna-table-handle-menu.component.html',
   host: {
     class: 'block bg-background shadow-xl p-2 rounded',

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnChanges, input, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -15,12 +15,11 @@ import { HlmIconDirective } from '../../../ui';
 @Component({
   selector: 'bna-link-form',
   imports: [
-    CommonModule,
     NgIcon,
     HlmIconDirective,
     FormsModule,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule
+],
   templateUrl: './bna-link-form.component.html',
   providers: [
     provideIcons({

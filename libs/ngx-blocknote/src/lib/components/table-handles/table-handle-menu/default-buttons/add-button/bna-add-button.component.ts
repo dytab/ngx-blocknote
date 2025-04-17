@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, input, inject } from '@angular/core';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
@@ -6,7 +6,7 @@ import { HlmButtonDirective } from '../../../../../ui';
 
 @Component({
   selector: 'bna-add-button',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButtonDirective],
   templateUrl: './bna-add-button.component.html',
 })
 export class BnaAddButtonComponent {

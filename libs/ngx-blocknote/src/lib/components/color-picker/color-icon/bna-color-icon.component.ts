@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'bna-color-icon',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './bna-color-icon.component.html',
 })
 export class BnaColorIconComponent {

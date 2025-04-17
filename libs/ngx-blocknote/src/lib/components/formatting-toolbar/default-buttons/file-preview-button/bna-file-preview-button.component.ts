@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImagePlus } from '@ng-icons/lucide';
@@ -16,14 +16,13 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 @Component({
   selector: 'bna-file-preview-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     NgIcon,
     HlmIconDirective,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-  ],
+    BrnTooltipContentDirective
+],
   templateUrl: './bna-file-preview-button.component.html',
   providers: [provideIcons({ lucideImagePlus })],
   host: {

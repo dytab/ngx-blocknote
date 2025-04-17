@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, effect, HostListener, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import {
   DefaultSuggestionItem,
@@ -11,7 +11,7 @@ import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.co
 
 @Component({
   selector: 'bna-slash-menu',
-  imports: [CommonModule, BnaSlashMenuItemComponent],
+  imports: [BnaSlashMenuItemComponent],
   templateUrl: './bna-slash-menu.component.html',
 })
 export class BnaSlashMenuComponent implements OnInit, OnDestroy {

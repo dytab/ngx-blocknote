@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, inject } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
@@ -7,7 +7,7 @@ import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButtonDirective],
   templateUrl: './bna-delete-block-item.component.html',
   host: {
     class: 'block',
