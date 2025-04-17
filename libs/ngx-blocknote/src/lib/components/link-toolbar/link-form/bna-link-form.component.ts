@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnChanges, input } from '@angular/core';
+import { Component, OnChanges, input, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -30,6 +30,9 @@ import { HlmIconDirective } from '../../../ui';
   ],
 })
 export class BnaLinkFormComponent implements OnChanges {
+  private formBuilder = inject(FormBuilder);
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   readonly initialValue = input<Partial<{
     url: string;
     text: string;
@@ -38,11 +41,6 @@ export class BnaLinkFormComponent implements OnChanges {
     url: new FormControl('', [Validators.required]),
     text: new FormControl('', [Validators.required]),
   });
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private ngxBlockNoteService: NgxBlocknoteService,
-  ) {}
 
   ngOnChanges() {
     this.form.patchValue(this.initialValue());

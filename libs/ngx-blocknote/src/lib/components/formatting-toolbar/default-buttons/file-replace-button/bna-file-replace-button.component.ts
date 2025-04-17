@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImage } from '@ng-icons/lucide';
@@ -41,6 +41,8 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
   },
 })
 export class BnaFileReplaceButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   fileBlock = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
@@ -57,6 +59,4 @@ export class BnaFileReplaceButtonComponent {
     return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_replace.tooltip[fileBlock.type];
   });
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 }

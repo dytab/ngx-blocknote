@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
 import { HlmButtonDirective } from '../../../../../ui';
@@ -14,9 +14,13 @@ import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
   },
 })
 export class BnaDeleteBlockItemComponent {
+  ngxBlockNoteService = inject(NgxBlocknoteService);
+
   dragBlock?: Block<any, any, any>;
 
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
+    const ngxBlockNoteService = this.ngxBlockNoteService;
+
     effect(() => {
       const editor = ngxBlockNoteService.editor();
       if (!editor) {

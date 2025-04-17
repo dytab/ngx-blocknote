@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -37,6 +37,9 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFileRenameButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private formBuilder = inject(NonNullableFormBuilder);
+
   form = this.formBuilder.group({ name: ['', Validators.required] });
   fileBlock = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
@@ -54,11 +57,6 @@ export class BnaFileRenameButtonComponent {
     return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_rename.tooltip[fileBlock.type];
   });
-
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    private formBuilder: NonNullableFormBuilder,
-  ) {}
 
   submit() {
     const editor = this.ngxBlockNoteService.editor();

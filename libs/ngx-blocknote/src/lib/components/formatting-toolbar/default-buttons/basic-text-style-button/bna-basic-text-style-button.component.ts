@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, inject } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockSchema,
@@ -78,6 +78,8 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   },
 })
 export class BnaBasicTextStyleButtonComponent {
+  ngxBlockNoteService = inject(NgxBlocknoteService);
+
   basicTextStyle = input.required<BasicTextStyle>();
   icon = computed(() => {
     return icons[this.basicTextStyle()];
@@ -111,8 +113,6 @@ export class BnaBasicTextStyleButtonComponent {
     const editor = this.ngxBlockNoteService.editor();
     return editor.dictionary.formatting_toolbar[this.basicTextStyle()];
   });
-
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   toggleStyle(style: BasicTextStyle) {
     this.ngxBlockNoteService.editor().focus();

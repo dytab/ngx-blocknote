@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUnlink } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
@@ -16,7 +16,8 @@ import { HlmButtonDirective, HlmIconDirective } from '../../../../ui';
   ],
 })
 export class BnaDeleteLinkComponent {
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
 
   unlink() {
     this.ngxBlockNoteService.editor().linkToolbar.deleteLink();

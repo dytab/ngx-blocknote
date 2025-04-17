@@ -1,15 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  forwardRef,
-  Input,
-  OnChanges,
-  OnInit,
-  output,
-  signal,
-  SimpleChanges,
-  input
-} from '@angular/core';
+import { Component, forwardRef, Input, OnChanges, OnInit, output, signal, SimpleChanges, input, inject } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Block,
@@ -118,6 +108,8 @@ export class BnaEditorComponent<
   >
   implements OnChanges, ControlValueAccessor, OnInit
 {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   readonly options = input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
   readonly initialContent = input<InitialContent<BSchema, ISchema, SSchema>>();
 
@@ -152,7 +144,7 @@ export class BnaEditorComponent<
 
   firstTimeInitialized = false;
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.setEditor(this.editor);
   }
 

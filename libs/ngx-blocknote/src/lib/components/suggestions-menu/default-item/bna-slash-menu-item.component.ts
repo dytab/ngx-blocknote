@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideFileAudio,
@@ -58,6 +58,8 @@ const icons: Record<string, string> = {
   templateUrl: './bna-slash-menu-item.component.html',
 })
 export class BnaSlashMenuItemComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   suggestionItem = input.required<SuggestionItem>();
   iconName = computed(() => {
     const item = this.suggestionItem();
@@ -69,8 +71,6 @@ export class BnaSlashMenuItemComponent {
   });
   selected = input<boolean>(false);
   mouseEnter = output();
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   onClick($event: Event) {
     $event.preventDefault();

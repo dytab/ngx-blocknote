@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, inject } from '@angular/core';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
 import { HlmButtonDirective } from '../../../../../ui';
@@ -10,10 +10,10 @@ import { HlmButtonDirective } from '../../../../../ui';
   templateUrl: './bna-add-button.component.html',
 })
 export class BnaAddButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   options = input.required<TableHandleOptions>();
   dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   addColumn(side: 'right' | 'left') {
     return this.addColumnOrRow({ orientation: 'column', side });

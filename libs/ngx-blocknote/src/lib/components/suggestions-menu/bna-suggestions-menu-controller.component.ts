@@ -1,13 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  effect,
-  ElementRef,
-  OnDestroy,
-  Renderer2,
-  signal,
-  input
-} from '@angular/core';
+import { Component, effect, ElementRef, OnDestroy, Renderer2, signal, input, inject } from '@angular/core';
 import {
   autoPlacement,
   autoUpdate,
@@ -29,17 +21,17 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   }`,
 })
 export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
+  private blockNoteEditorService = inject(NgxBlocknoteService);
+  private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private renderer2 = inject(Renderer2);
+
   show = signal(false);
   cleanup: () => void = () => {
     return;
   };
 
   readonly triggerCharacter = input.required<string>();
-  constructor(
-    private blockNoteEditorService: NgxBlocknoteService,
-    private elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2,
-  ) {
+  constructor() {
     effect(() => {
       this.adjustVisibilityAndPosition();
     });

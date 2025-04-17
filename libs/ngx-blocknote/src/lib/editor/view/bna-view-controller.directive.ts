@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef } from '@angular/core';
+import { Directive, effect, ElementRef, inject } from '@angular/core';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Directive({
@@ -6,10 +6,10 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
   standalone: true,
 })
 export class BnaViewControllerDirective {
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    protected elRef: ElementRef<HTMLElement>,
-  ) {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  protected elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  constructor() {
     effect(() => {
       const editorSnapshot = this.ngxBlockNoteService.editor();
       if (!editorSnapshot) {

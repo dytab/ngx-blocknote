@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
 import { NgxBlocknoteService } from '../../../../services';
@@ -16,8 +16,10 @@ import { HlmButtonDirective, HlmIconDirective } from '../../../../ui';
   ],
 })
 export class BnaOpenLinkComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   url?: string;
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
       this.url = linkToolbar.url;
     });

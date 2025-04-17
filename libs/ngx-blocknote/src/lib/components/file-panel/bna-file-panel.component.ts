@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
@@ -30,6 +30,8 @@ import {
   templateUrl: './bna-file-panel.component.html',
 })
 export class BnaFilePanelComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   focusedBlock = signal<BlockFromConfig<FileBlockConfig, any, any> | undefined>(
     undefined,
   );
@@ -37,7 +39,7 @@ export class BnaFilePanelComponent {
   embedInputText = '';
   fileControl = new FormControl();
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     const editor = this.ngxBlockNoteService.editor();
     if (editor.filePanel) {
       //TODO: remove the workaround

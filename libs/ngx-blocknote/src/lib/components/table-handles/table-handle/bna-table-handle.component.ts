@@ -1,15 +1,6 @@
 import { NgIcon } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  computed,
-  effect,
-  ElementRef,
-  HostListener,
-  input,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { Component, computed, effect, ElementRef, HostListener, input, signal, viewChild, inject } from '@angular/core';
 
 import { computePosition, flip } from '@floating-ui/dom';
 import { provideIcons } from '@ng-icons/core';
@@ -38,6 +29,8 @@ const icons = {
   providers: [provideIcons({ lucideGripVertical, lucideGripHorizontal })],
 })
 export class BnaTableHandleComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   options = input.required<TableHandleOptions>();
   optionsWithCloseMenu = computed(() => {
     const options: TableHandleOptions = {
@@ -72,7 +65,7 @@ export class BnaTableHandleComponent {
   button = viewChild<ElementRef<HTMLElement>>('button');
   menu = viewChild<ElementRef<HTMLElement>>('menu');
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     effect(async () => {
       const button = this.button()?.nativeElement;
       const menu = this.menu()?.nativeElement;

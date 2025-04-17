@@ -1,11 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  effect,
-  ElementRef,
-  Renderer2,
-  signal,
-} from '@angular/core';
+import { Component, effect, ElementRef, Renderer2, signal, inject } from '@angular/core';
 import { Block, BlockNoteEditor } from '@blocknote/core';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
@@ -20,13 +14,13 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
   }`,
 })
 export class BnaSideMenuControllerComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private renderer2 = inject(Renderer2);
+
   show = signal(true);
 
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    private elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2,
-  ) {
+  constructor() {
     effect(() => {
       this.adjustVisibilityAndPosition();
     });

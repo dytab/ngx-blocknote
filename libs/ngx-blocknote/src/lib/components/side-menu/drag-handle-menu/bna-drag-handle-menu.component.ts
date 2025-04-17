@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
@@ -30,11 +30,10 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent {
+  ngxBlockNoteService = inject(NgxBlocknoteService);
+  private elementRef = inject(ElementRef);
+
   editor = this.ngxBlockNoteService.editor;
-  constructor(
-    public ngxBlockNoteService: NgxBlocknoteService,
-    private elementRef: ElementRef,
-  ) {}
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
