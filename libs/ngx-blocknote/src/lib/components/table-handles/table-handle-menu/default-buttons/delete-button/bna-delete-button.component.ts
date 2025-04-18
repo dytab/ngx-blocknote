@@ -13,59 +13,21 @@ export class BnaDeleteButtonComponent {
 
   options = input.required<TableHandleOptions>();
 
-  deleteColumn() {
-    // const { editor, block, index } = this.getProperties('column');
-    // if (!block) {
-    //   return;
-    // }
-    // const content: TableContent<any> = {
-    //   ...block.content,
-    //   type: 'tableContent',
-    //   rows: block.content.rows.map((row) => ({
-    //     cells: row.cells.filter((_, cellIndex) => cellIndex !== index),
-    //   })),
-    // };
-    // editor.updateBlock(block, {
-    //   type: 'table',
-    //   //TODO: remove this
-    //   content: content as any,
-    // });
-    // editor.tableHandles?.unfreezeHandles();
-    // editor.focus();
-    // this.options().closeMenu();
-    // this.options().showOtherHandle();
-  }
-
-  deleteRow() {
-    // const { editor, block, index } = this.getProperties('row');
-    // if (!block) {
-    //   return;
-    // }
-    // const content: TableContent<any> = {
-    //   ...block.content,
-    //   type: 'tableContent',
-    //   rows: block.content.rows.filter((_, rowIndex) => rowIndex !== index),
-    // };
-    // editor.updateBlock(block, {
-    //   type: 'table',
-    //   //TODO: remove this any cast
-    //   content: content as any,
-    // });
-    // editor.tableHandles?.unfreezeHandles();
-    // editor.focus();
-    // this.options().closeMenu();
-    // this.options().showOtherHandle();
-  }
-
-  private getProperties(orientation: 'row' | 'column') {
+  delete(orientation: 'row' | 'column') {
     const editor = this.ngxBlockNoteService.editor();
     const options = this.options();
-    const block = options.tableHandles.block;
+    const tableHandles = editor.tableHandles;
+    if (!tableHandles) {
+      return;
+    }
 
     const index =
       orientation === 'row'
         ? options.tableHandles.rowIndex
         : options.tableHandles.colIndex;
-    return { editor, block, index };
+    if (index === undefined) {
+      return;
+    }
+    tableHandles.removeRowOrColumn(index, orientation);
   }
 }

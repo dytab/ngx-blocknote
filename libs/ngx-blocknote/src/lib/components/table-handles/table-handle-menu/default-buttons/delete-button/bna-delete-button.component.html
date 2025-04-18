@@ -1,6 +1,6 @@
 @if (options().orientation === 'row') {
   <button
-    (click)="deleteRow()"
+    (click)="delete('row')"
     type="button"
     hlmBtn
     variant="ghost"
@@ -12,7 +12,7 @@
 }
 @if (options().orientation === 'column') {
   <button
-    (click)="deleteColumn()"
+    (click)="delete('column')"
     type="button"
     hlmBtn
     variant="ghost"
