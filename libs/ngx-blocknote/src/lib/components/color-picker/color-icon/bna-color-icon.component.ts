@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'bna-color-icon',
@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './bna-color-icon.component.css',
 })
 export class BnaColorIconComponent {
-  @Input() textColor = 'default';
-  @Input() backgroundColor = 'default';
+  readonly textColor = input('default');
+  readonly backgroundColor = input('default');
 }

@@ -3,10 +3,10 @@ import {
   Component,
   effect,
   ElementRef,
-  Input,
   OnDestroy,
   Renderer2,
   signal,
+  input
 } from '@angular/core';
 import {
   autoPlacement,
@@ -34,7 +34,7 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
     return;
   };
 
-  @Input({ required: true }) triggerCharacter = '/';
+  readonly triggerCharacter = input.required<string>();
   constructor(
     private blockNoteEditorService: NgxBlocknoteService,
     private elRef: ElementRef<HTMLElement>,
@@ -52,7 +52,7 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
   private adjustVisibilityAndPosition() {
     const editor = this.blockNoteEditorService.editor();
     editor.suggestionMenus.onUpdate(
-      this.triggerCharacter,
+      this.triggerCharacter(),
       async (suggestionMenuState) => {
         this.cleanup();
 

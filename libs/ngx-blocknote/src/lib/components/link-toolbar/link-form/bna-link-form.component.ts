@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, OnChanges, input } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -31,7 +31,10 @@ import { NgxBlocknoteService } from '../../../services';
   ],
 })
 export class BnaLinkFormComponent implements OnChanges {
-  @Input() initialValue: Partial<{ url: string; text: string }> = {};
+  readonly initialValue = input<Partial<{
+    url: string;
+    text: string;
+}>>({});
   form = this.formBuilder.group({
     url: new FormControl('', [Validators.required]),
     text: new FormControl('', [Validators.required]),
@@ -43,7 +46,7 @@ export class BnaLinkFormComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
-    this.form.patchValue(this.initialValue);
+    this.form.patchValue(this.initialValue());
   }
 
   submit() {
