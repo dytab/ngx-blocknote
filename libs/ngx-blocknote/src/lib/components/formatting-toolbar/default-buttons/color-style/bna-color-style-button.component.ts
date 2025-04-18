@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockSchema,
@@ -69,6 +69,8 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
   },
 })
 export class BnaColorStyleButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
@@ -88,7 +90,7 @@ export class BnaColorStyleButtonComponent {
   options: ColorOptions = this.getOptions();
   dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().onSelectionChange(() => {
       this.options = this.getOptions();
     });

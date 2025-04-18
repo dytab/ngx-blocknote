@@ -1,14 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  computed,
-  effect,
-  ElementRef,
-  Renderer2,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, computed, effect, ElementRef, Renderer2, signal, viewChild, inject } from '@angular/core';
 import { TableHandlesState } from '@blocknote/core/types/src/extensions/TableHandles/TableHandlesPlugin';
 import { TableHandleOptions } from '../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
@@ -25,6 +16,9 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
   },
 })
 export class BnaTableHandlesController implements AfterViewInit {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private renderer2 = inject(Renderer2);
+
   rowHandleElement = viewChild<ElementRef>('rowHandle');
   columnHandleElement = viewChild<ElementRef>('colHandle');
   showColumnHandle = signal(true);
@@ -68,10 +62,7 @@ export class BnaTableHandlesController implements AfterViewInit {
     return columnHandleOptions;
   });
 
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    private renderer2: Renderer2,
-  ) {
+  constructor() {
     effect(async () => {
       const tableHandles = this.tableHandles();
       const rowElement = this.rowHandleElement();

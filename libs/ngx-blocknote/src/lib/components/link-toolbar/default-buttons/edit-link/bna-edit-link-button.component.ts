@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
   HlmMenuComponent,
@@ -23,9 +23,11 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   styleUrl: './bna-edit-link-button.component.css',
 })
 export class BnaEditLinkButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   initialValue: Partial<{ text: string; url: string }> = {};
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
       this.initialValue = { text: linkToolbar.text, url: linkToolbar.url };
     });

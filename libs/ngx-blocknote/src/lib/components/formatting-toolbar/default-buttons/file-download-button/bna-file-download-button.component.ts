@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -30,6 +30,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFileDownloadButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   fileBlock = computed(() => {
     return fileBlock(
       this.ngxBlockNoteService.editor(),
@@ -47,8 +49,6 @@ export class BnaFileDownloadButtonComponent {
     return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_download.tooltip[fileBlock.type];
   });
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   downloadFile() {
     const editor = this.ngxBlockNoteService.editor();

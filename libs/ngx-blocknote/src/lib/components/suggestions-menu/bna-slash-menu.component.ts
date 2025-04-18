@@ -1,13 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  computed,
-  effect,
-  HostListener,
-  OnDestroy,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, computed, effect, HostListener, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import {
   DefaultSuggestionItem,
   filterSuggestionItems,
@@ -24,6 +16,8 @@ import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.co
   styleUrl: './bna-slash-menu.component.css',
 })
 export class BnaSlashMenuComponent implements OnInit, OnDestroy {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   dict = computed(() => {
     return this.ngxBlockNoteService.editor().dictionary;
   });
@@ -79,7 +73,7 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
     this.selectedIndex = 0;
   }
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     effect(() => {
       this.filteredSlashMenuItems = filterSuggestionItems(
         this.getSlashMenuItems(),

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, signal, inject } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
@@ -50,6 +50,8 @@ type Alignments = 'left' | 'center' | 'right';
   },
 })
 export class BnaTextAlignButtonComponent {
+  ngxBlockNoteService = inject(NgxBlocknoteService);
+
   alignment = input.required<Alignments>();
   icon = computed(() => {
     return icons[this.alignment()];
@@ -79,7 +81,7 @@ export class BnaTextAlignButtonComponent {
     return editor.dictionary.formatting_toolbar[`align_${this.alignment()}`];
   });
 
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.updateAlignmentOnContentOrSelectionChange();
   }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -32,6 +32,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFileDeleteButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   fileBlock = computed(() => {
     return fileBlock(
       this.ngxBlockNoteService.editor(),
@@ -50,8 +52,6 @@ export class BnaFileDeleteButtonComponent {
     return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_delete.tooltip[fileBlock.type];
   });
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   deleteFile() {
     const editor = this.ngxBlockNoteService.editor();

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
@@ -11,8 +11,9 @@ import { NgxBlocknoteService } from '../../../../../services';
   styleUrl: './bna-add-button.component.css',
 })
 export class BnaAddButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   options = input.required<TableHandleOptions>();
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   addColumn(side: 'right' | 'left') {
     // const { editor, block, index } = this.getProperties('column');

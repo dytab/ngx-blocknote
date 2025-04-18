@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -47,6 +47,9 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFileCaptionButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private formBuilder = inject(NonNullableFormBuilder);
+
   fileBlock = computed(() => {
     return fileBlock(
       this.ngxBlockNoteService.editor(),
@@ -61,10 +64,7 @@ export class BnaFileCaptionButtonComponent {
   form = this.formBuilder.group({ caption: ['', Validators.required] });
   dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    private formBuilder: NonNullableFormBuilder,
-  ) {
+  constructor() {
     effect(() => {
       this.patchFormValues();
     });

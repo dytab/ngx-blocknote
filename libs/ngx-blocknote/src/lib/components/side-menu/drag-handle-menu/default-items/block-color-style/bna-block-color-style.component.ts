@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, inject } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
@@ -30,6 +30,8 @@ import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-pick
   styleUrl: './bna-block-color-style.component.css',
 })
 export class BnaBlockColorStyleComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   selectedBlocks = signal<Block[]>(
     useSelectedBlocks(this.ngxBlockNoteService.editor()),
   );
@@ -100,7 +102,7 @@ export class BnaBlockColorStyleComponent {
     return colorOptions;
   });
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().onSelectionChange(() => {
       //Update selected blocks, when selection changes, so that we change the color of all selected blocks
       const selected = useSelectedBlocks(this.ngxBlockNoteService.editor());

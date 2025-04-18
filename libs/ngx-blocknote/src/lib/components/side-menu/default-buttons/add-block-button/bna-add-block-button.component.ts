@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -14,7 +14,8 @@ import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service'
   providers: [provideIcons({ lucidePlus })],
 })
 export class BnaAddBlockButtonComponent {
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
+  ngxBlockNoteService = inject(NgxBlocknoteService);
+
 
   addNewBlock() {
     const editor = this.ngxBlockNoteService.editor();

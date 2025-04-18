@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImagePlus } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -32,6 +32,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFilePreviewButtonComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   fileBlock = computed(() => {
     return fileBlock(
       this.ngxBlockNoteService.editor(),
@@ -42,8 +44,6 @@ export class BnaFilePreviewButtonComponent {
     return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });
   dict = this.ngxBlockNoteService.editor().dictionary;
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   togglePreview() {
     const editor = this.ngxBlockNoteService.editor();

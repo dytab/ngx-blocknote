@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, signal, inject } from '@angular/core';
 import { BlockNoteEditor, Dictionary } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -64,6 +64,8 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   },
 })
 export class BnaBlockTypeSelectComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   _visibilityClass = computed(() => {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const firstBlock = selectedBlocks[0];
@@ -92,7 +94,7 @@ export class BnaBlockTypeSelectComponent {
     this.getCurrentBlockIndex(this.ngxBlockNoteService.editor()),
   );
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.updateCurrentBlockTypeOnChanges();
   }
 

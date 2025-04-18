@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
@@ -64,6 +64,8 @@ function checkLinkInSchema(
   },
 })
 export class BnaCreateLinkComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
@@ -80,7 +82,7 @@ export class BnaCreateLinkComponent {
   initialValue = this.getInitialValue();
   dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().onSelectionChange(() => {
       this.initialValue = this.getInitialValue();
     });

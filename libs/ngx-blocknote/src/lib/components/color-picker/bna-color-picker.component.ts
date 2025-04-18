@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -39,9 +39,9 @@ const colors = [
   ],
 })
 export class BnaColorPickerComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   colors = colors;
   dict = this.ngxBlockNoteService.editor().dictionary;
   options = input.required<ColorOptions>();
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 }
