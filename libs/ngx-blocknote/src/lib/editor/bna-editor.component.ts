@@ -136,6 +136,7 @@ export class BnaEditorComponent<
   formattingToolbarShown = signal(false);
   sideMenuShown = signal(false);
   linkToolbarShown = signal(false);
+  isDisabled = signal(false);
 
   private onChangeCallbackListeners: Array<() => void | undefined> = [];
 
@@ -176,6 +177,7 @@ export class BnaEditorComponent<
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
+    this.isDisabled.set(isDisabled);
     this.editor.isEditable = !isDisabled;
   }
 

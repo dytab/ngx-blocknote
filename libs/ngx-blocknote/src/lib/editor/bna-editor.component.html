@@ -5,7 +5,7 @@
     </div>
     @if (!formattingToolbar.hasChildNodes()) {
       <bna-formatting-toolbar-controller>
-        @if (formattingToolbarShown()) {
+        @if (formattingToolbarShown() && !isDisabled()) {
           <bna-formatting-toolbar>
             <bna-file-caption-button />
             <bna-file-replace-button />
