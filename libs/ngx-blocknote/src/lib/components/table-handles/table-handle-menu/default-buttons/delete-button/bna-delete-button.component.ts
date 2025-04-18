@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { TableContent } from '@blocknote/core';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
 import { HlmButtonDirective } from '../../../../../ui';
@@ -16,47 +15,47 @@ export class BnaDeleteButtonComponent {
   constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   deleteColumn() {
-    const { editor, block, index } = this.getProperties('column');
-    if (!block) {
-      return;
-    }
-    const content: TableContent<any> = {
-      ...block.content,
-      type: 'tableContent',
-      rows: block.content.rows.map((row) => ({
-        cells: row.cells.filter((_, cellIndex) => cellIndex !== index),
-      })),
-    };
-    editor.updateBlock(block, {
-      type: 'table',
-      //TODO: remove this
-      content: content as any,
-    });
-    editor.tableHandles?.unfreezeHandles();
-    editor.focus();
-    this.options().closeMenu();
-    this.options().showOtherHandle();
+    // const { editor, block, index } = this.getProperties('column');
+    // if (!block) {
+    //   return;
+    // }
+    // const content: TableContent<any> = {
+    //   ...block.content,
+    //   type: 'tableContent',
+    //   rows: block.content.rows.map((row) => ({
+    //     cells: row.cells.filter((_, cellIndex) => cellIndex !== index),
+    //   })),
+    // };
+    // editor.updateBlock(block, {
+    //   type: 'table',
+    //   //TODO: remove this
+    //   content: content as any,
+    // });
+    // editor.tableHandles?.unfreezeHandles();
+    // editor.focus();
+    // this.options().closeMenu();
+    // this.options().showOtherHandle();
   }
 
   deleteRow() {
-    const { editor, block, index } = this.getProperties('row');
-    if (!block) {
-      return;
-    }
-    const content: TableContent<any> = {
-      ...block.content,
-      type: 'tableContent',
-      rows: block.content.rows.filter((_, rowIndex) => rowIndex !== index),
-    };
-    editor.updateBlock(block, {
-      type: 'table',
-      //TODO: remove this any cast
-      content: content as any,
-    });
-    editor.tableHandles?.unfreezeHandles();
-    editor.focus();
-    this.options().closeMenu();
-    this.options().showOtherHandle();
+    // const { editor, block, index } = this.getProperties('row');
+    // if (!block) {
+    //   return;
+    // }
+    // const content: TableContent<any> = {
+    //   ...block.content,
+    //   type: 'tableContent',
+    //   rows: block.content.rows.filter((_, rowIndex) => rowIndex !== index),
+    // };
+    // editor.updateBlock(block, {
+    //   type: 'table',
+    //   //TODO: remove this any cast
+    //   content: content as any,
+    // });
+    // editor.tableHandles?.unfreezeHandles();
+    // editor.focus();
+    // this.options().closeMenu();
+    // this.options().showOtherHandle();
   }
 
   private getProperties(orientation: 'row' | 'column') {
