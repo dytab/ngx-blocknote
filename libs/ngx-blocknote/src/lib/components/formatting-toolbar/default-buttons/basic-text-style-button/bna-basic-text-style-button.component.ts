@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockSchema,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
   InlineContentSchema,
 } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -79,7 +82,13 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   },
 })
 export class BnaBasicTextStyleButtonComponent {
-  ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   basicTextStyle = input.required<BasicTextStyle>();
   icon = computed(() => {

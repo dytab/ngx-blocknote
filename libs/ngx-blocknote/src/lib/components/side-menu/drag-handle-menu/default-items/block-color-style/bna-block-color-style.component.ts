@@ -1,9 +1,11 @@
-
-import { Component, computed, signal, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
@@ -23,13 +25,19 @@ import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-pick
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
-    HlmMenuGroupComponent
-],
+    HlmMenuGroupComponent,
+  ],
   templateUrl: './bna-block-color-style.component.html',
   styleUrl: './bna-block-color-style.component.css',
 })
 export class BnaBlockColorStyleComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   selectedBlocks = signal<Block[]>(
     useSelectedBlocks(this.ngxBlockNoteService.editor()),

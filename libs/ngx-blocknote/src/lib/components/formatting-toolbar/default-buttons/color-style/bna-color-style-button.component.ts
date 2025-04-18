@@ -1,8 +1,10 @@
-
 import { Component, computed, inject } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockSchema,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
   InlineContentSchema,
 } from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -59,8 +61,8 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
     BnaColorPickerComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective
-],
+    BrnTooltipContentDirective,
+  ],
   templateUrl: './bna-color-style-button.component.html',
   styleUrl: './bna-color-style-button.component.css',
   host: {
@@ -68,7 +70,13 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
   },
 })
 export class BnaColorStyleButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();

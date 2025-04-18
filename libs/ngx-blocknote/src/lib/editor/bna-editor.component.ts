@@ -1,5 +1,15 @@
-
-import { Component, forwardRef, Input, OnChanges, OnInit, output, signal, SimpleChanges, input, inject } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  inject,
+  Input,
+  input,
+  OnChanges,
+  OnInit,
+  output,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Block,
@@ -87,8 +97,8 @@ type InitialContent<
     BnaFileCaptionButtonComponent,
     BnaFileReplaceButtonComponent,
     BnaFilePreviewButtonComponent,
-    BnaSlashMenuControllerComponent
-],
+    BnaSlashMenuControllerComponent,
+  ],
   providers: [
     NgxBlocknoteService,
     {
@@ -108,9 +118,12 @@ export class BnaEditorComponent<
   >
   implements OnChanges, ControlValueAccessor, OnInit
 {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<BSchema, ISchema, SSchema>,
+  );
 
-  readonly options = input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
+  readonly options =
+    input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
   readonly initialContent = input<InitialContent<BSchema, ISchema, SSchema>>();
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
@@ -217,7 +230,6 @@ export class BnaEditorComponent<
               ...defaultStyleSpecs,
             },
             // in this case the user did not give a blocknote schema so we want to use the default one
-            //TODO: remove casting
           }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
       uploadFile: options?.uploadFile,

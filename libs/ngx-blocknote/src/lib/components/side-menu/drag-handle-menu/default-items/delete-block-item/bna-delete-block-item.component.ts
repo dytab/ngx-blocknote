@@ -1,6 +1,10 @@
-
 import { Component, effect, inject } from '@angular/core';
-import { Block } from '@blocknote/core';
+import {
+  Block,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
@@ -15,7 +19,13 @@ import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
   },
 })
 export class BnaDeleteBlockItemComponent {
-  ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   dragBlock?: Block<any, any, any>;
 
@@ -44,7 +54,7 @@ export class BnaDeleteBlockItemComponent {
         undefined
     ) {
       //the current block where the side menu is opened is not in selection, then use this instead of selection
-      selectedBlocks = [sideMenuFocusedBlock as Block];
+      selectedBlocks = [sideMenuFocusedBlock];
     }
     editor.removeBlocks(selectedBlocks);
     editor.focus();

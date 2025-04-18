@@ -1,11 +1,15 @@
-
 import { Component, computed, effect, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { checkBlockIsFileBlock } from '@blocknote/core';
+import {
+  checkBlockIsFileBlock,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTextCursorInput } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -36,8 +40,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-file-caption-button.component.html',
   styleUrl: './bna-file-caption-button.component.css',
   providers: [provideIcons({ lucideTextCursorInput })],
@@ -46,7 +50,13 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFileCaptionButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
   private formBuilder = inject(NonNullableFormBuilder);
 
   fileBlock = computed(() => {
@@ -77,7 +87,8 @@ export class BnaFileCaptionButtonComponent {
       return;
     }
     if (checkBlockIsFileBlock(firstBlock, editor)) {
-      this.form.setValue({ caption: firstBlock.props.caption });
+      //TODO: remove cast
+      this.form.setValue({ caption: (firstBlock.props as any).caption });
     }
   }
 

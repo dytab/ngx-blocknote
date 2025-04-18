@@ -1,6 +1,18 @@
-
-import { Component, effect, ElementRef, Renderer2, signal, inject } from '@angular/core';
-import { Block, BlockNoteEditor } from '@blocknote/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  Renderer2,
+  signal,
+} from '@angular/core';
+import {
+  Block,
+  BlockNoteEditor,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Component({
@@ -14,7 +26,13 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
   }`,
 })
 export class BnaSideMenuControllerComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
   private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private renderer2 = inject(Renderer2);
 

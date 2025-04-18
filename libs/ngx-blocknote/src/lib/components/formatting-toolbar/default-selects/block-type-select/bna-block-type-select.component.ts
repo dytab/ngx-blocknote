@@ -1,6 +1,11 @@
-
-import { Component, computed, input, signal, inject } from '@angular/core';
-import { BlockNoteEditor, Dictionary } from '@blocknote/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import {
+  BlockNoteEditor,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+  Dictionary,
+} from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
@@ -15,6 +20,7 @@ import {
   lucideListOrdered,
   lucideType,
 } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
@@ -27,7 +33,6 @@ import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-it
 import { NgxBlocknoteService } from '../../../../services';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-block-type-selection-button',
@@ -39,8 +44,8 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     HlmMenuItemCheckComponent,
     HlmMenuItemCheckboxDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-block-type-select.component.html',
   styleUrl: './bna-block-type-select.component.css',
   providers: [
@@ -63,7 +68,13 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   },
 })
 export class BnaBlockTypeSelectComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   _visibilityClass = computed(() => {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();

@@ -1,5 +1,9 @@
-
 import { Component, computed, inject } from '@angular/core';
+import {
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImagePlus } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -21,8 +25,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-file-preview-button.component.html',
   styleUrl: './bna-file-preview-button.component.css',
   providers: [provideIcons({ lucideImagePlus })],
@@ -31,7 +35,13 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFilePreviewButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   fileBlock = computed(() => {
     return fileBlock(

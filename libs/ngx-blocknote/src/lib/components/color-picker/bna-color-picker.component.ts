@@ -1,5 +1,4 @@
-
-import { Component, input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -27,10 +26,9 @@ const colors = [
     BnaColorIconComponent,
     HlmButtonDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-color-picker.component.html',
-  styleUrl: './bna-color-picker.component.css',
   providers: [
     provideIcons({
       lucideCheck,

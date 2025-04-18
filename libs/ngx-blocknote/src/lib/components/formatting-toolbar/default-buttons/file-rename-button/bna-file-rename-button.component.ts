@@ -1,10 +1,14 @@
-
 import { Component, computed, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
@@ -30,8 +34,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     ReactiveFormsModule,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective
-],
+    BrnTooltipContentDirective,
+  ],
   templateUrl: './bna-file-rename-button.component.html',
   styleUrl: './bna-file-rename-button.component.css',
   host: {
@@ -39,7 +43,13 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   },
 })
 export class BnaFileRenameButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
   private formBuilder = inject(NonNullableFormBuilder);
 
   form = this.formBuilder.group({ name: ['', Validators.required] });
