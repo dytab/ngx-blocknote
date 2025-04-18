@@ -12,32 +12,6 @@
       "options": {
         "project": "libs/ngx-blocknote/ng-package.json"
       },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/ngx-blocknote/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/ngx-blocknote/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "build": {
-      "dependsOn": ["build-angular"],
-      "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/libs/ngx-blocknote"],
-      "configurations": {
-        "production": {
-          "commands": [
-            "tailwindcss -c libs/ngx-blocknote/tailwind.config.js -i ./libs/ngx-blocknote/src/lib/styles/styles.css -o ./dist/libs/ngx-blocknote/themes/styles.css -m"
-          ]
-        },
-        "development": {
-          "commands": [
-            "tailwindcss -c libs/ngx-blocknote/tailwind.config.js -i ./libs/ngx-blocknote/src/lib/styles/styles.css -o ./dist/libs/ngx-blocknote/themes/styles.css"
-          ]
-        }
-      },
       "defaultConfiguration": "production"
     },
     "test": {
