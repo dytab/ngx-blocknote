@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   selector: 'bna-side-menu',
   imports: [],
   templateUrl: './bna-side-menu.component.html',
-  styleUrl: './bna-side-menu.component.css',
   host: {
     class: 'text-gray-500',
   },

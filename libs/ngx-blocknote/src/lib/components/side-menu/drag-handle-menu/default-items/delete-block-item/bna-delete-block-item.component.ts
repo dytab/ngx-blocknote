@@ -13,7 +13,6 @@ import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
   selector: 'bna-delete-block-item',
   imports: [HlmButtonDirective],
   templateUrl: './bna-delete-block-item.component.html',
-  styleUrl: './bna-delete-block-item.component.css',
   host: {
     class: 'block',
   },

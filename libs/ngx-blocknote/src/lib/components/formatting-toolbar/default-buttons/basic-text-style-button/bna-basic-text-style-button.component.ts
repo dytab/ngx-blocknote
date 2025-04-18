@@ -67,7 +67,6 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
     HlmIconDirective,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
-  styleUrl: './bna-basic-text-style-button.component.css',
   providers: [
     provideIcons({
       lucideBold,

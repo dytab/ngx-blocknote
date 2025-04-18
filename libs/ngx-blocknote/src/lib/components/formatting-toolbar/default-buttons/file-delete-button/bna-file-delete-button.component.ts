@@ -1,5 +1,9 @@
-
 import { Component, computed, inject } from '@angular/core';
+import {
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -21,25 +25,29 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-file-delete-button.component.html',
-  styleUrl: './bna-file-delete-button.component.css',
   providers: [provideIcons({ lucideTrash })],
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaFileDeleteButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
-  fileBlock = computed(() => {
-    return fileBlock(
+  fileBlock = computed(() =>
+    fileBlock(
       this.ngxBlockNoteService.editor(),
       this.ngxBlockNoteService.selectedBlocks(),
-    );
-  });
-
+    ),
+  );
   _visibilityClass = computed(() => {
     return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });

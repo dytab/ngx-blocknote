@@ -6,7 +6,7 @@ import {
 
 export const showFileBlock = (
   editor: BlockNoteEditor,
-  fileBlock: Block | undefined,
+  fileBlock: Block<any, any, any> | undefined,
 ): 'hidden' | '' => {
   return !fileBlock ||
     checkBlockIsFileBlockWithPlaceholder(fileBlock, editor) ||

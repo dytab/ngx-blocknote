@@ -41,7 +41,6 @@ type Alignments = 'left' | 'center' | 'right';
     HlmIconDirective,
   ],
   templateUrl: './bna-text-align-button.component.html',
-  styleUrl: './bna-text-align-button.component.css',
   providers: [
     provideIcons({ lucideAlignLeft, lucideAlignCenter, lucideAlignRight }),
   ],

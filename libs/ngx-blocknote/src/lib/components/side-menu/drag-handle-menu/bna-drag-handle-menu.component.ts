@@ -1,4 +1,3 @@
-
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
@@ -23,10 +22,9 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     BnaDeleteBlockItemComponent,
     BnaBlockColorStyleComponent,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-drag-handle-menu.component.html',
-  styleUrl: './bna-drag-handle-menu.component.css',
   providers: [provideIcons({ lucideGripVertical })],
 })
 export class BnaDragHandleMenuComponent {

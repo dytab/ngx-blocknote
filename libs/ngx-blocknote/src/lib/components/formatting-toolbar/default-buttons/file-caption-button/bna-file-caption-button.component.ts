@@ -43,7 +43,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmIconDirective,
   ],
   templateUrl: './bna-file-caption-button.component.html',
-  styleUrl: './bna-file-caption-button.component.css',
   providers: [provideIcons({ lucideTextCursorInput })],
   host: {
     '[class]': '_visibilityClass()',
@@ -60,7 +59,11 @@ export class BnaFileCaptionButtonComponent {
   private formBuilder = inject(NonNullableFormBuilder);
 
   fileBlock = computed(() => {
-    return fileBlock(
+    return fileBlock<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >(
       this.ngxBlockNoteService.editor(),
       this.ngxBlockNoteService.selectedBlocks(),
     );

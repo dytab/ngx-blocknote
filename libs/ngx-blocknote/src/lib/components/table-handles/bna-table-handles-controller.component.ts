@@ -1,5 +1,14 @@
-
-import { AfterViewInit, Component, computed, effect, ElementRef, Renderer2, signal, viewChild, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  Renderer2,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { TableHandlesState } from '@blocknote/core/types/src/extensions/TableHandles/TableHandlesPlugin';
 import { TableHandleOptions } from '../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
@@ -10,7 +19,6 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
   imports: [BnaTableHandleComponent],
   selector: 'bna-table-handles-controller',
   templateUrl: 'bna-table-handle-controller.component.html',
-  styleUrl: 'bna-table-handle-controller.component.css',
   host: {
     class: 'z-40 fixed',
   },

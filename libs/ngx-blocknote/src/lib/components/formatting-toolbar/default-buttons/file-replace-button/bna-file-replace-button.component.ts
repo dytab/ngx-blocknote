@@ -1,6 +1,10 @@
-
 import { Component, computed, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import {
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImage } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -33,17 +37,22 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-file-replace-button.component.html',
-  styleUrl: './bna-file-replace-button.component.css',
   providers: [provideIcons({ lucideImage })],
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaFileReplaceButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
   fileBlock = computed(() => {
     const editor = this.ngxBlockNoteService.editor();

@@ -37,7 +37,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-rename-button.component.html',
-  styleUrl: './bna-file-rename-button.component.css',
   host: {
     '[class]': '_visibilityClass()',
   },

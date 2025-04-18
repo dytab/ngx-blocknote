@@ -28,7 +28,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmIconDirective,
   ],
   templateUrl: './bna-file-preview-button.component.html',
-  styleUrl: './bna-file-preview-button.component.css',
   providers: [provideIcons({ lucideImagePlus })],
   host: {
     '[class]': '_visibilityClass()',

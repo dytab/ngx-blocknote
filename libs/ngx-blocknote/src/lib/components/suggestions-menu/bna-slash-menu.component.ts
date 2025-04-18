@@ -1,5 +1,13 @@
-
-import { Component, computed, effect, HostListener, OnDestroy, OnInit, signal, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  HostListener,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   DefaultSuggestionItem,
   filterSuggestionItems,
@@ -13,7 +21,6 @@ import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.co
   selector: 'bna-slash-menu',
   imports: [BnaSlashMenuItemComponent],
   templateUrl: './bna-slash-menu.component.html',
-  styleUrl: './bna-slash-menu.component.css',
 })
 export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   private ngxBlockNoteService = inject(NgxBlocknoteService);

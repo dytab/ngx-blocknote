@@ -1,5 +1,4 @@
-
-import { Component, input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
@@ -8,7 +7,6 @@ import { NgxBlocknoteService } from '../../../../../services';
   selector: 'bna-add-button',
   imports: [HlmButtonDirective],
   templateUrl: './bna-add-button.component.html',
-  styleUrl: './bna-add-button.component.css',
 })
 export class BnaAddButtonComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);

@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, ElementRef, HostListener, input, signal, viewChild, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  HostListener,
+  inject,
+  input,
+  signal,
+  viewChild,
+} from '@angular/core';
 
 import { computePosition, flip } from '@floating-ui/dom';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -25,7 +35,6 @@ const icons = {
     NgIcon,
   ],
   templateUrl: './bna-table-handle.component.html',
-  styleUrl: './bna-table-handle.component.css',
   providers: [provideIcons({ lucideGripVertical, lucideGripHorizontal })],
 })
 export class BnaTableHandleComponent {

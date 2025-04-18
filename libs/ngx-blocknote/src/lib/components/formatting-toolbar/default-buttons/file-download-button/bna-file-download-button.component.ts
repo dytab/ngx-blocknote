@@ -1,5 +1,9 @@
-
 import { Component, computed, inject } from '@angular/core';
+import {
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -19,24 +23,33 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     NgIcon,
-    HlmIconDirective
-],
+    HlmIconDirective,
+  ],
   templateUrl: './bna-file-download-button.component.html',
-  styleUrl: './bna-file-download-button.component.css',
   providers: [provideIcons({ lucideDownload })],
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaFileDownloadButtonComponent {
-  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
 
-  fileBlock = computed(() => {
-    return fileBlock(
+  fileBlock = computed(() =>
+    fileBlock<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >(
       this.ngxBlockNoteService.editor(),
       this.ngxBlockNoteService.selectedBlocks(),
-    );
-  });
+    ),
+  );
   _visibilityClass = computed(() => {
     return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });

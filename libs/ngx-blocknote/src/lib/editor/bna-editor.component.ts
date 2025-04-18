@@ -108,7 +108,6 @@ type InitialContent<
     },
   ],
   selector: 'bna-editor',
-  styleUrl: './bna-editor.component.css',
   templateUrl: './bna-editor.component.html',
 })
 export class BnaEditorComponent<

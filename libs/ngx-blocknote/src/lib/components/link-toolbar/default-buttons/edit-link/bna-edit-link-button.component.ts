@@ -1,5 +1,5 @@
-
 import { Component, inject } from '@angular/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
   HlmMenuComponent,
@@ -7,7 +7,6 @@ import {
 } from '@spartan-ng/ui-menu-helm';
 import { NgxBlocknoteService } from '../../../../services';
 import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-edit-link-button',
@@ -16,10 +15,9 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     HlmButtonDirective,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
-    HlmMenuGroupComponent
-],
+    HlmMenuGroupComponent,
+  ],
   templateUrl: './bna-edit-link-button.component.html',
-  styleUrl: './bna-edit-link-button.component.css',
 })
 export class BnaEditLinkButtonComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);

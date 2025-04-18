@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUnlink } from '@ng-icons/lucide';
@@ -10,7 +9,6 @@ import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service'
   selector: 'bna-delete-link',
   imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-delete-link.component.html',
-  styleUrl: './bna-delete-link.component.css',
   providers: [
     provideIcons({
       lucideUnlink,
@@ -19,7 +17,6 @@ import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service'
 })
 export class BnaDeleteLinkComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
-
 
   unlink() {
     this.ngxBlockNoteService.editor().linkToolbar.deleteLink();

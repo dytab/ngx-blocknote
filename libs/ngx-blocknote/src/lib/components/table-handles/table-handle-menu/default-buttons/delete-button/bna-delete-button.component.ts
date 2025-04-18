@@ -1,5 +1,4 @@
-
-import { Component, input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
@@ -8,7 +7,6 @@ import { NgxBlocknoteService } from '../../../../../services';
   selector: 'bna-delete-button',
   imports: [HlmButtonDirective],
   templateUrl: './bna-delete-button.component.html',
-  styleUrl: './bna-delete-button.component.css',
 })
 export class BnaDeleteButtonComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);

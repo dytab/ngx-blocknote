@@ -1,5 +1,4 @@
-
-import { Component, OnChanges, input, inject } from '@angular/core';
+import { Component, inject, input, OnChanges } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,14 +13,8 @@ import { NgxBlocknoteService } from '../../../services';
 
 @Component({
   selector: 'bna-link-form',
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgIcon,
-    HlmIconDirective
-],
+  imports: [FormsModule, ReactiveFormsModule, NgIcon, HlmIconDirective],
   templateUrl: './bna-link-form.component.html',
-  styleUrl: './bna-link-form.component.css',
   providers: [
     provideIcons({
       lucideLink,
@@ -33,10 +26,12 @@ export class BnaLinkFormComponent implements OnChanges {
   private formBuilder = inject(FormBuilder);
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
-  readonly initialValue = input<Partial<{
-    url: string;
-    text: string;
-}>>({});
+  readonly initialValue = input<
+    Partial<{
+      url: string;
+      text: string;
+    }>
+  >({});
   form = this.formBuilder.group({
     url: new FormControl('', [Validators.required]),
     text: new FormControl('', [Validators.required]),

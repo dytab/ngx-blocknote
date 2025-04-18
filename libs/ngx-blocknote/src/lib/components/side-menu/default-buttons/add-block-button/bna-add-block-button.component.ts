@@ -10,7 +10,6 @@ import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service'
   selector: 'bna-add-block-btn',
   imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-add-block-button.component.html',
-  styleUrl: './bna-add-block-button.component.css',
   providers: [provideIcons({ lucidePlus })],
 })
 export class BnaAddBlockButtonComponent {

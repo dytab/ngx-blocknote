@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, output, inject } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideFileAudio,
@@ -57,7 +57,6 @@ const icons: Record<string, string> = {
     }),
   ],
   templateUrl: './bna-slash-menu-item.component.html',
-  styleUrl: './bna-slash-menu-item.component.css',
 })
 export class BnaSlashMenuItemComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);

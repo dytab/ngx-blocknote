@@ -47,7 +47,6 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
     HlmIconDirective,
   ],
   templateUrl: './bna-block-type-select.component.html',
-  styleUrl: './bna-block-type-select.component.css',
   providers: [
     provideIcons({
       lucideType,
