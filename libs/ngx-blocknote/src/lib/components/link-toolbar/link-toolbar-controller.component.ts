@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, ElementRef, OnDestroy, Renderer2, signal, inject } from '@angular/core';
 import { LinkToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
@@ -6,7 +6,7 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
-  imports: [CommonModule],
+  imports: [],
   selector: 'bna-link-toolbar-controller',
   host: {
     class: 'z-40 fixed',

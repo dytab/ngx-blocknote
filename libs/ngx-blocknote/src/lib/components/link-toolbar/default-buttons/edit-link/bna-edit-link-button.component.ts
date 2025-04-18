@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
 import {
@@ -12,13 +12,12 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 @Component({
   selector: 'bna-edit-link-button',
   imports: [
-    CommonModule,
     BnaLinkFormComponent,
     HlmButtonDirective,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
-    HlmMenuGroupComponent,
-  ],
+    HlmMenuGroupComponent
+],
   templateUrl: './bna-edit-link-button.component.html',
   styleUrl: './bna-edit-link-button.component.css',
 })

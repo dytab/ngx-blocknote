@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
@@ -8,7 +8,7 @@ import { NgxBlocknoteService } from '../../../../services';
 
 @Component({
   selector: 'bna-open-link',
-  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-open-link.component.html',
   styleUrl: './bna-open-link.component.css',
   providers: [

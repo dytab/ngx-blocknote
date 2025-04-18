@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, computed, effect, ElementRef, Renderer2, signal, viewChild, inject } from '@angular/core';
 import { TableHandlesState } from '@blocknote/core/types/src/extensions/TableHandles/TableHandlesPlugin';
 import { TableHandleOptions } from '../../interfaces/table-handle-options.type';
@@ -7,7 +7,7 @@ import { BnaTableHandleComponent } from './table-handle/bna-table-handle.compone
 import { useTableHandlesPositioning } from './use-table-handles-positioning.util';
 
 @Component({
-  imports: [CommonModule, BnaTableHandleComponent],
+  imports: [BnaTableHandleComponent],
   selector: 'bna-table-handles-controller',
   templateUrl: 'bna-table-handle-controller.component.html',
   styleUrl: 'bna-table-handle-controller.component.css',

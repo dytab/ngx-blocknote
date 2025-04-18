@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import {
   BlockNoteEditor,
@@ -51,7 +51,6 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
 @Component({
   selector: 'bna-color-style-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
@@ -60,8 +59,8 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
     BnaColorPickerComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-  ],
+    BrnTooltipContentDirective
+],
   templateUrl: './bna-color-style-button.component.html',
   styleUrl: './bna-color-style-button.component.css',
   host: {

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, effect, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
@@ -27,7 +27,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 @Component({
   selector: 'bna-file-caption-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
@@ -37,8 +36,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
     NgIcon,
-    HlmIconDirective,
-  ],
+    HlmIconDirective
+],
   templateUrl: './bna-file-caption-button.component.html',
   styleUrl: './bna-file-caption-button.component.css',
   providers: [provideIcons({ lucideTextCursorInput })],

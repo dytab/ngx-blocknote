@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnChanges, input, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -15,12 +15,11 @@ import { NgxBlocknoteService } from '../../../services';
 @Component({
   selector: 'bna-link-form',
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgIcon,
-    HlmIconDirective,
-  ],
+    HlmIconDirective
+],
   templateUrl: './bna-link-form.component.html',
   styleUrl: './bna-link-form.component.css',
   providers: [

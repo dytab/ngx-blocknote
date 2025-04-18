@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input, inject } from '@angular/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
@@ -6,7 +6,7 @@ import { NgxBlocknoteService } from '../../../../../services';
 
 @Component({
   selector: 'bna-delete-button',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButtonDirective],
   templateUrl: './bna-delete-button.component.html',
   styleUrl: './bna-delete-button.component.css',
 })

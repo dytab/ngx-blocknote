@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, signal, inject } from '@angular/core';
 import {
   Block,
@@ -19,13 +19,12 @@ import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-pick
 @Component({
   selector: 'bna-block-color-style',
   imports: [
-    CommonModule,
     BnaColorPickerComponent,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
-    HlmMenuGroupComponent,
-  ],
+    HlmMenuGroupComponent
+],
   templateUrl: './bna-block-color-style.component.html',
   styleUrl: './bna-block-color-style.component.css',
 })

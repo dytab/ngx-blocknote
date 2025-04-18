@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
@@ -8,7 +8,7 @@ import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service'
 
 @Component({
   selector: 'bna-add-block-btn',
-  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-add-block-button.component.html',
   styleUrl: './bna-add-block-button.component.css',
   providers: [provideIcons({ lucidePlus })],

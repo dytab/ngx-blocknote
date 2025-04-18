@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
@@ -23,7 +23,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 @Component({
   selector: 'bna-file-rename-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
@@ -31,8 +30,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     ReactiveFormsModule,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-  ],
+    BrnTooltipContentDirective
+],
   templateUrl: './bna-file-rename-button.component.html',
   styleUrl: './bna-file-rename-button.component.css',
   host: {

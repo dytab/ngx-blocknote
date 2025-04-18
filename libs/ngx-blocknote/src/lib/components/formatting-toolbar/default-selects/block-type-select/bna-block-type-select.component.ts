@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, input, signal, inject } from '@angular/core';
 import { BlockNoteEditor, Dictionary } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -32,7 +32,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 @Component({
   selector: 'bna-block-type-selection-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,
@@ -40,8 +39,8 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     HlmMenuItemCheckComponent,
     HlmMenuItemCheckboxDirective,
     NgIcon,
-    HlmIconDirective,
-  ],
+    HlmIconDirective
+],
   templateUrl: './bna-block-type-select.component.html',
   styleUrl: './bna-block-type-select.component.css',
   providers: [

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input, inject } from '@angular/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
@@ -6,7 +6,7 @@ import { NgxBlocknoteService } from '../../../../../services';
 
 @Component({
   selector: 'bna-add-button',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButtonDirective],
   templateUrl: './bna-add-button.component.html',
   styleUrl: './bna-add-button.component.css',
 })

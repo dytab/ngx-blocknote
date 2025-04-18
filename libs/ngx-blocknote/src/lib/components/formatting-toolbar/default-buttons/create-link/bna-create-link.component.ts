@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -40,7 +40,6 @@ function checkLinkInSchema(
 @Component({
   selector: 'bna-create-link',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
@@ -50,8 +49,8 @@ function checkLinkInSchema(
     BrnTooltipContentDirective,
     HlmTooltipComponent,
     NgIcon,
-    HlmIconDirective,
-  ],
+    HlmIconDirective
+],
   templateUrl: './bna-create-link.component.html',
   styleUrl: './bna-create-link.component.css',
   providers: [
