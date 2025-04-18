@@ -5,20 +5,20 @@ import {
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideAlignCenter,
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
 const icons = {
@@ -34,10 +34,11 @@ type Alignments = 'left' | 'center' | 'right';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-text-align-button.component.html',
   styleUrl: './bna-text-align-button.component.css',

@@ -5,15 +5,15 @@ import {
   BlockNoteEditor,
   FileBlockConfig,
 } from '@blocknote/core';
-import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import {
-  HlmButtonDirective,
-  HlmInputDirective,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '../../ui';
+} from '@spartan-ng/ui-tabs-helm';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Component({
   selector: 'bna-file-panel',

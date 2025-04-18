@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  HlmButtonDirective,
-  HlmCardDirective,
-  hlmH2,
-  hlmLead,
-} from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { hlmH2, hlmLead } from '@spartan-ng/ui-typography-helm';
 import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.example';
 
 @Component({

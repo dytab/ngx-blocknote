@@ -6,3 +6,4 @@ export * from './lib/editor';
 export * from './lib/interfaces';
 export * from './lib/services';
 export * from './lib/util';
+import './lib/styles/styles.css';

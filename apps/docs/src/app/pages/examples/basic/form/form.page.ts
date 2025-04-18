@@ -1,18 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  hlmP,
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
-} from '@dytab/ui';
-import { Highlight } from 'ngx-highlightjs';
+import { HlmTabsComponent } from '@spartan-ng/ui-tabs-helm';
+import { hlmP } from '@spartan-ng/ui-typography-helm';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
 import { SectionIntroComponent } from '../../../../shared/layout/section-intro.component';
-import { FormExample, basicSetupExampleCode } from './form.example';
+import { basicSetupExampleCode, FormExample } from './form.example';
 
 @Component({
   imports: [
@@ -20,13 +14,9 @@ import { FormExample, basicSetupExampleCode } from './form.example';
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmTabsContentDirective,
-    HlmTabsTriggerDirective,
     TabsComponent,
     CodeComponent,
     FormExample,
-    Highlight,
   ],
   template: `
     <bna-section-intro name="Form">

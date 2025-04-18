@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import { BlockNoteEditor, Dictionary } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
   lucideHeading1,
@@ -15,19 +15,19 @@ import {
   lucideListOrdered,
   lucideType,
 } from '@ng-icons/lucide';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
-import { NgxBlocknoteService } from '../../../../services';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmMenuItemCheckboxDirective,
   HlmMenuItemCheckComponent,
-} from '../../../../ui';
+} from '@spartan-ng/ui-menu-helm';
+import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
+import { NgxBlocknoteService } from '../../../../services';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-block-type-selection-button',
@@ -37,9 +37,10 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
     HlmMenuComponent,
     HlmMenuGroupComponent,
     BrnMenuTriggerDirective,
-    HlmIconComponent,
     HlmMenuItemCheckComponent,
     HlmMenuItemCheckboxDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-block-type-select.component.html',
   styleUrl: './bna-block-type-select.component.css',

@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { ColorOptions } from '../../interfaces/color-options.type';
-import { HlmButtonDirective, HlmIconComponent } from '../../ui';
-import { BnaColorIconComponent } from './color-icon/bna-color-icon.component';
 import { NgxBlocknoteService } from '../../services';
+import { BnaColorIconComponent } from './color-icon/bna-color-icon.component';
 
 const colors = [
   'default',
@@ -26,7 +27,8 @@ const colors = [
     CommonModule,
     BnaColorIconComponent,
     HlmButtonDirective,
-    HlmIconComponent,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-color-picker.component.html',
   styleUrl: './bna-color-picker.component.css',

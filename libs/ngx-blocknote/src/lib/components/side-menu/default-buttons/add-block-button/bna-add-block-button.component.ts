@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
-import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 @Component({
   selector: 'bna-add-block-btn',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-add-block-button.component.html',
   styleUrl: './bna-add-block-button.component.css',
   providers: [provideIcons({ lucidePlus })],

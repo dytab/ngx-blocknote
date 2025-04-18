@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective, hlmP, HlmTabsComponent } from '@dytab/ui';
+import { HlmTabsComponent } from '@spartan-ng/ui-tabs-helm';
+import { hlmP } from '@spartan-ng/ui-typography-helm';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -14,8 +14,6 @@ import {
 @Component({
   imports: [
     CommonModule,
-    BnaEditorComponent,
-    HlmButtonDirective,
     SectionIntroComponent,
     CodeComponent,
     DemoBoxComponent,

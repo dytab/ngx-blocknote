@@ -5,29 +5,29 @@ import {
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideBold,
-  lucideCode2,
+  lucideCode,
   lucideItalic,
   lucideStrikethrough,
   lucideUnderline,
 } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 
 const icons = {
   bold: 'lucideBold',
   italic: 'lucideItalic',
   underline: 'lucideUnderline',
   strike: 'lucideStrikethrough',
-  code: 'lucideCode2',
+  code: 'lucideCode',
 } as const;
 
 type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
@@ -57,10 +57,11 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
   styleUrl: './bna-basic-text-style-button.component.css',
@@ -70,7 +71,7 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
       lucideItalic,
       lucideUnderline,
       lucideStrikethrough,
-      lucideCode2,
+      lucideCode,
     }),
   ],
   host: {

@@ -1,13 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  hlmP,
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
-} from '@dytab/ui';
-import { Highlight } from 'ngx-highlightjs';
+import { HlmTabsComponent } from '@spartan-ng/ui-tabs-helm';
+import { hlmP } from '@spartan-ng/ui-typography-helm';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -23,13 +17,9 @@ import {
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmTabsContentDirective,
-    HlmTabsTriggerDirective,
     TabsComponent,
     CodeComponent,
     BasicSetupExample,
-    Highlight,
   ],
   template: `
     <bna-section-intro name="Basic Setup">

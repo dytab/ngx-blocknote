@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',

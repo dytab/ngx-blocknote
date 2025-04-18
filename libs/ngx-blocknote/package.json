@@ -43,5 +43,14 @@
     "url": "git+https://github.com/dytab/ngx-blocknote.git"
   },
   "bugs": "https://github.com/dytab/ngx-blocknote/issues",
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/dytab-ngx-blocknote.js"
+    }
+  }
 }

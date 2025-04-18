@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { HlmButtonDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { exampleGroupedLinks } from './shared/examples';
 
 @Component({

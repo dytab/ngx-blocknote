@@ -6,19 +6,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { checkBlockIsFileBlock } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTextCursorInput } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
+} from '@spartan-ng/ui-menu-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
@@ -27,7 +29,6 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
     HlmMenuGroupComponent,
@@ -35,6 +36,8 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-file-caption-button.component.html',
   styleUrl: './bna-file-caption-button.component.css',

@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
-import { HlmButtonDirective } from '@dytab/ui';
-import { BlueButtonComponent } from './blue-button.component';
 import {
   BnaBasicTextStyleButtonComponent,
   BnaEditorComponent,
   BnaFormattingToolbarComponent,
   BnaFormattingToolbarControllerComponent,
 } from '@dytab/ngx-blocknote';
+import { BlueButtonComponent } from './blue-button.component';
 
 @Component({
   selector: 'bna-formatting-toolbar-buttons-example',
@@ -18,7 +17,6 @@ import {
     BnaFormattingToolbarControllerComponent,
     BnaBasicTextStyleButtonComponent,
     BnaFormattingToolbarComponent,
-    HlmButtonDirective,
     BlueButtonComponent,
   ],
   template: `<bna-editor [initialContent]="initialContent">
@@ -79,7 +77,6 @@ export class FormattingToolbarButtonsExample {
 
 export const formattingToolbarButtonsExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BnaEditorComponent } from '@dytab/ui';
 
 @Component({
   standalone: true,

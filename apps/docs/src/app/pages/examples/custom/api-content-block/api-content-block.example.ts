@@ -13,29 +13,27 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaAddBlockButtonComponent,
-  BnaDeleteBlockItemComponent,
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerComponent,
   NgxBlocknoteService,
 } from '@dytab/ngx-blocknote';
-import {
-  HlmButtonDirective,
-  HlmCheckboxComponent,
-  HlmDialogComponent,
-  HlmDialogContentComponent,
-  HlmDialogFooterComponent,
-  HlmDialogHeaderComponent,
-  HlmInputDirective,
-} from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
 import {
   BrnDialogContentDirective,
   BrnDialogDescriptionDirective,
   BrnDialogTitleDirective,
   BrnDialogTriggerDirective,
 } from '@spartan-ng/ui-dialog-brain';
-import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
+import {
+  HlmDialogComponent,
+  HlmDialogContentComponent,
+  HlmDialogFooterComponent,
+  HlmDialogHeaderComponent,
+} from '@spartan-ng/ui-dialog-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { apiContentBlock } from './api-content-block';
 
 const schema = BlockNoteSchema.create({
@@ -54,11 +52,9 @@ const schema = BlockNoteSchema.create({
     BnaEditorComponent,
     HlmButtonDirective,
     BnaAddBlockButtonComponent,
-    BnaDeleteBlockItemComponent,
     BnaDragHandleMenuComponent,
     BnaSideMenuComponent,
     BnaSideMenuControllerComponent,
-    ResetBlockButtonComponent,
     HlmDialogComponent,
     HlmDialogContentComponent,
     BrnDialogContentDirective,

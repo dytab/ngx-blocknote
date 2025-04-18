@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Block, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-form-example',
@@ -90,7 +90,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Block, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
   selector: 'bna-form-example',

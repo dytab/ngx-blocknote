@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
-import { HlmButtonDirective } from '@dytab/ui';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-upload-file-example',
-  imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
+  imports: [CommonModule, BnaEditorComponent],
   template: `
     <bna-editor [initialContent]="initialContent" [options]="{ uploadFile }" />
   `,

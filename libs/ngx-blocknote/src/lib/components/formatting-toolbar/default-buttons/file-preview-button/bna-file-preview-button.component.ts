@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImagePlus } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
@@ -18,10 +18,11 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-file-preview-button.component.html',
   styleUrl: './bna-file-preview-button.component.css',

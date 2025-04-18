@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
-import { HlmButtonDirective } from '../../../../../ui';
 
 @Component({
   selector: 'bna-delete-button',

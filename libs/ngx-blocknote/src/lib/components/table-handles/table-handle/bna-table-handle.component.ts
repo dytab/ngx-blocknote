@@ -11,11 +11,12 @@ import {
 } from '@angular/core';
 
 import { computePosition, flip } from '@floating-ui/dom';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripHorizontal, lucideGripVertical } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { TableHandleOptions } from '../../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 import { BnaTableHandleMenuComponent } from '../table-handle-menu/bna-table-handle-menu.component';
 
 const icons = {
@@ -28,8 +29,9 @@ const icons = {
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     BnaTableHandleMenuComponent,
+    HlmIconDirective,
+    NgIcon,
   ],
   templateUrl: './bna-table-handle.component.html',
   styleUrl: './bna-table-handle.component.css',

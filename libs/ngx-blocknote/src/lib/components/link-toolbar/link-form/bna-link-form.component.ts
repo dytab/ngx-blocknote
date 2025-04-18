@@ -7,14 +7,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink, lucideType } from '@ng-icons/lucide';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmIconComponent } from '../../../ui';
 
 @Component({
   selector: 'bna-link-form',
-  imports: [CommonModule, HlmIconComponent, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIcon,
+    HlmIconDirective,
+  ],
   templateUrl: './bna-link-form.component.html',
   styleUrl: './bna-link-form.component.css',
   providers: [

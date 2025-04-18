@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
-import { HlmButtonDirective } from '../../../../../ui';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({

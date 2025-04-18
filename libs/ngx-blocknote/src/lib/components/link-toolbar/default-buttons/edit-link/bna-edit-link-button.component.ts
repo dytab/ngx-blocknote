@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { NgxBlocknoteService } from '../../../../services';
 import {
-  HlmButtonDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
-} from '../../../../ui';
+} from '@spartan-ng/ui-menu-helm';
+import { NgxBlocknoteService } from '../../../../services';
 import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-edit-link-button',

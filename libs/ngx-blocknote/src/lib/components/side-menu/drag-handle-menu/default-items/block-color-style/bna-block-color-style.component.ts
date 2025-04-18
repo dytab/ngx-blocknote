@@ -5,14 +5,14 @@ import {
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { ColorOptions } from '../../../../../interfaces/color-options.type';
-import { NgxBlocknoteService } from '../../../../../services';
 import {
-  HlmButtonDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
-} from '../../../../../ui';
+} from '@spartan-ng/ui-menu-helm';
+import { ColorOptions } from '../../../../../interfaces/color-options.type';
+import { NgxBlocknoteService } from '../../../../../services';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-picker.component';
 

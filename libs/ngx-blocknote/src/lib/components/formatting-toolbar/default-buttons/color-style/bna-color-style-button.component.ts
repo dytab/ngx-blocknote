@@ -5,17 +5,19 @@ import {
   BlockSchema,
   InlineContentSchema,
 } from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { ColorOptions } from '../../../../interfaces/color-options.type';
-import { NgxBlocknoteService } from '../../../../services';
 import {
-  HlmButtonDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
+} from '@spartan-ng/ui-menu-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { ColorOptions } from '../../../../interfaces/color-options.type';
+import { NgxBlocknoteService } from '../../../../services';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
 

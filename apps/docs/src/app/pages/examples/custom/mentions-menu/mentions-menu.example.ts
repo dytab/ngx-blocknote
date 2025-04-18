@@ -12,10 +12,9 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaEditorComponent,
-  BnaSlashMenuComponent,
   BnaSuggestionsMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { Mention } from './mentions';
 
 const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
@@ -52,7 +51,6 @@ const schema = BlockNoteSchema.create({
     BnaEditorComponent,
     HlmButtonDirective,
     BnaSuggestionsMenuControllerComponent,
-    BnaSlashMenuComponent,
   ],
   template: `<bna-editor
     [initialContent]="initialContent"
