@@ -10,7 +10,9 @@ export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/ngx-blocknote',
   plugins: [
-    angular({ tsconfig: 'tsconfig.prod.json' }),
+    angular({
+      workspaceRoot: path.resolve(__dirname, '../../'),
+    }),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     dts({
@@ -55,11 +57,12 @@ export default defineConfig(() => ({
     cssMinify: true,
   },
   test: {
-    watch: false,
+    reporters: ['default'],
     globals: true,
     environment: 'jsdom',
-    include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    reporters: ['default'],
+    setupFiles: ['src/test-setup.ts'],
+    include: ['**/*.spec.ts'],
+    cacheDir: `../../node_modules/.vite`,
     coverage: {
       reportsDirectory: '../../coverage/libs/ngx-blocknote',
       provider: 'v8' as const,
