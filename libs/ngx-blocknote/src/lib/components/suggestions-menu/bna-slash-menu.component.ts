@@ -1,9 +1,9 @@
 import {
   Component,
   computed,
-  effect,
   HostListener,
   inject,
+  linkedSignal,
   OnDestroy,
   OnInit,
   signal,
@@ -13,7 +13,6 @@ import {
   filterSuggestionItems,
   getDefaultSlashMenuItems,
 } from '@blocknote/core';
-import { SuggestionItem } from '../../interfaces/suggestion-item.type';
 import { NgxBlocknoteService } from '../../services';
 import { BnaSlashMenuItemComponent } from './default-item/bna-slash-menu-item.component';
 
@@ -28,6 +27,7 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   dict = computed(() => {
     return this.ngxBlockNoteService.editor().dictionary;
   });
+
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     const menuShown = this.isShown();
@@ -38,7 +38,7 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
       event.preventDefault();
       const newSelectedIndex = this.selectedIndex - 1;
       if (newSelectedIndex < 0) {
-        this.selectedIndex = this.filteredSlashMenuItems.length - 1;
+        this.selectedIndex = this.filteredSlashMenuItems().length - 1;
       } else {
         this.selectedIndex = newSelectedIndex;
       }
@@ -46,15 +46,11 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       const newSelectedIndex = this.selectedIndex + 1;
-      if (newSelectedIndex > this.filteredSlashMenuItems.length - 1) {
+      if (newSelectedIndex > this.filteredSlashMenuItems().length - 1) {
         this.selectedIndex = 0;
       } else {
         this.selectedIndex = newSelectedIndex;
       }
-      return;
-    } else if (event.key === 'Enter') {
-      event.preventDefault();
-      this.insertSelectedBlock();
       return;
     } else if (event.key === 'Escape') {
       event.preventDefault();
@@ -62,35 +58,28 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
       return;
     }
   }
+
+  cleanUpListeners: (() => any)[] = [];
+
   selectedIndex = 0;
   triggerCharacter = '/';
   query = signal('');
   isShown = signal(false);
-  filteredSlashMenuItems: SuggestionItem[] = [];
-  cleanUpFn = () => {
-    return;
-  };
+  filteredSlashMenuItems = linkedSignal(() =>
+    filterSuggestionItems(this.getSlashMenuItems(), this.query()),
+  );
 
   insertSelectedBlock() {
     const editor = this.ngxBlockNoteService.editor();
-    const item = this.filteredSlashMenuItems[this.selectedIndex];
+    const item = this.filteredSlashMenuItems()[this.selectedIndex];
     editor.suggestionMenus.closeMenu();
     editor.suggestionMenus.clearQuery();
     item.onItemClick();
     this.selectedIndex = 0;
   }
 
-  constructor() {
-    effect(() => {
-      this.filteredSlashMenuItems = filterSuggestionItems(
-        this.getSlashMenuItems(),
-        this.query(),
-      );
-    });
-  }
-
   ngOnInit() {
-    this.cleanUpFn = this.ngxBlockNoteService
+    const cleanUpFn = this.ngxBlockNoteService
       .editor()
       .suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
         if (this.query() !== state.query) {
@@ -102,10 +91,39 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
           this.isShown.set(state.show);
         }
       });
+    this.addCaptureEventForEnter();
+    this.cleanUpListeners.push(cleanUpFn);
   }
 
   ngOnDestroy() {
-    this.cleanUpFn();
+    this.cleanUpListeners.forEach((fn) => fn());
+  }
+
+  private addCaptureEventForEnter() {
+    const keyboardEventListener = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        this.handleEnter(event);
+      }
+    };
+    this.cleanUpListeners.push(() => {
+      document.removeEventListener('keydown', keyboardEventListener, {
+        capture: true,
+      });
+    });
+
+    document.addEventListener('keydown', keyboardEventListener, {
+      capture: true,
+    });
+  }
+
+  private handleEnter(event: KeyboardEvent) {
+    const isMenuShown = this.isShown();
+    if (!isMenuShown) {
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    this.insertSelectedBlock();
   }
 
   private getSlashMenuItems(): (Omit<DefaultSuggestionItem, 'key'> & {

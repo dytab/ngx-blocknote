@@ -1,5 +1,12 @@
-
-import { Component, effect, ElementRef, OnDestroy, Renderer2, signal, inject } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  OnDestroy,
+  Renderer2,
+  signal,
+} from '@angular/core';
 import {
   autoPlacement,
   autoUpdate,
