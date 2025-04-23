@@ -63,6 +63,7 @@ export default defineConfig(() => ({
     include: ['src/**/*.spec.ts'],
     pool: 'threads',
     poolOptions: {},
+    watch: false,
     cacheDir: `../../node_modules/.vite`,
     coverage: {
       reportsDirectory: '../../coverage/libs/ngx-blocknote',

@@ -161,10 +161,10 @@ export class BnaEditorComponent<
     this.ngxBlockNoteService.setEditor(this.editor);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onChange: any = () => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouch: any = () => {};
 
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {

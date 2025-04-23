@@ -26,7 +26,6 @@ export default [
       files: ['**/*.ts'],
       rules: {
         ...config.rules,
-        '@angular-eslint/no-input-rename': 'off',
         '@angular-eslint/directive-selector': [
           'error',
           {
@@ -43,6 +42,7 @@ export default [
             style: 'kebab-case',
           },
         ],
+        '@angular-eslint/no-input-rename': 'off',
       },
     })),
   ...compat
