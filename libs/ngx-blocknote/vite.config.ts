@@ -59,7 +59,7 @@ export default defineConfig(() => ({
   test: {
     reporters: ['default'],
     globals: true,
-    environment: 'jsdom',
+    environment: 'happy-dom',
     setupFiles: ['src/test-setup.ts'],
     include: ['**/*.spec.ts'],
     cacheDir: `../../node_modules/.vite`,
