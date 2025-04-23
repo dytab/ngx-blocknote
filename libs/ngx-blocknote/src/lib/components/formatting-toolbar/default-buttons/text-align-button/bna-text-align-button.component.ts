@@ -8,6 +8,7 @@ import {
 import { provideIcons } from '@ng-icons/core';
 import {
   lucideAlignCenter,
+  lucideAlignJustify,
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
@@ -25,9 +26,10 @@ const icons = {
   left: 'lucideAlignLeft',
   center: 'lucideAlignCenter',
   right: 'lucideAlignRight',
+  justify: 'lucideAlignJustify',
 } as const;
 
-type Alignments = 'left' | 'center' | 'right';
+type Alignments = 'left' | 'center' | 'right' | 'justify';
 
 @Component({
   selector: 'bna-text-align-button',
@@ -42,7 +44,12 @@ type Alignments = 'left' | 'center' | 'right';
   templateUrl: './bna-text-align-button.component.html',
   styleUrl: './bna-text-align-button.component.css',
   providers: [
-    provideIcons({ lucideAlignLeft, lucideAlignCenter, lucideAlignRight }),
+    provideIcons({
+      lucideAlignLeft,
+      lucideAlignCenter,
+      lucideAlignRight,
+      lucideAlignJustify,
+    }),
   ],
   host: {
     '[class]': '_visibilityClass()',
