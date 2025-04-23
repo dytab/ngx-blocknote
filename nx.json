@@ -152,7 +152,6 @@
   "release": {
     "projects": [
       "ngx-blocknote",
-      "blocknote-extensions"
     ],
     "version": {
       "preVersionCommand": "npx nx run-many -t build",
