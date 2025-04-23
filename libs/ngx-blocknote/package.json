@@ -11,8 +11,6 @@
     "@ng-icons/core": "^29.10.0",
     "@ng-icons/lucide": ">=29.0.0",
     "@spartan-ng/ui-core": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-menu-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-tooltip-brain": ">=0.0.1-alpha.317 <0.0.2",
     "class-variance-authority": ">=0.6.0 <1.0.0",
     "clsx": "^2.1.1",
     "@spartan-ng/ui-button-helm": "file:../ui/ui-button-helm",
@@ -23,7 +21,7 @@
     "@spartan-ng/ui-menu-helm": "file:../ui/ui-menu-helm",
     "@nx/vite": "20.6.3",
     "vite-plugin-dts": "4.5.3",
-    "@spartan-ng/brain": "0.0.1-alpha.428"
+    "@spartan-ng/brain": "^0.0.1-alpha.445"
   },
   "devDependencies": {
     "@nx/angular": "^20.0.0",

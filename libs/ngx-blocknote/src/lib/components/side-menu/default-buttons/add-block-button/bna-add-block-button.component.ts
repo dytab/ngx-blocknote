@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
@@ -14,7 +13,6 @@ import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service'
 })
 export class BnaAddBlockButtonComponent {
   ngxBlockNoteService = inject(NgxBlocknoteService);
-
 
   addNewBlock() {
     const editor = this.ngxBlockNoteService.editor();

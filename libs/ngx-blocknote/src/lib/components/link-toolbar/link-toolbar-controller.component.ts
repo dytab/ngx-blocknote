@@ -1,5 +1,12 @@
-
-import { Component, effect, ElementRef, OnDestroy, Renderer2, signal, inject } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  OnDestroy,
+  Renderer2,
+  signal,
+  inject,
+} from '@angular/core';
 import { LinkToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';

@@ -7,7 +7,12 @@
   [brnMenuTriggerFor]="menu"
 >
   @if (currentBlockType()?.icon) {
-    <ng-icon hlm size="sm" [name]="$any(currentBlockType()?.icon)" class="me-2" />
+    <ng-icon
+      hlm
+      size="sm"
+      [name]="$any(currentBlockType()?.icon)"
+      class="me-2"
+    />
   }
   <span>
     {{ currentBlockType()?.name }}
