@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Block, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
@@ -35,6 +35,8 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   `,
 })
 export class FormExample {
+  private formBuilder = inject(FormBuilder);
+
   editorContent!: Block[];
   form = this.formBuilder.group({
     editor: new FormControl<Block[] | PartialBlock[]>([
@@ -53,8 +55,6 @@ export class FormExample {
       },
     ]),
   });
-
-  constructor(private formBuilder: FormBuilder) {}
 
   patchFormValue() {
     this.form.patchValue({
