@@ -1,0 +1,144 @@
+{
+  "projectContext": {
+    "name": "ngx-blocknote",
+    "type": "Angular",
+    "description": "Angular wrapper for rich text editor",
+    "technologies": {
+      "framework": "Angular 17+",
+      "components": "standalone",
+      "state": "signals",
+      "styling": "Tailwind CSS",
+      "testing": "Vitest"
+    },
+    "patterns": {
+      "componentPrefix": "bna-",
+      "moduleStructure": ["components", "services", "interfaces", "util"]
+    }
+  },
+  "codeStyle": {
+    "cleanCode": {
+      "functions": {
+        "size": "small, focused on single task",
+        "parameters": {
+          "max": 3,
+          "ideal": 2,
+          "refactoring": {
+            "4+": "convert to object parameter",
+            "3": "consider object parameter if parameters are related"
+          }
+        },
+        "parameterRules": {
+          "flags": "avoid boolean flags, split into separate functions",
+          "optionals": "group optional parameters into configuration object",
+          "order": "required parameters first, then optional"
+        },
+        "abstraction": "single level within function",
+        "naming": "verb-noun pairs, clear intent"
+      },
+      "classes": {
+        "responsibility": "single responsibility principle (SRP)",
+        "size": "small and focused",
+        "cohesion": "high, methods use class properties",
+        "coupling": "low, minimize dependencies"
+      },
+      "naming": {
+        "variables": "meaningful and pronounceable",
+        "classes": "nouns, descriptive of responsibility",
+        "methods": "verbs, descriptive of action",
+        "constants": "uppercase with underscores"
+      },
+      "structure": {
+        "methods": "short, 20 lines or less preferred",
+        "conditionals": "prefer positive conditions",
+        "nesting": "maximum 2 levels preferred",
+        "comments": "explain why, not what"
+      },
+      "methods": {
+        "parameters": {
+          "constructors": "prefer 0-2 parameters, use builder or factory for more",
+          "serviceInjection": "no limit but consider splitting service responsibilities"
+        }
+      }
+    },
+    "components": {
+      "type": "standalone",
+      "stateManagement": "signals",
+      "pattern": "smart/presentational",
+      "principles": {
+        "dry": "don't repeat yourself",
+        "kiss": "keep it simple",
+        "yagni": "you aren't gonna need it"
+      }
+    },
+    "typescript": {
+      "strict": true,
+      "imports": {
+        "order": ["@angular/*", "third-party", "local"]
+      }
+    }
+  },
+  "architecture": {
+    "components": {
+      "patterns": ["container/presentational"],
+      "dependencies": "constructor injection",
+      "state": "reactive with signals",
+      "changeDetection": "OnPush preferred",
+      "cleanup": "ngOnDestroy required"
+    },
+    "solid": {
+      "singleResponsibility": "each class has one reason to change",
+      "openClosed": "open for extension, closed for modification",
+      "liskovSubstitution": "derived classes must be substitutable",
+      "interfaceSegregation": "clients shouldn't depend on unused methods",
+      "dependencyInversion": "depend on abstractions, not concretions"
+    },
+    "lifecycle": {
+      "required": ["ngOnInit", "ngOnDestroy", "ngOnChanges"],
+      "documentation": "required for complex implementations"
+    }
+  },
+  "testing": {
+    "framework": "Vitest",
+    "requirements": {
+      "components": {
+        "module": "NgxBlockNoteTestingModule",
+        "coverage": "required",
+        "scenarios": ["success", "error"]
+      },
+      "services": {
+        "isolation": "required",
+        "mocking": "required for external dependencies"
+      }
+    }
+  },
+  "documentation": {
+    "requirements": {
+      "public": {
+        "methods": "clear naming and descriptive comments",
+        "classes": "clear purpose description in comments",
+        "interfaces": "clear type documentation"
+      },
+      "private": {
+        "complexLogic": "inline comments required"
+      }
+    },
+    "changelog": {
+      "entries": {
+        "features": "required",
+        "fixes": "required",
+        "breaking": "required with migration path"
+      }
+    }
+  },
+  "errorHandling": {
+    "requirements": {
+      "types": "custom error types preferred",
+      "validation": {
+        "inputs": "required",
+        "edgeCases": "required"
+      },
+      "messages": "descriptive and actionable",
+      "cleanup": "required in error scenarios"
+    }
+  }
+}
