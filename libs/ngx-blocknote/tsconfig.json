@@ -12,7 +12,6 @@
     "noPropertyAccessFromIndexSignature": false,
     "allowSyntheticDefaultImports": true,
     "types": ["node"]
-
   },
   "files": [],
   "include": [],

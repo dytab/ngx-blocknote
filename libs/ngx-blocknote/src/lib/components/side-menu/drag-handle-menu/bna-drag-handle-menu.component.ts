@@ -3,7 +3,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
   HlmMenuComponent,
   HlmMenuGroupComponent,

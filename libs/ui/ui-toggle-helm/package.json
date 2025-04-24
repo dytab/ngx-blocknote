@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/core": "^19.2.0",
-    "@spartan-ng/brain": "0.0.1-alpha.428",
+    "@spartan-ng/brain": "^0.0.1-alpha.445",
     "clsx": "^2.1.1",
     "class-variance-authority": "^0.7.0"
   },

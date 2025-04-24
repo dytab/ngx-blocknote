@@ -5,14 +5,14 @@
   "prefix": "lib",
   "projectType": "library",
   "release": {
-  "version": {
-    "generatorOptions": {
-      "packageRoot": "dist/{projectRoot}",
-      "currentVersionResolver": "git-tag",
-      "fallbackCurrentVersionResolver": "disk"
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk"
+      }
     }
-  }
-},
+  },
   "tags": [],
   "targets": {
     "nx-release-publish": {

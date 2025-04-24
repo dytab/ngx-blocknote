@@ -57,11 +57,13 @@ export default defineConfig(() => ({
     cssMinify: true,
   },
   test: {
-    reporters: ['default'],
     globals: true,
-    environment: 'jsdom',
+    environment: 'happy-dom',
     setupFiles: ['src/test-setup.ts'],
-    include: ['**/*.spec.ts'],
+    include: ['src/**/*.spec.ts'],
+    pool: 'threads',
+    poolOptions: {},
+    watch: false,
     cacheDir: `../../node_modules/.vite`,
     coverage: {
       reportsDirectory: '../../coverage/libs/ngx-blocknote',

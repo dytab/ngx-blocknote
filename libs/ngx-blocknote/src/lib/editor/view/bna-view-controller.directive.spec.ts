@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxBlockNoteTestingModule } from '../../services';
-import { BnaViewControllerDirective } from './bna-view-controller.directive';
 
 @Component({
   standalone: true,
-  template: ` <bna-view-controller />`,
-  imports: [BnaViewControllerDirective],
+  template: `<div bna-view-controller></div>`,
+  imports: [],
 })
 class TestHostComponent {}
 
 describe('BnaViewControllerDirective', () => {
-  let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let bnaViewController: HTMLElement;
 
@@ -21,7 +19,6 @@ describe('BnaViewControllerDirective', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
     bnaViewController = fixture.nativeElement.querySelector(
       'bna-view-controller',
@@ -29,6 +26,6 @@ describe('BnaViewControllerDirective', () => {
   });
 
   it('should create an instance', () => {
-    expect(bnaViewController).toBeDefined(); // myDirective is assumed to be a property set by the directive
+    expect(bnaViewController).toBeDefined();
   });
 });

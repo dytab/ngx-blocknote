@@ -1,6 +1,6 @@
 @if (options().orientation === 'column') {
   <button
-    (click)="add({orientation:'column',side:'right'})"
+    (click)="add({ orientation: 'column', side: 'right' })"
     type="button"
     hlmBtn
     variant="ghost"
@@ -10,7 +10,7 @@
     Add Column Right
   </button>
   <button
-    (click)="add({orientation:'column',side:'left'})"
+    (click)="add({ orientation: 'column', side: 'left' })"
     type="button"
     hlmBtn
     variant="ghost"
@@ -21,7 +21,7 @@
   </button>
 } @else if (options().orientation === 'row') {
   <button
-    (click)="add({orientation:'row',side:'above'})"
+    (click)="add({ orientation: 'row', side: 'above' })"
     type="button"
     hlmBtn
     variant="ghost"
@@ -31,7 +31,7 @@
     Add Row above
   </button>
   <button
-    (click)="add({orientation:'row',side:'below'})"
+    (click)="add({ orientation: 'row', side: 'below' })"
     type="button"
     hlmBtn
     variant="ghost"

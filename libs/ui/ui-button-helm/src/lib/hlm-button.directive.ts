@@ -1,6 +1,6 @@
-import { computed, Directive, input, signal } from '@angular/core';
+import { Directive, computed, input, signal } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { type VariantProps, cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 import { injectBrnButtonConfig } from './hlm-button.token';
 

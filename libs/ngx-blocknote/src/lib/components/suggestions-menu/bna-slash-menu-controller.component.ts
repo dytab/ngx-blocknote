@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { BnaSuggestionsMenuControllerComponent } from './bna-suggestions-menu-controller.component';
 
@@ -6,6 +5,7 @@ import { BnaSuggestionsMenuControllerComponent } from './bna-suggestions-menu-co
   imports: [BnaSuggestionsMenuControllerComponent],
   selector: 'bna-slash-menu-controller',
   template: `<bna-suggestions-menu-controller triggerCharacter="/"
-    ><ng-content /></bna-suggestions-menu-controller>`,
+    ><ng-content
+  /></bna-suggestions-menu-controller>`,
 })
 export class BnaSlashMenuControllerComponent {}
