@@ -1,3 +1,13 @@
+## 1.7.0 (2025-04-24)
+
+### 🚀 Features
+
+- **ngx-blocknote:** add justify text alignment ([42b2530](https://github.com/dytab/ngx-blocknote/commit/42b2530))
+
+### ❤️ Thank You
+
+- Markus Falk
+
 ## 1.6.0 (2025-04-02)
 
 ### 🚀 Features
