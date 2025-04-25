@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import {
-  Block,
-  checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
+  TableContent,
+  type Block,
 } from '@blocknote/core';
 import { provideIcons } from '@ng-icons/core';
 import {
@@ -31,6 +31,28 @@ const icons = {
 
 type Alignments = 'left' | 'center' | 'right' | 'justify';
 
+// Use types from the default specs but keep them simple
+type DefaultBlock = Block<any, any, any>;
+
+interface TableCellBlock extends DefaultBlock {
+  type: 'tableCell';
+  props: {
+    textAlignment?: Alignments;
+    [key: string]: unknown;
+  };
+}
+
+function isTableCellBlock(
+  block: DefaultBlock | undefined,
+): block is TableCellBlock {
+  return block?.type === 'tableCell';
+}
+
+function hasTextAlignmentProp(block: DefaultBlock | undefined): boolean {
+  if (!block?.props) return false;
+  return 'textAlignment' in block.props;
+}
+
 @Component({
   selector: 'bna-text-align-button',
   imports: [
@@ -57,27 +79,26 @@ type Alignments = 'left' | 'center' | 'right' | 'justify';
 })
 export class BnaTextAlignButtonComponent {
   alignment = input.required<Alignments>();
+
   icon = computed(() => {
     return icons[this.alignment()];
   });
+
   _visibilityClass = computed(() => {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
-    // Also don't show when none of the selected blocks have text content
-    return selectedBlocks.find((block) => 'textAlignment' in block.props)
+    return selectedBlocks.find(
+      (block) => block.content !== undefined || isTableCellBlock(block),
+    )
       ? ''
       : 'hidden';
   });
-  alignmentBlock = signal<Block<any, any, any> | undefined>(undefined);
+
+  alignmentBlock = signal<DefaultBlock | undefined>(undefined);
+
   hasAlignment = computed(() => {
-    const editor = this.ngxBlockNoteService.editor();
     const block = this.alignmentBlock();
-    if (!block) {
-      return false;
-    }
-    if (checkBlockHasDefaultProp('textAlignment', block, editor)) {
-      return block.props.textAlignment === this.alignment();
-    }
-    return false;
+    if (!block?.props) return false;
+    return block.props['textAlignment'] === this.alignment();
   });
 
   textAlignDict = computed(() => {
@@ -101,7 +122,30 @@ export class BnaTextAlignButtonComponent {
     const editor = this.ngxBlockNoteService.editor();
     editor.focus();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
+    const selectedText = editor.getSelectedText();
+
     for (const block of selectedBlocks) {
+      if (block.type === 'table') {
+        if ((block.content as TableContent<any, any>)?.rows) {
+          for (const row of (block.content as TableContent<any, any>).rows) {
+            for (const cell of row.cells) {
+              if (
+                Array.isArray(cell) &&
+                cell.some(
+                  (content) =>
+                    (content as { text: string }).text === selectedText,
+                )
+              ) {
+                console.log('Found cell:', cell);
+                (cell as any[])[0].styles = {
+                  ...(cell as any[])[0].styles,
+                  textAlignment,
+                };
+              }
+            }
+          }
+        }
+      }
       if (checkBlockTypeHasDefaultProp('textAlignment', block.type, editor)) {
         editor.updateBlock(block, {
           props: { textAlignment: textAlignment },
