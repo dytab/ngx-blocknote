@@ -1,73 +1,35 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import js from '@eslint/js';
-import baseConfig from '../../../eslint.base.config.mjs';
-
-const compat = new FlatCompat({
-  baseDirectory: dirname(fileURLToPath(import.meta.url)),
-  recommendedConfig: js.configs.recommended,
-});
+import nx from '@nx/eslint-plugin';
+import baseConfig from '../../../eslint.config.mjs';
 
 export default [
-  {
-    ignores: ['**/dist'],
-  },
   ...baseConfig,
-  ...compat
-    .config({
-      extends: [
-        'plugin:@nx/angular',
-        'plugin:@angular-eslint/template/process-inline-templates',
-      ],
-    })
-    .map((config) => ({
-      ...config,
-      files: ['**/*.ts'],
-      rules: {
-        ...config.rules,
-        '@angular-eslint/directive-selector': [
-          'error',
-          {
-            type: 'attribute',
-            prefix: 'hlm',
-            style: 'camelCase',
-          },
-        ],
-        '@angular-eslint/component-selector': [
-          'error',
-          {
-            type: 'element',
-            prefix: 'hlm',
-            style: 'kebab-case',
-          },
-        ],
-        '@angular-eslint/no-input-rename': 'off',
-      },
-    })),
-  ...compat
-    .config({
-      extends: ['plugin:@nx/angular-template'],
-    })
-    .map((config) => ({
-      ...config,
-      files: ['**/*.html'],
-      rules: {
-        ...config.rules,
-      },
-    })),
+  ...nx.configs['flat/angular'],
+  ...nx.configs['flat/angular-template'],
   {
-    files: ['**/*.json'],
+    files: ['**/*.ts'],
     rules: {
-      '@nx/dependency-checks': [
+      '@angular-eslint/directive-selector': [
         'error',
         {
-          ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'],
+          type: 'attribute',
+          prefix: 'hlm',
+          style: 'camelCase',
         },
       ],
+      '@angular-eslint/component-selector': [
+        'error',
+        {
+          type: 'element',
+          prefix: 'hlm',
+          style: 'kebab-case',
+        },
+      ],
+      '@angular-eslint/no-input-rename': 'off',
     },
-    languageOptions: {
-      parser: await import('jsonc-eslint-parser'),
-    },
+  },
+  {
+    files: ['**/*.html'],
+    // Override or add rules here
+    rules: {},
   },
 ];

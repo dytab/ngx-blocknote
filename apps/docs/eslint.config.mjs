@@ -1,30 +1,10 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import js from '@eslint/js';
-import baseConfig from '../../eslint.base.config.mjs';
-
-const compat = new FlatCompat({
-  baseDirectory: dirname(fileURLToPath(import.meta.url)),
-  recommendedConfig: js.configs.recommended,
-});
+import nx from '@nx/eslint-plugin';
+import baseConfig from '../../eslint.config.mjs';
 
 export default [
-  {
-    ignores: ['**/dist'],
-  },
   ...baseConfig,
-  ...compat
-    .config({
-      extends: ['plugin:@nx/angular-template'],
-    })
-    .map((config) => ({
-      ...config,
-      files: ['**/*.html'],
-      rules: {
-        ...config.rules,
-      },
-    })),
+  ...nx.configs['flat/angular'],
+  ...nx.configs['flat/angular-template'],
   {
     files: ['**/*.ts'],
     rules: {
@@ -32,6 +12,8 @@ export default [
     },
   },
   {
-    ignores: ['**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*'],
+    files: ['**/*.html'],
+    // Override or add rules here
+    rules: {},
   },
 ];
