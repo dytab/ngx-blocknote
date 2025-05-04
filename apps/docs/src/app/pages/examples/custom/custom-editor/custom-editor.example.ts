@@ -36,7 +36,7 @@ const schema = BlockNoteSchema.create({
       [initialContent]="initialContent"
       [editor]="editor"
       [options]="options"
-      (onEditorReady)="onEditorReady($event)"
+      (editorReady)="onEditorReady($event)"
     />
   `,
 })

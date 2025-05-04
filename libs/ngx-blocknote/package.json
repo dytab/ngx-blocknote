@@ -7,21 +7,26 @@
   },
   "type": "module",
   "dependencies": {
-    "@floating-ui/dom": "^1.6.8",
-    "@ng-icons/core": "^29.10.0",
-    "@ng-icons/lucide": ">=29.0.0",
-    "@spartan-ng/ui-core": ">=0.0.1-alpha.317 <0.0.2",
-    "class-variance-authority": ">=0.6.0 <1.0.0",
-    "clsx": "^2.1.1",
     "@spartan-ng/ui-button-helm": "file:../ui/ui-button-helm",
     "@spartan-ng/ui-icon-helm": "file:../ui/ui-icon-helm",
     "@spartan-ng/ui-input-helm": "file:../ui/ui-input-helm",
     "@spartan-ng/ui-tabs-helm": "file:../ui/ui-tabs-helm",
     "@spartan-ng/ui-tooltip-helm": "file:../ui/ui-tooltip-helm",
     "@spartan-ng/ui-menu-helm": "file:../ui/ui-menu-helm",
-    "@nx/vite": "20.6.3",
+    "@angular/core": "~19.2.0",
+    "@ng-icons/core": "^29.10.0",
+    "@ng-icons/lucide": ">=29.0.0",
+    "@floating-ui/dom": "^1.6.8",
+    "@angular/forms": "~19.2.0",
+    "@blocknote/core": "^0.29.1",
+    "@angular/common": "~19.2.0",
+    "@spartan-ng/brain": "^0.0.1-alpha.445",
+    "@spartan-ng/ui-core": "^0.0.1-alpha.372",
+    "@nx/vite": "20.8.0",
     "vite-plugin-dts": "4.5.3",
-    "@spartan-ng/brain": "^0.0.1-alpha.445"
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "@angular/cdk": "~19.2.0"
   },
   "devDependencies": {
     "@nx/angular": "^20.0.0",
@@ -29,13 +34,7 @@
     "vite": "6.2.3",
     "@analogjs/vite-plugin-angular": "^1.7.3"
   },
-  "peerDependencies": {
-    "@angular/cdk": "^19.0.2",
-    "@angular/common": "^19.0.3",
-    "@angular/core": "^19.0.3",
-    "@angular/forms": "^19.0.3",
-    "@blocknote/core": "^0.29.1"
-  },
+  "peerDependencies": {},
   "peerDependenciesMeta": {
     "@angular/platform-browser": {
       "optional": true

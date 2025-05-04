@@ -72,7 +72,7 @@ const schema = BlockNoteSchema.create({
     <bna-editor
       [initialContent]="initialContent"
       [options]="options"
-      (onEditorReady)="onEditorReady($event)"
+      (editorReady)="onEditorReady($event)"
     >
       <bna-side-menu-controller>
         <bna-side-menu>
@@ -108,12 +108,12 @@ const schema = BlockNoteSchema.create({
                         class="mr-2"
                       />
                     </label>
-                    <label class="flex items-center" hlmLabel>
-                      <hlm-checkbox formControlName="age" class="mr-2" />
+                    <label class="flex items-center" hlmLabel for="age">
+                      <hlm-checkbox formControlName="age" class="mr-2" id="age"/>
                       Age
                     </label>
-                    <label class="flex items-center" hlmLabel>
-                      <hlm-checkbox formControlName="address" class="mr-2" />
+                    <label class="flex items-center" hlmLabel for="address">
+                      <hlm-checkbox formControlName="address" class="mr-2" id="address"/>
                       Address
                     </label>
                   </hlm-dialog-header>

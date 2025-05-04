@@ -24,11 +24,14 @@ export default [
           style: 'kebab-case',
         },
       ],
+      '@angular-eslint/no-input-rename': 'off',
     },
   },
   {
     files: ['**/*.html'],
     // Override or add rules here
-    rules: {},
+    rules: {
+      '@angular-eslint/template/interactive-supports-focus': 'off',
+    },
   },
 ];

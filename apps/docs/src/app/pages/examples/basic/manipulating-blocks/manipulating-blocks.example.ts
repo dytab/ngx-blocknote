@@ -24,7 +24,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     </div>
     <bna-editor
       [initialContent]="initialContent"
-      (onEditorReady)="editorReady($event)"
+      (editorReady)="editorReady($event)"
     />
   `,
 })
@@ -89,7 +89,7 @@ import { BlockNoteEditor } from '@blocknote/core';
       <button hlmBtn size="sm" type="button" (click)="removeFirstBlock()">Remove First Block</button>
       <button hlmBtn size="sm" type="button" (click)="replaceFirstBlock()">Replace First Block</button>
     </div>
-    <bna-editor [initialContent]="initialContent" (onEditorReady)="editorReady($event)" />
+    <bna-editor [initialContent]="initialContent" (editorReady)="editorReady($event)" />
   \`,
 })
 export class ManipulatingBlocksExample{

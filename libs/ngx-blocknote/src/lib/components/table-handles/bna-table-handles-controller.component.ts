@@ -23,7 +23,7 @@ import { useTableHandlesPositioning } from './use-table-handles-positioning.util
     class: 'z-40 fixed',
   },
 })
-export class BnaTableHandlesController implements AfterViewInit {
+export class BnaTableHandlesControllerComponent implements AfterViewInit {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
   private renderer2 = inject(Renderer2);
 

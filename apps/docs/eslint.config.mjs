@@ -9,6 +9,13 @@ export default [
     files: ['**/*.ts'],
     rules: {
       '@angular-eslint/prefer-standalone': 'off',
+      '@angular-eslint/no-input-rename': 'off',
+      '@angular-eslint/component-class-suffix': [
+        'error',
+        {
+          suffixes: ['Component', 'Page', 'Example'],
+        },
+      ],
     },
   },
   {

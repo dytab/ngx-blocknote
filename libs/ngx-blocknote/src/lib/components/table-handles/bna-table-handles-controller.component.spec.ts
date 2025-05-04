@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxBlockNoteTestingModule } from '../../services';
-import { BnaTableHandlesController } from './bna-table-handles-controller.component';
+import { BnaTableHandlesControllerComponent } from './bna-table-handles-controller.component';
 
 describe('BnaTableHandlesController', () => {
-  let component: BnaTableHandlesController;
-  let fixture: ComponentFixture<BnaTableHandlesController>;
+  let component: BnaTableHandlesControllerComponent;
+  let fixture: ComponentFixture<BnaTableHandlesControllerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaTableHandlesController, NgxBlockNoteTestingModule],
+      imports: [BnaTableHandlesControllerComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BnaTableHandlesController);
+    fixture = TestBed.createComponent(BnaTableHandlesControllerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

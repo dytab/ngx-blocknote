@@ -55,7 +55,7 @@ const schema = BlockNoteSchema.create({
   template: `<bna-editor
     [initialContent]="initialContent"
     [options]="options"
-    (onEditorReady)="onEditorReady($event)"
+    (editorReady)="onEditorReady($event)"
     ><bna-suggestions-menu-controller triggerCharacter="@">
       <div
         class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"

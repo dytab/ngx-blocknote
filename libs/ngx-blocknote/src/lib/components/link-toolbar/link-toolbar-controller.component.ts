@@ -22,7 +22,7 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
     <ng-content />
   }`,
 })
-export class BnaLinkToolbarControllerDirective implements OnDestroy {
+export class BnaLinkToolbarControllerComponent implements OnDestroy {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
   protected elRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private renderer2 = inject(Renderer2);

@@ -12,7 +12,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
       class="h-[250px] block"
       [initialContent]="initialContent"
       (contentChanged)="onContentChange($event)"
-      (onEditorReady)="editorReady($event)"
+      (editorReady)="editorReady($event)"
     />
     <p>Output (JSON)</p>
     <div

@@ -44,7 +44,7 @@ import { BnaBlockTypeSelectComponent } from '../components/formatting-toolbar/de
 import { BnaDeleteLinkComponent } from '../components/link-toolbar/default-buttons/delete-link/bna-delete-link.component';
 import { BnaEditLinkButtonComponent } from '../components/link-toolbar/default-buttons/edit-link/bna-edit-link-button.component';
 import { BnaOpenLinkComponent } from '../components/link-toolbar/default-buttons/open-link/bna-open-link.component';
-import { BnaLinkToolbarControllerDirective } from '../components/link-toolbar/link-toolbar-controller.component';
+import { BnaLinkToolbarControllerComponent } from '../components/link-toolbar/link-toolbar-controller.component';
 import { BnaLinkToolbarComponent } from '../components/link-toolbar/link-toolbar.component';
 import { BnaSideMenuControllerComponent } from '../components/side-menu/bna-side-menu-controller.component';
 import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.component';
@@ -52,7 +52,7 @@ import { BnaAddBlockButtonComponent } from '../components/side-menu/default-butt
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSlashMenuComponent } from '../components/suggestions-menu';
 import { BnaSlashMenuControllerComponent } from '../components/suggestions-menu/bna-slash-menu-controller.component';
-import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
+import { BnaTableHandlesControllerComponent } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { NgxBlocknoteService } from '../services/ngx-blocknote.service';
 import { useSelectedBlocks } from '../util';
@@ -82,7 +82,7 @@ type InitialContent<
     BnaFormattingToolbarComponent,
     BnaSideMenuComponent,
     BnaSlashMenuComponent,
-    BnaLinkToolbarControllerDirective,
+    BnaLinkToolbarControllerComponent,
     BnaLinkToolbarComponent,
     BnaCreateLinkComponent,
     BnaOpenLinkComponent,
@@ -90,7 +90,7 @@ type InitialContent<
     BnaDeleteLinkComponent,
     BnaColorStyleButtonComponent,
     BnaBlockTypeSelectComponent,
-    BnaTableHandlesController,
+    BnaTableHandlesControllerComponent,
     BnaFileDeleteButtonComponent,
     BnaFileDownloadButtonComponent,
     BnaFileRenameButtonComponent,
@@ -127,7 +127,7 @@ export class BnaEditorComponent<
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
-  onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
+  editorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   private hasCustomEditor = false;
 
@@ -185,7 +185,7 @@ export class BnaEditorComponent<
     const options = this.options();
     if (!this.hasCustomEditor && changes['options']) {
       this.editor = this.createEditor(undefined);
-      this.onEditorReady.emit(this.editor);
+      this.editorReady.emit(this.editor);
       this.firstTimeInitialized = true;
 
       this.ngxBlockNoteService.setOptions(options ?? {});
@@ -197,7 +197,7 @@ export class BnaEditorComponent<
 
     if (!changes['options'] && !this.firstTimeInitialized) {
       this.firstTimeInitialized = true;
-      this.onEditorReady.emit(this.editor);
+      this.editorReady.emit(this.editor);
     }
 
     if (changes['initialContent']) {
@@ -209,7 +209,7 @@ export class BnaEditorComponent<
     //do not remove this, this needs to be here, because it does not fire in onChanges, if there are no inputs
     if (!this.firstTimeInitialized) {
       this.firstTimeInitialized = true;
-      this.onEditorReady.emit(this.editor);
+      this.editorReady.emit(this.editor);
     }
   }
 
