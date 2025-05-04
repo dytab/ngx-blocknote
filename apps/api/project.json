@@ -24,6 +24,9 @@
     },
     "test": {
       "executor": "@nx/vite:test"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

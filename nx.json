@@ -5,14 +5,19 @@
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/src/test-setup.[jt]s"
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/eslint.config.mjs"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ]
   },
   "targetDefaults": {
     "build": {
@@ -32,9 +37,13 @@
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js",
-        "{workspaceRoot}/eslint.config.mjs"
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ],
+      "cache": true
+    },
+    "build-storybook": {
+      "inputs": ["default", "^production", "{projectRoot}/.storybook/**/*", "{projectRoot}/tsconfig.storybook.json"],
       "cache": true
     },
     "@nx/jest:jest": {
@@ -63,24 +72,13 @@
       ],
       "cache": true
     },
-    "nx-release-publish": {
-      "options": {
-        "packageRoot": "{workspaceRoot}/dist/libs/{projectName}"
-      }
-    },
-    "@nx/angular:ng-packagr-lite": {
+    "@nx/angular:package": {
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     }
   },
   "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
     {
       "plugin": "@nx/vite/plugin",
       "options": {
