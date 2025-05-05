@@ -230,7 +230,7 @@ export class BnaEditorComponent<
             styleSpecs: {
               ...defaultStyleSpecs,
             },
-            // in this case the user did not give a blocknote schema so we want to use the default one
+            // in this case the user did not give a blocknote schema, so we want to use the default one
           }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
       uploadFile: options?.uploadFile,
