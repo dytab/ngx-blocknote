@@ -16,7 +16,7 @@
     "@angular/common": "~19.2.0",
     "@spartan-ng/brain": "^0.0.1-alpha.445",
     "@spartan-ng/ui-core": "^0.0.1-alpha.372",
-    "@nx/vite": "20.8.0",
+    "@nx/vite": "20.8.1",
     "vite-plugin-dts": "4.5.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
