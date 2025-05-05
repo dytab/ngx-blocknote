@@ -1,5 +1,7 @@
-import { createInlineContentSpec } from '@blocknote/core';
-import { InlineContentFromConfig } from '@blocknote/core/types/src/schema/inlineContent/types';
+import {
+  createInlineContentSpec,
+  InlineContentFromConfig,
+} from '@blocknote/core';
 
 export const mentionConfig = {
   type: 'mention',

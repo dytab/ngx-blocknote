@@ -9,7 +9,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { TableHandlesState } from '@blocknote/core/types/src/extensions/TableHandles/TableHandlesPlugin';
+import { TableHandlesState } from '@blocknote/core';
 import { TableHandleOptions } from '../../interfaces/table-handle-options.type';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { BnaTableHandleComponent } from './table-handle/bna-table-handle.component';

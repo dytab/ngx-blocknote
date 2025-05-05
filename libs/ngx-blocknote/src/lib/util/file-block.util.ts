@@ -2,19 +2,15 @@ import {
   Block,
   BlockFromConfig,
   BlockNoteEditor,
+  BlockSchema,
   checkBlockIsFileBlock,
-  FileBlockConfig,
-} from '@blocknote/core';
-import {
   DefaultBlockSchema,
   DefaultInlineContentSchema,
   DefaultStyleSchema,
-} from '@blocknote/core/src/blocks/defaultBlocks';
-import {
-  BlockSchema,
+  FileBlockConfig,
   InlineContentSchema,
   StyleSchema,
-} from '@blocknote/core/src/schema';
+} from '@blocknote/core';
 
 export const fileBlock = <
   BSchema extends BlockSchema = DefaultBlockSchema,
