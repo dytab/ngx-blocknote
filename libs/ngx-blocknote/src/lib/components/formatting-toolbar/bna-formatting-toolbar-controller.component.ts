@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   effect,
   ElementRef,
+  inject,
   OnDestroy,
   Renderer2,
   signal,
@@ -18,7 +18,7 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
-  imports: [CommonModule],
+  imports: [],
   selector: 'bna-formatting-toolbar-controller',
   template: `@if (show()) {
     <ng-content />
@@ -28,16 +28,16 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   },
 })
 export class BnaFormattingToolbarControllerComponent implements OnDestroy {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+  protected elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private renderer2 = inject(Renderer2);
+
   show = signal(false);
   cleanup: () => void = () => {
     return;
   };
 
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    protected elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2,
-  ) {
+  constructor() {
     effect(() => {
       this.adjustVisibilityAndPosition();
     });

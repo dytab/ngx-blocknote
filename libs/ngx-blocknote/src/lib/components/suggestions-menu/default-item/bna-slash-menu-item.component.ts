@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { Component, computed, inject, input, output } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideFileAudio,
   lucideHeading1,
@@ -16,9 +16,10 @@ import {
   lucideTable,
   lucideVideo,
 } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { SuggestionItem } from '../../../interfaces/suggestion-item.type';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../ui';
 
 const icons: Record<string, string> = {
   heading: 'lucideHeading1',
@@ -37,7 +38,7 @@ const icons: Record<string, string> = {
 
 @Component({
   selector: 'bna-slash-menu-item',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
   providers: [
     provideIcons({
       lucideHeading1,
@@ -56,9 +57,10 @@ const icons: Record<string, string> = {
     }),
   ],
   templateUrl: './bna-slash-menu-item.component.html',
-  styleUrl: './bna-slash-menu-item.component.css',
 })
 export class BnaSlashMenuItemComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   suggestionItem = input.required<SuggestionItem>();
   iconName = computed(() => {
     const item = this.suggestionItem();
@@ -70,8 +72,6 @@ export class BnaSlashMenuItemComponent {
   });
   selected = input<boolean>(false);
   mouseEnter = output();
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   onClick($event: Event) {
     $event.preventDefault();

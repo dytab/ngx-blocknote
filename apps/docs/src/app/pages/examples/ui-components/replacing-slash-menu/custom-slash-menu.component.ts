@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { getDefaultSlashMenuItems } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-custom-slash-menu',
@@ -27,10 +27,11 @@ import { HlmButtonDirective } from '@dytab/ui';
   styles: ``,
 })
 export class CustomSlashMenuComponent {
+  public ngxBlockNoteService = inject(NgxBlocknoteService);
+
   customSlashItems = getDefaultSlashMenuItems(
     this.ngxBlockNoteService.editor(),
   );
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   addItem($event: Event, item: { title: string; onItemClick: () => void }) {
     $event.preventDefault();

@@ -2,14 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective, HlmIconComponent } from '@dytab/ui';
-import { provideIcons } from '@ng-icons/core';
-import { lucideTrash } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-reset-block-button',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
-  providers: [provideIcons({ lucideTrash })],
+  imports: [CommonModule, HlmButtonDirective],
   template: ` <button
     hlmBtn
     size="sm"

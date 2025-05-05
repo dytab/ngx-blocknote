@@ -9,7 +9,7 @@
     hlmTooltipTrigger
     aria-describedby="file-caption-tooltip"
   >
-    <hlm-icon size="sm" name="lucideTextCursorInput" />
+    <ng-icon hlm size="sm" name="lucideTextCursorInput" />
   </button>
   <span *brnTooltipContent class="text-center" id="file-caption-tooltip">
     <p>{{ dict.formatting_toolbar.file_caption.tooltip }}</p>
@@ -21,7 +21,7 @@
         <form (ngSubmit)="submit()" [formGroup]="form">
           <div class="flex gap-2 justify-center items-center min-w-[350px]">
             <div class="flex justify-center items-center w-[20px] h-[20px]">
-              <hlm-icon size="sm" name="lucideTextCursorInput" />
+              <ng-icon hlm size="sm" name="lucideTextCursorInput" />
             </div>
             <input
               class="bg-background w-full h-[32px] outline-none placeholder:italic placeholder:text-muted-foreground placeholder:font-normal"

@@ -1,25 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, signal, inject } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
 } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideAlignCenter,
   lucideAlignJustify,
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
 const icons = {
@@ -36,13 +36,13 @@ type Alignments = 'left' | 'center' | 'right' | 'justify';
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-text-align-button.component.html',
-  styleUrl: './bna-text-align-button.component.css',
   providers: [
     provideIcons({
       lucideAlignLeft,
@@ -56,6 +56,8 @@ type Alignments = 'left' | 'center' | 'right' | 'justify';
   },
 })
 export class BnaTextAlignButtonComponent {
+  ngxBlockNoteService = inject(NgxBlocknoteService);
+
   alignment = input.required<Alignments>();
   icon = computed(() => {
     return icons[this.alignment()];
@@ -85,7 +87,7 @@ export class BnaTextAlignButtonComponent {
     return editor.dictionary.formatting_toolbar[`align_${this.alignment()}`];
   });
 
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.updateAlignmentOnContentOrSelectionChange();
   }
 

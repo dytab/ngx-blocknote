@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   effect,
   ElementRef,
-  Input,
   OnDestroy,
   Renderer2,
   signal,
+  input,
+  inject,
 } from '@angular/core';
 import {
   autoPlacement,
@@ -19,7 +19,7 @@ import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
 @Component({
-  imports: [CommonModule],
+  imports: [],
   selector: 'bna-suggestions-menu-controller',
   host: {
     class: 'z-30 fixed flex',
@@ -29,17 +29,17 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   }`,
 })
 export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
+  private blockNoteEditorService = inject(NgxBlocknoteService);
+  private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private renderer2 = inject(Renderer2);
+
   show = signal(false);
   cleanup: () => void = () => {
     return;
   };
 
-  @Input({ required: true }) triggerCharacter = '/';
-  constructor(
-    private blockNoteEditorService: NgxBlocknoteService,
-    private elRef: ElementRef<HTMLElement>,
-    private renderer2: Renderer2,
-  ) {
+  readonly triggerCharacter = input.required<string>();
+  constructor() {
     effect(() => {
       this.adjustVisibilityAndPosition();
     });
@@ -52,7 +52,7 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
   private adjustVisibilityAndPosition() {
     const editor = this.blockNoteEditorService.editor();
     editor.suggestionMenus.onUpdate(
-      this.triggerCharacter,
+      this.triggerCharacter(),
       async (suggestionMenuState) => {
         this.cleanup();
 

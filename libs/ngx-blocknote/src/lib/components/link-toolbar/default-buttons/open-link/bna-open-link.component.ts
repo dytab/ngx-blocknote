@@ -1,15 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
+import { Component, inject } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { NgxBlocknoteService } from '../../../../services';
-import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
 
 @Component({
   selector: 'bna-open-link',
-  imports: [CommonModule, HlmButtonDirective, HlmIconComponent],
+  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   templateUrl: './bna-open-link.component.html',
-  styleUrl: './bna-open-link.component.css',
   providers: [
     provideIcons({
       lucideExternalLink,
@@ -17,8 +16,10 @@ import { HlmButtonDirective, HlmIconComponent } from '../../../../ui';
   ],
 })
 export class BnaOpenLinkComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   url?: string;
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
       this.url = linkToolbar.url;
     });

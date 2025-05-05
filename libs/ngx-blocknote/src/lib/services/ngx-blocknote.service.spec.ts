@@ -1,4 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import {
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
 
 import { NgxBlocknoteService } from './ngx-blocknote.service';
 
@@ -8,9 +13,12 @@ describe('NgxBlocknoteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [NgxBlocknoteService] });
     service = TestBed.inject(
-      NgxBlocknoteService,
-      //TODO: remove this strange cast
-    ) as any;
+      NgxBlocknoteService<
+        DefaultBlockSchema,
+        DefaultInlineContentSchema,
+        DefaultStyleSchema
+      >,
+    );
   });
 
   it('should be created', () => {

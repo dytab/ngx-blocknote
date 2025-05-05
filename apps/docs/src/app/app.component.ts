@@ -1,16 +1,10 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { ThemeSwitchComponent } from './shared/layout/theme/theme-switch.component';
-import { HlmButtonDirective } from '@dytab/ui';
 
 @Component({
-  imports: [
-    RouterModule,
-    NgOptimizedImage,
-    ThemeSwitchComponent,
-    HlmButtonDirective,
-  ],
+  imports: [RouterModule, ThemeSwitchComponent, HlmButtonDirective],
   selector: 'docs-root',
   templateUrl: './app.component.html',
 })

@@ -45,6 +45,9 @@
           "buildTarget": "docs:build:production"
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": [],

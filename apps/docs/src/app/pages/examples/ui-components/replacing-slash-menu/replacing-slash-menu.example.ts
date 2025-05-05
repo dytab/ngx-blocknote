@@ -44,7 +44,6 @@ export class ReplacingSlashMenuExample {
 export const formattingToolbarButtonsExampleCode = `import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
-import { HlmButtonDirective } from '@dytab/ui';
 import { CustomSlashMenuComponent } from './custom-slash-menu.component';
 import {
   BnaBasicTextStyleButtonComponent,

@@ -1,40 +1,55 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
-import { provideIcons } from '@ng-icons/core';
-import { lucideDownload } from '@ng-icons/lucide';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
+import { Component, computed, inject } from '@angular/core';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideDownload } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-download-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-file-download-button.component.html',
-  styleUrl: './bna-file-download-button.component.css',
   providers: [provideIcons({ lucideDownload })],
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaFileDownloadButtonComponent {
-  fileBlock = computed(() => {
-    return fileBlock(
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+
+  fileBlock = computed(() =>
+    fileBlock<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >(
       this.ngxBlockNoteService.editor(),
       this.ngxBlockNoteService.selectedBlocks(),
-    );
-  });
+    ),
+  );
   _visibilityClass = computed(() => {
     return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
   });
@@ -46,8 +61,6 @@ export class BnaFileDownloadButtonComponent {
     return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_download.tooltip[fileBlock.type];
   });
-
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {}
 
   downloadFile() {
     const editor = this.ngxBlockNoteService.editor();

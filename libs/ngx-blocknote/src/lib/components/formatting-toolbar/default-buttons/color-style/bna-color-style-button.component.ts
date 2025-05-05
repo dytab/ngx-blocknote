@@ -1,25 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockSchema,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
   InlineContentSchema,
 } from '@blocknote/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { ColorOptions } from '../../../../interfaces/color-options.type';
-import { NgxBlocknoteService } from '../../../../services';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {
-  HlmButtonDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
+} from '@spartan-ng/ui-menu-helm';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { ColorOptions } from '../../../../interfaces/color-options.type';
+import { NgxBlocknoteService } from '../../../../services';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
 import { BnaColorIconComponent } from '../../../color-picker/color-icon/bna-color-icon.component';
 
-function checkColorInSchema<Color extends 'text' | 'background'>(
+const checkColorInSchema = <Color extends 'text' | 'background'>(
   color: Color,
   editor: BlockNoteEditor<any, any, any>,
 ): editor is BlockNoteEditor<
@@ -38,18 +42,17 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
           propSchema: 'string';
         };
       }
-> {
+> => {
   return (
     `${color}Color` in editor.schema.styleSchema &&
     editor.schema.styleSchema[`${color}Color`].type === `${color}Color` &&
     editor.schema.styleSchema[`${color}Color`].propSchema === 'string'
   );
-}
+};
 
 @Component({
   selector: 'bna-color-style-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
@@ -61,12 +64,19 @@ function checkColorInSchema<Color extends 'text' | 'background'>(
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-color-style-button.component.html',
-  styleUrl: './bna-color-style-button.component.css',
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaColorStyleButtonComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
@@ -86,7 +96,7 @@ export class BnaColorStyleButtonComponent {
   options: ColorOptions = this.getOptions();
   dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().onSelectionChange(() => {
       this.options = this.getOptions();
     });
@@ -99,10 +109,11 @@ export class BnaColorStyleButtonComponent {
         color: editor.getActiveStyles().textColor || 'default',
         setColor: (color: string) => {
           //TODO: add check if color is in schema
-
-          color === 'default'
-            ? editor.removeStyles({ textColor: color })
-            : editor.addStyles({ textColor: color });
+          if (color === 'default') {
+            editor.removeStyles({ textColor: color });
+          } else {
+            editor.addStyles({ textColor: color });
+          }
 
           editor.focus();
         },
@@ -111,9 +122,11 @@ export class BnaColorStyleButtonComponent {
         color: editor.getActiveStyles().backgroundColor || 'default',
         setColor: (color: string) => {
           //TODO: add check if color is in schema
-          color === 'default'
-            ? editor.removeStyles({ backgroundColor: color })
-            : editor.addStyles({ backgroundColor: color });
+          if (color === 'default') {
+            editor.removeStyles({ backgroundColor: color });
+          } else {
+            editor.addStyles({ backgroundColor: color });
+          }
 
           editor.focus();
         },

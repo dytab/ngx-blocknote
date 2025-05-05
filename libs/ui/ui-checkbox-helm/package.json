@@ -1,0 +1,8 @@
+{
+  "name": "@spartan-ng/ui-checkbox-helm",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@spartan-ng/ui-icon-helm": "0.0.1"
+  },
+  "sideEffects": false
+}

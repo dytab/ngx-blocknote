@@ -1,7 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
-import { BlockNoteEditor, Dictionary } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import {
+  BlockNoteEditor,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+  Dictionary,
+} from '@blocknote/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
   lucideHeading1,
@@ -15,34 +20,33 @@ import {
   lucideListOrdered,
   lucideType,
 } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
-import { NgxBlocknoteService } from '../../../../services';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
   HlmMenuItemCheckboxDirective,
   HlmMenuItemCheckComponent,
-} from '../../../../ui';
+} from '@spartan-ng/ui-menu-helm';
+import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
+import { NgxBlocknoteService } from '../../../../services';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
 
 @Component({
   selector: 'bna-block-type-selection-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     HlmMenuComponent,
     HlmMenuGroupComponent,
     BrnMenuTriggerDirective,
-    HlmIconComponent,
     HlmMenuItemCheckComponent,
     HlmMenuItemCheckboxDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-block-type-select.component.html',
-  styleUrl: './bna-block-type-select.component.css',
   providers: [
     provideIcons({
       lucideType,
@@ -63,6 +67,14 @@ import { defaultBlockTypeSelectItems } from './default-block-type-select-items';
   },
 })
 export class BnaBlockTypeSelectComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+
   _visibilityClass = computed(() => {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const firstBlock = selectedBlocks[0];
@@ -91,7 +103,7 @@ export class BnaBlockTypeSelectComponent {
     this.getCurrentBlockIndex(this.ngxBlockNoteService.editor()),
   );
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.updateCurrentBlockTypeOnChanges();
   }
 

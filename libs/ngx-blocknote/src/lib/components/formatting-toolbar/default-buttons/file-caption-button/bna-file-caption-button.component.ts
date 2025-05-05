@@ -1,33 +1,37 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { checkBlockIsFileBlock } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
-import { lucideTextCursorInput } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
+  checkBlockIsFileBlock,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideTextCursorInput } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import {
   HlmMenuComponent,
   HlmMenuGroupComponent,
+} from '@spartan-ng/ui-menu-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-caption-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
     HlmMenuGroupComponent,
@@ -35,17 +39,31 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-file-caption-button.component.html',
-  styleUrl: './bna-file-caption-button.component.css',
   providers: [provideIcons({ lucideTextCursorInput })],
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaFileCaptionButtonComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+  private formBuilder = inject(NonNullableFormBuilder);
+
   fileBlock = computed(() => {
-    return fileBlock(
+    return fileBlock<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >(
       this.ngxBlockNoteService.editor(),
       this.ngxBlockNoteService.selectedBlocks(),
     );
@@ -58,10 +76,7 @@ export class BnaFileCaptionButtonComponent {
   form = this.formBuilder.group({ caption: ['', Validators.required] });
   dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    private formBuilder: NonNullableFormBuilder,
-  ) {
+  constructor() {
     effect(() => {
       this.patchFormValues();
     });
@@ -75,7 +90,8 @@ export class BnaFileCaptionButtonComponent {
       return;
     }
     if (checkBlockIsFileBlock(firstBlock, editor)) {
-      this.form.setValue({ caption: firstBlock.props.caption });
+      //TODO: remove cast
+      this.form.setValue({ caption: (firstBlock.props as any).caption });
     }
   }
 

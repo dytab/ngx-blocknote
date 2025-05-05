@@ -1,27 +1,32 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import {
-  HlmButtonDirective,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import {
   HlmMenuComponent,
   HlmMenuGroupComponent,
+} from '@spartan-ng/ui-menu-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-rename-button',
   imports: [
-    CommonModule,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
     HlmMenuComponent,
@@ -32,12 +37,20 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
     BrnTooltipContentDirective,
   ],
   templateUrl: './bna-file-rename-button.component.html',
-  styleUrl: './bna-file-rename-button.component.css',
   host: {
     '[class]': '_visibilityClass()',
   },
 })
 export class BnaFileRenameButtonComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+  private formBuilder = inject(NonNullableFormBuilder);
+
   form = this.formBuilder.group({ name: ['', Validators.required] });
   fileBlock = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
@@ -55,11 +68,6 @@ export class BnaFileRenameButtonComponent {
     return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
       .file_rename.tooltip[fileBlock.type];
   });
-
-  constructor(
-    private ngxBlockNoteService: NgxBlocknoteService,
-    private formBuilder: NonNullableFormBuilder,
-  ) {}
 
   submit() {
     const editor = this.ngxBlockNoteService.editor();

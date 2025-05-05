@@ -1,33 +1,36 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import {
   BlockNoteEditor,
   BlockSchema,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
   InlineContentSchema,
 } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideBold,
-  lucideCode2,
+  lucideCode,
   lucideItalic,
   lucideStrikethrough,
   lucideUnderline,
 } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 
 const icons = {
   bold: 'lucideBold',
   italic: 'lucideItalic',
   underline: 'lucideUnderline',
   strike: 'lucideStrikethrough',
-  code: 'lucideCode2',
+  code: 'lucideCode',
 } as const;
 
 type BasicTextStyle = 'bold' | 'italic' | 'underline' | 'strike' | 'code';
@@ -57,20 +60,20 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   imports: [
     CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmTooltipComponent,
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
-  styleUrl: './bna-basic-text-style-button.component.css',
   providers: [
     provideIcons({
       lucideBold,
       lucideItalic,
       lucideUnderline,
       lucideStrikethrough,
-      lucideCode2,
+      lucideCode,
     }),
   ],
   host: {
@@ -78,6 +81,14 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   },
 })
 export class BnaBasicTextStyleButtonComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+
   basicTextStyle = input.required<BasicTextStyle>();
   icon = computed(() => {
     return icons[this.basicTextStyle()];
@@ -111,8 +122,6 @@ export class BnaBasicTextStyleButtonComponent {
     const editor = this.ngxBlockNoteService.editor();
     return editor.dictionary.formatting_toolbar[this.basicTextStyle()];
   });
-
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   toggleStyle(style: BasicTextStyle) {
     this.ngxBlockNoteService.editor().focus();

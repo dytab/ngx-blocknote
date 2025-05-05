@@ -5,15 +5,11 @@ import {
 } from '@blocknote/core';
 
 export const showFileBlock = (
-  editor: BlockNoteEditor<any, any, any>,
+  editor: BlockNoteEditor,
   fileBlock: Block<any, any, any> | undefined,
 ): 'hidden' | '' => {
   return !fileBlock ||
-    checkBlockIsFileBlockWithPlaceholder(
-      //TODO: remove cast
-      fileBlock as Block<any, any, any>,
-      editor,
-    ) ||
+    checkBlockIsFileBlockWithPlaceholder(fileBlock, editor) ||
     !editor.isEditable
     ? 'hidden'
     : '';

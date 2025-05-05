@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@dytab/ui';
-import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { BnaEditorComponent } from '@dytab/ngx-blocknote';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-server-side-rendering-example',

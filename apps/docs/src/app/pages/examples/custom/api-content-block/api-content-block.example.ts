@@ -13,29 +13,27 @@ import {
 import {
   BlockNoteEditorOptionsType,
   BnaAddBlockButtonComponent,
-  BnaDeleteBlockItemComponent,
   BnaDragHandleMenuComponent,
   BnaEditorComponent,
   BnaSideMenuComponent,
   BnaSideMenuControllerComponent,
   NgxBlocknoteService,
 } from '@dytab/ngx-blocknote';
-import {
-  HlmButtonDirective,
-  HlmCheckboxComponent,
-  HlmDialogComponent,
-  HlmDialogContentComponent,
-  HlmDialogFooterComponent,
-  HlmDialogHeaderComponent,
-  HlmInputDirective,
-} from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
 import {
   BrnDialogContentDirective,
   BrnDialogDescriptionDirective,
   BrnDialogTitleDirective,
   BrnDialogTriggerDirective,
-} from '@spartan-ng/ui-dialog-brain';
-import { ResetBlockButtonComponent } from '../../ui-components/adding-side-menu-drag-handle-items/reset-block-button.component';
+} from '@spartan-ng/brain/dialog';
+import {
+  HlmDialogComponent,
+  HlmDialogContentComponent,
+  HlmDialogFooterComponent,
+  HlmDialogHeaderComponent,
+} from '@spartan-ng/ui-dialog-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { apiContentBlock } from './api-content-block';
 
 const schema = BlockNoteSchema.create({
@@ -54,11 +52,9 @@ const schema = BlockNoteSchema.create({
     BnaEditorComponent,
     HlmButtonDirective,
     BnaAddBlockButtonComponent,
-    BnaDeleteBlockItemComponent,
     BnaDragHandleMenuComponent,
     BnaSideMenuComponent,
     BnaSideMenuControllerComponent,
-    ResetBlockButtonComponent,
     HlmDialogComponent,
     HlmDialogContentComponent,
     BrnDialogContentDirective,
@@ -76,7 +72,7 @@ const schema = BlockNoteSchema.create({
     <bna-editor
       [initialContent]="initialContent"
       [options]="options"
-      (onEditorReady)="onEditorReady($event)"
+      (editorReady)="onEditorReady($event)"
     >
       <bna-side-menu-controller>
         <bna-side-menu>
@@ -112,12 +108,12 @@ const schema = BlockNoteSchema.create({
                         class="mr-2"
                       />
                     </label>
-                    <label class="flex items-center" hlmLabel>
-                      <hlm-checkbox formControlName="age" class="mr-2" />
+                    <label class="flex items-center" hlmLabel for="age">
+                      <hlm-checkbox formControlName="age" class="mr-2" id="age"/>
                       Age
                     </label>
-                    <label class="flex items-center" hlmLabel>
-                      <hlm-checkbox formControlName="address" class="mr-2" />
+                    <label class="flex items-center" hlmLabel for="address">
+                      <hlm-checkbox formControlName="address" class="mr-2" id="address"/>
                       Address
                     </label>
                   </hlm-dialog-header>

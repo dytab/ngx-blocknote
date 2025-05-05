@@ -1,23 +1,36 @@
-import { CommonModule } from '@angular/common';
-import { Component, effect } from '@angular/core';
-import { Block } from '@blocknote/core';
+import { Component, effect, inject } from '@angular/core';
+import {
+  Block,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
+} from '@blocknote/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
-import { HlmButtonDirective } from '../../../../../ui';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButtonDirective],
   templateUrl: './bna-delete-block-item.component.html',
-  styleUrl: './bna-delete-block-item.component.css',
   host: {
     class: 'block',
   },
 })
 export class BnaDeleteBlockItemComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+
   dragBlock?: Block<any, any, any>;
 
-  constructor(public ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
+    const ngxBlockNoteService = this.ngxBlockNoteService;
+
     effect(() => {
       const editor = ngxBlockNoteService.editor();
       if (!editor) {
@@ -40,7 +53,7 @@ export class BnaDeleteBlockItemComponent {
         undefined
     ) {
       //the current block where the side menu is opened is not in selection, then use this instead of selection
-      selectedBlocks = [sideMenuFocusedBlock as Block];
+      selectedBlocks = [sideMenuFocusedBlock];
     }
     editor.removeBlocks(selectedBlocks);
     editor.focus();

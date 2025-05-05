@@ -12,7 +12,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
       class="h-[250px] block"
       [initialContent]="initialContent"
       (contentChanged)="onContentChange($event)"
-      (onEditorReady)="editorReady($event)"
+      (editorReady)="editorReady($event)"
     />
     <p>Output (HTML)</p>
     <div class="border border-black bg-background rounded min-h-20 w-full p-2">
@@ -65,7 +65,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
       class="h-[250px] block"
       [initialContent]="initialContent"
       (contentChanged)="onContentChange($event)"
-      (onEditorReady)="editorReady($event)"
+      (editorReady)="editorReady($event)"
     />
     <p>Output (HTML)</p>
     <div class="border border-black bg-background rounded min-h-20 w-full p-2">

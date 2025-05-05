@@ -19,16 +19,18 @@ export class NgxBlocknoteService<
 > {
   editor = signal<BlockNoteEditor<BSchema, ISchema, SSchema>>(null as never);
   options = signal<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>({});
-  selectedBlocks = signal<Block<any, any, any>[]>([]);
+  selectedBlocks = signal<Block<BSchema, ISchema, SSchema>[]>([]);
 
   setEditor(editor: BlockNoteEditor<any, any, any>) {
-    this.editor.set(editor);
+    this.editor.set(editor as BlockNoteEditor<BSchema, ISchema, SSchema>);
   }
 
-  setOptions(options: BlockNoteEditorOptionsType<any, any, any>) {
+  setOptions(options: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>) {
     this.options.set(options);
   }
 
   ///TESTING
-  sideMenuFocusedBlock = signal<Block<any, any, any> | undefined>(undefined);
+  sideMenuFocusedBlock = signal<Block<BSchema, ISchema, SSchema> | undefined>(
+    undefined,
+  );
 }

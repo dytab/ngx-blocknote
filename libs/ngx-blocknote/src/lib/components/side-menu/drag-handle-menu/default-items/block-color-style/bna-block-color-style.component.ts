@@ -1,25 +1,26 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
+  DefaultBlockSchema,
+  DefaultInlineContentSchema,
+  DefaultStyleSchema,
 } from '@blocknote/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { ColorOptions } from '../../../../../interfaces/color-options.type';
-import { NgxBlocknoteService } from '../../../../../services';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
-  HlmButtonDirective,
   HlmMenuComponent,
   HlmMenuGroupComponent,
-} from '../../../../../ui';
+} from '@spartan-ng/ui-menu-helm';
+import { ColorOptions } from '../../../../../interfaces/color-options.type';
+import { NgxBlocknoteService } from '../../../../../services';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-picker.component';
 
 @Component({
   selector: 'bna-block-color-style',
   imports: [
-    CommonModule,
     BnaColorPickerComponent,
     HlmButtonDirective,
     BrnMenuTriggerDirective,
@@ -27,9 +28,16 @@ import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-pick
     HlmMenuGroupComponent,
   ],
   templateUrl: './bna-block-color-style.component.html',
-  styleUrl: './bna-block-color-style.component.css',
 })
 export class BnaBlockColorStyleComponent {
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<
+      DefaultBlockSchema,
+      DefaultInlineContentSchema,
+      DefaultStyleSchema
+    >,
+  );
+
   selectedBlocks = signal<Block[]>(
     useSelectedBlocks(this.ngxBlockNoteService.editor()),
   );
@@ -100,7 +108,7 @@ export class BnaBlockColorStyleComponent {
     return colorOptions;
   });
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().onSelectionChange(() => {
       //Update selected blocks, when selection changes, so that we change the color of all selected blocks
       const selected = useSelectedBlocks(this.ngxBlockNoteService.editor());

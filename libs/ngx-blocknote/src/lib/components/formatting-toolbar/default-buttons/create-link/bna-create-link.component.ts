@@ -1,19 +1,20 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
-import { BrnTooltipContentDirective } from '@spartan-ng/ui-tooltip-brain';
-import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuGroupComponent,
+} from '@spartan-ng/ui-menu-helm';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
+import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
-} from '../../../../ui';
+} from '@spartan-ng/ui-tooltip-helm';
+import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 
 function checkLinkInSchema(
@@ -38,9 +39,7 @@ function checkLinkInSchema(
 @Component({
   selector: 'bna-create-link',
   imports: [
-    CommonModule,
     HlmButtonDirective,
-    HlmIconComponent,
     HlmMenuComponent,
     BrnMenuTriggerDirective,
     HlmMenuGroupComponent,
@@ -48,9 +47,10 @@ function checkLinkInSchema(
     HlmTooltipTriggerDirective,
     BrnTooltipContentDirective,
     HlmTooltipComponent,
+    NgIcon,
+    HlmIconDirective,
   ],
   templateUrl: './bna-create-link.component.html',
-  styleUrl: './bna-create-link.component.css',
   providers: [
     provideIcons({
       lucideLink,
@@ -61,6 +61,8 @@ function checkLinkInSchema(
   },
 })
 export class BnaCreateLinkComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
@@ -77,7 +79,7 @@ export class BnaCreateLinkComponent {
   initialValue = this.getInitialValue();
   dict = this.ngxBlockNoteService.editor().dictionary;
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.editor().onSelectionChange(() => {
       this.initialValue = this.getInitialValue();
     });

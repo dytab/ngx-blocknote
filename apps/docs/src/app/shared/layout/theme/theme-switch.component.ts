@@ -1,26 +1,27 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideMonitor, lucideMoon, lucideSun } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
-  HlmButtonDirective,
-  HlmIconComponent,
   HlmMenuComponent,
   HlmMenuItemCheckboxDirective,
   HlmMenuItemCheckComponent,
-} from '@dytab/ui';
-import { provideIcons } from '@ng-icons/core';
-import { lucideMonitor, lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/ui-menu-brain';
+} from '@spartan-ng/ui-menu-helm';
 import { DarkMode, ThemeService } from './theme.service';
 
 @Component({
   imports: [
     BrnMenuTriggerDirective,
     HlmButtonDirective,
-    HlmIconComponent,
     AsyncPipe,
     HlmMenuComponent,
     HlmMenuItemCheckComponent,
     HlmMenuItemCheckboxDirective,
+    NgIcon,
+    HlmIconDirective,
   ],
   providers: [provideIcons({ lucideMoon, lucideMonitor, lucideSun })],
   selector: 'bna-theme-switch',
@@ -32,7 +33,7 @@ import { DarkMode, ThemeService } from './theme.service';
       [brnMenuTriggerFor]="theme"
       hlmBtn
     >
-      <hlm-icon name="lucideMoon" size="sm" />
+      <ng-icon hlm name="lucideMoon" size="sm" />
       <span class="sr-only">Open menu to change theme</span>
     </button>
     <ng-template #theme>
@@ -43,7 +44,7 @@ import { DarkMode, ThemeService } from './theme.service';
           (click)="setTheme('light')"
         >
           <hlm-menu-item-check />
-          <hlm-icon name="lucideSun" size="sm" class="me-2" />
+          <ng-icon hlm name="lucideSun" size="sm" class="me-2" />
           Light
         </button>
         <button
@@ -52,7 +53,7 @@ import { DarkMode, ThemeService } from './theme.service';
           (click)="setTheme('dark')"
         >
           <hlm-menu-item-check />
-          <hlm-icon name="lucideMoon" size="sm" class="me-2" />
+          <ng-icon hlm name="lucideMoon" size="sm" class="me-2" />
           Dark
         </button>
         <button
@@ -61,7 +62,7 @@ import { DarkMode, ThemeService } from './theme.service';
           (click)="setTheme('system')"
         >
           <hlm-menu-item-check />
-          <hlm-icon name="lucideMonitor" size="sm" class="me-2" />
+          <ng-icon hlm name="lucideMonitor" size="sm" class="me-2" />
           System
         </button>
       </hlm-menu>

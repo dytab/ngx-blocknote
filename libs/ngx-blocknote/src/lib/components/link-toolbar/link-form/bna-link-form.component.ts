@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, inject, input, OnChanges } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,16 +6,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink, lucideType } from '@ng-icons/lucide';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { NgxBlocknoteService } from '../../../services';
-import { HlmIconComponent } from '../../../ui';
 
 @Component({
   selector: 'bna-link-form',
-  imports: [CommonModule, HlmIconComponent, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgIcon, HlmIconDirective],
   templateUrl: './bna-link-form.component.html',
-  styleUrl: './bna-link-form.component.css',
   providers: [
     provideIcons({
       lucideLink,
@@ -25,19 +23,22 @@ import { HlmIconComponent } from '../../../ui';
   ],
 })
 export class BnaLinkFormComponent implements OnChanges {
-  @Input() initialValue: Partial<{ url: string; text: string }> = {};
+  private formBuilder = inject(FormBuilder);
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
+  readonly initialValue = input<
+    Partial<{
+      url: string;
+      text: string;
+    }>
+  >({});
   form = this.formBuilder.group({
     url: new FormControl('', [Validators.required]),
     text: new FormControl('', [Validators.required]),
   });
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private ngxBlockNoteService: NgxBlocknoteService,
-  ) {}
-
   ngOnChanges() {
-    this.form.patchValue(this.initialValue);
+    this.form.patchValue(this.initialValue());
   }
 
   submit() {

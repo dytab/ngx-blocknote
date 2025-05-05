@@ -7,34 +7,28 @@
   },
   "type": "module",
   "dependencies": {
+    "@angular/core": "~19.2.0",
+    "@ng-icons/core": "^29.10.0",
+    "@ng-icons/lucide": ">=29.0.0",
     "@floating-ui/dom": "^1.6.8",
-    "@ng-icons/core": "^25.1.0",
-    "@ng-icons/lucide": "^26.5.0",
-    "@spartan-ng/ui-checkbox-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-core": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-dialog-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-menu-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-tabs-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "@spartan-ng/ui-tooltip-brain": ">=0.0.1-alpha.317 <0.0.2",
-    "class-variance-authority": ">=0.6.0 <1.0.0",
+    "@angular/forms": "~19.2.0",
+    "@blocknote/core": "^0.29.1",
+    "@angular/common": "~19.2.0",
+    "@spartan-ng/brain": "^0.0.1-alpha.445",
+    "@spartan-ng/ui-core": "^0.0.1-alpha.372",
+    "@nx/vite": "20.8.1",
+    "vite-plugin-dts": "4.5.3",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "ngx-scrollbar": "^13.0.1"
+    "@angular/cdk": "~19.2.0"
   },
   "devDependencies": {
     "@nx/angular": "^20.0.0",
     "@testing-library/angular": "^17.0.0",
-    "jest-preset-angular": "^14.0.0",
-    "vite": "^5.0.0",
+    "vite": "6.2.3",
     "@analogjs/vite-plugin-angular": "^1.7.3"
   },
-  "peerDependencies": {
-    "@angular/cdk": "^19.0.2",
-    "@angular/common": "^19.0.3",
-    "@angular/core": "^19.0.3",
-    "@angular/forms": "^19.0.3",
-    "@blocknote/core": "0.23.6",
-    "rxjs": "~7.8.0"
-  },
+  "peerDependencies": {},
   "peerDependenciesMeta": {
     "@angular/platform-browser": {
       "optional": true
@@ -44,5 +38,14 @@
     "url": "git+https://github.com/dytab/ngx-blocknote.git"
   },
   "bugs": "https://github.com/dytab/ngx-blocknote/issues",
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/dytab-ngx-blocknote.js"
+    }
+  }
 }

@@ -1,8 +1,9 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   forwardRef,
+  inject,
   Input,
+  input,
   OnChanges,
   OnInit,
   output,
@@ -43,7 +44,7 @@ import { BnaBlockTypeSelectComponent } from '../components/formatting-toolbar/de
 import { BnaDeleteLinkComponent } from '../components/link-toolbar/default-buttons/delete-link/bna-delete-link.component';
 import { BnaEditLinkButtonComponent } from '../components/link-toolbar/default-buttons/edit-link/bna-edit-link-button.component';
 import { BnaOpenLinkComponent } from '../components/link-toolbar/default-buttons/open-link/bna-open-link.component';
-import { BnaLinkToolbarControllerDirective } from '../components/link-toolbar/link-toolbar-controller.component';
+import { BnaLinkToolbarControllerComponent } from '../components/link-toolbar/link-toolbar-controller.component';
 import { BnaLinkToolbarComponent } from '../components/link-toolbar/link-toolbar.component';
 import { BnaSideMenuControllerComponent } from '../components/side-menu/bna-side-menu-controller.component';
 import { BnaSideMenuComponent } from '../components/side-menu/bna-side-menu.component';
@@ -51,7 +52,7 @@ import { BnaAddBlockButtonComponent } from '../components/side-menu/default-butt
 import { BnaDragHandleMenuComponent } from '../components/side-menu/drag-handle-menu/bna-drag-handle-menu.component';
 import { BnaSlashMenuComponent } from '../components/suggestions-menu';
 import { BnaSlashMenuControllerComponent } from '../components/suggestions-menu/bna-slash-menu-controller.component';
-import { BnaTableHandlesController } from '../components/table-handles/bna-table-handles-controller.component';
+import { BnaTableHandlesControllerComponent } from '../components/table-handles/bna-table-handles-controller.component';
 import { BlockNoteEditorOptionsType } from '../interfaces/block-note-editor-options.type';
 import { NgxBlocknoteService } from '../services/ngx-blocknote.service';
 import { useSelectedBlocks } from '../util';
@@ -69,7 +70,6 @@ type InitialContent<
 
 @Component({
   imports: [
-    CommonModule,
     BnaViewControllerDirective,
     BnaSideMenuControllerComponent,
     BnaAddBlockButtonComponent,
@@ -82,7 +82,7 @@ type InitialContent<
     BnaFormattingToolbarComponent,
     BnaSideMenuComponent,
     BnaSlashMenuComponent,
-    BnaLinkToolbarControllerDirective,
+    BnaLinkToolbarControllerComponent,
     BnaLinkToolbarComponent,
     BnaCreateLinkComponent,
     BnaOpenLinkComponent,
@@ -90,7 +90,7 @@ type InitialContent<
     BnaDeleteLinkComponent,
     BnaColorStyleButtonComponent,
     BnaBlockTypeSelectComponent,
-    BnaTableHandlesController,
+    BnaTableHandlesControllerComponent,
     BnaFileDeleteButtonComponent,
     BnaFileDownloadButtonComponent,
     BnaFileRenameButtonComponent,
@@ -108,7 +108,6 @@ type InitialContent<
     },
   ],
   selector: 'bna-editor',
-  styleUrl: './bna-editor.component.css',
   templateUrl: './bna-editor.component.html',
 })
 export class BnaEditorComponent<
@@ -118,14 +117,17 @@ export class BnaEditorComponent<
   >
   implements OnChanges, ControlValueAccessor, OnInit
 {
-  @Input()
-  options?: BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>;
-  @Input()
-  initialContent?: InitialContent<BSchema, ISchema, SSchema>;
+  private ngxBlockNoteService = inject(
+    NgxBlocknoteService<BSchema, ISchema, SSchema>,
+  );
+
+  readonly options =
+    input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
+  readonly initialContent = input<InitialContent<BSchema, ISchema, SSchema>>();
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
-  onEditorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
+  editorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   private hasCustomEditor = false;
 
@@ -134,6 +136,7 @@ export class BnaEditorComponent<
   formattingToolbarShown = signal(false);
   sideMenuShown = signal(false);
   linkToolbarShown = signal(false);
+  isDisabled = signal(false);
 
   private onChangeCallbackListeners: Array<() => void | undefined> = [];
 
@@ -154,14 +157,14 @@ export class BnaEditorComponent<
 
   firstTimeInitialized = false;
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     this.ngxBlockNoteService.setEditor(this.editor);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onChange: any = () => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouch: any = () => {};
 
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
@@ -174,25 +177,27 @@ export class BnaEditorComponent<
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
+    this.isDisabled.set(isDisabled);
     this.editor.isEditable = !isDisabled;
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    const options = this.options();
     if (!this.hasCustomEditor && changes['options']) {
       this.editor = this.createEditor(undefined);
-      this.onEditorReady.emit(this.editor);
+      this.editorReady.emit(this.editor);
       this.firstTimeInitialized = true;
 
-      this.ngxBlockNoteService.setOptions(this.options ?? {});
+      this.ngxBlockNoteService.setOptions(options ?? {});
     }
     //just update the options, when a custom editor is used. Suggestion menu depends on it
     if (this.hasCustomEditor && changes['options']) {
-      this.ngxBlockNoteService.setOptions(this.options ?? {});
+      this.ngxBlockNoteService.setOptions(options ?? {});
     }
 
     if (!changes['options'] && !this.firstTimeInitialized) {
       this.firstTimeInitialized = true;
-      this.onEditorReady.emit(this.editor);
+      this.editorReady.emit(this.editor);
     }
 
     if (changes['initialContent']) {
@@ -204,7 +209,7 @@ export class BnaEditorComponent<
     //do not remove this, this needs to be here, because it does not fire in onChanges, if there are no inputs
     if (!this.firstTimeInitialized) {
       this.firstTimeInitialized = true;
-      this.onEditorReady.emit(this.editor);
+      this.editorReady.emit(this.editor);
     }
   }
 
@@ -214,7 +219,8 @@ export class BnaEditorComponent<
       | PartialBlock<BSchema, ISchema, SSchema>[]
       | undefined,
   ) {
-    const schema = this.options?.schema;
+    const options = this.options();
+    const schema = options?.schema;
     const editor = BlockNoteEditor.create({
       schema: schema
         ? schema
@@ -224,11 +230,10 @@ export class BnaEditorComponent<
             styleSpecs: {
               ...defaultStyleSpecs,
             },
-            // in this case the user did not give a blocknote schema so we want to use the default one
-            //TODO: remove casting
+            // in this case the user did not give a blocknote schema, so we want to use the default one
           }) as unknown as BlockNoteSchema<BSchema, ISchema, SSchema>),
       initialContent: initialContent,
-      uploadFile: this.options?.uploadFile,
+      uploadFile: options?.uploadFile,
     });
     this.ngxBlockNoteService.setEditor(editor);
     this.createEditorListeners(editor);

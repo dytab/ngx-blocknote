@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@dytab/ui';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',
@@ -24,7 +24,7 @@ import { HlmButtonDirective } from '@dytab/ui';
     </div>
     <bna-editor
       [initialContent]="initialContent"
-      (onEditorReady)="editorReady($event)"
+      (editorReady)="editorReady($event)"
     />
   `,
 })
@@ -89,7 +89,7 @@ import { BlockNoteEditor } from '@blocknote/core';
       <button hlmBtn size="sm" type="button" (click)="removeFirstBlock()">Remove First Block</button>
       <button hlmBtn size="sm" type="button" (click)="replaceFirstBlock()">Replace First Block</button>
     </div>
-    <bna-editor [initialContent]="initialContent" (onEditorReady)="editorReady($event)" />
+    <bna-editor [initialContent]="initialContent" (editorReady)="editorReady($event)" />
   \`,
 })
 export class ManipulatingBlocksExample{

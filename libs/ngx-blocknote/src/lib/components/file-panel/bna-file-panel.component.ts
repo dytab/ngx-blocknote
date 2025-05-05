@@ -1,19 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
   BlockNoteEditor,
   FileBlockConfig,
 } from '@blocknote/core';
-import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import {
-  HlmButtonDirective,
-  HlmInputDirective,
   HlmTabsComponent,
   HlmTabsContentDirective,
   HlmTabsListComponent,
   HlmTabsTriggerDirective,
-} from '../../ui';
+} from '@spartan-ng/ui-tabs-helm';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Component({
   selector: 'bna-file-panel',
@@ -30,6 +30,8 @@ import {
   templateUrl: './bna-file-panel.component.html',
 })
 export class BnaFilePanelComponent {
+  private ngxBlockNoteService = inject(NgxBlocknoteService);
+
   focusedBlock = signal<BlockFromConfig<FileBlockConfig, any, any> | undefined>(
     undefined,
   );
@@ -37,7 +39,7 @@ export class BnaFilePanelComponent {
   embedInputText = '';
   fileControl = new FormControl();
 
-  constructor(private ngxBlockNoteService: NgxBlocknoteService) {
+  constructor() {
     const editor = this.ngxBlockNoteService.editor();
     if (editor.filePanel) {
       //TODO: remove the workaround
