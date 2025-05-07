@@ -43,7 +43,12 @@
       "cache": true
     },
     "build-storybook": {
-      "inputs": ["default", "^production", "{projectRoot}/.storybook/**/*", "{projectRoot}/tsconfig.storybook.json"],
+      "inputs": [
+        "default",
+        "^production",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/tsconfig.storybook.json"
+      ],
       "cache": true
     },
     "@nx/jest:jest": {
@@ -118,7 +123,15 @@
   },
   "defaultProject": "docs",
   "release": {
-    "projects": ["ngx-blocknote"],
+    "projects": [
+      "ngx-blocknote",
+      "!ui-input-helm",
+      "!ui-button-helm",
+      "!ui-icon-helm",
+      "!ui-tooltip-helm",
+      "!ui-tabs-helm",
+      "!ui-menu-helm"
+    ],
     "version": {
       "generatorOptions": {
         "packageRoot": "{workspaceRoot}/dist/libs/{projectName}",
