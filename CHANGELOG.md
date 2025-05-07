@@ -1,3 +1,13 @@
+## 1.8.1 (2025-05-07)
+
+### 🩹 Fixes
+
+- build ngx-blocknote lib again; add sourcemaps ([f60b844](https://github.com/dytab/ngx-blocknote/commit/f60b844))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.8.0 (2025-05-07)
 
 ### 🚀 Features
