@@ -1,3 +1,23 @@
+## 1.8.0 (2025-05-07)
+
+### 🚀 Features
+
+- update @blocknote dependencies to v0.26.0 ([1682e35](https://github.com/dytab/ngx-blocknote/commit/1682e35))
+- build ngx-blocknote with vite ([69493b9](https://github.com/dytab/ngx-blocknote/commit/69493b9))
+- extract ui components into own libraries ([1c71f2d](https://github.com/dytab/ngx-blocknote/commit/1c71f2d))
+- update table handles to work with new blocknote table ([0304055](https://github.com/dytab/ngx-blocknote/commit/0304055))
+
+### 🩹 Fixes
+
+- remove strange casts and use generics ([f9b3d65](https://github.com/dytab/ngx-blocknote/commit/f9b3d65))
+- hide the formatting toolbar when control is disabled and a text is selected ([d7fa588](https://github.com/dytab/ngx-blocknote/commit/d7fa588))
+- capture the enter key listener, so that suggestion menu enter is executed before blocknote listener ([72a9a46](https://github.com/dytab/ngx-blocknote/commit/72a9a46))
+
+### ❤️ Thank You
+
+- Johannes Klein
+- Matthias Risto
+
 ## 1.7.0 (2025-04-24)
 
 ### 🚀 Features
