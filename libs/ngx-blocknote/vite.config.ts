@@ -10,14 +10,12 @@ export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/ngx-blocknote',
   plugins: [
-    angular({
-      tsconfig: 'tsconfig.prod.json',
-    }),
+    angular(),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     dts({
       entryRoot: 'src',
-      tsconfigPath: path.join(__dirname, 'tsconfig.prod.json'),
+      tsconfigPath: path.join(__dirname, 'tsconfig.app.json'),
     }),
   ],
   resolve: {
