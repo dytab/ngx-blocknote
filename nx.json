@@ -120,7 +120,6 @@
   "release": {
     "projects": ["ngx-blocknote"],
     "version": {
-      "preVersionCommand": "npx nx run-many -t build",
       "generatorOptions": {
         "packageRoot": "{workspaceRoot}/dist/libs/{projectName}",
         "currentVersionResolver": "git-tag",
