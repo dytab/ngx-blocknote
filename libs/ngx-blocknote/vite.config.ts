@@ -11,7 +11,7 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/libs/ngx-blocknote',
   plugins: [
     angular({
-      workspaceRoot: path.resolve(__dirname, '../../'),
+      tsconfig: 'tsconfig.prod.json',
     }),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
@@ -34,6 +34,7 @@ export default defineConfig(() => ({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    sourcemap: true,
     lib: {
       entry: 'src/index.ts',
       cssFileName: 'themes/styles',
