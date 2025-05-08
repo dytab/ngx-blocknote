@@ -123,21 +123,14 @@
   },
   "defaultProject": "docs",
   "release": {
-    "projects": [
-      "ngx-blocknote",
-      "!ui-input-helm",
-      "!ui-button-helm",
-      "!ui-icon-helm",
-      "!ui-tooltip-helm",
-      "!ui-tabs-helm",
-      "!ui-menu-helm"
-    ],
+    "projects": ["ngx-blocknote"],
     "version": {
-      "generatorOptions": {
-        "packageRoot": "{workspaceRoot}/dist/libs/{projectName}",
-        "currentVersionResolver": "git-tag",
-        "specifierSource": "conventional-commits"
-      }
+      "useLegacyVersioning": false,
+      "conventionalCommits": true,
+      "manifestRootsToUpdate": [
+        "{workspaceRoot}/libs/{projectName}",
+        "{workspaceRoot}/dist/libs/{projectName}"
+      ]
     },
     "changelog": {
       "workspaceChangelog": {
