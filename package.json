@@ -134,6 +134,7 @@
     "includedScripts": []
   },
   "overrides": {
+    "prosemirror-model": "1.25.0",
     "@analogjs/vitest-angular": {
       "@angular-devkit/architect": "$@angular-devkit/architect"
     }
