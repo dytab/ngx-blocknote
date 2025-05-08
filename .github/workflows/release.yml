@@ -39,7 +39,7 @@ jobs:
 
       - name: Release
         if: inputs.auto_publish
-        run: npx nx release --yes
+        run: npx nx release --excludeTaskDependencies --yes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
 
       - name: Release Publish Dry-Run
         if: ${{ !inputs.auto_publish }}
-        run: npx nx release publish --dry-run
+        run: npx nx release publish --excludeTaskDependencies --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
