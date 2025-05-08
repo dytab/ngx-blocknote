@@ -1,3 +1,14 @@
+## 1.8.2 (2025-05-08)
+
+### 🩹 Fixes
+
+- pin prosemirror-model ([126c400](https://github.com/dytab/ngx-blocknote/commit/126c400))
+- bump version to 1.8.1 ([40336e6](https://github.com/dytab/ngx-blocknote/commit/40336e6))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.8.1 (2025-05-07)
 
 ### 🩹 Fixes
