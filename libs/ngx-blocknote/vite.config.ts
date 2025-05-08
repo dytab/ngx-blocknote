@@ -38,7 +38,7 @@ export default defineConfig(() => ({
       cssFileName: 'themes/styles',
       fileName: `fesm2022/dytab-ngx-blocknote`,
       name: 'ngx-blocknote',
-      formats: ['es' as const],
+      formats: ['cjs' as const, 'es' as const],
     },
     rollupOptions: {
       external: [

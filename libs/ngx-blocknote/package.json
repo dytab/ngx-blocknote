@@ -45,7 +45,8 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "default": "./fesm2022/dytab-ngx-blocknote.js"
+      "import": "./fesm2022/dytab-ngx-blocknote.js",
+      "require": "./fesm2022/dytab-ngx-blocknote.cjs"
     }
   }
 }
