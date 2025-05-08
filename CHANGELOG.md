@@ -1,3 +1,13 @@
+## 1.8.3 (2025-05-08)
+
+### 🩹 Fixes
+
+- add CommonJS format to build outputs ([deab4ed](https://github.com/dytab/ngx-blocknote/commit/deab4ed))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.8.2 (2025-05-08)
 
 ### 🩹 Fixes
