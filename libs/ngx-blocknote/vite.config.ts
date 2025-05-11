@@ -22,7 +22,7 @@ export default defineConfig(() => ({
     mainFields: ['module'],
   },
   css: {
-    postcss: './postcss.config.js', // Stellt sicher, dass PostCSS korrekt verwendet wird
+    postcss: './postcss.config.js',
   },
   build: {
     target: ['esnext'],
