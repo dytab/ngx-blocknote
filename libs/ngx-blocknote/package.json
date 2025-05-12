@@ -43,7 +43,7 @@
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./src/index.d.ts",
       "import": "./fesm2022/dytab-ngx-blocknote.js",
       "require": "./fesm2022/dytab-ngx-blocknote.cjs"
     }
