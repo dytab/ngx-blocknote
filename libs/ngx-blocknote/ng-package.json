@@ -1,0 +1,21 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/ngx-blocknote/",
+  "lib": {
+    "entryFile": "src/index.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "@floating-ui/dom",
+    "@ng-icons/core",
+    "@ng-icons/lucide",
+    "@spartan-ng/ui-checkbox-brain",
+    "@spartan-ng/ui-core",
+    "@spartan-ng/ui-dialog-brain",
+    "@spartan-ng/ui-menu-brain",
+    "@spartan-ng/ui-tabs-brain",
+    "@spartan-ng/ui-tooltip-brain",
+    "class-variance-authority",
+    "clsx",
+    "ngx-scrollbar"
+  ]
+}
