@@ -1,3 +1,13 @@
+## 1.8.5 (2025-05-12)
+
+### 🩹 Fixes
+
+- remove build target from lib ([28cc847](https://github.com/dytab/ngx-blocknote/commit/28cc847))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.8.4 (2025-05-12)
 
 ### 🩹 Fixes
