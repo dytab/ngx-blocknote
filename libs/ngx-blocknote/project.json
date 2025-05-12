@@ -15,24 +15,6 @@
   },
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "configFile": "libs/ngx-blocknote/vite.config.ts",
-        "outputPath": "dist/libs/ngx-blocknote"
-      },
-      "configurations": {
-        "production": {
-          "sourcemap": true,
-          "mode": "production"
-        },
-        "development": {
-          "mode": "development"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },
