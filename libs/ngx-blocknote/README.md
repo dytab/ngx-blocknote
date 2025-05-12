@@ -16,7 +16,6 @@ import { Component } from '@angular/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
-  standalone: true,
   imports: [CommonModule, BnaEditorComponent],
   template: ` <bna-editor (contentChanged)="readTextFromEditor($event)" /> `,
 })
