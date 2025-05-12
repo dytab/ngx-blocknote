@@ -1,3 +1,13 @@
+## 1.8.4 (2025-05-12)
+
+### 🩹 Fixes
+
+- remove standalone decorator from component example ([22faa5a](https://github.com/dytab/ngx-blocknote/commit/22faa5a))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.8.3 (2025-05-08)
 
 ### 🩹 Fixes
