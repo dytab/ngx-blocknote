@@ -32,12 +32,13 @@
   },
   "bugs": "https://github.com/dytab/ngx-blocknote/issues",
   "sideEffects": false,
+  "types": "./index.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./src/index.d.ts",
+      "types": "./index.d.ts",
       "import": "./fesm2022/dytab-ngx-blocknote.js",
       "require": "./fesm2022/dytab-ngx-blocknote.cjs"
     }
