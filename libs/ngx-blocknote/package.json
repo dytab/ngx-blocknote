@@ -1,7 +1,7 @@
 {
   "name": "@dytab/ngx-blocknote",
   "homepage": "https://dytab.github.io/ngx-blocknote",
-  "version": "1.8.5",
+  "version": "1.8.6",
   "publishConfig": {
     "access": "public"
   },

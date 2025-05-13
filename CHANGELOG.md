@@ -1,3 +1,13 @@
+## 1.8.6 (2025-05-13)
+
+### 🩹 Fixes
+
+- add top level type declarations because jest 🤬 ([4b6b0d3](https://github.com/dytab/ngx-blocknote/commit/4b6b0d3))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.8.5 (2025-05-12)
 
 ### 🩹 Fixes
