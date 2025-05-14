@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal, inject } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import {
   Block,
   checkBlockHasDefaultProp,
   checkBlockTypeHasDefaultProp,
+  mapTableCell,
+  TableContent,
 } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -12,9 +14,9 @@ import {
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
+import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
 import {
   HlmTooltipComponent,
   HlmTooltipTriggerDirective,
@@ -65,7 +67,11 @@ export class BnaTextAlignButtonComponent {
   _visibilityClass = computed(() => {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     // Also don't show when none of the selected blocks have text content
-    return selectedBlocks.find((block) => 'textAlignment' in block.props)
+    return selectedBlocks.find(
+      (block) =>
+        'textAlignment' in block.props ||
+        (block.type === 'table' && block.children),
+    )
       ? ''
       : 'hidden';
   });
@@ -108,6 +114,40 @@ export class BnaTextAlignButtonComponent {
         editor.updateBlock(block, {
           props: { textAlignment: textAlignment },
         });
+      } else if (block.type === 'table') {
+        const cellSelection = editor.tableHandles?.getCellSelection();
+        if (!cellSelection) {
+          continue;
+        }
+
+        const newTable = (block.content as TableContent<any, any>).rows.map(
+          (row) => {
+            return {
+              ...row,
+              cells: row.cells.map((cell) => {
+                return mapTableCell(cell);
+              }),
+            };
+          },
+        );
+
+        // Apply the text alignment to the cells that are within the selected range
+        cellSelection.cells.forEach(({ row, col }) => {
+          newTable[row].cells[col].props.textAlignment = textAlignment;
+        });
+
+        editor.updateBlock(block, {
+          type: 'table',
+          content: {
+            ...(block.content as TableContent<any, any>),
+            type: 'tableContent',
+            rows: newTable,
+          } as any,
+        });
+
+        // Have to reset text cursor position to the block as `updateBlock`
+        // moves the existing selection out of the block.
+        editor.setTextCursorPosition(block);
       }
     }
   }
