@@ -85,6 +85,26 @@ export class BnaTextAlignButtonComponent {
     if (checkBlockHasDefaultProp('textAlignment', block, editor)) {
       return block.props.textAlignment === this.alignment();
     }
+
+    if (block.type === 'table') {
+      const cellSelection = editor.tableHandles?.getCellSelection();
+      if (!cellSelection) {
+        return false;
+      }
+
+      const allCellsInTable = cellSelection.cells.map(
+        ({ row, col }) =>
+          mapTableCell(
+            (block.content as TableContent<any, any>).rows[row].cells[col],
+          ).props.textAlignment,
+      );
+
+      const firstAlignment = allCellsInTable[0];
+      if (allCellsInTable.every((alignment) => alignment === firstAlignment)) {
+        return firstAlignment === this.alignment();
+      }
+    }
+
     return false;
   });
 
