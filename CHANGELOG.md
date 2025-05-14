@@ -1,3 +1,18 @@
+## 1.9.0 (2025-05-14)
+
+### 🚀 Features
+
+- add text alignment for table cells ([2419385](https://github.com/dytab/ngx-blocknote/commit/2419385))
+
+### 🩹 Fixes
+
+- add text alignment check for table cells ([f0edf39](https://github.com/dytab/ngx-blocknote/commit/f0edf39))
+
+### ❤️ Thank You
+
+- Johannes Klein
+- Markus Falk
+
 ## 1.8.6 (2025-05-13)
 
 ### 🩹 Fixes
