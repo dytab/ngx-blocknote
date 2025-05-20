@@ -1,3 +1,13 @@
+## 1.9.3 (2025-05-20)
+
+### 🩹 Fixes
+
+- update @blocknote packages to v0.31.0 ([6798003](https://github.com/dytab/ngx-blocknote/commit/6798003))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.9.2 (2025-05-20)
 
 ### 🩹 Fixes
