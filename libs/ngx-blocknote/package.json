@@ -7,7 +7,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@blocknote/core": "0.31.0",
+    "@blocknote/core": "0.31.1",
     "@floating-ui/dom": "^1.6.8",
     "@ng-icons/core": "^29.10.0",
     "@ng-icons/lucide": ">=29.0.0",
