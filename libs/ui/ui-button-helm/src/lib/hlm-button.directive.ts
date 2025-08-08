@@ -43,7 +43,7 @@ export type ButtonVariants = VariantProps<typeof buttonVariants>;
     '[class]': '_computedClass()',
   },
 })
-export class HlmButtonDirective {
+export class HlmButton {
   private readonly _config = injectBrnButtonConfig();
 
   private readonly _additionalClasses = signal<ClassValue>('');

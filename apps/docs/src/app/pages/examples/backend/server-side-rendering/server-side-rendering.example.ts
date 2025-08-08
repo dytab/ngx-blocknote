@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'bna-server-side-rendering-example',
-  imports: [ReactiveFormsModule, BnaEditorComponent, HlmButtonDirective],
+  imports: [ReactiveFormsModule, BnaEditorComponent, HlmButton],
   template: `
     <button type="button" hlmBtn size="sm" type (click)="logSSR()">
       Log SSR

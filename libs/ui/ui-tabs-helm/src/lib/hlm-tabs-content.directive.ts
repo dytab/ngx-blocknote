@@ -1,6 +1,6 @@
 import { Directive, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnTabsContentDirective } from '@spartan-ng/brain/tabs';
+import { BrnTabsContent } from '@spartan-ng/brain/tabs';
 import type { ClassValue } from 'clsx';
 
 @Directive({
@@ -8,7 +8,7 @@ import type { ClassValue } from 'clsx';
   standalone: true,
   hostDirectives: [
     {
-      directive: BrnTabsContentDirective,
+      directive: BrnTabsContent,
       inputs: ['brnTabsContent: hlmTabsContent'],
     },
   ],
@@ -16,7 +16,7 @@ import type { ClassValue } from 'clsx';
     '[class]': '_computedClass()',
   },
 })
-export class HlmTabsContentDirective {
+export class HlmTabsContent {
   public readonly contentFor = input.required<string>({
     alias: 'hlmTabsContent',
   });

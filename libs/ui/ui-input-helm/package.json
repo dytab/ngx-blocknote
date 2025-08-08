@@ -1,5 +1,5 @@
 {
-  "name": "@spartan-ng/ui-input-helm",
+  "name": "@spartan-ng/helm/input",
   "version": "0.0.1",
   "peerDependencies": {},
   "sideEffects": false

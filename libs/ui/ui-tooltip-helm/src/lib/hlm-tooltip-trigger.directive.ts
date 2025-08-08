@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import {
-  BrnTooltipTriggerDirective,
+  BrnTooltipTrigger,
   provideBrnTooltipDefaultOptions,
 } from '@spartan-ng/brain/tooltip';
 
@@ -24,7 +24,7 @@ const DEFAULT_TOOLTIP_CONTENT_CLASSES =
   ],
   hostDirectives: [
     {
-      directive: BrnTooltipTriggerDirective,
+      directive: BrnTooltipTrigger,
       inputs: [
         'brnTooltipDisabled: hlmTooltipDisabled',
         'brnTooltipTrigger: hlmTooltipTrigger',
@@ -39,4 +39,4 @@ const DEFAULT_TOOLTIP_CONTENT_CLASSES =
     },
   ],
 })
-export class HlmTooltipTriggerDirective {}
+export class HlmTooltipTrigger {}

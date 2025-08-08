@@ -11,7 +11,7 @@ export const hlmLead = 'text-xl text-muted-foreground';
     '[class]': '_computedClass()',
   },
 })
-export class HlmLeadDirective {
+export class HlmLead {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() => hlm(hlmLead, this.userClass()));
 }

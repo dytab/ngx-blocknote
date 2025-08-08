@@ -17,7 +17,7 @@ import type { ClassValue } from 'clsx';
     '[class]': '_computedClass()',
   },
 })
-export class HlmMenuLabelComponent {
+export class HlmMenuLabel {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() =>
     hlm(

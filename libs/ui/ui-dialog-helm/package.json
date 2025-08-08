@@ -1,8 +1,8 @@
 {
-  "name": "@spartan-ng/ui-dialog-helm",
+  "name": "@spartan-ng/helm/dialog",
   "version": "0.0.1",
   "peerDependencies": {
-    "@spartan-ng/ui-icon-helm": "0.0.1"
+    "@spartan-ng/helm/icon": "0.0.1"
   },
   "sideEffects": false
 }

@@ -10,7 +10,7 @@ import type { ClassValue } from 'clsx';
     '[class]': '_computedClass()',
   },
 })
-export class HlmDialogFooterComponent {
+export class HlmDialogFooter {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() =>
     hlm(

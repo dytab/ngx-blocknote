@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HlmTabsComponent } from '@spartan-ng/ui-tabs-helm';
-import { hlmP } from '@spartan-ng/ui-typography-helm';
+import { HlmTabs } from '@spartan-ng/helm/tabs';
+import { hlmP } from '@spartan-ng/helm/typography';
 import { CodeComponent } from '../../../../shared/code/code.component';
 import { DemoBoxComponent } from '../../../../shared/layout/demo-box.component';
 import { TabsComponent } from '../../../../shared/layout/example-tabs.component';
@@ -12,7 +12,7 @@ import { AllBlocksExample, allBlocksExampleCode } from './all-blocks.example';
     SectionIntroComponent,
     CodeComponent,
     DemoBoxComponent,
-    HlmTabsComponent,
+    HlmTabs,
     TabsComponent,
     AllBlocksExample,
   ],

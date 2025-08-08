@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { exampleGroupedLinks } from './shared/examples';
 
 @Component({
-  imports: [RouterOutlet, HlmButtonDirective, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, HlmButton, RouterLink, RouterLinkActive],
   host: {
     class: 'block py-3 mx-auto max-w-[90rem]',
   },

@@ -3,13 +3,13 @@ import { By } from '@angular/platform-browser';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { type RenderResult, render } from '@testing-library/angular';
-import { HlmIconDirective } from './hlm-icon.directive';
+import { HlmIcon } from './hlm-icon.directive';
 
 @Component({
   selector: 'hlm-mock',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HlmIconDirective, NgIcon],
+  imports: [HlmIcon, NgIcon],
   providers: [provideIcons({ lucideCheck })],
   template: `
     <ng-icon
@@ -22,16 +22,16 @@ import { HlmIconDirective } from './hlm-icon.directive';
     />
   `,
 })
-class HlmMockComponent {
+class HlmMock {
   @Input() public size = 'base';
 }
 
-describe('HlmIconDirective', () => {
-  let r: RenderResult<HlmMockComponent>;
+describe('HlmIcon', () => {
+  let r: RenderResult<HlmMock>;
   let icon: HTMLElement;
 
   beforeEach(async () => {
-    r = await render(HlmMockComponent);
+    r = await render(HlmMock);
     icon = r.container.querySelector('ng-icon')!;
   });
 

@@ -13,7 +13,7 @@ import {
   BnaEditorComponent,
   BnaSuggestionsMenuControllerComponent,
 } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { Mention } from './mentions';
 
 const getMentionMenuItems = (editor: typeof schema.BlockNoteEditor) => {
@@ -47,7 +47,7 @@ const schema = BlockNoteSchema.create({
   selector: 'bna-mentions-menu-example',
   imports: [
     BnaEditorComponent,
-    HlmButtonDirective,
+    HlmButton,
     BnaSuggestionsMenuControllerComponent,
   ],
   template: `<bna-editor
@@ -141,7 +141,7 @@ import {
   BnaEditorComponent,
   BnaSuggestionsMenuComponent,
   BnaSuggestionsMenuControllerDirective,
-  HlmButtonDirective,
+  HlmButton,
 } from '@dytab/ngx-blocknote';
 import { Mention } from './mentions';
 
@@ -178,7 +178,7 @@ const schema = BlockNoteSchema.create({
   imports: [
     CommonModule,
     BnaEditorComponent,
-    HlmButtonDirective,
+    HlmButton,
     BnaSuggestionsMenuControllerDirective,
     BnaSuggestionsMenuComponent,
   ],

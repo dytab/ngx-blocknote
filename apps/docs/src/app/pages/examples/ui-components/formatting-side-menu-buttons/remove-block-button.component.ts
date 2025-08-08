@@ -3,12 +3,12 @@ import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
   selector: 'bna-remove-block-button',
-  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [HlmButton, NgIcon, HlmIcon],
   providers: [provideIcons({ lucideTrash })],
   template: ` <button hlmBtn size="xs" variant="ghost" (click)="deleteBlock()">
     <ng-icon hlm size="xs" name="lucideTrash" />

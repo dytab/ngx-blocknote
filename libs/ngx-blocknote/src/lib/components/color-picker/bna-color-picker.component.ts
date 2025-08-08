@@ -1,8 +1,8 @@
 import { Component, inject, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { ColorOptions } from '../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../services';
 import { BnaColorIconComponent } from './color-icon/bna-color-icon.component';
@@ -22,12 +22,7 @@ const colors = [
 
 @Component({
   selector: 'bna-color-picker',
-  imports: [
-    BnaColorIconComponent,
-    HlmButtonDirective,
-    NgIcon,
-    HlmIconDirective,
-  ],
+  imports: [BnaColorIconComponent, HlmButton, NgIcon, HlmIcon],
   templateUrl: './bna-color-picker.component.html',
   providers: [
     provideIcons({

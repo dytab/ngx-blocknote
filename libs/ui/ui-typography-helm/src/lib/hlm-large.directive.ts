@@ -11,7 +11,7 @@ export const hlmLarge = 'text-lg font-semibold';
     '[class]': '_computedClass()',
   },
 })
-export class HlmLargeDirective {
+export class HlmLarge {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() => hlm(hlmLarge, this.userClass()));
 }

@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { hlmH2, hlmLead } from '@spartan-ng/ui-typography-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCard } from '@spartan-ng/helm/card';
+import { hlmH2, hlmLead } from '@spartan-ng/helm/typography';
 import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.example';
 
 @Component({
-  imports: [
-    RouterLink,
-    HlmButtonDirective,
-    HlmCardDirective,
-    BasicSetupExample,
-  ],
+  imports: [RouterLink, HlmButton, HlmCard, BasicSetupExample],
   template: `<section
       class="relative flex h-fit w-full justify-center overflow-hidden pb-36 pt-24 xl:pt-36"
     >

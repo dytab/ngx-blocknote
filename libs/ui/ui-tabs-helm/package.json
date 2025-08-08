@@ -1,9 +1,9 @@
 {
-  "name": "@spartan-ng/ui-tabs-helm",
+  "name": "@spartan-ng/helm/tabs",
   "version": "0.0.1",
   "peerDependencies": {
-    "@spartan-ng/ui-button-helm": "0.0.1",
-    "@spartan-ng/ui-icon-helm": "0.0.1"
+    "@spartan-ng/helm/button": "0.0.1",
+    "@spartan-ng/helm/icon": "0.0.1"
   },
   "sideEffects": false
 }
