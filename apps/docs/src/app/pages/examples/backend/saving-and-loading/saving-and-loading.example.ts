@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-saving-and-loading-example',
-  imports: [CommonModule, BnaEditorComponent],
+  imports: [BnaEditorComponent],
   template: `
     <bna-editor
       [initialContent]="initialContent"

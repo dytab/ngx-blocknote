@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
@@ -29,7 +28,7 @@ const schema = BlockNoteSchema.create({
 
 @Component({
   selector: 'bna-custom-editor-example',
-  imports: [CommonModule, BnaEditorComponent, ReactiveFormsModule],
+  imports: [BnaEditorComponent, ReactiveFormsModule],
   providers: [NgxBlocknoteService],
   template: `
     <bna-editor

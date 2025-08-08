@@ -9,17 +9,11 @@ import {
   DefaultInlineContentSchema,
   DefaultStyleSchema,
 } from '@blocknote/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-} from '@spartan-ng/ui-menu-helm';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
@@ -27,14 +21,14 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
 @Component({
   selector: 'bna-file-rename-button',
   imports: [
-    HlmButtonDirective,
-    BrnMenuTriggerDirective,
-    HlmMenuComponent,
-    HlmMenuGroupComponent,
+    HlmButton,
+    BrnMenuTrigger,
+    HlmMenu,
+    HlmMenuGroup,
     ReactiveFormsModule,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
+    HlmTooltip,
+    HlmTooltipTrigger,
+    BrnTooltipContentTemplate,
   ],
   templateUrl: './bna-file-rename-button.component.html',
   host: {

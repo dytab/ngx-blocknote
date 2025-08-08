@@ -18,25 +18,23 @@
     "baseUrl": ".",
     "paths": {
       "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"],
-      "@spartan-ng/ui-button-helm": ["libs/ui/ui-button-helm/src/index.ts"],
-      "@spartan-ng/ui-card-helm": ["libs/ui/ui-card-helm/src/index.ts"],
-      "@spartan-ng/ui-checkbox-helm": ["libs/ui/ui-checkbox-helm/src/index.ts"],
-      "@spartan-ng/ui-dialog-helm": ["libs/ui/ui-dialog-helm/src/index.ts"],
-      "@spartan-ng/ui-formfield-helm": [
-        "libs/ui/ui-formfield-helm/src/index.ts"
+      "@spartan-ng/helm/button": ["libs/ui/ui-button-helm/src/index.ts"],
+      "@spartan-ng/helm/card": ["libs/ui/ui-card-helm/src/index.ts"],
+      "@spartan-ng/helm/checkbox": ["libs/ui/ui-checkbox-helm/src/index.ts"],
+      "@spartan-ng/helm/dialog": ["libs/ui/ui-dialog-helm/src/index.ts"],
+      "@spartan-ng/helm/form-field": [
+        "libs/ui/ui-form-field-helm/src/index.ts"
       ],
-      "@spartan-ng/ui-icon-helm": ["libs/ui/ui-icon-helm/src/index.ts"],
-      "@spartan-ng/ui-input-helm": ["libs/ui/ui-input-helm/src/index.ts"],
-      "@spartan-ng/ui-menu-helm": ["libs/ui/ui-menu-helm/src/index.ts"],
-      "@spartan-ng/ui-scrollarea-helm": [
-        "libs/ui/ui-scrollarea-helm/src/index.ts"
+      "@spartan-ng/helm/icon": ["libs/ui/ui-icon-helm/src/index.ts"],
+      "@spartan-ng/helm/input": ["libs/ui/ui-input-helm/src/index.ts"],
+      "@spartan-ng/helm/menu": ["libs/ui/ui-menu-helm/src/index.ts"],
+      "@spartan-ng/helm/scroll-area": [
+        "libs/ui/ui-scroll-area-helm/src/index.ts"
       ],
-      "@spartan-ng/ui-tabs-helm": ["libs/ui/ui-tabs-helm/src/index.ts"],
-      "@spartan-ng/ui-toggle-helm": ["libs/ui/ui-toggle-helm/src/index.ts"],
-      "@spartan-ng/ui-tooltip-helm": ["libs/ui/ui-tooltip-helm/src/index.ts"],
-      "@spartan-ng/ui-typography-helm": [
-        "libs/ui/ui-typography-helm/src/index.ts"
-      ]
+      "@spartan-ng/helm/tabs": ["libs/ui/ui-tabs-helm/src/index.ts"],
+      "@spartan-ng/helm/toggle": ["libs/ui/ui-toggle-helm/src/index.ts"],
+      "@spartan-ng/helm/tooltip": ["libs/ui/ui-tooltip-helm/src/index.ts"],
+      "@spartan-ng/helm/typography": ["libs/ui/ui-typography-helm/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

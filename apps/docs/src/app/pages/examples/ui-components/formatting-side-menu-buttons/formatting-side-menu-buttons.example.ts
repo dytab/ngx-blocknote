@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
@@ -12,7 +11,6 @@ import { RemoveBlockButtonComponent } from './remove-block-button.component';
 @Component({
   selector: 'bna-formatting-side-menu-buttons-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
     BnaSideMenuControllerComponent,
     BnaSideMenuComponent,
