@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { HlmIcon } from './lib/hlm-icon.directive';
+import { HlmIcon } from './lib/hlm-icon';
 
-export * from './lib/hlm-icon.directive';
+export * from './lib/hlm-icon';
 export * from './lib/hlm-icon.token';
 
 @NgModule({

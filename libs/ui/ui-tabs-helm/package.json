@@ -2,8 +2,8 @@
   "name": "@spartan-ng/helm/tabs",
   "version": "0.0.1",
   "peerDependencies": {
-    "@spartan-ng/helm/button": "0.0.1",
-    "@spartan-ng/helm/icon": "0.0.1"
+    "@angular/common": "^20.1.0",
+    "@angular/core": "^20.1.0"
   },
   "sideEffects": false
 }

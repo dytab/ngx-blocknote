@@ -17,16 +17,19 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"], "@spartan-ng/helm/button": ["libs/ui/ui-button-helm/src/index.ts"],
+      "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"],
+      "@spartan-ng/helm/button": ["libs/ui/ui-button-helm/src/index.ts"],
       "@spartan-ng/helm/card": ["libs/ui/ui-card-helm/src/index.ts"],
       "@spartan-ng/helm/checkbox": ["libs/ui/ui-checkbox-helm/src/index.ts"],
       "@spartan-ng/helm/dialog": ["libs/ui/ui-dialog-helm/src/index.ts"],
-      "@spartan-ng/helm/form-field": ["libs/ui/ui-formfield-helm/src/index.ts"],
+      "@spartan-ng/helm/form-field": [
+        "libs/ui/ui-form-field-helm/src/index.ts"
+      ],
       "@spartan-ng/helm/icon": ["libs/ui/ui-icon-helm/src/index.ts"],
       "@spartan-ng/helm/input": ["libs/ui/ui-input-helm/src/index.ts"],
       "@spartan-ng/helm/menu": ["libs/ui/ui-menu-helm/src/index.ts"],
       "@spartan-ng/helm/scroll-area": [
-        "libs/ui/ui-scrollarea-helm/src/index.ts"
+        "libs/ui/ui-scroll-area-helm/src/index.ts"
       ],
       "@spartan-ng/helm/tabs": ["libs/ui/ui-tabs-helm/src/index.ts"],
       "@spartan-ng/helm/toggle": ["libs/ui/ui-toggle-helm/src/index.ts"],
