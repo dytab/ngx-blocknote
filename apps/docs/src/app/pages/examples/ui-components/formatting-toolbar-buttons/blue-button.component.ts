@@ -25,6 +25,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
   styles: ``,
 })
 export class BlueButtonComponent {
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   changeToBlue() {

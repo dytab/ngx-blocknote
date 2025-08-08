@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -17,6 +17,8 @@ import { HlmButton } from '@spartan-ng/helm/button';
   `,
 })
 export class ServerSideRenderingExample {
+  private httpClient = inject(HttpClient);
+
   ssrContent = '';
   control = new FormControl([
     {
@@ -28,8 +30,6 @@ export class ServerSideRenderingExample {
       content: 'Try to get the html result',
     },
   ]);
-
-  constructor(private httpClient: HttpClient) {}
 
   logSSR() {
     this.httpClient

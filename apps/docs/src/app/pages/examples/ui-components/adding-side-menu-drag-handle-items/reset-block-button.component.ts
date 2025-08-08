@@ -19,6 +19,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 })
 export class ResetBlockButtonComponent {
   block?: Block;
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
       const editor = ngxBlockNoteService.editor();

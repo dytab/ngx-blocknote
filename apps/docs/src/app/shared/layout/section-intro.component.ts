@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { hlmH1, hlmLead } from '@spartan-ng/helm/typography';
 
@@ -15,14 +21,14 @@ import { hlmH1, hlmLead } from '@spartan-ng/helm/typography';
   `,
 })
 export class SectionIntroComponent implements OnChanges {
+  private title = inject(Title);
+
   @Input()
   name = '';
   @Input()
   lead = '';
   protected readonly hlmLead = hlmLead;
   protected readonly hlmH1 = hlmH1;
-
-  constructor(private title: Title) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.title.setTitle(this.name);

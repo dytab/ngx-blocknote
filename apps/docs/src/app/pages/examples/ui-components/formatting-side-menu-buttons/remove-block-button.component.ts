@@ -10,13 +10,14 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
   selector: 'bna-remove-block-button',
   imports: [HlmButton, NgIcon, HlmIcon],
   providers: [provideIcons({ lucideTrash })],
-  template: ` <button hlmBtn size="xs" variant="ghost" (click)="deleteBlock()">
+  template: ` <button hlmBtn size="sm" variant="ghost" (click)="deleteBlock()">
     <ng-icon hlm size="xs" name="lucideTrash" />
   </button>`,
   styles: ``,
 })
 export class RemoveBlockButtonComponent {
   block?: Block;
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
       const editor = ngxBlockNoteService.editor();
