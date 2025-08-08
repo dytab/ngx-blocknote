@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
@@ -6,7 +5,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-manipulating-blocks-example',
-  imports: [CommonModule, BnaEditorComponent, HlmButtonDirective],
+  imports: [BnaEditorComponent, HlmButtonDirective],
   template: `
     <div class="flex gap-2">
       <button hlmBtn size="sm" type="button" (click)="insertFirstBlock()">

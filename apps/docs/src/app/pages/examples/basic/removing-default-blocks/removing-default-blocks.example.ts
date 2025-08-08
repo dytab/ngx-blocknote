@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BlockNoteSchema, defaultBlockSpecs } from '@blocknote/core';
 import {
@@ -8,7 +7,7 @@ import {
 
 @Component({
   selector: 'bna-removing-default-blocks-example',
-  imports: [CommonModule, BnaEditorComponent],
+  imports: [BnaEditorComponent],
   template: `
     <bna-editor [initialContent]="initialContent" [options]="options" />
   `,

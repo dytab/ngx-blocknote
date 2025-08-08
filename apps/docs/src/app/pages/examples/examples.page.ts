@@ -1,17 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { exampleGroupedLinks } from './shared/examples';
 
 @Component({
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    HlmButtonDirective,
-    RouterLink,
-    RouterLinkActive,
-  ],
+  imports: [RouterOutlet, HlmButtonDirective, RouterLink, RouterLinkActive],
   host: {
     class: 'block py-3 mx-auto max-w-[90rem]',
   },

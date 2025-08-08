@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -48,7 +47,6 @@ const schema = BlockNoteSchema.create({
 @Component({
   selector: 'bna-api-content-block-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
     HlmButtonDirective,
     BnaAddBlockButtonComponent,
@@ -109,11 +107,19 @@ const schema = BlockNoteSchema.create({
                       />
                     </label>
                     <label class="flex items-center" hlmLabel for="age">
-                      <hlm-checkbox formControlName="age" class="mr-2" id="age"/>
+                      <hlm-checkbox
+                        formControlName="age"
+                        class="mr-2"
+                        id="age"
+                      />
                       Age
                     </label>
                     <label class="flex items-center" hlmLabel for="address">
-                      <hlm-checkbox formControlName="address" class="mr-2" id="address"/>
+                      <hlm-checkbox
+                        formControlName="address"
+                        class="mr-2"
+                        id="address"
+                      />
                       Address
                     </label>
                   </hlm-dialog-header>

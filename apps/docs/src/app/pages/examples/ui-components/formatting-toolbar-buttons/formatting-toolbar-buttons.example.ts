@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
@@ -12,7 +11,6 @@ import { BlueButtonComponent } from './blue-button.component';
 @Component({
   selector: 'bna-formatting-toolbar-buttons-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
     BnaFormattingToolbarControllerComponent,
     BnaBasicTextStyleButtonComponent,

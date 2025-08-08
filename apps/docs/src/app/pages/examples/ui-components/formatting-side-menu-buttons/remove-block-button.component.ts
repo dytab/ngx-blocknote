@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
@@ -9,7 +8,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
   selector: 'bna-remove-block-button',
-  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
   providers: [provideIcons({ lucideTrash })],
   template: ` <button hlmBtn size="xs" variant="ghost" (click)="deleteBlock()">
     <ng-icon hlm size="xs" name="lucideTrash" />

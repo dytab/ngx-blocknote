@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
@@ -6,7 +5,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-reset-block-button',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButtonDirective],
   template: ` <button
     hlmBtn
     size="sm"

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -7,12 +6,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'bna-server-side-rendering-example',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    BnaEditorComponent,
-    HlmButtonDirective,
-  ],
+  imports: [ReactiveFormsModule, BnaEditorComponent, HlmButtonDirective],
   template: `
     <button type="button" hlmBtn size="sm" type (click)="logSSR()">
       Log SSR

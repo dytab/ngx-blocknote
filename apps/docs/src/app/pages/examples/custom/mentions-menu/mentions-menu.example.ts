@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import {
   BlockNoteEditor,
@@ -47,7 +46,6 @@ const schema = BlockNoteSchema.create({
 @Component({
   selector: 'bna-mentions-menu-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
     HlmButtonDirective,
     BnaSuggestionsMenuControllerComponent,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { HlmTabsComponent } from '@spartan-ng/ui-tabs-helm';
 import { hlmP } from '@spartan-ng/ui-typography-helm';
@@ -10,7 +9,6 @@ import { basicSetupExampleCode, FormExample } from './form.example';
 
 @Component({
   imports: [
-    CommonModule,
     SectionIntroComponent,
     DemoBoxComponent,
     HlmTabsComponent,
