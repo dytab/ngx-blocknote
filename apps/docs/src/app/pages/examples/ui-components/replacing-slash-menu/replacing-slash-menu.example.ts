@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
@@ -10,7 +9,6 @@ import { CustomSlashMenuComponent } from './custom-slash-menu.component';
 @Component({
   selector: 'bna-replacing-slash-menu-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
     CustomSlashMenuComponent,
     BnaSlashMenuControllerComponent,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   BlockNoteEditor,
@@ -26,7 +25,7 @@ const schema = BlockNoteSchema.create({
 });
 @Component({
   selector: 'bna-alert-block-example',
-  imports: [CommonModule, BnaEditorComponent],
+  imports: [BnaEditorComponent],
   template: `<bna-editor
     [initialContent]="initialContent"
     [options]="options"

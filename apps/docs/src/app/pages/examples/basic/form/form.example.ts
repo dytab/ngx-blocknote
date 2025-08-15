@@ -3,16 +3,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Block, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'bna-form-example',
-  imports: [
-    CommonModule,
-    BnaEditorComponent,
-    HlmButtonDirective,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, BnaEditorComponent, HlmButton, ReactiveFormsModule],
   template: `
     <div class="flex gap-2">
       <button type="button" hlmBtn size="sm" (click)="patchFormValue()">
@@ -97,7 +92,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
   imports: [
     CommonModule,
     BnaEditorComponent,
-    HlmButtonDirective,
+    HlmButton,
     ReactiveFormsModule,
   ],
   template: \`

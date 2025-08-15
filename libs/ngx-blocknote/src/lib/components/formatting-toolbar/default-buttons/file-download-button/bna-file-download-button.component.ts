@@ -6,25 +6,16 @@ import {
 } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-download-button',
-  imports: [
-    HlmButtonDirective,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    NgIcon,
-    HlmIconDirective,
-  ],
+  imports: [HlmButton, HlmTooltip, HlmTooltipTrigger, NgIcon, HlmIcon],
   templateUrl: './bna-file-download-button.component.html',
   providers: [provideIcons({ lucideDownload })],
   host: {

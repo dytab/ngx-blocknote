@@ -27,12 +27,12 @@ export default [
           checkObsoleteDependencies: true,
           checkVersionMismatches: true,
           ignoredDependencies: [
-            '@spartan-ng/ui-button-helm',
-            '@spartan-ng/ui-icon-helm',
-            '@spartan-ng/ui-input-helm',
-            '@spartan-ng/ui-tabs-helm',
-            '@spartan-ng/ui-tooltip-helm',
-            '@spartan-ng/ui-menu-helm',
+            '@spartan-ng/helm/button',
+            '@spartan-ng/helm/icon',
+            '@spartan-ng/helm/input',
+            '@spartan-ng/helm/tabs',
+            '@spartan-ng/helm/tooltip',
+            '@spartan-ng/helm/menu',
           ],
           ignoredFiles: [
             '{projectRoot}/tailwind.config.js',

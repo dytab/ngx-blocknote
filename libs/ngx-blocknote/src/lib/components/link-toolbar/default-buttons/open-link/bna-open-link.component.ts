@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { NgxBlocknoteService } from '../../../../services';
 
 @Component({
   selector: 'bna-open-link',
-  imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [HlmButton, NgIcon, HlmIcon],
   templateUrl: './bna-open-link.component.html',
   providers: [
     provideIcons({

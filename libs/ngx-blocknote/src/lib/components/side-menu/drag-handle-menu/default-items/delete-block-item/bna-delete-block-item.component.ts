@@ -5,13 +5,13 @@ import {
   DefaultInlineContentSchema,
   DefaultStyleSchema,
 } from '@blocknote/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { NgxBlocknoteService } from '../../../../../services/ngx-blocknote.service';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
 
 @Component({
   selector: 'bna-delete-block-item',
-  imports: [HlmButtonDirective],
+  imports: [HlmButton],
   templateUrl: './bna-delete-block-item.component.html',
   host: {
     class: 'block',

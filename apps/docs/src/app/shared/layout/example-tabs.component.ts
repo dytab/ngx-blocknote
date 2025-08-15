@@ -7,10 +7,10 @@ import {
   Output,
 } from '@angular/core';
 import {
-  BrnTabsContentDirective,
-  BrnTabsDirective,
-  BrnTabsListDirective,
-  BrnTabsTriggerDirective,
+  BrnTabsContent,
+  BrnTabs,
+  BrnTabsList,
+  BrnTabsTrigger,
 } from '@spartan-ng/brain/tabs';
 
 const tabBtn =
@@ -19,12 +19,7 @@ const tabContent =
   'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
 @Component({
   selector: 'bna-example-tabs',
-  imports: [
-    BrnTabsDirective,
-    BrnTabsListDirective,
-    BrnTabsTriggerDirective,
-    BrnTabsContentDirective,
-  ],
+  imports: [BrnTabs, BrnTabsList, BrnTabsTrigger, BrnTabsContent],
   host: {
     class: 'block',
   },

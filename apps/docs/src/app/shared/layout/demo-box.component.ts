@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmCard } from '@spartan-ng/helm/card';
 
 @Component({
   selector: 'bna-demo-box',
@@ -12,6 +12,6 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
   >
     <ng-content></ng-content>
   </div>`,
-  imports: [HlmCardDirective],
+  imports: [HlmCard],
 })
 export class DemoBoxComponent {}

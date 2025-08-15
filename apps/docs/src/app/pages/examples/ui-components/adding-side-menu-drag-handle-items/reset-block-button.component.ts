@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { Component, effect } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'bna-reset-block-button',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButton],
   template: ` <button
     hlmBtn
     size="sm"
@@ -20,6 +19,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 })
 export class ResetBlockButtonComponent {
   block?: Block;
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {
     effect(() => {
       const editor = ngxBlockNoteService.editor();

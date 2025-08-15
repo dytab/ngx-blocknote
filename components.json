@@ -1,3 +1,4 @@
 {
-  "componentsPath": "libs/ui"
+  "componentsPath": "libs/ui",
+  "buildable": true
 }
