@@ -52,7 +52,7 @@ jobs:
           npx nx release --skip-publish
           npx nx release publish --excludeTaskDependencies
         env:
-          GITHUB_TOKEN: $${{ steps.generate-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
 
@@ -60,6 +60,6 @@ jobs:
         if: ${{ !inputs.auto_publish }}
         run: npx nx release publish --excludeTaskDependencies --dry-run
         env:
-          GITHUB_TOKEN: $${{ steps.generate-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
