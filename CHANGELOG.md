@@ -1,3 +1,17 @@
+## 1.11.1 (2025-08-15)
+
+### 🚀 Features
+
+- force new release ([2c32fd3](https://github.com/dytab/ngx-blocknote/commit/2c32fd3))
+
+### 🩹 Fixes
+
+- **ci:** correct GITHUB_TOKEN syntax in release workflow ([2954b8d](https://github.com/dytab/ngx-blocknote/commit/2954b8d))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.11.0 (2025-08-15)
 
 ### 🚀 Features
