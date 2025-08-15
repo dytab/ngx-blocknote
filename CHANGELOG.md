@@ -1,3 +1,14 @@
+## 1.11.0 (2025-08-15)
+
+### 🚀 Features
+
+- update @blocknote/core and server-util to v0.35.0 ([7c51500](https://github.com/dytab/ngx-blocknote/commit/7c51500))
+- add token generation step to release workflow ([15cf09a](https://github.com/dytab/ngx-blocknote/commit/15cf09a))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.10.0 (2025-08-08)
 
 ### 🚀 Features
