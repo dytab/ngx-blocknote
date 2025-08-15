@@ -180,6 +180,14 @@
   "defaultProject": "docs",
   "release": {
     "projects": ["ngx-blocknote"],
+    "conventionalCommits": {
+      "types": {
+        "chore": {
+          "semverBump": "patch",
+          "changelog": false
+        }
+      }
+    },
     "version": {
       "useLegacyVersioning": false,
       "conventionalCommits": true,
