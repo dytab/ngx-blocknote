@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import {
+  DOCUMENT,
   inject,
   Injectable,
   PLATFORM_ID,

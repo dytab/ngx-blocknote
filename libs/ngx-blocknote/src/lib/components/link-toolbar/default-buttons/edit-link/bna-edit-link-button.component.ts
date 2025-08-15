@@ -1,10 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-} from '@spartan-ng/ui-menu-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { NgxBlocknoteService } from '../../../../services';
 import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 
@@ -12,10 +9,10 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
   selector: 'bna-edit-link-button',
   imports: [
     BnaLinkFormComponent,
-    HlmButtonDirective,
-    HlmMenuComponent,
-    BrnMenuTriggerDirective,
-    HlmMenuGroupComponent,
+    HlmButton,
+    HlmMenu,
+    BrnMenuTrigger,
+    HlmMenuGroup,
   ],
   templateUrl: './bna-edit-link-button.component.html',
 })

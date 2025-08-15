@@ -16,8 +16,8 @@ import {
   lucideTable,
   lucideVideo,
 } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { SuggestionItem } from '../../../interfaces/suggestion-item.type';
 import { NgxBlocknoteService } from '../../../services';
 
@@ -38,7 +38,7 @@ const icons: Record<string, string> = {
 
 @Component({
   selector: 'bna-slash-menu-item',
-  imports: [CommonModule, HlmButtonDirective, NgIcon, HlmIconDirective],
+  imports: [CommonModule, HlmButton, NgIcon, HlmIcon],
   providers: [
     provideIcons({
       lucideHeading1,

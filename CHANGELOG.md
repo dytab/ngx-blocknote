@@ -1,3 +1,17 @@
+## 1.10.0 (2025-08-08)
+
+### 🚀 Features
+
+- update angular and add rxjs dependency ([faa7ec7](https://github.com/dytab/ngx-blocknote/commit/faa7ec7))
+
+### 🩹 Fixes
+
+- correct tooltip content class string concatenation ([e503a29](https://github.com/dytab/ngx-blocknote/commit/e503a29))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.9.4 (2025-05-23)
 
 ### 🩹 Fixes

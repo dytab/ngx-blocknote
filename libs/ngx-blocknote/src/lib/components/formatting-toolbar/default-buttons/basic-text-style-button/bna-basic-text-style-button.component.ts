@@ -16,13 +16,10 @@ import {
   lucideStrikethrough,
   lucideUnderline,
 } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 
 const icons = {
@@ -59,12 +56,12 @@ function checkBasicTextStyleInSchema<Style extends BasicTextStyle>(
   selector: 'bna-basic-text-style-button',
   imports: [
     CommonModule,
-    HlmButtonDirective,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
+    HlmButton,
+    HlmTooltip,
+    HlmTooltipTrigger,
+    BrnTooltipContentTemplate,
     NgIcon,
-    HlmIconDirective,
+    HlmIcon,
   ],
   templateUrl: './bna-basic-text-style-button.component.html',
   providers: [

@@ -1,13 +1,10 @@
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-} from '@spartan-ng/ui-menu-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
 import { BnaBlockColorStyleComponent } from './default-items/block-color-style/bna-block-color-style.component';
 import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/bna-delete-block-item.component';
@@ -15,14 +12,14 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
 @Component({
   selector: 'bna-drag-handle-menu-btn',
   imports: [
-    HlmButtonDirective,
-    BrnMenuTriggerDirective,
-    HlmMenuComponent,
-    HlmMenuGroupComponent,
+    HlmButton,
+    BrnMenuTrigger,
+    HlmMenu,
+    HlmMenuGroup,
     BnaDeleteBlockItemComponent,
     BnaBlockColorStyleComponent,
     NgIcon,
-    HlmIconDirective,
+    HlmIcon,
   ],
   templateUrl: './bna-drag-handle-menu.component.html',
   providers: [provideIcons({ lucideGripVertical })],

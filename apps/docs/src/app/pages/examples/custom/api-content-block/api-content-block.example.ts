@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -19,21 +18,21 @@ import {
   BnaSideMenuControllerComponent,
   NgxBlocknoteService,
 } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import {
-  BrnDialogContentDirective,
-  BrnDialogDescriptionDirective,
-  BrnDialogTitleDirective,
-  BrnDialogTriggerDirective,
+  BrnDialogContent,
+  BrnDialogDescription,
+  BrnDialogTitle,
+  BrnDialogTrigger,
 } from '@spartan-ng/brain/dialog';
 import {
-  HlmDialogComponent,
-  HlmDialogContentComponent,
-  HlmDialogFooterComponent,
-  HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+  HlmDialog,
+  HlmDialogContent,
+  HlmDialogFooter,
+  HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
 import { apiContentBlock } from './api-content-block';
 
 const schema = BlockNoteSchema.create({
@@ -48,24 +47,23 @@ const schema = BlockNoteSchema.create({
 @Component({
   selector: 'bna-api-content-block-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
-    HlmButtonDirective,
+    HlmButton,
     BnaAddBlockButtonComponent,
     BnaDragHandleMenuComponent,
     BnaSideMenuComponent,
     BnaSideMenuControllerComponent,
-    HlmDialogComponent,
-    HlmDialogContentComponent,
-    BrnDialogContentDirective,
-    HlmDialogHeaderComponent,
-    BrnDialogTitleDirective,
-    BrnDialogDescriptionDirective,
-    BrnDialogTriggerDirective,
-    HlmDialogFooterComponent,
-    HlmCheckboxComponent,
+    HlmDialog,
+    HlmDialogContent,
+    BrnDialogContent,
+    HlmDialogHeader,
+    BrnDialogTitle,
+    BrnDialogDescription,
+    BrnDialogTrigger,
+    HlmDialogFooter,
+    HlmCheckbox,
     ReactiveFormsModule,
-    HlmInputDirective,
+    HlmInput,
   ],
   providers: [NgxBlocknoteService],
   template: `
@@ -109,11 +107,19 @@ const schema = BlockNoteSchema.create({
                       />
                     </label>
                     <label class="flex items-center" hlmLabel for="age">
-                      <hlm-checkbox formControlName="age" class="mr-2" id="age"/>
+                      <hlm-checkbox
+                        formControlName="age"
+                        class="mr-2"
+                        id="age"
+                      />
                       Age
                     </label>
                     <label class="flex items-center" hlmLabel for="address">
-                      <hlm-checkbox formControlName="address" class="mr-2" id="address"/>
+                      <hlm-checkbox
+                        formControlName="address"
+                        class="mr-2"
+                        id="address"
+                      />
                       Address
                     </label>
                   </hlm-dialog-header>

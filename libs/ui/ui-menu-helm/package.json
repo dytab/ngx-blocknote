@@ -1,8 +1,9 @@
 {
-  "name": "@spartan-ng/ui-menu-helm",
+  "name": "@spartan-ng/helm/menu",
   "version": "0.0.1",
   "peerDependencies": {
-    "@spartan-ng/ui-icon-helm": "0.0.1"
+    "@angular/common": "^20.1.0",
+    "@angular/core": "^20.1.0"
   },
   "sideEffects": false
 }

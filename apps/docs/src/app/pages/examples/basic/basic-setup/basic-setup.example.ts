@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-basic-setup-example',
-  imports: [CommonModule, BnaEditorComponent],
+  imports: [BnaEditorComponent],
   templateUrl: 'basic-setup.example.html',
 })
 export class BasicSetupExample {

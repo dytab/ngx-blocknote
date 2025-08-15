@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Block, BlockNoteEditor, PartialBlock } from '@blocknote/core';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
 
 @Component({
   selector: 'bna-blocks-json-example',
-  imports: [CommonModule, BnaEditorComponent],
+  imports: [BnaEditorComponent],
   template: `
     <p>Input (BlockNote Editor)</p>
     <bna-editor

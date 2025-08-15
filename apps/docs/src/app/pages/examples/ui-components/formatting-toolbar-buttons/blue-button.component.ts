@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'bna-blue-button',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [CommonModule, HlmButton],
   template: ` <button
     hlmBtn
     size="icon"
@@ -25,6 +25,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   styles: ``,
 })
 export class BlueButtonComponent {
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
 
   changeToBlue() {

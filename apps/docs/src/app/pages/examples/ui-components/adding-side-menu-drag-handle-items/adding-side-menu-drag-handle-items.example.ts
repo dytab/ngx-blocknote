@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PartialBlock } from '@blocknote/core';
 import {
@@ -14,7 +13,6 @@ import { ResetBlockButtonComponent } from './reset-block-button.component';
 @Component({
   selector: 'bna-adding-side-menu-drag-handle-items-example',
   imports: [
-    CommonModule,
     BnaEditorComponent,
     BnaSideMenuControllerComponent,
     BnaSideMenuComponent,

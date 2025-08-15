@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { getDefaultSlashMenuItems } from '@blocknote/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'bna-custom-slash-menu',
-  imports: [CommonModule, HlmButtonDirective],
+  imports: [HlmButton],
   template: `
     <div
       class="h-full flex flex-col overflow-auto border border-border bg-background shadow-lg shadow-border rounded p-1 min-w-[250px]"

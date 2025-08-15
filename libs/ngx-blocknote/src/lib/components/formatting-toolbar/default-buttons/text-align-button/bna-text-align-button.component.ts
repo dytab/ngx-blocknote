@@ -14,13 +14,10 @@ import {
   lucideAlignLeft,
   lucideAlignRight,
 } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { useEditorContentOrSelectionChange } from '../../../../util/use-editor-content-or-selection-change';
 
@@ -37,12 +34,12 @@ type Alignments = 'left' | 'center' | 'right' | 'justify';
   selector: 'bna-text-align-button',
   imports: [
     CommonModule,
-    HlmButtonDirective,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
+    HlmButton,
+    HlmTooltip,
+    HlmTooltipTrigger,
+    BrnTooltipContentTemplate,
     NgIcon,
-    HlmIconDirective,
+    HlmIcon,
   ],
   templateUrl: './bna-text-align-button.component.html',
   providers: [

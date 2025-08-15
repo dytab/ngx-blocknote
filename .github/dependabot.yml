@@ -1,0 +1,70 @@
+version: 2
+updates:
+  # all packages NOT under nx version control + nx itself
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'tuesday'
+      time: '02:00'
+      timezone: 'Europe/Berlin'
+    open-pull-requests-limit: 20
+    ignore:
+      - dependency-name: '@analogjs/*'
+      - dependency-name: '@angular-devkit/*'
+      - dependency-name: '@angular-eslint/*'
+      - dependency-name: '@angular/*'
+      - dependency-name: '@nestjs/*'
+      - dependency-name: '@schematics/*'
+      - dependency-name: '@types/*'
+      - dependency-name: '@typescript-eslint/*'
+      - dependency-name: 'angular-eslint'
+      - dependency-name: 'eslint'
+      - dependency-name: 'jest'
+      - dependency-name: 'jest-environment-jsdom'
+      - dependency-name: 'jest-preset-angular'
+      - dependency-name: 'jest-util'
+      - dependency-name: 'jsdom'
+      - dependency-name: 'ng-packagr'
+      - dependency-name: 'ts-jest'
+      - dependency-name: 'typescript'
+      - dependency-name: 'typescript-eslint'
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+      spartan-ng:
+        applies-to: version-updates
+        patterns:
+          - '@spartan-ng/*'
+      nx:
+        applies-to: version-updates
+        patterns:
+          - 'nx'
+          - '@nx/*'
+      major-updates:
+        applies-to: version-updates
+        update-types:
+          - 'major'
+        patterns:
+          - '*'
+      minor-updates:
+        applies-to: version-updates
+        update-types:
+          - 'minor'
+          - 'patch'
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'github-actions'
+    # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '01:00'
+      timezone: 'Europe/Berlin'
+    groups:
+      github-actions-updates:
+        patterns:
+          - '*'
