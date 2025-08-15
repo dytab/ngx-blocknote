@@ -7,6 +7,11 @@ on:
         default: true
         type: boolean
 
+env:
+  NX_PARALLEL: 2
+  NX_SKIP_NX_CACHE: true
+  NX_NO_CLOUD: true
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -39,7 +44,7 @@ jobs:
         run: npm ci
 
       - name: build
-        run: npx nx run-many --target=build --exclude=docs,api --no-cloud
+        run: npx nx run-many --target=build --exclude=docs,api
 
       - name: git config
         run: |
