@@ -1,5 +1,5 @@
 ---
-applyTo: '**/frontend/**/*.{ts,scss,html}'
+applyTo: '**/libs/**/*.{ts,scss,html}'
 description: 'This document outlines the official Angular configuration and best practices for the codebase.'
 ---
 
