@@ -2,26 +2,26 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMonitor, lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import {
-  HlmMenuComponent,
-  HlmMenuItemCheckboxDirective,
-  HlmMenuItemCheckComponent,
-} from '@spartan-ng/ui-menu-helm';
+  HlmMenu,
+  HlmMenuItemCheckbox,
+  HlmMenuItemCheck,
+} from '@spartan-ng/helm/menu';
 import { DarkMode, ThemeService } from './theme.service';
 
 @Component({
   imports: [
-    BrnMenuTriggerDirective,
-    HlmButtonDirective,
+    BrnMenuTrigger,
+    HlmButton,
     AsyncPipe,
-    HlmMenuComponent,
-    HlmMenuItemCheckComponent,
-    HlmMenuItemCheckboxDirective,
+    HlmMenu,
+    HlmMenuItemCheck,
+    HlmMenuItemCheckbox,
     NgIcon,
-    HlmIconDirective,
+    HlmIcon,
   ],
   providers: [provideIcons({ lucideMoon, lucideMonitor, lucideSun })],
   selector: 'bna-theme-switch',

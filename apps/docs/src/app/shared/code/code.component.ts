@@ -8,13 +8,13 @@ import {
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { Highlight } from 'ngx-highlightjs';
 
 @Component({
   selector: 'bna-code',
-  imports: [HlmButtonDirective, Highlight, NgIcon, HlmIconDirective],
+  imports: [HlmButton, Highlight, NgIcon, HlmIcon],
   providers: [provideIcons({ lucideClipboard, lucideCheck })],
   host: {
     class:

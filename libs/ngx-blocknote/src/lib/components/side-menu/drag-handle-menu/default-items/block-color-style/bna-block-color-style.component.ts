@@ -7,12 +7,9 @@ import {
   DefaultInlineContentSchema,
   DefaultStyleSchema,
 } from '@blocknote/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-} from '@spartan-ng/ui-menu-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { ColorOptions } from '../../../../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
 import { useSelectedBlocks } from '../../../../../util/use-selected-blocks';
@@ -22,10 +19,10 @@ import { BnaColorPickerComponent } from '../../../../color-picker/bna-color-pick
   selector: 'bna-block-color-style',
   imports: [
     BnaColorPickerComponent,
-    HlmButtonDirective,
-    BrnMenuTriggerDirective,
-    HlmMenuComponent,
-    HlmMenuGroupComponent,
+    HlmButton,
+    BrnMenuTrigger,
+    HlmMenu,
+    HlmMenuGroup,
   ],
   templateUrl: './bna-block-color-style.component.html',
 })

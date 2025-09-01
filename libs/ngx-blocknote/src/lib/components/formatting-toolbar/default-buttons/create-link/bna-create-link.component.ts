@@ -2,18 +2,12 @@ import { Component, computed, inject } from '@angular/core';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-} from '@spartan-ng/ui-menu-helm';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
 
@@ -39,16 +33,16 @@ function checkLinkInSchema(
 @Component({
   selector: 'bna-create-link',
   imports: [
-    HlmButtonDirective,
-    HlmMenuComponent,
-    BrnMenuTriggerDirective,
-    HlmMenuGroupComponent,
+    HlmButton,
+    HlmMenu,
+    BrnMenuTrigger,
+    HlmMenuGroup,
     BnaLinkFormComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-    HlmTooltipComponent,
+    HlmTooltipTrigger,
+    BrnTooltipContentTemplate,
+    HlmTooltip,
     NgIcon,
-    HlmIconDirective,
+    HlmIcon,
   ],
   templateUrl: './bna-create-link.component.html',
   providers: [

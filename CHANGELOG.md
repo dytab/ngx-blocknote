@@ -1,3 +1,72 @@
+## 1.11.1 (2025-08-15)
+
+### 🚀 Features
+
+- force new release ([2c32fd3](https://github.com/dytab/ngx-blocknote/commit/2c32fd3))
+
+### 🩹 Fixes
+
+- **ci:** correct GITHUB_TOKEN syntax in release workflow ([2954b8d](https://github.com/dytab/ngx-blocknote/commit/2954b8d))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.11.0 (2025-08-15)
+
+### 🚀 Features
+
+- update @blocknote/core and server-util to v0.35.0 ([7c51500](https://github.com/dytab/ngx-blocknote/commit/7c51500))
+- add token generation step to release workflow ([15cf09a](https://github.com/dytab/ngx-blocknote/commit/15cf09a))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.10.0 (2025-08-08)
+
+### 🚀 Features
+
+- update angular and add rxjs dependency ([faa7ec7](https://github.com/dytab/ngx-blocknote/commit/faa7ec7))
+
+### 🩹 Fixes
+
+- correct tooltip content class string concatenation ([e503a29](https://github.com/dytab/ngx-blocknote/commit/e503a29))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.9.4 (2025-05-23)
+
+### 🩹 Fixes
+
+- update @blocknote packages to v0.31.1 ([5e3d092](https://github.com/dytab/ngx-blocknote/commit/5e3d092))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.9.3 (2025-05-20)
+
+### 🩹 Fixes
+
+- update @blocknote packages to v0.31.0 ([6798003](https://github.com/dytab/ngx-blocknote/commit/6798003))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
+## 1.9.2 (2025-05-20)
+
+### 🩹 Fixes
+
+- update @blocknote packages to v0.30.1 ([3e0de0f](https://github.com/dytab/ngx-blocknote/commit/3e0de0f))
+
+### ❤️ Thank You
+
+- Johannes Klein
+
 ## 1.9.1 (2025-05-14)
 
 ### 🩹 Fixes

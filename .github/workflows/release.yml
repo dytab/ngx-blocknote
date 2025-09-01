@@ -7,6 +7,11 @@ on:
         default: true
         type: boolean
 
+env:
+  NX_PARALLEL: 2
+  NX_SKIP_NX_CACHE: true
+  NX_NO_CLOUD: true
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -16,21 +21,30 @@ jobs:
       contents: write
       id-token: write # needed for provenance data generation
     steps:
-      - uses: actions/checkout@v4
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          token: ${{ steps.generate-token.outputs.token }}
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
+          check-latest: 'true'
 
       - name: install npm
         run: npm ci
 
       - name: build
-        run: npx nx run-many --target=build --exclude=docs,api --no-cloud
+        run: npx nx run-many --target=build --exclude=docs,api
 
       - name: git config
         run: |
@@ -43,7 +57,7 @@ jobs:
           npx nx release --skip-publish
           npx nx release publish --excludeTaskDependencies
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
 
@@ -51,6 +65,6 @@ jobs:
         if: ${{ !inputs.auto_publish }}
         run: npx nx release publish --excludeTaskDependencies --dry-run
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true

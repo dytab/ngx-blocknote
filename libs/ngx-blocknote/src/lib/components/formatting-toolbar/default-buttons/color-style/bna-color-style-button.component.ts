@@ -7,17 +7,11 @@ import {
   DefaultStyleSchema,
   InlineContentSchema,
 } from '@blocknote/core';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-} from '@spartan-ng/ui-menu-helm';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { ColorOptions } from '../../../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../../../services';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
@@ -53,15 +47,15 @@ const checkColorInSchema = <Color extends 'text' | 'background'>(
 @Component({
   selector: 'bna-color-style-button',
   imports: [
-    HlmButtonDirective,
-    BrnMenuTriggerDirective,
-    HlmMenuComponent,
-    HlmMenuGroupComponent,
+    HlmButton,
+    BrnMenuTrigger,
+    HlmMenu,
+    HlmMenuGroup,
     BnaColorIconComponent,
     BnaColorPickerComponent,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
+    HlmTooltip,
+    HlmTooltipTrigger,
+    BrnTooltipContentTemplate,
   ],
   templateUrl: './bna-color-style-button.component.html',
   host: {

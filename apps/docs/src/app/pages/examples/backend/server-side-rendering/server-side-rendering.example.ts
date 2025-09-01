@@ -1,18 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BnaEditorComponent } from '@dytab/ngx-blocknote';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'bna-server-side-rendering-example',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    BnaEditorComponent,
-    HlmButtonDirective,
-  ],
+  imports: [ReactiveFormsModule, BnaEditorComponent, HlmButton],
   template: `
     <button type="button" hlmBtn size="sm" type (click)="logSSR()">
       Log SSR
@@ -23,6 +17,8 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   `,
 })
 export class ServerSideRenderingExample {
+  private httpClient = inject(HttpClient);
+
   ssrContent = '';
   control = new FormControl([
     {
@@ -34,8 +30,6 @@ export class ServerSideRenderingExample {
       content: 'Try to get the html result',
     },
   ]);
-
-  constructor(private httpClient: HttpClient) {}
 
   logSSR() {
     this.httpClient

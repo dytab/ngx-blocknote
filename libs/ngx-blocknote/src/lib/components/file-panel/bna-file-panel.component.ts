@@ -5,26 +5,26 @@ import {
   BlockNoteEditor,
   FileBlockConfig,
 } from '@blocknote/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmInput } from '@spartan-ng/helm/input';
 import {
-  HlmTabsComponent,
-  HlmTabsContentDirective,
-  HlmTabsListComponent,
-  HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+  HlmTabs,
+  HlmTabsContent,
+  HlmTabsList,
+  HlmTabsTrigger,
+} from '@spartan-ng/helm/tabs';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 @Component({
   selector: 'bna-file-panel',
   imports: [
-    HlmInputDirective,
-    HlmTabsComponent,
-    HlmTabsListComponent,
-    HlmButtonDirective,
+    HlmInput,
+    HlmTabs,
+    HlmTabsList,
+    HlmButton,
     FormsModule,
-    HlmTabsTriggerDirective,
-    HlmTabsContentDirective,
+    HlmTabsTrigger,
+    HlmTabsContent,
     ReactiveFormsModule,
   ],
   templateUrl: './bna-file-panel.component.html',
