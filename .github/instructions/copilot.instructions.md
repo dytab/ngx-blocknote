@@ -33,7 +33,7 @@ Please refer to the `.editorconfig` file in the root of the repository for the m
 - Keep PRs focused and manageable in size
 - Ensure CI passes before merging
 
-## 8. Other
+## Other
 
 Remember to always consider the context of the existing codebase and maintain consistency with established patterns.
 Ask for clarification if you're unsure about a specific implementation or design choice.
