@@ -11,9 +11,10 @@
     "@floating-ui/dom": "^1.6.8",
     "@ng-icons/core": "^29.10.0",
     "@ng-icons/lucide": ">=29.0.0",
-    "@spartan-ng/brain": "^0.0.1-alpha.445",
+    "@spartan-ng/brain": "^0.0.1-alpha.508",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2",
     "rxjs": "~7.8.0"
   },
   "devDependencies": {},
