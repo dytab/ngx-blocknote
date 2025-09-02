@@ -33,6 +33,7 @@ export default [
             '@spartan-ng/helm/tabs',
             '@spartan-ng/helm/tooltip',
             '@spartan-ng/helm/menu',
+            '@spartan-ng/helm/utils',
           ],
           ignoredFiles: [
             '{projectRoot}/tailwind.config.js',

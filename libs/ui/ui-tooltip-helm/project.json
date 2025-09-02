@@ -10,15 +10,14 @@
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/ui/ui-tooltip-helm/ng-package.json"
+        "project": "libs/ui/ui-tooltip-helm/ng-package.json",
+        "tsConfig": "libs/ui/ui-tooltip-helm/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "libs/ui/ui-tooltip-helm/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "libs/ui/ui-tooltip-helm/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },
