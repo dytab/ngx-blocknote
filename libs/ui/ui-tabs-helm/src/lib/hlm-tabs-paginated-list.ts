@@ -11,7 +11,7 @@ import {
 import { toObservable } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import {
   type BrnPaginatedTabHeaderItem,
   BrnTabsPaginatedList,

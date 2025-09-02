@@ -4,7 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import { BrnTabs } from '@spartan-ng/brain/tabs';
 import { ClassValue } from 'clsx';
 

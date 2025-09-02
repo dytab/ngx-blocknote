@@ -34,7 +34,10 @@
       "@spartan-ng/helm/tabs": ["libs/ui/ui-tabs-helm/src/index.ts"],
       "@spartan-ng/helm/toggle": ["libs/ui/ui-toggle-helm/src/index.ts"],
       "@spartan-ng/helm/tooltip": ["libs/ui/ui-tooltip-helm/src/index.ts"],
-      "@spartan-ng/helm/typography": ["libs/ui/ui-typography-helm/src/index.ts"]
+      "@spartan-ng/helm/typography": [
+        "libs/ui/ui-typography-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/utils": ["libs/ui/ui-utils-helm/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
