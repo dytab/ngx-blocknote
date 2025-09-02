@@ -4,8 +4,8 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { hlm } from '@spartan-ng/helm/utils';
 import { BrnMenuBar } from '@spartan-ng/brain/menu';
+import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
 @Component({
@@ -21,7 +21,7 @@ export class HlmMenuBar {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() =>
     hlm(
-      'bg-background flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs',
+      'bg-background shadow-xs flex h-9 items-center gap-1 rounded-md border p-1',
       this.userClass(),
     ),
   );

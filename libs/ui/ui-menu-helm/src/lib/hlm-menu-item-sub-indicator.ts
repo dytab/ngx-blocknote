@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
-import { hlm } from '@spartan-ng/helm/utils';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { hlm } from '@spartan-ng/helm/utils';
 import { ClassValue } from 'clsx';
 
 @Component({
