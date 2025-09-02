@@ -23,6 +23,7 @@ export const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
+        xs: 'h-8 p-1 rounded-md text-xs',
         default: 'h-9 px-4 py-2 has-[>ng-icon]:px-3',
         sm: 'h-8 gap-1.5 rounded-md px-3 has-[>ng-icon]:px-2.5',
         lg: 'h-10 rounded-md px-6 has-[>ng-icon]:px-4',
