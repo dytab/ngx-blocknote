@@ -8,6 +8,8 @@ import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
 import { BnaBlockColorStyleComponent } from './default-items/block-color-style/bna-block-color-style.component';
 import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/bna-delete-block-item.component';
+import { BnaTableRowHeaderItemComponent } from './default-items/table-headers/bna-table-row-header-item.component';
+import { BnaTableColumnHeaderItemComponent } from './default-items/table-headers/bna-table-column-header-item.component';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
@@ -18,6 +20,8 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     HlmMenuGroup,
     BnaDeleteBlockItemComponent,
     BnaBlockColorStyleComponent,
+    BnaTableRowHeaderItemComponent,
+    BnaTableColumnHeaderItemComponent,
     NgIcon,
     HlmIcon,
   ],

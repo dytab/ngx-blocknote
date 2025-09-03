@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, computed } from '@angular/core';
 import {
   Block,
   DefaultBlockSchema,
@@ -25,6 +25,8 @@ export class BnaDeleteBlockItemComponent {
       DefaultStyleSchema
     >,
   );
+
+  dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
 
   dragBlock?: Block<any, any, any>;
 

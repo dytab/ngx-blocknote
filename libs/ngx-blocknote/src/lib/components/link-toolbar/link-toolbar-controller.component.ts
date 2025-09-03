@@ -8,7 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { LinkToolbarState } from '@blocknote/core';
-import { autoUpdate, computePosition, flip } from '@floating-ui/dom';
+import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
 
@@ -64,8 +64,8 @@ export class BnaLinkToolbarControllerComponent implements OnDestroy {
       this.elRef.nativeElement,
       {
         strategy: 'fixed',
-        placement: 'top',
-        middleware: [flip()],
+        placement: 'top-start',
+        middleware: [offset(10), flip()],
       },
     );
     this.renderer2.setStyle(this.elRef.nativeElement, 'top', `${result.y}px`);

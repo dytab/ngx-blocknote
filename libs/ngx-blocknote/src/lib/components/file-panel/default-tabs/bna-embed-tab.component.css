@@ -1,0 +1,62 @@
+.bn-tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.bn-text-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--bn-colors-border, #d1d5db);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  background: var(--bn-colors-menu-background, #ffffff);
+  color: var(--bn-colors-menu-text, #374151);
+  transition: all 0.15s ease;
+}
+
+.bn-text-input:focus {
+  outline: none;
+  border-color: var(--bn-colors-selection, #3b82f6);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.bn-text-input::placeholder {
+  color: var(--bn-colors-menu-text-muted, #9ca3af);
+}
+
+.bn-button {
+  padding: 8px 16px;
+  background: var(--bn-colors-selection, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  align-self: flex-start;
+}
+
+.bn-button:hover {
+  background: var(--bn-colors-selection-hover, #2563eb);
+}
+
+.bn-button:active {
+  background: var(--bn-colors-selection-active, #1d4ed8);
+  transform: translateY(1px);
+}
+
+.bn-button:focus {
+  outline: 2px solid var(--bn-colors-selection, #3b82f6);
+  outline-offset: 2px;
+}
+
+.bn-button:disabled {
+  background: var(--bn-colors-menu-background-disabled, #f3f4f6);
+  color: var(--bn-colors-menu-text-disabled, #9ca3af);
+  cursor: not-allowed;
+  transform: none;
+}

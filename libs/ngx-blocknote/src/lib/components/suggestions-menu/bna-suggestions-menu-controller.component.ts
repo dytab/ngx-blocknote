@@ -9,11 +9,12 @@ import {
   inject,
 } from '@angular/core';
 import {
-  autoPlacement,
   autoUpdate,
   computePosition,
   offset,
   size,
+  flip,
+  shift,
 } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
@@ -22,7 +23,9 @@ import { getVirtualElement } from '../../util/get-virtual-element.util';
   imports: [],
   selector: 'bna-suggestions-menu-controller',
   host: {
-    class: 'z-30 fixed flex',
+    class: 'fixed flex',
+    style: 'z-index: 2000;',
+    '(mousedown)': '$event.preventDefault()',
   },
   template: `@if (show()) {
     <ng-content />
@@ -37,8 +40,13 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
   cleanup: () => void = () => {
     return;
   };
+  unsubscribeUpdate: () => void = () => {
+    return;
+  };
 
   readonly triggerCharacter = input.required<string>();
+  readonly minQueryLength = input<number | undefined>();
+
   constructor() {
     effect(() => {
       this.adjustVisibilityAndPosition();
@@ -47,17 +55,31 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.cleanup();
+    this.unsubscribeUpdate();
   }
 
   private adjustVisibilityAndPosition() {
     const editor = this.blockNoteEditorService.editor();
-    editor.suggestionMenus.onUpdate(
+
+    // Unsubscribe any previous listener before registering a new one
+    this.unsubscribeUpdate();
+
+    this.unsubscribeUpdate = editor.suggestionMenus.onUpdate(
       this.triggerCharacter(),
       async (suggestionMenuState) => {
         this.cleanup();
 
-        this.show.set(suggestionMenuState.show);
-        if (suggestionMenuState.show) {
+        const minLen = this.minQueryLength();
+        let shouldShow = suggestionMenuState.show;
+        if (minLen && !suggestionMenuState.ignoreQueryLength) {
+          const q = suggestionMenuState.query ?? '';
+          if (q.startsWith(' ') || q.length < minLen) {
+            shouldShow = false;
+          }
+        }
+
+        this.show.set(shouldShow);
+        if (shouldShow) {
           this.cleanup = autoUpdate(
             getVirtualElement(suggestionMenuState.referencePos),
             this.elRef.nativeElement,
@@ -78,13 +100,19 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
         placement: 'bottom-start',
         middleware: [
           offset(10),
-          autoPlacement({ allowedPlacements: ['bottom-start', 'top-start'] }),
+          flip({ mainAxis: true, crossAxis: false }),
+          shift(),
           size({
             apply: ({ availableHeight }) => {
               this.renderer2.setStyle(
                 this.elRef.nativeElement,
                 'maxHeight',
                 `${availableHeight - 10}px`,
+              );
+              this.renderer2.setStyle(
+                this.elRef.nativeElement,
+                'minHeight',
+                `300px`,
               );
             },
           }),

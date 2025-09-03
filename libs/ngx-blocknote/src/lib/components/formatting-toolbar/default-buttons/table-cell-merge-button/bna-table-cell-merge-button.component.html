@@ -1,0 +1,17 @@
+<hlm-tooltip>
+  <button
+    type="button"
+    hlmBtn
+    size="icon"
+    variant="ghost"
+    class="w-[30px] h-[30px]"
+    hlmTooltipTrigger
+    aria-describedby="table-cell-merge-tooltip"
+    (click)="onClick()"
+  >
+    <ng-icon hlm size="sm" [name]="iconName()" />
+  </button>
+  <span *brnTooltipContent class="text-center" id="table-cell-merge-tooltip">
+    <p>{{ tooltip() }}</p>
+  </span>
+</hlm-tooltip>

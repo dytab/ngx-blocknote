@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -22,8 +22,9 @@ const colors = [
 
 @Component({
   selector: 'bna-color-picker',
-  imports: [BnaColorIconComponent, HlmButton, NgIcon, HlmIcon],
   templateUrl: './bna-color-picker.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [BnaColorIconComponent, HlmButton, NgIcon, HlmIcon],
   providers: [
     provideIcons({
       lucideCheck,
@@ -36,4 +37,24 @@ export class BnaColorPickerComponent {
   colors = colors;
   dict = this.ngxBlockNoteService.editor().dictionary;
   options = input.required<ColorOptions>();
+
+  onTextColorClick(color: string) {
+    const options = this.options();
+    if (options.onClick) {
+      options.onClick();
+    }
+    if (options.text) {
+      options.text.setColor(color);
+    }
+  }
+
+  onBackgroundColorClick(color: string) {
+    const options = this.options();
+    if (options.onClick) {
+      options.onClick();
+    }
+    if (options.background) {
+      options.background.setColor(color);
+    }
+  }
 }

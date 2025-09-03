@@ -1,0 +1,12 @@
+@if (show()) {
+  <button
+    hlmBtn
+    variant="ghost"
+    size="sm"
+    class="w-full justify-start"
+    type="button"
+    (click)="toggleHeaderColumn()"
+  >
+    {{ dict().drag_handle.header_column_menuitem }}
+  </button>
+}

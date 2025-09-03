@@ -8,9 +8,10 @@
         variant="ghost"
         size="sm"
         class="gap-2 justify-start text-left font-normal"
-        (click)="options.text.setColor(color)"
+        [attr.data-test]="'text-color-' + color"
+        (click)="onTextColorClick(color)"
       >
-        <bna-color-icon [textColor]="color" /><span class="w-full">{{
+        <bna-color-icon [textColor]="color" [iconSize]="options.iconSize" /><span class="w-full">{{
           dict.color_picker.colors[color]
         }}</span>
         @if (options.text.color === color) {
@@ -29,9 +30,10 @@
         variant="ghost"
         size="sm"
         class="gap-2 justify-start text-left font-normal"
-        (click)="options.background.setColor(color)"
+        [attr.data-test]="'background-color-' + color"
+        (click)="onBackgroundColorClick(color)"
       >
-        <bna-color-icon [backgroundColor]="color" /><span class="w-full">{{
+        <bna-color-icon [backgroundColor]="color" [iconSize]="options.iconSize" /><span class="w-full">{{
           dict.color_picker.colors[color]
         }}</span>
         @if (options.background.color === color) {

@@ -29,5 +29,11 @@ export class BnaDeleteButtonComponent {
       return;
     }
     tableHandles.removeRowOrColumn(index, orientation);
+
+    // Restore UI state similar to add action
+    editor.tableHandles?.unfreezeHandles();
+    options.showOtherHandle();
+    options.closeMenu();
+    editor.focus();
   }
 }

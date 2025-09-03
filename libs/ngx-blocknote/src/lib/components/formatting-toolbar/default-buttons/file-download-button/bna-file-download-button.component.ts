@@ -12,6 +12,7 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
+import { sanitizeUrl } from '../../../../util/sanitize-url.util';
 
 @Component({
   selector: 'bna-file-download-button',
@@ -56,12 +57,16 @@ export class BnaFileDownloadButtonComponent {
   downloadFile() {
     const editor = this.ngxBlockNoteService.editor();
     const fileBlock = this.fileBlock();
-    // TODO: check if download button is still needed when .resolveFileUrl() is undefined
-    if (editor.resolveFileUrl && fileBlock && fileBlock.props.url) {
+    if (fileBlock && fileBlock.props.url) {
       editor.focus();
-      editor
-        .resolveFileUrl(fileBlock.props.url)
-        .then((downloadUrl) => window.open(downloadUrl));
+      if (!editor.resolveFileUrl) {
+        const safe = sanitizeUrl(fileBlock.props.url, window.location.href);
+        window.open(safe);
+      } else {
+        editor
+          .resolveFileUrl(fileBlock.props.url)
+          .then((downloadUrl) => window.open(sanitizeUrl(downloadUrl, window.location.href)));
+      }
     }
   }
 }

@@ -35,6 +35,8 @@ export class BnaBlockColorStyleComponent {
     >,
   );
 
+  dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+
   selectedBlocks = signal<Block[]>(
     useSelectedBlocks(this.ngxBlockNoteService.editor()),
   );
