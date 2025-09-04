@@ -33,7 +33,7 @@ const schema = BlockNoteSchema.create({
   template: `
     <bna-editor
       [initialContent]="initialContent"
-      [editorInput]="editor"
+      [customEditor]="editor"
       [options]="options"
       (editorReady)="onEditorReady($event)"
     />

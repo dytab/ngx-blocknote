@@ -126,7 +126,7 @@ export class BnaEditorComponent<
   readonly options =
     input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
   readonly initialContent = input<InitialContent<BSchema, ISchema, SSchema>>();
-  readonly editorInput = input<BlockNoteEditor<BSchema, ISchema, SSchema>>();
+  readonly customEditor = input<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
@@ -156,7 +156,7 @@ export class BnaEditorComponent<
 
     // Handle editor input changes with effect
     effect(() => {
-      const customEditor = this.editorInput();
+      const customEditor = this.customEditor();
       if (customEditor) {
         this._editor = customEditor;
         this.hasCustomEditor = true;
