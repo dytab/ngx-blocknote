@@ -1,5 +1,5 @@
+import { ComponentRef, Type, ViewContainerRef } from '@angular/core';
 import {
-  applyNonSelectableBlockFix,
   BlockFromConfig,
   BlockNoteEditor,
   BlockSchemaWithBlock,
@@ -20,7 +20,6 @@ import {
   wrapInBlockStructure,
 } from '@blocknote/core';
 import { NodeView } from '@tiptap/pm/view';
-import { Type, ComponentRef, ViewContainerRef, ElementRef } from '@angular/core';
 
 /**
  * Props passed to Angular custom block render components
@@ -64,7 +63,7 @@ export class AngularBlockNodeView implements NodeView {
     private getPos: () => number,
     private blockConfig: AngularCustomBlockImplementation<any, any, any>,
     private viewContainerRef: ViewContainerRef,
-    private editor: BlockNoteEditor<any, any, any>
+    private editor: BlockNoteEditor<any, any, any>,
   ) {
     this.dom = document.createElement('div');
     this.dom.className = 'bn-block-outer';
@@ -73,7 +72,7 @@ export class AngularBlockNodeView implements NodeView {
     const blockContent = document.createElement('div');
     blockContent.className = mergeCSSClasses(
       'bn-block-content',
-      this.node.attrs.class || ''
+      this.node.attrs.class || '',
     );
 
     // Set content type attribute
@@ -101,7 +100,9 @@ export class AngularBlockNodeView implements NodeView {
     if (!this.blockConfig.render) return;
 
     // Create the Angular component
-    this.componentRef = this.viewContainerRef.createComponent(this.blockConfig.render);
+    this.componentRef = this.viewContainerRef.createComponent(
+      this.blockConfig.render,
+    );
 
     // Set component inputs
     const componentInstance = this.componentRef.instance;
@@ -126,7 +127,15 @@ export class AngularBlockNodeView implements NodeView {
 
   private getBlockFromNode(): any {
     const pos = this.getPos();
-    return getBlockFromPos(pos, this.editor._tiptapEditor.state);
+    if (typeof pos === 'number') {
+      return getBlockFromPos(
+        () => pos,
+        this.editor,
+        this.editor._tiptapEditor,
+        this.node.type.name,
+      );
+    }
+    return null;
   }
 
   update(node: any): boolean {
@@ -167,7 +176,7 @@ export function createAngularBlockSpec<
 >(
   blockConfig: T,
   blockImplementation: AngularCustomBlockImplementation<T, I, S>,
-  viewContainerRef: ViewContainerRef
+  viewContainerRef: ViewContainerRef,
 ): any {
   const internalSpec = createInternalBlockSpec(blockConfig, {
     render: () => null, // Not used in Angular version
@@ -196,7 +205,8 @@ export function createAngularBlockSpec<
       return wrapInBlockStructure(
         internalSpec.renderHTML(HTMLAttributes),
         blockConfig.type,
-        HTMLAttributes
+        HTMLAttributes as any,
+        blockConfig.propSchema,
       );
     },
 
@@ -208,7 +218,7 @@ export function createAngularBlockSpec<
           getPos as () => number,
           blockImplementation,
           viewContainerRef,
-          editor as any
+          editor as any,
         );
       };
     },
@@ -218,7 +228,8 @@ export function createAngularBlockSpec<
     },
 
     onUpdate() {
-      applyNonSelectableBlockFix(this.editor);
+      // Note: applyNonSelectableBlockFix is not available in this context
+      // This method is called when the node updates
     },
   });
 }

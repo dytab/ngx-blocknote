@@ -19,11 +19,11 @@ import { sanitizeUrl } from '../../../../util/sanitize-url.util';
 export class BnaOpenLinkComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
-  readonly dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+  readonly dict = computed(() => this.ngxBlockNoteService.editor()!.dictionary);
 
   url?: string;
   constructor() {
-    this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
+    this.ngxBlockNoteService.editor()!.linkToolbar.onUpdate((linkToolbar) => {
       this.url = linkToolbar.url;
     });
   }

@@ -1,6 +1,6 @@
-import { signal, effect, Signal } from '@angular/core';
-import { Observable, BehaviorSubject, from, EMPTY } from 'rxjs';
-import { switchMap, catchError, startWith, tap } from 'rxjs/operators';
+import { effect, signal, Signal } from '@angular/core';
+import { BehaviorSubject, EMPTY, from, Observable } from 'rxjs';
+import { catchError, startWith, switchMap, tap } from 'rxjs/operators';
 
 export interface LoadSuggestionMenuItemsResult<T> {
   items: T[];
@@ -10,7 +10,7 @@ export interface LoadSuggestionMenuItemsResult<T> {
 
 export function createLoadSuggestionMenuItems<T>(
   querySignal: Signal<string>,
-  getItems: (query: string) => Promise<T[]>
+  getItems: (query: string) => Promise<T[]>,
 ): {
   items: Signal<T[]>;
   usedQuery: Signal<string | undefined>;
@@ -18,7 +18,9 @@ export function createLoadSuggestionMenuItems<T>(
 } {
   const items = signal<T[]>([]);
   const usedQuery = signal<string | undefined>(undefined);
-  const loadingState = signal<'loading-initial' | 'loading' | 'loaded'>('loading-initial');
+  const loadingState = signal<'loading-initial' | 'loading' | 'loaded'>(
+    'loading-initial',
+  );
 
   let currentRequestId = 0;
 
@@ -29,23 +31,25 @@ export function createLoadSuggestionMenuItems<T>(
     loadingState.set(usedQuery() === undefined ? 'loading-initial' : 'loading');
 
     // Convert Promise to Observable and handle concurrent requests
-    from(getItems(query)).pipe(
-      tap((newItems) => {
-        // Only update if this is still the latest request
-        if (requestId === currentRequestId) {
-          items.set(newItems || []);
-          usedQuery.set(query);
-          loadingState.set('loaded');
-        }
-      }),
-      catchError((error) => {
-        console.error('Error loading suggestion menu items:', error);
-        if (requestId === currentRequestId) {
-          loadingState.set('loaded');
-        }
-        return EMPTY;
-      })
-    ).subscribe();
+    from(getItems(query))
+      .pipe(
+        tap((newItems) => {
+          // Only update if this is still the latest request
+          if (requestId === currentRequestId) {
+            items.set(newItems || []);
+            usedQuery.set(query);
+            loadingState.set('loaded');
+          }
+        }),
+        catchError((error) => {
+          console.error('Error loading suggestion menu items:', error);
+          if (requestId === currentRequestId) {
+            loadingState.set('loaded');
+          }
+          return EMPTY;
+        }),
+      )
+      .subscribe();
   });
 
   return {
@@ -60,7 +64,7 @@ export function createLoadSuggestionMenuItems<T>(
  */
 export function createLoadSuggestionMenuItemsObservable<T>(
   query$: Observable<string>,
-  getItems: (query: string) => Promise<T[]>
+  getItems: (query: string) => Promise<T[]>,
 ): Observable<LoadSuggestionMenuItemsResult<T>> {
   const usedQuerySubject = new BehaviorSubject<string | undefined>(undefined);
 
@@ -73,22 +77,27 @@ export function createLoadSuggestionMenuItemsObservable<T>(
             items: items || [],
             usedQuery: query,
             loadingState: 'loaded' as const,
-          }
+          },
         ]),
         startWith({
           items: [] as T[],
           usedQuery: usedQuerySubject.value,
-          loadingState: (usedQuerySubject.value === undefined ? 'loading-initial' : 'loading') as const,
+          loadingState:
+            usedQuerySubject.value === undefined
+              ? ('loading-initial' as const)
+              : ('loading' as const),
         }),
         catchError((error) => {
           console.error('Error loading suggestion menu items:', error);
-          return [{
-            items: [] as T[],
-            usedQuery: usedQuerySubject.value,
-            loadingState: 'loaded' as const,
-          }];
-        })
-      )
-    )
+          return [
+            {
+              items: [] as T[],
+              usedQuery: usedQuerySubject.value,
+              loadingState: 'loaded' as const,
+            },
+          ];
+        }),
+      ),
+    ),
   );
 }

@@ -15,10 +15,10 @@ export class BnaLinkToolbarComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
   startHideTimer() {
-    this.ngxBlockNoteService.editor().linkToolbar.startHideTimer();
+    this.ngxBlockNoteService.editor()!.linkToolbar.startHideTimer();
   }
 
   stopHideTimer() {
-    this.ngxBlockNoteService.editor().linkToolbar.stopHideTimer();
+    this.ngxBlockNoteService.editor()!.linkToolbar.stopHideTimer();
   }
 }

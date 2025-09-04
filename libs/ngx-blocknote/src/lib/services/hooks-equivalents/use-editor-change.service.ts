@@ -1,4 +1,4 @@
-import { Injectable, effect, DestroyRef, inject } from '@angular/core';
+import { DestroyRef, Injectable, effect, inject } from '@angular/core';
 import { BlockNoteEditor } from '@blocknote/core';
 import { NgxBlocknoteService } from '../ngx-blocknote.service';
 
@@ -7,7 +7,7 @@ import { NgxBlocknoteService } from '../ngx-blocknote.service';
  * Sets up a listener for editor content changes.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UseEditorChangeService {
   private destroyRef = inject(DestroyRef);
@@ -21,7 +21,7 @@ export class UseEditorChangeService {
    */
   setupEditorChangeListener(
     callback: Parameters<BlockNoteEditor<any, any, any>['onChange']>[0],
-    editor?: BlockNoteEditor<any, any, any>
+    editor?: BlockNoteEditor<any, any, any>,
   ) {
     if (!editor) {
       const ngxBlocknoteService = inject(NgxBlocknoteService);
@@ -29,9 +29,10 @@ export class UseEditorChangeService {
     }
 
     if (!editor) {
-      throw new Error(
-        "'editor' is required, either from NgxBlocknoteService or as a function argument"
-      );
+      console.warn('Editor not available for change listener');
+      return () => {
+        /* no-op */
+      }; // Return no-op function
     }
 
     // Set up the onChange listener
@@ -39,7 +40,9 @@ export class UseEditorChangeService {
 
     // Clean up when component/service is destroyed
     this.destroyRef.onDestroy(() => {
-      unsubscribe();
+      if (unsubscribe) {
+        unsubscribe();
+      }
     });
 
     return unsubscribe;
@@ -53,8 +56,10 @@ export class UseEditorChangeService {
    * @param editorFactory - Function that returns the editor to use
    */
   createEditorChangeEffect(
-    callbackFactory: () => Parameters<BlockNoteEditor<any, any, any>['onChange']>[0],
-    editorFactory?: () => BlockNoteEditor<any, any, any> | undefined
+    callbackFactory: () => Parameters<
+      BlockNoteEditor<any, any, any>['onChange']
+    >[0],
+    editorFactory?: () => BlockNoteEditor<any, any, any> | undefined,
   ) {
     return effect(() => {
       const callback = callbackFactory();
@@ -68,9 +73,10 @@ export class UseEditorChangeService {
       }
 
       if (!editor) {
-        throw new Error(
-          "'editor' is required, either from NgxBlocknoteService or as a function argument"
-        );
+        console.warn('Editor not available for change effect');
+        return () => {
+          /* no-op */
+        };
       }
 
       // Set up the onChange listener
@@ -78,7 +84,9 @@ export class UseEditorChangeService {
 
       // Clean up when effect re-runs or component is destroyed
       this.destroyRef.onDestroy(() => {
-        unsubscribe();
+        if (unsubscribe) {
+          unsubscribe();
+        }
       });
 
       return unsubscribe;
@@ -91,11 +99,17 @@ export class UseEditorChangeService {
  */
 export function useEditorChange(
   callback: Parameters<BlockNoteEditor<any, any, any>['onChange']>[0],
-  editor: BlockNoteEditor<any, any, any>
+  editor: BlockNoteEditor<any, any, any>,
 ): () => void {
   if (!editor) {
     throw new Error("'editor' is required as a function argument");
   }
 
-  return editor.onChange(callback);
+  const unsubscribe = editor.onChange(callback);
+  return (
+    unsubscribe ||
+    (() => {
+      /* no-op */
+    })
+  );
 }

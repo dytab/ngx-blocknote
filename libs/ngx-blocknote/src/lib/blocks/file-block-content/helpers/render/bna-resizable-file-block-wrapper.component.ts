@@ -1,6 +1,19 @@
-import { Component, Input, OnInit, OnDestroy, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlockNoteEditor, BlockSchema, InlineContentSchema, StyleSchema } from '@blocknote/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+  StyleSchema,
+} from '@blocknote/core';
 import { Subscription } from 'rxjs';
 import { useUploadLoading } from '../../use-upload-loading.util';
 import { BnaFileBlockWrapperComponent } from './bna-file-block-wrapper.component';
@@ -55,18 +68,22 @@ interface ResizeParams {
     </bna-file-block-wrapper>
   `,
   standalone: true,
-  imports: [
-    CommonModule,
-    BnaFileBlockWrapperComponent
-  ]
+  imports: [CommonModule, BnaFileBlockWrapperComponent],
 })
-export class BnaResizableFileBlockWrapperComponent implements OnInit, OnDestroy {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+export class BnaResizableFileBlockWrapperComponent
+  implements OnInit, OnDestroy
+{
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // FileBlockConfig block
   @Input() buttonText!: string;
   @Input() buttonIcon!: TemplateRef<any>;
 
-  @ViewChild('visualMediaWrapper', { static: false }) visualMediaWrapperRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('visualMediaWrapper', { static: false })
+  visualMediaWrapperRef!: ElementRef<HTMLDivElement>;
 
   resizeParams: ResizeParams | undefined = undefined;
   width: number | undefined = undefined;
@@ -83,11 +100,13 @@ export class BnaResizableFileBlockWrapperComponent implements OnInit, OnDestroy 
 
     // Subscribe to upload loading state
     if (this.editor && this.block?.id) {
-      this.uploadLoadingSubscription = useUploadLoading(this.editor, this.block.id)
-        .subscribe(isLoading => {
-          this.showLoader = isLoading;
-          this.updateWrapperStyle();
-        });
+      this.uploadLoadingSubscription = useUploadLoading(
+        this.editor,
+        this.block.id,
+      ).subscribe((isLoading) => {
+        this.showLoader = isLoading;
+        this.updateWrapperStyle();
+      });
     }
 
     this.updateWrapperStyle();
@@ -164,19 +183,25 @@ export class BnaResizableFileBlockWrapperComponent implements OnInit, OnDestroy 
 
     if (this.block?.props?.textAlignment === 'center') {
       if (this.resizeParams.handleUsed === 'left') {
-        newWidth = this.resizeParams.initialWidth +
+        newWidth =
+          this.resizeParams.initialWidth +
           (this.resizeParams.initialClientX - event.clientX) * 2;
       } else {
-        newWidth = this.resizeParams.initialWidth +
+        newWidth =
+          this.resizeParams.initialWidth +
           (event.clientX - this.resizeParams.initialClientX) * 2;
       }
     } else {
       if (this.resizeParams.handleUsed === 'left') {
-        newWidth = this.resizeParams.initialWidth +
-          this.resizeParams.initialClientX - event.clientX;
+        newWidth =
+          this.resizeParams.initialWidth +
+          this.resizeParams.initialClientX -
+          event.clientX;
       } else {
-        newWidth = this.resizeParams.initialWidth +
-          event.clientX - this.resizeParams.initialClientX;
+        newWidth =
+          this.resizeParams.initialWidth +
+          event.clientX -
+          this.resizeParams.initialClientX;
       }
     }
 
@@ -184,7 +209,9 @@ export class BnaResizableFileBlockWrapperComponent implements OnInit, OnDestroy 
     const minWidth = 64;
 
     // Ensure the element is not wider than the editor and not narrower than minimum width
-    const maxWidth = this.editor.domElement?.firstElementChild?.clientWidth || Number.MAX_VALUE;
+    const maxWidth =
+      this.editor.domElement?.firstElementChild?.clientWidth ||
+      Number.MAX_VALUE;
     this.width = Math.min(Math.max(newWidth, minWidth), maxWidth);
     this.updateWrapperStyle();
   }
@@ -204,7 +231,11 @@ export class BnaResizableFileBlockWrapperComponent implements OnInit, OnDestroy 
   }
 
   private updateWrapperStyle(): void {
-    if (this.block?.props?.url && !this.showLoader && this.block?.props?.showPreview) {
+    if (
+      this.block?.props?.url &&
+      !this.showLoader &&
+      this.block?.props?.showPreview
+    ) {
       this.wrapperStyle = {
         width: this.width ? `${this.width}px` : 'fit-content',
       };

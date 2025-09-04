@@ -1,5 +1,17 @@
-import { signal, effect, Signal, computed, DestroyRef, inject } from '@angular/core';
-import { BlockNoteEditor, BlockSchema, InlineContentSchema, StyleSchema } from '@blocknote/core';
+import {
+  computed,
+  DestroyRef,
+  effect,
+  inject,
+  signal,
+  Signal,
+} from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+  StyleSchema,
+} from '@blocknote/core';
 
 /**
  * Utility that handles keyboard navigation for grid suggestion menus.
@@ -10,7 +22,7 @@ export function createGridSuggestionMenuKeyboardNavigation<Item>(
   querySignal: Signal<string>,
   itemsSignal: Signal<Item[]>,
   columns: number,
-  onItemClick?: (item: Item) => void
+  onItemClick?: (item: Item) => void,
 ): {
   selectedIndex: Signal<number | undefined>;
 } {
@@ -40,7 +52,9 @@ export function createGridSuggestionMenuKeyboardNavigation<Item>(
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
         if (items.length) {
-          selectedIndexInternal.set((currentSelectedIndex - 1 + items.length) % items.length);
+          selectedIndexInternal.set(
+            (currentSelectedIndex - 1 + items.length) % items.length,
+          );
         }
         return true;
       }
@@ -57,7 +71,7 @@ export function createGridSuggestionMenuKeyboardNavigation<Item>(
         event.preventDefault();
         if (items.length) {
           selectedIndexInternal.set(
-            (currentSelectedIndex - columns + items.length) % items.length
+            (currentSelectedIndex - columns + items.length) % items.length,
           );
         }
         return true;
@@ -66,7 +80,9 @@ export function createGridSuggestionMenuKeyboardNavigation<Item>(
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         if (items.length) {
-          selectedIndexInternal.set((currentSelectedIndex + columns) % items.length);
+          selectedIndexInternal.set(
+            (currentSelectedIndex + columns) % items.length,
+          );
         }
         return true;
       }
@@ -84,16 +100,24 @@ export function createGridSuggestionMenuKeyboardNavigation<Item>(
     };
 
     // Add event listener with capture
-    editor.domElement.addEventListener('keydown', handleMenuNavigationKeys, true);
+    editor.domElement.addEventListener(
+      'keydown',
+      handleMenuNavigationKeys,
+      true,
+    );
 
     // Cleanup on destroy
     destroyRef.onDestroy(() => {
-      editor.domElement?.removeEventListener('keydown', handleMenuNavigationKeys, true);
+      editor.domElement?.removeEventListener(
+        'keydown',
+        handleMenuNavigationKeys,
+        true,
+      );
     });
   });
 
   return {
-    selectedIndex: selectedIndex.asReadonly(),
+    selectedIndex: selectedIndex,
   };
 }
 
@@ -105,9 +129,13 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
   private keyboardHandler?: (event: KeyboardEvent) => boolean;
 
   constructor(
-    private editor: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>,
+    private editor: BlockNoteEditor<
+      BlockSchema,
+      InlineContentSchema,
+      StyleSchema
+    >,
     private columns: number,
-    private onItemClick?: (item: Item) => void
+    private onItemClick?: (item: Item) => void,
   ) {}
 
   /**
@@ -143,7 +171,8 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
         if (items.length) {
-          this.selectedIndexInternal = (this.selectedIndexInternal - 1 + items.length) % items.length;
+          this.selectedIndexInternal =
+            (this.selectedIndexInternal - 1 + items.length) % items.length;
         }
         return true;
       }
@@ -151,7 +180,8 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
       if (event.key === 'ArrowRight') {
         event.preventDefault();
         if (items.length) {
-          this.selectedIndexInternal = (this.selectedIndexInternal + 1) % items.length;
+          this.selectedIndexInternal =
+            (this.selectedIndexInternal + 1) % items.length;
         }
         return true;
       }
@@ -160,7 +190,8 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
         event.preventDefault();
         if (items.length) {
           this.selectedIndexInternal =
-            (this.selectedIndexInternal - this.columns + items.length) % items.length;
+            (this.selectedIndexInternal - this.columns + items.length) %
+            items.length;
         }
         return true;
       }
@@ -168,7 +199,8 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         if (items.length) {
-          this.selectedIndexInternal = (this.selectedIndexInternal + this.columns) % items.length;
+          this.selectedIndexInternal =
+            (this.selectedIndexInternal + this.columns) % items.length;
         }
         return true;
       }
@@ -185,7 +217,11 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
       return false;
     };
 
-    this.editor.domElement.addEventListener('keydown', this.keyboardHandler, true);
+    this.editor.domElement.addEventListener(
+      'keydown',
+      this.keyboardHandler,
+      true,
+    );
   }
 
   /**
@@ -193,7 +229,11 @@ export class GridSuggestionMenuKeyboardNavigationManager<Item> {
    */
   stopListening(): void {
     if (this.keyboardHandler && this.editor.domElement) {
-      this.editor.domElement.removeEventListener('keydown', this.keyboardHandler, true);
+      this.editor.domElement.removeEventListener(
+        'keydown',
+        this.keyboardHandler,
+        true,
+      );
       this.keyboardHandler = undefined;
     }
   }

@@ -7,8 +7,8 @@ import {
   DefaultInlineContentSchema,
   DefaultStyleSchema,
 } from '@blocknote/core';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { ColorOptions } from '../../../../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../../../../services';
@@ -35,11 +35,16 @@ export class BnaBlockColorStyleComponent {
     >,
   );
 
-  dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+  dict = computed(() => this.ngxBlockNoteService.editor()?.dictionary || {});
 
-  selectedBlocks = signal<Block[]>(
-    useSelectedBlocks(this.ngxBlockNoteService.editor()),
-  );
+  selectedBlocks = signal<Block[]>([]);
+
+  // Helper method for template
+  getColorsMenuText(): string {
+    const dictionary = this.dict();
+    return (dictionary as any)?.drag_handle?.colors_menuitem || 'Colors';
+  }
+
   options = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const sideMenuFocusedBlock =
@@ -60,6 +65,7 @@ export class BnaBlockColorStyleComponent {
       return colorOptions;
     }
     if (
+      editor &&
       checkBlockTypeHasDefaultProp(
         'textColor',
         firstSelectedBlock.type,
@@ -82,6 +88,7 @@ export class BnaBlockColorStyleComponent {
       };
     }
     if (
+      editor &&
       checkBlockTypeHasDefaultProp(
         'backgroundColor',
         firstSelectedBlock.type,
@@ -108,10 +115,13 @@ export class BnaBlockColorStyleComponent {
   });
 
   constructor() {
-    this.ngxBlockNoteService.editor().onSelectionChange(() => {
+    this.ngxBlockNoteService.editor()?.onSelectionChange(() => {
       //Update selected blocks, when selection changes, so that we change the color of all selected blocks
-      const selected = useSelectedBlocks(this.ngxBlockNoteService.editor());
-      this.selectedBlocks.set(selected);
+      const editor = this.ngxBlockNoteService.editor();
+      if (editor) {
+        const selected = useSelectedBlocks(editor);
+        this.selectedBlocks.set(selected);
+      }
     });
   }
 }

@@ -2,9 +2,9 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { formatKeyboardShortcut } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 
@@ -31,31 +31,33 @@ export class BnaNestBlockButtonComponent {
 
   readonly tooltip = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
-    return editor.dictionary.formatting_toolbar.nest.tooltip;
+    return editor?.dictionary.formatting_toolbar.nest.tooltip || '';
   });
 
   readonly secondaryTooltip = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return '';
     const dict = editor.dictionary;
     return formatKeyboardShortcut(
       dict.formatting_toolbar.nest.secondary_tooltip,
-      dict.generic.ctrl_shortcut
+      dict.generic.ctrl_shortcut,
     );
   });
 
   readonly show = computed(() => {
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return false;
 
     // Only show for blocks with inline content (not complex blocks like tables)
     return !selectedBlocks.find(
-      (block) => editor.schema.blockSchema[block.type].content !== 'inline'
+      (block) => editor.schema.blockSchema[block.type].content !== 'inline',
     );
   });
 
   readonly _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
-    if (!editor.isEditable || !this.show()) {
+    if (!editor || !editor.isEditable || !this.show()) {
       return 'hidden';
     }
     return '';
@@ -65,6 +67,7 @@ export class BnaNestBlockButtonComponent {
 
   constructor() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
 
     // Initialize can nest state
     this.canNestBlock.set(editor.canNestBlock());
@@ -80,6 +83,7 @@ export class BnaNestBlockButtonComponent {
 
   onClick() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     editor.focus();
     editor.nestBlock();
   }

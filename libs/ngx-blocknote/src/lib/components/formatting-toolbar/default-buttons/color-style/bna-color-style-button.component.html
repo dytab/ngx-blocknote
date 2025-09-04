@@ -24,6 +24,6 @@
   </ng-template>
 
   <span *brnTooltipContent class="text-center" id="color-style-tooltip">
-    <p>{{ dict.formatting_toolbar.colors.tooltip }}</p>
+    <p>{{ dict?.formatting_toolbar?.colors?.tooltip || 'Colors' }}</p>
   </span>
 </hlm-tooltip>

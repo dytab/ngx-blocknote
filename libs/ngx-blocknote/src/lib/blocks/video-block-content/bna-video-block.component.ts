@@ -1,9 +1,17 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlockNoteEditor, videoBlockConfig, BlockSchema, InlineContentSchema, StyleSchema } from '@blocknote/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+  StyleSchema,
+} from '@blocknote/core';
 import { Subscription } from 'rxjs';
-import { useResolveUrl, ResolveUrlResult } from '../file-block-content/use-resolve-url.util';
 import { BnaResizableFileBlockWrapperComponent } from '../file-block-content/helpers/render/bna-resizable-file-block-wrapper.component';
+import {
+  ResolveUrlResult,
+  useResolveUrl,
+} from '../file-block-content/use-resolve-url.util';
 
 @Component({
   selector: 'bna-video-preview',
@@ -17,10 +25,14 @@ import { BnaResizableFileBlockWrapperComponent } from '../file-block-content/hel
     ></video>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaVideoPreviewComponent implements OnInit, OnDestroy {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // VideoBlockConfig block
 
   videoSrc = '';
@@ -28,14 +40,16 @@ export class BnaVideoPreviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.block?.props?.url) {
-      this.resolveUrlSubscription = useResolveUrl(this.editor, this.block.props.url)
-        .subscribe((result: ResolveUrlResult) => {
-          if (result.loadingState === 'loading') {
-            this.videoSrc = this.block.props.url;
-          } else if (result.loadingState === 'loaded' && result.downloadUrl) {
-            this.videoSrc = result.downloadUrl;
-          }
-        });
+      this.resolveUrlSubscription = useResolveUrl(
+        this.editor,
+        this.block.props.url,
+      ).subscribe((result: ResolveUrlResult) => {
+        if (result.loadingState === 'loading') {
+          this.videoSrc = this.block.props.url;
+        } else if (result.loadingState === 'loaded' && result.downloadUrl) {
+          this.videoSrc = result.downloadUrl;
+        }
+      });
     }
   }
 
@@ -64,17 +78,22 @@ export class BnaVideoPreviewComponent implements OnInit, OnDestroy {
       </div>
 
       <div *ngIf="!block?.props?.showPreview && block?.props?.caption">
-        <a [href]="block.props.url">{{ block.props.name || block.props.url }}</a>
+        <a [href]="block.props.url">{{
+          block.props.name || block.props.url
+        }}</a>
         <p>{{ block.props.caption }}</p>
       </div>
 
-      <a *ngIf="!block?.props?.showPreview && !block?.props?.caption" [href]="block.props.url">
+      <a
+        *ngIf="!block?.props?.showPreview && !block?.props?.caption"
+        [href]="block.props.url"
+      >
         {{ block.props.name || block.props.url }}
       </a>
     </ng-container>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaVideoToExternalHtmlComponent {
   @Input() block!: any; // VideoBlockConfig block
@@ -89,14 +108,20 @@ export class BnaVideoToExternalHtmlComponent {
       [buttonText]="buttonText"
       [buttonIcon]="videoIconTemplate"
     >
-      <bna-video-preview
-        [editor]="editor"
-        [block]="block"
-      ></bna-video-preview>
+      <bna-video-preview [editor]="editor" [block]="block"></bna-video-preview>
     </bna-resizable-file-block-wrapper>
 
     <ng-template #videoIconTemplate>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <polygon points="23 7 16 12 23 17 23 7"></polygon>
         <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
       </svg>
@@ -106,11 +131,15 @@ export class BnaVideoToExternalHtmlComponent {
   imports: [
     CommonModule,
     BnaResizableFileBlockWrapperComponent,
-    BnaVideoPreviewComponent
-  ]
+    BnaVideoPreviewComponent,
+  ],
 })
 export class BnaVideoBlockComponent {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // VideoBlockConfig block
 
   buttonText = 'Add Video'; // Fallback until i18n is implemented

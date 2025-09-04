@@ -1,6 +1,6 @@
 @if (colorOptions().text || colorOptions().background) {
   <div class="py-1 px-2 text-xs opacity-70">
-    {{ dict().drag_handle.colors_menuitem }}
+    {{ dict()?.drag_handle?.colors_menuitem || 'Colors' }}
   </div>
   <bna-color-picker [options]="colorOptions()" />
 }

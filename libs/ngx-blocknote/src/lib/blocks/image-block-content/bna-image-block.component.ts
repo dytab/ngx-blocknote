@@ -1,10 +1,18 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlockNoteEditor, imageBlockConfig, BlockSchema, InlineContentSchema, StyleSchema } from '@blocknote/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+  StyleSchema,
+} from '@blocknote/core';
 import { Subscription } from 'rxjs';
-import { useResolveUrl, ResolveUrlResult } from '../file-block-content/use-resolve-url.util';
 import { BnaResizableFileBlockWrapperComponent } from '../file-block-content/helpers/render/bna-resizable-file-block-wrapper.component';
 import { BnaLinkWithCaptionComponent } from '../file-block-content/helpers/to-external-html/bna-link-with-caption.component';
+import {
+  ResolveUrlResult,
+  useResolveUrl,
+} from '../file-block-content/use-resolve-url.util';
 
 @Component({
   selector: 'bna-image-preview',
@@ -18,10 +26,14 @@ import { BnaLinkWithCaptionComponent } from '../file-block-content/helpers/to-ex
     />
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaImagePreviewComponent implements OnInit, OnDestroy {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // ImageBlockConfig block
 
   imageSrc = '';
@@ -32,14 +44,16 @@ export class BnaImagePreviewComponent implements OnInit, OnDestroy {
     this.altText = this.block?.props?.caption || 'BlockNote image';
 
     if (this.block?.props?.url) {
-      this.resolveUrlSubscription = useResolveUrl(this.editor, this.block.props.url)
-        .subscribe((result: ResolveUrlResult) => {
-          if (result.loadingState === 'loading') {
-            this.imageSrc = this.block.props.url;
-          } else if (result.loadingState === 'loaded' && result.downloadUrl) {
-            this.imageSrc = result.downloadUrl;
-          }
-        });
+      this.resolveUrlSubscription = useResolveUrl(
+        this.editor,
+        this.block.props.url,
+      ).subscribe((result: ResolveUrlResult) => {
+        if (result.loadingState === 'loading') {
+          this.imageSrc = this.block.props.url;
+        } else if (result.loadingState === 'loaded' && result.downloadUrl) {
+          this.imageSrc = result.downloadUrl;
+        }
+      });
     }
   }
 
@@ -77,24 +91,34 @@ export class BnaImagePreviewComponent implements OnInit, OnDestroy {
       />
 
       <!-- Link with caption (when not showing preview) -->
-      <bna-link-with-caption *ngIf="!block?.props?.showPreview && block?.props?.caption" [caption]="block.props.caption">
-        <a [href]="block.props.url">{{ block.props.name || block.props.url }}</a>
+      <bna-link-with-caption
+        *ngIf="!block?.props?.showPreview && block?.props?.caption"
+        [caption]="block.props.caption"
+      >
+        <a [href]="block.props.url">{{
+          block.props.name || block.props.url
+        }}</a>
       </bna-link-with-caption>
 
       <!-- Link without caption (when not showing preview) -->
-      <a *ngIf="!block?.props?.showPreview && !block?.props?.caption" [href]="block.props.url">
+      <a
+        *ngIf="!block?.props?.showPreview && !block?.props?.caption"
+        [href]="block.props.url"
+      >
         {{ block.props.name || block.props.url }}
       </a>
     </ng-container>
   `,
   standalone: true,
-  imports: [CommonModule, BnaLinkWithCaptionComponent]
+  imports: [CommonModule, BnaLinkWithCaptionComponent],
 })
 export class BnaImageToExternalHtmlComponent {
   @Input() block!: any; // ImageBlockConfig block
 
   getAltText(): string {
-    return this.block?.props?.name || this.block?.props?.caption || 'BlockNote image';
+    return (
+      this.block?.props?.name || this.block?.props?.caption || 'BlockNote image'
+    );
   }
 }
 
@@ -107,14 +131,20 @@ export class BnaImageToExternalHtmlComponent {
       [buttonText]="buttonText"
       [buttonIcon]="imageIconTemplate"
     >
-      <bna-image-preview
-        [editor]="editor"
-        [block]="block"
-      ></bna-image-preview>
+      <bna-image-preview [editor]="editor" [block]="block"></bna-image-preview>
     </bna-resizable-file-block-wrapper>
 
     <ng-template #imageIconTemplate>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
         <circle cx="9" cy="9" r="2"></circle>
         <path d="M21 15l-3.086-3.086a2 2 0 00-2.828 0L6 21"></path>
@@ -125,11 +155,15 @@ export class BnaImageToExternalHtmlComponent {
   imports: [
     CommonModule,
     BnaResizableFileBlockWrapperComponent,
-    BnaImagePreviewComponent
-  ]
+    BnaImagePreviewComponent,
+  ],
 })
 export class BnaImageBlockComponent {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // ImageBlockConfig block
 
   buttonText = 'Add Image'; // Fallback until i18n is implemented

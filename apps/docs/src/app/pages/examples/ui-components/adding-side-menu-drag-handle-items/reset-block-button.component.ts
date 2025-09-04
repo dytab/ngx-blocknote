@@ -34,7 +34,7 @@ export class ResetBlockButtonComponent {
 
   resetBlock() {
     const editor = this.ngxBlockNoteService.editor();
-    if (!this.block) {
+    if (!this.block || !editor) {
       return;
     }
     editor.updateBlock(this.block, { type: 'paragraph' });

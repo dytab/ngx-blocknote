@@ -1,6 +1,10 @@
 import { Component, Input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DefaultAngularGridSuggestionItem, GridSuggestionMenuProps } from './types';
+import { TemplateRef } from '@angular/core';
+import {
+  DefaultAngularGridSuggestionItem,
+  GridSuggestionMenuProps,
+} from './types';
 
 @Component({
   selector: 'bna-grid-suggestion-menu-loader',
@@ -13,7 +17,7 @@ import { DefaultAngularGridSuggestionItem, GridSuggestionMenuProps } from './typ
     </div>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaGridSuggestionMenuLoaderComponent {
   @Input() columns!: number;
@@ -34,16 +38,18 @@ export class BnaGridSuggestionMenuLoaderComponent {
           {{ item.icon }}
         </ng-container>
         <ng-template #templateIcon>
-          <ng-container *ngTemplateOutlet="item.icon"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="getTemplateIcon(item.icon)"
+          ></ng-container>
         </ng-template>
       </div>
       <div class="bn-grid-suggestion-menu-item-title">
-        {{ item.title }}
+        {{ getItemTitle(item) }}
       </div>
     </button>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaGridSuggestionMenuItemComponent {
   @Input() item!: DefaultAngularGridSuggestionItem;
@@ -53,6 +59,14 @@ export class BnaGridSuggestionMenuItemComponent {
 
   isEmojiIcon(icon: any): boolean {
     return typeof icon === 'string';
+  }
+
+  getItemTitle(item: DefaultAngularGridSuggestionItem): string {
+    return (item as any)?.title || 'Item';
+  }
+
+  getTemplateIcon(icon: any): TemplateRef<any> | null {
+    return typeof icon === 'string' ? null : (icon as TemplateRef<any>);
   }
 }
 
@@ -67,7 +81,7 @@ export class BnaGridSuggestionMenuItemComponent {
     </div>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaGridSuggestionMenuEmptyItemComponent {
   @Input() columns!: number;
@@ -86,7 +100,7 @@ export class BnaGridSuggestionMenuEmptyItemComponent {
     </div>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaGridSuggestionMenuRootComponent {
   @Input() id!: string;
@@ -132,11 +146,13 @@ export class BnaGridSuggestionMenuRootComponent {
     BnaGridSuggestionMenuRootComponent,
     BnaGridSuggestionMenuLoaderComponent,
     BnaGridSuggestionMenuItemComponent,
-    BnaGridSuggestionMenuEmptyItemComponent
-  ]
+    BnaGridSuggestionMenuEmptyItemComponent,
+  ],
 })
-export class BnaGridSuggestionMenuComponent<T extends DefaultAngularGridSuggestionItem>
-  implements GridSuggestionMenuProps<T> {
+export class BnaGridSuggestionMenuComponent<
+  T extends DefaultAngularGridSuggestionItem,
+> implements GridSuggestionMenuProps<T>
+{
   @Input() items!: T[];
   @Input() loadingState!: 'loading-initial' | 'loading' | 'loaded';
   @Input() selectedIndex: number | undefined = undefined;
@@ -146,16 +162,18 @@ export class BnaGridSuggestionMenuComponent<T extends DefaultAngularGridSuggesti
   // i18n fallbacks - TODO: implement proper i18n service
   noItemsText = 'No items found';
 
-  showLoader = computed(() =>
-    this.loadingState === 'loading-initial' || this.loadingState === 'loading'
-  );
+  showLoader = computed(() => {
+    return (
+      this.loadingState === 'loading-initial' || this.loadingState === 'loading'
+    );
+  });
 
-  showEmptyState = computed(() =>
-    this.items.length === 0 && this.loadingState === 'loaded'
-  );
+  showEmptyState = computed(() => {
+    return this.items.length === 0 && this.loadingState === 'loaded';
+  });
 
   trackByItemId(index: number, item: T): string {
-    return item.id;
+    return (item as any)?.id || index.toString();
   }
 
   getItemClickHandler(item: T): () => void {

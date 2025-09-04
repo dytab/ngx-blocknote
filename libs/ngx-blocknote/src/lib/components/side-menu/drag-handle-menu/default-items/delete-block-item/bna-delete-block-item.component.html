@@ -6,5 +6,5 @@
   type="button"
   (click)="deleteBlock()"
 >
-  {{ dict().drag_handle.delete_menuitem }}
+  {{ dict()?.drag_handle?.delete_menuitem || 'Delete' }}
 </button>

@@ -1,7 +1,18 @@
-import { Component, Input, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlockNoteEditor, BlockSchema, InlineContentSchema, StyleSchema } from '@blocknote/core';
-import { Subscription, Observable } from 'rxjs';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+} from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+  StyleSchema,
+} from '@blocknote/core';
+import { Subscription } from 'rxjs';
 import { useUploadLoading } from '../../use-upload-loading.util';
 import { BnaAddFileButtonComponent } from './bna-add-file-button.component';
 import { BnaFileNameWithIconComponent } from './bna-file-name-with-icon.component';
@@ -16,9 +27,7 @@ import { BnaFileNameWithIconComponent } from './bna-file-name-with-icon.componen
       [style]="customStyle"
     >
       <!-- Show loader while a file is being uploaded -->
-      <div *ngIf="showLoader" class="bn-file-loading-preview">
-        Loading...
-      </div>
+      <div *ngIf="showLoader" class="bn-file-loading-preview">Loading...</div>
 
       <!-- Show the add file button if the file has not been uploaded yet -->
       <bna-add-file-button
@@ -38,7 +47,9 @@ import { BnaFileNameWithIconComponent } from './bna-file-name-with-icon.componen
         ></bna-file-name-with-icon>
 
         <!-- Show preview content if available -->
-        <ng-content *ngIf="block?.props?.showPreview !== false && hasChildren"></ng-content>
+        <ng-content
+          *ngIf="block?.props?.showPreview !== false && hasChildren"
+        ></ng-content>
 
         <!-- Show the caption if there is one -->
         <p *ngIf="block?.props?.caption" class="bn-file-caption">
@@ -51,11 +62,15 @@ import { BnaFileNameWithIconComponent } from './bna-file-name-with-icon.componen
   imports: [
     CommonModule,
     BnaAddFileButtonComponent,
-    BnaFileNameWithIconComponent
-  ]
+    BnaFileNameWithIconComponent,
+  ],
 })
 export class BnaFileBlockWrapperComponent implements OnInit, OnDestroy {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // FileBlockConfig block
   @Input() buttonText?: string;
   @Input() buttonIcon?: TemplateRef<any>;
@@ -69,10 +84,12 @@ export class BnaFileBlockWrapperComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.editor && this.block?.id) {
-      this.uploadLoadingSubscription = useUploadLoading(this.editor, this.block.id)
-        .subscribe(isLoading => {
-          this.showLoader = isLoading;
-        });
+      this.uploadLoadingSubscription = useUploadLoading(
+        this.editor,
+        this.block.id,
+      ).subscribe((isLoading) => {
+        this.showLoader = isLoading;
+      });
     }
   }
 

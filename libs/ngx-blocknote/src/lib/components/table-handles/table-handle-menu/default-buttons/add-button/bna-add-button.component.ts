@@ -21,6 +21,7 @@ export class BnaAddButtonComponent {
     const editor = this.ngxBlockNoteService.editor();
     const options = this.options();
     const block = options.tableHandles.block;
+    if (!editor) return;
 
     const index =
       props.orientation === 'row'

@@ -1,9 +1,17 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlockNoteEditor, audioBlockConfig, BlockSchema, InlineContentSchema, StyleSchema } from '@blocknote/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  BlockNoteEditor,
+  BlockSchema,
+  InlineContentSchema,
+  StyleSchema,
+} from '@blocknote/core';
 import { Subscription } from 'rxjs';
-import { useResolveUrl, ResolveUrlResult } from '../file-block-content/use-resolve-url.util';
 import { BnaFileBlockWrapperComponent } from '../file-block-content/helpers/render/bna-file-block-wrapper.component';
+import {
+  ResolveUrlResult,
+  useResolveUrl,
+} from '../file-block-content/use-resolve-url.util';
 
 @Component({
   selector: 'bna-audio-preview',
@@ -17,10 +25,14 @@ import { BnaFileBlockWrapperComponent } from '../file-block-content/helpers/rend
     ></audio>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaAudioPreviewComponent implements OnInit, OnDestroy {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // AudioBlockConfig block
 
   audioSrc = '';
@@ -28,14 +40,16 @@ export class BnaAudioPreviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.block?.props?.url) {
-      this.resolveUrlSubscription = useResolveUrl(this.editor, this.block.props.url)
-        .subscribe((result: ResolveUrlResult) => {
-          if (result.loadingState === 'loading') {
-            this.audioSrc = this.block.props.url;
-          } else if (result.loadingState === 'loaded' && result.downloadUrl) {
-            this.audioSrc = result.downloadUrl;
-          }
-        });
+      this.resolveUrlSubscription = useResolveUrl(
+        this.editor,
+        this.block.props.url,
+      ).subscribe((result: ResolveUrlResult) => {
+        if (result.loadingState === 'loading') {
+          this.audioSrc = this.block.props.url;
+        } else if (result.loadingState === 'loaded' && result.downloadUrl) {
+          this.audioSrc = result.downloadUrl;
+        }
+      });
     }
   }
 
@@ -64,17 +78,22 @@ export class BnaAudioPreviewComponent implements OnInit, OnDestroy {
       </div>
 
       <div *ngIf="!block?.props?.showPreview && block?.props?.caption">
-        <a [href]="block.props.url">{{ block.props.name || block.props.url }}</a>
+        <a [href]="block.props.url">{{
+          block.props.name || block.props.url
+        }}</a>
         <p>{{ block.props.caption }}</p>
       </div>
 
-      <a *ngIf="!block?.props?.showPreview && !block?.props?.caption" [href]="block.props.url">
+      <a
+        *ngIf="!block?.props?.showPreview && !block?.props?.caption"
+        [href]="block.props.url"
+      >
         {{ block.props.name || block.props.url }}
       </a>
     </ng-container>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaAudioToExternalHtmlComponent {
   @Input() block!: any; // AudioBlockConfig block
@@ -90,16 +109,24 @@ export class BnaAudioToExternalHtmlComponent {
       [buttonIcon]="audioIconTemplate"
       [hasChildren]="true"
     >
-      <bna-audio-preview
-        [editor]="editor"
-        [block]="block"
-      ></bna-audio-preview>
+      <bna-audio-preview [editor]="editor" [block]="block"></bna-audio-preview>
     </bna-file-block-wrapper>
 
     <ng-template #audioIconTemplate>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <path d="m19.07 4.93-2.12 2.12m0 0L19.07 9.17m-2.12-2.12L21 3m-4.05 4.05L21 11"></path>
+        <path
+          d="m19.07 4.93-2.12 2.12m0 0L19.07 9.17m-2.12-2.12L21 3m-4.05 4.05L21 11"
+        ></path>
       </svg>
     </ng-template>
   `,
@@ -107,11 +134,15 @@ export class BnaAudioToExternalHtmlComponent {
   imports: [
     CommonModule,
     BnaFileBlockWrapperComponent,
-    BnaAudioPreviewComponent
-  ]
+    BnaAudioPreviewComponent,
+  ],
 })
 export class BnaAudioBlockComponent {
-  @Input() editor!: BlockNoteEditor<BlockSchema, InlineContentSchema, StyleSchema>;
+  @Input() editor!: BlockNoteEditor<
+    BlockSchema,
+    InlineContentSchema,
+    StyleSchema
+  >;
   @Input() block!: any; // AudioBlockConfig block
 
   buttonText = 'Add Audio'; // Fallback until i18n is implemented

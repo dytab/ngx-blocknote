@@ -1,8 +1,8 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { NgxBlocknoteService } from '../../../../../services';
-import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
 import { getColspan, getRowspan, isTableCell } from '@blocknote/core';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
+import { NgxBlocknoteService } from '../../../../../services';
 
 @Component({
   selector: 'bna-split-cell-button',
@@ -14,11 +14,11 @@ export class BnaSplitCellButtonComponent {
 
   readonly options = input.required<TableHandleOptions>();
 
-  readonly dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+  readonly dict = computed(() => this.ngxBlockNoteService.editor()!.dictionary);
 
   readonly show = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
-    if (editor.settings.tables.splitCells === false) {
+    if (!editor || editor.settings.tables.splitCells === false) {
       return false;
     }
     const opts = this.options();
@@ -45,7 +45,7 @@ export class BnaSplitCellButtonComponent {
     const th = opts.tableHandles as any;
     const rowIndex = th.rowIndex as number | undefined;
     const colIndex = th.colIndex as number | undefined;
-    if (rowIndex === undefined || colIndex === undefined) {
+    if (!editor || rowIndex === undefined || colIndex === undefined) {
       return;
     }
 

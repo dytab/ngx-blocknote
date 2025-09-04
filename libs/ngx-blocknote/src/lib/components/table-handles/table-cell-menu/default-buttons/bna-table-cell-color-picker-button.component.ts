@@ -1,20 +1,23 @@
-import { Component, Input, inject, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
 import {
-  DefaultBlockSchema,
-  DefaultInlineContentSchema,
-  DefaultStyleSchema,
-  InlineContentSchema,
-  isTableCell,
-  mapTableCell,
-  StyleSchema,
-} from '@blocknote/core';
+  ConnectedPosition,
+  Overlay,
+  OverlayModule,
+  OverlayRef,
+} from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import { isTableCell, mapTableCell } from '@blocknote/core';
+import { ColorOptions } from '../../../../interfaces/color-options.type';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { BnaColorPickerComponent } from '../../../color-picker/bna-color-picker.component';
-import { ColorOptions } from '../../../../interfaces/color-options.type';
 
 @Component({
   selector: 'bna-table-cell-color-picker-button',
@@ -29,28 +32,32 @@ import { ColorOptions } from '../../../../interfaces/color-options.type';
         (mouseleave)="onMouseLeave()"
       >
         {{ colorsText }}
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <polyline points="9,6 15,12 9,18"></polyline>
         </svg>
       </button>
 
       <ng-template #submenuTemplate>
         <div class="bn-menu-dropdown bn-color-picker-dropdown">
-          <bna-color-picker
-            [options]="colorPickerOptions"
-          ></bna-color-picker>
+          <bna-color-picker [options]="colorPickerOptions"></bna-color-picker>
         </div>
       </ng-template>
     </div>
   `,
   standalone: true,
-  imports: [CommonModule, OverlayModule, BnaColorPickerComponent]
+  imports: [CommonModule, OverlayModule, BnaColorPickerComponent],
 })
-export class BnaTableCellColorPickerButtonComponent<
-  I extends InlineContentSchema = DefaultInlineContentSchema,
-  S extends StyleSchema = DefaultStyleSchema,
-> {
-  @Input() block!: DefaultBlockSchema['table'];
+export class BnaTableCellColorPickerButtonComponent {
+  @Input() block!: any; // Use any for now to avoid type conflicts
   @Input() rowIndex!: number;
   @Input() colIndex!: number;
 
@@ -59,6 +66,7 @@ export class BnaTableCellColorPickerButtonComponent<
 
   private blockNoteService = inject(NgxBlocknoteService);
   private overlay = inject(Overlay);
+  private viewContainerRef = inject(ViewContainerRef);
   private overlayRef: OverlayRef | null = null;
   private hoverTimeout: any = null;
 
@@ -71,49 +79,56 @@ export class BnaTableCellColorPickerButtonComponent<
       originY: 'top',
       overlayX: 'start',
       overlayY: 'top',
-      offsetX: 8
+      offsetX: 8,
     },
     {
       originX: 'start',
       originY: 'top',
       overlayX: 'end',
       overlayY: 'top',
-      offsetX: -8
-    }
+      offsetX: -8,
+    },
   ];
 
   get shouldShowColorPicker(): boolean {
     const editor = this.blockNoteService.editor();
-    const currentCell = this.block.content.rows[this.rowIndex]?.cells?.[this.colIndex];
+
+    const currentCell =
+      this.block.content?.rows?.[this.rowIndex]?.cells?.[this.colIndex];
 
     return !!(
       currentCell &&
-      (editor.settings.tables.cellTextColor || editor.settings.tables.cellBackgroundColor)
+      (editor?.settings?.tables?.cellTextColor ||
+        editor?.settings?.tables?.cellBackgroundColor)
     );
   }
 
   get currentCell() {
-    return this.block.content.rows[this.rowIndex]?.cells?.[this.colIndex];
+    return this.block.content?.rows?.[this.rowIndex]?.cells?.[this.colIndex];
   }
 
   get colorPickerOptions(): ColorOptions {
     const editor = this.blockNoteService.editor();
     const options: ColorOptions = {
       iconSize: 18,
-      onClick: () => this.closeSubmenu()
+      onClick: () => this.closeSubmenu(),
     };
 
-    if (editor.settings.tables.cellTextColor) {
+    if (editor?.settings?.tables?.cellTextColor) {
       options.text = {
-        color: isTableCell(this.currentCell) ? this.currentCell.props.textColor || 'default' : 'default',
-        setColor: (color: string) => this.updateColor(color, 'text')
+        color: isTableCell(this.currentCell)
+          ? this.currentCell.props.textColor || 'default'
+          : 'default',
+        setColor: (color: string) => this.updateColor(color, 'text'),
       };
     }
 
-    if (editor.settings.tables.cellBackgroundColor) {
+    if (editor?.settings?.tables?.cellBackgroundColor) {
       options.background = {
-        color: isTableCell(this.currentCell) ? this.currentCell.props.backgroundColor || 'default' : 'default',
-        setColor: (color: string) => this.updateColor(color, 'background')
+        color: isTableCell(this.currentCell)
+          ? this.currentCell.props.backgroundColor || 'default'
+          : 'default',
+        setColor: (color: string) => this.updateColor(color, 'background'),
       };
     }
 
@@ -150,7 +165,8 @@ export class BnaTableCellColorPickerButtonComponent<
       return;
     }
 
-    const positionStrategy = this.overlay.position()
+    const positionStrategy = this.overlay
+      .position()
       .flexibleConnectedTo(this.triggerButton)
       .withPositions(this.positions)
       .withPush(false);
@@ -159,14 +175,17 @@ export class BnaTableCellColorPickerButtonComponent<
       positionStrategy,
       backdropClass: 'cdk-overlay-transparent-backdrop',
       hasBackdrop: true,
-      scrollStrategy: this.overlay.scrollStrategies.reposition()
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
     });
 
     this.overlayRef.backdropClick().subscribe(() => {
       this.closeSubmenu();
     });
 
-    const portal = new TemplatePortal(this.submenuTemplate, undefined);
+    const portal = new TemplatePortal(
+      this.submenuTemplate,
+      this.viewContainerRef,
+    );
     this.overlayRef.attach(portal);
   }
 
@@ -179,29 +198,32 @@ export class BnaTableCellColorPickerButtonComponent<
 
   private updateColor(color: string, type: 'text' | 'background'): void {
     const editor = this.blockNoteService.editor();
-    const newTable = this.block.content.rows.map((row) => {
+    if (!this.block.content?.rows) return;
+
+    const newTable = this.block.content.rows.map((row: any) => {
       return {
         ...row,
-        cells: row.cells.map((cell) => mapTableCell(cell)),
+        cells: row.cells.map((cell: any) => mapTableCell(cell)),
       };
     });
 
     if (type === 'text') {
       newTable[this.rowIndex].cells[this.colIndex].props.textColor = color;
     } else {
-      newTable[this.rowIndex].cells[this.colIndex].props.backgroundColor = color;
+      newTable[this.rowIndex].cells[this.colIndex].props.backgroundColor =
+        color;
     }
 
-    editor.updateBlock(this.block, {
+    editor?.updateBlock(this.block.id, {
       type: 'table',
       content: {
         ...this.block.content,
         rows: newTable,
       },
-    } as any);
+    });
 
     // Reset text cursor position to the block as updateBlock moves the existing selection out of the block
-    editor.setTextCursorPosition(this.block);
+    editor?.setTextCursorPosition(this.block.id);
     this.closeSubmenu();
   }
 }

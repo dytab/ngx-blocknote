@@ -175,10 +175,10 @@ export class BnaEditorComponent<
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
     this.updateEditorsInitialContent(initialContent);
   }
-  registerOnChange(fn: unknown): void {
+  registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: unknown): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
@@ -189,7 +189,7 @@ export class BnaEditorComponent<
   ngOnChanges(changes: SimpleChanges) {
     const options = this.options();
     if (!this.hasCustomEditor && changes['options']) {
-      this.editor = this.createEditor(undefined);
+      this._editor = this.createEditor(undefined);
       this.editorReady.emit(this.editor);
       this.firstTimeInitialized = true;
 

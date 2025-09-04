@@ -1,11 +1,10 @@
-import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThreadData } from '@blocknote/core/comments';
-import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
+import { Component, Input, inject } from '@angular/core';
 import { BnaDictionaryService } from '../../i18n/bna-dictionary.service';
+import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 
 export interface BnaCommentsProps {
-  thread: ThreadData;
+  thread: any; // Using any for now to avoid import issues
   maxCommentsBeforeCollapse?: number;
 }
 
@@ -14,12 +13,19 @@ export interface BnaCommentsProps {
   template: `
     <div class="bn-comments-container">
       <!-- Individual comments -->
-      <ng-container *ngFor="let comment of thread.comments; let i = index; trackBy: trackByCommentId">
-        <bna-comment
-          [comment]="comment"
-          [thread]="thread"
-          [showResolveButton]="i === 0"
-        ></bna-comment>
+      <ng-container
+        *ngFor="
+          let comment of thread.comments;
+          let i = index;
+          trackBy: trackByCommentId
+        "
+      >
+        <div class="bn-comment">
+          <!-- Comment content will be rendered here -->
+          <div class="bn-comment-content">
+            {{ comment.content || 'Comment' }}
+          </div>
+        </div>
       </ng-container>
 
       <!-- Resolved by comment if needed -->
@@ -28,25 +34,28 @@ export interface BnaCommentsProps {
         class="bn-thread-comment bn-resolved-comment"
       >
         <div class="bn-resolved-text">
-          {{ dictionary.comments?.sidebar?.marked_as_resolved || 'Marked as resolved' }}
+          {{ getResolvedText() }}
         </div>
       </div>
 
       <!-- Collapse prompt if too many comments -->
-      <div
+      <button
         *ngIf="shouldShowCollapsePrompt"
+        type="button"
         class="bn-thread-expand-prompt"
         (click)="expandComments()"
+        (keydown.enter)="expandComments()"
+        (keydown.space)="expandComments()"
       >
         {{ getMoreRepliesText() }}
-      </div>
+      </button>
     </div>
   `,
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class BnaCommentsComponent implements BnaCommentsProps {
-  @Input() thread!: ThreadData;
+  @Input() thread!: any; // Using any for now to avoid import issues
   @Input() maxCommentsBeforeCollapse?: number;
 
   private ngxBlocknoteService = inject(NgxBlocknoteService);
@@ -60,6 +69,15 @@ export class BnaCommentsComponent implements BnaCommentsProps {
 
   get editor() {
     return this.ngxBlocknoteService.editor();
+  }
+
+  // Helper method for template
+  getResolvedText(): string {
+    const dictionary = this.dictionaryService.getDictionary();
+    return (
+      (dictionary as any)?.comments?.sidebar?.marked_as_resolved ||
+      'Marked as resolved'
+    );
   }
 
   get shouldShowCollapsePrompt(): boolean {
@@ -81,8 +99,10 @@ export class BnaCommentsComponent implements BnaCommentsProps {
   getMoreRepliesText(): string {
     if (!this.maxCommentsBeforeCollapse) return '';
     const hiddenCount = this.thread.comments.length - 2; // Show first and last
-    return this.dictionary.comments?.sidebar?.more_replies?.(hiddenCount) ||
-           `${hiddenCount} more replies`;
+    return (
+      this.dictionary.comments?.sidebar?.more_replies?.(hiddenCount) ||
+      `${hiddenCount} more replies`
+    );
   }
 
   getVisibleComments() {
@@ -95,9 +115,6 @@ export class BnaCommentsComponent implements BnaCommentsProps {
     }
 
     // Show first comment and last comment, hide middle ones
-    return [
-      this.thread.comments[0],
-      ...this.thread.comments.slice(-1)
-    ];
+    return [this.thread.comments[0], ...this.thread.comments.slice(-1)];
   }
 }

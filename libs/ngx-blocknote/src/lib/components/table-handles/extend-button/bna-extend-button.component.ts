@@ -1,22 +1,18 @@
 import {
   Component,
   Input,
+  OnInit,
   OnDestroy,
   ElementRef,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  DefaultInlineContentSchema,
-  DefaultStyleSchema,
   EMPTY_CELL_HEIGHT,
   EMPTY_CELL_WIDTH,
-  InlineContentSchema,
   mergeCSSClasses,
   PartialTableContent,
-  StyleSchema,
 } from '@blocknote/core';
-import { BnaExtendButtonProps } from './bna-extend-button-props';
 
 // Rounds a number up or down, depending on whether we're close (as defined by margin) to the next integer.
 const marginRound = (num: number, margin = 0.3): number => {
@@ -45,11 +41,20 @@ interface EditingState {
       #extendButton
       type="button"
       [class]="buttonClass"
-      (mousedown)="onMouseDown($event)"
+      (mousedown)="handleMouseDown($event)"
       (click)="onClick()"
     >
       <ng-content>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <line x1="12" y1="5" x2="12" y2="19"></line>
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
@@ -59,20 +64,18 @@ interface EditingState {
   standalone: true,
   imports: [CommonModule],
   host: {
-    class: 'bn-extend-button-wrapper'
-  }
+    class: 'bn-extend-button-wrapper',
+  },
 })
-export class BnaExtendButtonComponent<
-  I extends InlineContentSchema = DefaultInlineContentSchema,
-  S extends StyleSchema = DefaultStyleSchema,
-> implements OnInit, OnDestroy, BnaExtendButtonProps<I, S> {
-  @Input() editor!: BnaExtendButtonProps<I, S>['editor'];
+export class BnaExtendButtonComponent implements OnInit, OnDestroy {
+  @Input() editor!: any; // Simplified type to avoid conflicts
   @Input() onMouseDown!: () => void;
   @Input() onMouseUp!: () => void;
   @Input() orientation!: 'addOrRemoveRows' | 'addOrRemoveColumns';
-  @Input() block!: BnaExtendButtonProps<I, S>['block'];
+  @Input() block!: any; // Simplified type to avoid conflicts
 
-  @ViewChild('extendButton', { static: true }) extendButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('extendButton', { static: true })
+  extendButton!: ElementRef<HTMLButtonElement>;
 
   private movedMouse = false;
   private editingState: EditingState | undefined = undefined;
@@ -82,26 +85,37 @@ export class BnaExtendButtonComponent<
   get buttonClass(): string {
     return mergeCSSClasses(
       'bn-extend-button',
-      this.orientation === 'addOrRemoveColumns' ? 'bn-extend-button-columns' : 'bn-extend-button-rows'
+      this.orientation === 'addOrRemoveColumns'
+        ? 'bn-extend-button-columns'
+        : 'bn-extend-button-rows',
     );
   }
 
+  ngOnInit(): void {
+    // Initialize component - setup any required state
+    this.movedMouse = false;
+    this.editingState = undefined;
+  }
 
   ngOnDestroy() {
     this.removeMouseListeners();
   }
 
-  onMouseDown(event: MouseEvent): void {
+  handleMouseDown(event: MouseEvent): void {
     this.onMouseDown();
     this.editingState = {
-      originalContent: this.block.content,
+      originalContent: this.block.content || {},
       originalCroppedContent: {
-        rows: this.editor.tableHandles!.cropEmptyRowsOrColumns(
-          this.block,
-          this.orientation === 'addOrRemoveColumns' ? 'columns' : 'rows',
-        ),
-      } as PartialTableContent<any, any>,
-      startPos: this.orientation === 'addOrRemoveColumns' ? event.clientX : event.clientY,
+        rows:
+          this.editor.tableHandles?.cropEmptyRowsOrColumns?.(
+            this.block,
+            this.orientation === 'addOrRemoveColumns' ? 'columns' : 'rows',
+          ) || [],
+      } as any,
+      startPos:
+        this.orientation === 'addOrRemoveColumns'
+          ? event.clientX
+          : event.clientY,
     };
     this.movedMouse = false;
 
@@ -118,16 +132,26 @@ export class BnaExtendButtonComponent<
     }
 
     // Add a single row or column
-    this.editor.updateBlock(this.block, {
-      type: 'table',
-      content: {
-        ...this.block.content,
-        rows:
-          this.orientation === 'addOrRemoveColumns'
-            ? this.editor.tableHandles!.addRowsOrColumns(this.block, 'columns', 1)
-            : this.editor.tableHandles!.addRowsOrColumns(this.block, 'rows', 1),
-      } as any,
-    });
+    if (this.editor.updateBlock) {
+      this.editor.updateBlock(this.block.id, {
+        type: 'table',
+        content: {
+          ...this.block.content,
+          rows:
+            this.orientation === 'addOrRemoveColumns'
+              ? this.editor.tableHandles?.addRowsOrColumns?.(
+                  this.block,
+                  'columns',
+                  1,
+                ) || []
+              : this.editor.tableHandles?.addRowsOrColumns?.(
+                  this.block,
+                  'rows',
+                  1,
+                ) || [],
+        },
+      });
+    }
   }
 
   private addMouseListeners(): void {
@@ -160,11 +184,15 @@ export class BnaExtendButtonComponent<
 
     this.movedMouse = true;
 
-    const currentPos = this.orientation === 'addOrRemoveColumns' ? event.clientX : event.clientY;
+    const currentPos =
+      this.orientation === 'addOrRemoveColumns' ? event.clientX : event.clientY;
     const deltaPos = currentPos - this.editingState.startPos;
 
     // Calculate new number of rows/columns based on mouse movement
-    const cellSize = this.orientation === 'addOrRemoveColumns' ? EMPTY_CELL_WIDTH : EMPTY_CELL_HEIGHT;
+    const cellSize =
+      this.orientation === 'addOrRemoveColumns'
+        ? EMPTY_CELL_WIDTH
+        : EMPTY_CELL_HEIGHT;
     const deltaCells = marginRound(deltaPos / cellSize);
 
     const originalCount =
@@ -191,14 +219,14 @@ export class BnaExtendButtonComponent<
       newRows = this.editor.tableHandles!.addRowsOrColumns(
         this.block,
         this.orientation === 'addOrRemoveColumns' ? 'columns' : 'rows',
-        actualDelta
+        actualDelta,
       );
     } else {
       // Remove rows/columns
       newRows = this.editor.tableHandles!.removeRowsOrColumns(
         this.block,
         this.orientation === 'addOrRemoveColumns' ? 'columns' : 'rows',
-        Math.abs(actualDelta)
+        Math.abs(actualDelta),
       );
     }
 

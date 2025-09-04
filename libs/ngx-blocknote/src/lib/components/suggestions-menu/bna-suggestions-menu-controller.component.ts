@@ -2,19 +2,19 @@ import {
   Component,
   effect,
   ElementRef,
+  inject,
+  input,
   OnDestroy,
   Renderer2,
   signal,
-  input,
-  inject,
 } from '@angular/core';
 import {
   autoUpdate,
   computePosition,
-  offset,
-  size,
   flip,
+  offset,
   shift,
+  size,
 } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
 import { getVirtualElement } from '../../util/get-virtual-element.util';
@@ -64,31 +64,33 @@ export class BnaSuggestionsMenuControllerComponent implements OnDestroy {
     // Unsubscribe any previous listener before registering a new one
     this.unsubscribeUpdate();
 
-    this.unsubscribeUpdate = editor.suggestionMenus.onUpdate(
-      this.triggerCharacter(),
-      async (suggestionMenuState) => {
-        this.cleanup();
+    if (editor) {
+      this.unsubscribeUpdate = editor?.suggestionMenus.onUpdate(
+        this.triggerCharacter(),
+        async (suggestionMenuState) => {
+          this.cleanup();
 
-        const minLen = this.minQueryLength();
-        let shouldShow = suggestionMenuState.show;
-        if (minLen && !suggestionMenuState.ignoreQueryLength) {
-          const q = suggestionMenuState.query ?? '';
-          if (q.startsWith(' ') || q.length < minLen) {
-            shouldShow = false;
+          const minLen = this.minQueryLength();
+          let shouldShow = suggestionMenuState.show;
+          if (minLen && !suggestionMenuState.ignoreQueryLength) {
+            const q = suggestionMenuState.query ?? '';
+            if (q.startsWith(' ') || q.length < minLen) {
+              shouldShow = false;
+            }
           }
-        }
 
-        this.show.set(shouldShow);
-        if (shouldShow) {
-          this.cleanup = autoUpdate(
-            getVirtualElement(suggestionMenuState.referencePos),
-            this.elRef.nativeElement,
-            async () =>
-              await this.updatePosition(suggestionMenuState.referencePos),
-          );
-        }
-      },
-    );
+          this.show.set(shouldShow);
+          if (shouldShow) {
+            this.cleanup = autoUpdate(
+              getVirtualElement(suggestionMenuState.referencePos),
+              this.elRef.nativeElement,
+              async () =>
+                await this.updatePosition(suggestionMenuState.referencePos),
+            );
+          }
+        },
+      );
+    }
   }
 
   private async updatePosition(referencePos: DOMRect) {

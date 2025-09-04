@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -35,8 +40,25 @@ export class BnaColorPickerComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
   colors = colors;
-  dict = this.ngxBlockNoteService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor()
+    ? this.ngxBlockNoteService.editor()?.dictionary || {}
+    : {};
   options = input.required<ColorOptions>();
+
+  // Helper methods for template to avoid type errors
+  getTextTitle(): string {
+    return (this.dict as any)?.color_picker?.text_title || 'Text Color';
+  }
+
+  getBackgroundTitle(): string {
+    return (
+      (this.dict as any)?.color_picker?.background_title || 'Background Color'
+    );
+  }
+
+  getColorName(color: string): string {
+    return (this.dict as any)?.color_picker?.colors?.[color] || color;
+  }
 
   onTextColorClick(color: string) {
     const options = this.options();

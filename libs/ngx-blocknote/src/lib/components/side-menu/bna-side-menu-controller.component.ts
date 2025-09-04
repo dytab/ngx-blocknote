@@ -46,6 +46,7 @@ export class BnaSideMenuControllerComponent {
 
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     editor.sideMenu.onUpdate(async (sideMenuState) => {
       this.show.set(sideMenuState.show);
       this.ngxBlockNoteService.sideMenuFocusedBlock.set(sideMenuState.block);

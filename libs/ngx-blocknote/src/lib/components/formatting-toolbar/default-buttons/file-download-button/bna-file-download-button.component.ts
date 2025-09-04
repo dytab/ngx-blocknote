@@ -11,8 +11,8 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
-import { showFileBlock } from '../../../../util/show-file-block.util';
 import { sanitizeUrl } from '../../../../util/sanitize-url.util';
+import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
   selector: 'bna-file-download-button',
@@ -32,30 +32,33 @@ export class BnaFileDownloadButtonComponent {
     >,
   );
 
-  fileBlock = computed(() =>
-    fileBlock<
+  fileBlock = computed(() => {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return null;
+    return fileBlock<
       DefaultBlockSchema,
       DefaultInlineContentSchema,
       DefaultStyleSchema
-    >(
-      this.ngxBlockNoteService.editor(),
-      this.ngxBlockNoteService.selectedBlocks(),
-    ),
-  );
+    >(editor, this.ngxBlockNoteService.selectedBlocks());
+  });
   _visibilityClass = computed(() => {
-    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
+    const editor = this.ngxBlockNoteService.editor();
+    const fileBlock = this.fileBlock();
+    if (!editor || !fileBlock) return 'hidden';
+    return showFileBlock(editor, fileBlock);
   });
   tooltip = computed(() => {
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return '';
     }
-    return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
+    return this.ngxBlockNoteService.editor()!.dictionary.formatting_toolbar
       .file_download.tooltip[fileBlock.type];
   });
 
   downloadFile() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     const fileBlock = this.fileBlock();
     if (fileBlock && fileBlock.props.url) {
       editor.focus();
@@ -65,7 +68,9 @@ export class BnaFileDownloadButtonComponent {
       } else {
         editor
           .resolveFileUrl(fileBlock.props.url)
-          .then((downloadUrl) => window.open(sanitizeUrl(downloadUrl, window.location.href)));
+          .then((downloadUrl) =>
+            window.open(sanitizeUrl(downloadUrl, window.location.href)),
+          );
       }
     }
   }

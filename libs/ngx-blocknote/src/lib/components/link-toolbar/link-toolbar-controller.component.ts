@@ -2,10 +2,10 @@ import {
   Component,
   effect,
   ElementRef,
+  inject,
   OnDestroy,
   Renderer2,
   signal,
-  inject,
 } from '@angular/core';
 import { LinkToolbarState } from '@blocknote/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
@@ -44,6 +44,7 @@ export class BnaLinkToolbarControllerComponent implements OnDestroy {
 
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     editor.linkToolbar.onUpdate((linkToolbar) => {
       this.cleanup();
 

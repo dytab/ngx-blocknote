@@ -10,12 +10,12 @@ import { NgxBlocknoteService } from '../../../../../services';
 export class BnaTableColumnHeaderItemComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
-  readonly dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+  readonly dict = computed(() => this.ngxBlockNoteService.editor()!.dictionary);
 
   readonly show = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const block = this.ngxBlockNoteService.sideMenuFocusedBlock() as any;
-    if (!block || block.type !== 'table') {
+    if (!editor || !block || block.type !== 'table') {
       return false;
     }
     if (editor.settings.tables.headers === false) {
@@ -35,7 +35,7 @@ export class BnaTableColumnHeaderItemComponent {
   toggleHeaderColumn() {
     const editor = this.ngxBlockNoteService.editor();
     const current = this.ngxBlockNoteService.sideMenuFocusedBlock() as any;
-    if (!current || current.type !== 'table') {
+    if (!editor || !current || current.type !== 'table') {
       return;
     }
     const latest = (editor.getBlock(current.id) as any) || current;

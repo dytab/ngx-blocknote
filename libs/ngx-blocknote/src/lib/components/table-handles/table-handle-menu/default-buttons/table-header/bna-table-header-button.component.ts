@@ -1,10 +1,10 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { HlmIcon } from '@spartan-ng/helm/icon';
 import { lucideCheck } from '@ng-icons/lucide';
-import { NgxBlocknoteService } from '../../../../../services';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { TableHandleOptions } from '../../../../../interfaces/table-handle-options.type';
+import { NgxBlocknoteService } from '../../../../../services';
 
 @Component({
   selector: 'bna-table-header-button',
@@ -17,14 +17,16 @@ export class BnaTableHeaderButtonComponent {
 
   readonly options = input.required<TableHandleOptions>();
 
-  readonly dict = computed(() => this.ngxBlockNoteService.editor().dictionary);
+  readonly dict = computed(
+    () => this.ngxBlockNoteService.editor()?.dictionary || {},
+  );
 
   // Show only for first row/column and when headers are enabled in settings
   readonly show = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const opts = this.options();
     const th = opts.tableHandles;
-    if (!th || editor.settings.tables.headers === false) {
+    if (!editor || !th || editor.settings.tables.headers === false) {
       return false;
     }
     const isRow = opts.orientation === 'row';
@@ -46,8 +48,9 @@ export class BnaTableHeaderButtonComponent {
   readonly label = computed(() => {
     const d = this.dict();
     return this.options().orientation === 'row'
-      ? d.drag_handle.header_row_menuitem
-      : d.drag_handle.header_column_menuitem;
+      ? (d as any)?.drag_handle?.header_row_menuitem || 'Toggle Header Row'
+      : (d as any)?.drag_handle?.header_column_menuitem ||
+          'Toggle Header Column';
   });
 
   toggleHeader() {
@@ -55,10 +58,10 @@ export class BnaTableHeaderButtonComponent {
     const opts = this.options();
     const th = opts.tableHandles;
     const current = th.block as any;
-    if (!current) return;
+    if (!editor || !current) return;
 
     // Fetch latest block to avoid stale updates
-    const latest = editor.getBlock(current.id) as any || current;
+    const latest = (editor.getBlock(current.id) as any) || current;
 
     if (opts.orientation === 'row') {
       const isHeaderRow = Boolean(latest.content?.headerRows);
