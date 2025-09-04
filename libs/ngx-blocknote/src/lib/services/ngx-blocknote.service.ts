@@ -12,7 +12,7 @@ import {
 import { BlockNoteEditorOptionsType } from '../interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NgxBlocknoteService<
   BSchema extends BlockSchema = DefaultBlockSchema,
