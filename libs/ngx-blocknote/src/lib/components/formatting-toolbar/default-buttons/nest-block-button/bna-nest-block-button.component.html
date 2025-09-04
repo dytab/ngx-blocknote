@@ -1,0 +1,22 @@
+<hlm-tooltip>
+  <button
+    type="button"
+    hlmBtn
+    size="icon"
+    variant="ghost"
+    class="w-[30px] h-[30px]"
+    hlmTooltipTrigger
+    aria-describedby="nest-block-tooltip"
+    [disabled]="isDisabled()"
+    (click)="onClick()"
+    data-test="nestBlock"
+  >
+    <ng-icon hlm size="sm" name="lucideChevronRight" />
+  </button>
+  <span *brnTooltipContent class="text-center" id="nest-block-tooltip">
+    <p>{{ tooltip() }}</p>
+    @if (secondaryTooltip()) {
+      <p class="text-xs opacity-75">{{ secondaryTooltip() }}</p>
+    }
+  </span>
+</hlm-tooltip>

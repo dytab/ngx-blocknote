@@ -62,7 +62,7 @@ export class BnaTableHandleComponent {
       if (!clickedInside) {
         this.isMenuOpened = false;
         this.options().showOtherHandle();
-        this.ngxBlockNoteService.editor().tableHandles!.unfreezeHandles();
+        this.ngxBlockNoteService.editor()!.tableHandles!.unfreezeHandles();
       }
     }
   }
@@ -102,7 +102,7 @@ export class BnaTableHandleComponent {
 
   openMenu(event: MouseEvent) {
     event.stopPropagation();
-    const tableHandles = this.ngxBlockNoteService.editor().tableHandles;
+    const tableHandles = this.ngxBlockNoteService.editor()!.tableHandles;
     if (!tableHandles) {
       return;
     }

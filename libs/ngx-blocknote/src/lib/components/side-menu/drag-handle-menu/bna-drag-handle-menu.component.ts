@@ -1,13 +1,15 @@
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGripVertical } from '@ng-icons/lucide';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { NgxBlocknoteService } from '../../../services/ngx-blocknote.service';
 import { BnaBlockColorStyleComponent } from './default-items/block-color-style/bna-block-color-style.component';
 import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/bna-delete-block-item.component';
+import { BnaTableColumnHeaderItemComponent } from './default-items/table-headers/bna-table-column-header-item.component';
+import { BnaTableRowHeaderItemComponent } from './default-items/table-headers/bna-table-row-header-item.component';
 
 @Component({
   selector: 'bna-drag-handle-menu-btn',
@@ -18,6 +20,8 @@ import { BnaDeleteBlockItemComponent } from './default-items/delete-block-item/b
     HlmMenuGroup,
     BnaDeleteBlockItemComponent,
     BnaBlockColorStyleComponent,
+    BnaTableRowHeaderItemComponent,
+    BnaTableColumnHeaderItemComponent,
     NgIcon,
     HlmIcon,
   ],
@@ -33,8 +37,9 @@ export class BnaDragHandleMenuComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const clickedInside = this.elementRef.nativeElement.contains(event.target);
-    if (!clickedInside) {
-      this.editor().sideMenu.unfreezeMenu();
+    const editor = this.editor();
+    if (!clickedInside && editor) {
+      editor.sideMenu.unfreezeMenu();
     }
   }
 
@@ -43,23 +48,28 @@ export class BnaDragHandleMenuComponent {
   }
 
   private toggleMenuFrozenState() {
-    if (this.editor().sideMenu.view?.menuFrozen) {
-      this.editor().sideMenu.unfreezeMenu();
+    const editor = this.editor();
+    if (!editor) return;
+    if (editor.sideMenu.view?.menuFrozen) {
+      editor.sideMenu.unfreezeMenu();
     } else {
-      this.editor().sideMenu.freezeMenu();
+      editor.sideMenu.freezeMenu();
     }
   }
 
   dragStart($event: DragEvent) {
     const block = this.ngxBlockNoteService.sideMenuFocusedBlock();
-    if (!block) {
+    const editor = this.editor();
+    if (!block || !editor) {
       return;
     }
-    this.editor().sideMenu.blockDragStart($event, block as any);
+    editor.sideMenu.blockDragStart($event, block as any);
   }
 
   dragEnd() {
-    this.editor().sideMenu.blockDragEnd();
+    const editor = this.editor();
+    if (!editor) return;
+    editor.sideMenu.blockDragEnd();
   }
 
   onOutsideClick($event: MouseEvent) {

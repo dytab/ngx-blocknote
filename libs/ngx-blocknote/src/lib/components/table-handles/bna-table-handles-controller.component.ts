@@ -133,6 +133,7 @@ export class BnaTableHandlesControllerComponent implements AfterViewInit {
 
   adjustVisibilityAndOptions() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     editor.tableHandles?.onUpdate(async (tableHandles) => {
       this.tableHandles.set(tableHandles);
       const options: TableHandleOptions = {

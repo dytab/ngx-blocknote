@@ -76,7 +76,7 @@ export class BnaTextAlignButtonComponent {
   hasAlignment = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const block = this.alignmentBlock();
-    if (!block) {
+    if (!block || !editor) {
       return false;
     }
     if (checkBlockHasDefaultProp('textAlignment', block, editor)) {
@@ -107,6 +107,9 @@ export class BnaTextAlignButtonComponent {
 
   textAlignDict = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return '';
+    }
     return editor.dictionary.formatting_toolbar[`align_${this.alignment()}`];
   });
 
@@ -115,15 +118,23 @@ export class BnaTextAlignButtonComponent {
   }
 
   private updateAlignmentOnContentOrSelectionChange() {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     useEditorContentOrSelectionChange(() => {
-      this.alignmentBlock.set(
-        this.ngxBlockNoteService.editor().getTextCursorPosition().block,
-      );
-    }, this.ngxBlockNoteService.editor());
+      const currentEditor = this.ngxBlockNoteService.editor();
+      if (currentEditor) {
+        this.alignmentBlock.set(currentEditor.getTextCursorPosition().block);
+      }
+    }, editor);
   }
 
   toggleAlignment(textAlignment: Alignments) {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     editor.focus();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     for (const block of selectedBlocks) {

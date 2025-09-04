@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { NgxBlocknoteService } from '@dytab/ngx-blocknote';
 import { HlmButton } from '@spartan-ng/helm/button';
 
@@ -12,12 +12,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
     variant="ghost"
     (click)="changeToBlue()"
     [ngClass]="{
-      'bg-gray-900 text-gray-100': ngxBlockNoteService.editor()
-        ? ngxBlockNoteService.editor()!.getActiveStyles().textColor ===
-            'blue' &&
-          ngxBlockNoteService.editor()!.getActiveStyles().backgroundColor ===
-            'blue'
-        : false,
+      'bg-gray-900 text-gray-100': isBlueActive()
     }"
   >
     Blue
@@ -27,6 +22,13 @@ import { HlmButton } from '@spartan-ng/helm/button';
 export class BlueButtonComponent {
   // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(public ngxBlockNoteService: NgxBlocknoteService) {}
+
+  isBlueActive = computed(() => {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return false;
+    const styles = editor.getActiveStyles();
+    return styles.textColor === 'blue' && styles.backgroundColor === 'blue';
+  });
 
   changeToBlue() {
     this.ngxBlockNoteService.editor()?.toggleStyles({

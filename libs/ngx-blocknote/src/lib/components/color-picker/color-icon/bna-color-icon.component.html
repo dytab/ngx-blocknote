@@ -1,5 +1,10 @@
 <div
-  class="flex items-center justify-center bn-color-icon w-[20px] h-[20px] border rounded"
+  class="flex items-center justify-center bn-color-icon border rounded"
+  [style.width.px]="resolvedSize()"
+  [style.height.px]="resolvedSize()"
+  [style.line-height.px]="resolvedSize()"
+  [style.font-size.px]="fontSizePx()"
+  [style.pointer-events]="'none'"
   [attr.data-background-color]="backgroundColor()"
   [attr.data-text-color]="textColor()"
 >

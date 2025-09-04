@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BlockFromConfig,
@@ -41,6 +41,9 @@ export class BnaFilePanelComponent {
 
   constructor() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     if (editor.filePanel) {
       //TODO: remove the workaround
       //Workaround use view state from file panel to get the block
@@ -57,6 +60,9 @@ export class BnaFilePanelComponent {
 
   async onFileInputChanged(event: Event) {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     const focusedBlock = this.focusedBlock();
     if (!editor.uploadFile || !focusedBlock) {
       console.error('uploadFile was not provided in editor options');
@@ -76,7 +82,7 @@ export class BnaFilePanelComponent {
   insertEmbedFile(embedFileUrl: string) {
     const editor = this.ngxBlockNoteService.editor();
     const focusedBlock = this.focusedBlock();
-    if (!focusedBlock) return;
+    if (!focusedBlock || !editor) return;
     this.updateBlockWithEmbedFileUrl(focusedBlock, editor, embedFileUrl);
   }
 

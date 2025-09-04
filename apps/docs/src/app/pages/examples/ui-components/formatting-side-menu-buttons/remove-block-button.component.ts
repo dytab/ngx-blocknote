@@ -35,6 +35,6 @@ export class RemoveBlockButtonComponent {
     if (!editor || !this.block) {
       return;
     }
-    this.ngxBlockNoteService.editor()!.removeBlocks([this.block]);
+    editor.removeBlocks([this.block]);
   }
 }

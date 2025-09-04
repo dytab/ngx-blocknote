@@ -2,10 +2,10 @@ import {
   Component,
   effect,
   ElementRef,
+  inject,
   OnDestroy,
   Renderer2,
   signal,
-  inject,
 } from '@angular/core';
 import { autoUpdate, computePosition, flip, offset } from '@floating-ui/dom';
 import { NgxBlocknoteService } from '../../services/ngx-blocknote.service';
@@ -43,6 +43,9 @@ export class BnaFilePanelControllerComponent implements OnDestroy {
 
   private adjustVisibilityAndPosition() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     editor.filePanel?.onUpdate(async (filePanelState) => {
       this.show.set(filePanelState.show);
       this.cleanup();

@@ -4,8 +4,10 @@
   variant="ghost"
   size="sm"
   [brnMenuTriggerFor]="menu"
+  [attr.aria-label]="dict().link_toolbar.edit.tooltip"
+  [title]="dict().link_toolbar.edit.tooltip"
 >
-  Edit link
+  {{ dict().link_toolbar.edit.text }}
 </button>
 
 <ng-template #menu>

@@ -20,14 +20,14 @@ import {
   lucideListOrdered,
   lucideType,
 } from '@ng-icons/lucide';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import {
   HlmMenu,
   HlmMenuGroup,
-  HlmMenuItemCheckbox,
   HlmMenuItemCheck,
+  HlmMenuItemCheckbox,
 } from '@spartan-ng/helm/menu';
 import { BlockTypeSelectItem } from '../../../../interfaces/block-type-select-item';
 import { NgxBlocknoteService } from '../../../../services';
@@ -89,6 +89,9 @@ export class BnaBlockTypeSelectComponent {
   );
   filteredBlockTypes = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return [];
+    }
     const dict = editor.dictionary;
     const blockTypeSelectItems = this.blockTypeSelectItems();
     return blockTypeSelectItems(dict).filter(
@@ -99,18 +102,29 @@ export class BnaBlockTypeSelectComponent {
     const index = this.currentBlockTypeIndex();
     return index !== undefined ? this.filteredBlockTypes()[index] : undefined;
   });
-  currentBlockTypeIndex = signal<number | undefined>(
-    this.getCurrentBlockIndex(this.ngxBlockNoteService.editor()),
-  );
+  currentBlockTypeIndex = signal<number | undefined>(undefined);
 
   constructor() {
     this.updateCurrentBlockTypeOnChanges();
+    // Initialize current block type index
+    const editor = this.ngxBlockNoteService.editor();
+    if (editor) {
+      this.currentBlockTypeIndex.set(this.getCurrentBlockIndex(editor));
+    }
   }
 
   private updateCurrentBlockTypeOnChanges() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     useEditorContentOrSelectionChange(() => {
-      this.currentBlockTypeIndex.set(this.getCurrentBlockIndex(editor));
+      const currentEditor = this.ngxBlockNoteService.editor();
+      if (currentEditor) {
+        this.currentBlockTypeIndex.set(
+          this.getCurrentBlockIndex(currentEditor),
+        );
+      }
     }, editor);
   }
 
@@ -125,6 +139,9 @@ export class BnaBlockTypeSelectComponent {
     props?: Record<string, boolean | number | string> | undefined,
   ) {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     editor.focus();
     for (const block of selectedBlocks) {

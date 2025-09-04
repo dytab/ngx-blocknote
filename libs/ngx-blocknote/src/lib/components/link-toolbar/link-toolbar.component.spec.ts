@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BnaLinkToolbarComponent } from './link-toolbar.component';
+import { NgxBlockNoteTestingModule } from '../../services';
 
 describe('BnaLinkToolbarComponent', () => {
   let component: BnaLinkToolbarComponent;
@@ -7,7 +8,7 @@ describe('BnaLinkToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaLinkToolbarComponent],
+      imports: [BnaLinkToolbarComponent, NgxBlockNoteTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaLinkToolbarComponent);

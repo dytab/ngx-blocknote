@@ -43,7 +43,7 @@ export class BnaLinkFormComponent implements OnChanges {
 
   submit() {
     const editor = this.ngxBlockNoteService.editor();
-    if (this.form.invalid) {
+    if (this.form.invalid || !editor) {
       return;
     }
     const formValue = this.form.value as { url: string; text: string };

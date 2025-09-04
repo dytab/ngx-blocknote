@@ -9,10 +9,10 @@ import {
   DefaultInlineContentSchema,
   DefaultStyleSchema,
 } from '@blocknote/core';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
-import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
@@ -49,25 +49,31 @@ export class BnaFileRenameButtonComponent {
   fileBlock = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
+    if (!editor) return null;
     return fileBlock(editor, selectedBlocks);
   });
   _visibilityClass = computed(() => {
-    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
+    const editor = this.ngxBlockNoteService.editor();
+    const file = this.fileBlock();
+    if (!editor || !file) return 'hidden';
+    return showFileBlock(editor, file);
   });
   tooltip = computed(() => {
     const fileBlock = this.fileBlock();
-    if (!fileBlock) {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!fileBlock || !editor) {
       return '';
     }
-    return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
-      .file_rename.tooltip[fileBlock.type];
+    return editor.dictionary.formatting_toolbar.file_rename.tooltip[
+      fileBlock.type
+    ];
   });
 
   submit() {
     const editor = this.ngxBlockNoteService.editor();
     const name = this.form.controls.name.value;
     const fileBlock = this.fileBlock();
-    if (!fileBlock) {
+    if (!fileBlock || !editor) {
       return;
     }
     editor.updateBlock(fileBlock, {

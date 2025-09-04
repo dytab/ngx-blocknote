@@ -16,6 +16,7 @@ export class BnaDeleteButtonComponent {
   delete(orientation: 'row' | 'column') {
     const editor = this.ngxBlockNoteService.editor();
     const options = this.options();
+    if (!editor) return;
     const tableHandles = editor.tableHandles;
     if (!tableHandles) {
       return;
@@ -29,5 +30,11 @@ export class BnaDeleteButtonComponent {
       return;
     }
     tableHandles.removeRowOrColumn(index, orientation);
+
+    // Restore UI state similar to add action
+    editor.tableHandles?.unfreezeHandles();
+    options.showOtherHandle();
+    options.closeMenu();
+    editor.focus();
   }
 }

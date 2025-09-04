@@ -12,3 +12,8 @@ export * from './default-buttons/file-preview-button/bna-file-preview-button.com
 export * from './default-buttons/file-replace-button/bna-file-replace-button.component';
 export * from './default-buttons/file-rename-button/bna-file-rename-button.component';
 export * from './default-buttons/file-download-button/bna-file-download-button.component';
+export * from './default-buttons/table-cell-merge-button/bna-table-cell-merge-button.component';
+export * from './default-buttons/add-comment-button/bna-add-comment-button.component';
+export * from './default-buttons/add-tiptap-comment-button/bna-add-tiptap-comment-button.component';
+export * from './default-buttons/nest-block-button/bna-nest-block-button.component';
+export * from './default-buttons/unnest-block-button/bna-unnest-block-button.component';

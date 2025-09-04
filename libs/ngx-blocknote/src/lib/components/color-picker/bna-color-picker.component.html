@@ -1,18 +1,20 @@
 @let options = this.options();
 @if (options.text) {
   <div class="flex flex-col mb-2">
-    <div class="py-1 px-2">{{ dict.color_picker.text_title }}</div>
+    <div class="py-1 px-2">{{ getTextTitle() }}</div>
     @for (color of colors; track color) {
       <button
         hlmBtn
         variant="ghost"
         size="sm"
         class="gap-2 justify-start text-left font-normal"
-        (click)="options.text.setColor(color)"
+        [attr.data-test]="'text-color-' + color"
+        (click)="onTextColorClick(color)"
       >
-        <bna-color-icon [textColor]="color" /><span class="w-full">{{
-          dict.color_picker.colors[color]
-        }}</span>
+        <bna-color-icon
+          [textColor]="color"
+          [iconSize]="options.iconSize"
+        /><span class="w-full">{{ getColorName(color) }}</span>
         @if (options.text.color === color) {
           <ng-icon hlm name="lucideCheck" />
         }
@@ -22,18 +24,20 @@
 }
 @if (options.background) {
   <div class="flex flex-col">
-    <div class="py-1 px-2">{{ dict.color_picker.background_title }}</div>
+    <div class="py-1 px-2">{{ getBackgroundTitle() }}</div>
     @for (color of colors; track color) {
       <button
         hlmBtn
         variant="ghost"
         size="sm"
         class="gap-2 justify-start text-left font-normal"
-        (click)="options.background.setColor(color)"
+        [attr.data-test]="'background-color-' + color"
+        (click)="onBackgroundColorClick(color)"
       >
-        <bna-color-icon [backgroundColor]="color" /><span class="w-full">{{
-          dict.color_picker.colors[color]
-        }}</span>
+        <bna-color-icon
+          [backgroundColor]="color"
+          [iconSize]="options.iconSize"
+        /><span class="w-full">{{ getColorName(color) }}</span>
         @if (options.background.color === color) {
           <ng-icon hlm name="lucideCheck" />
         }

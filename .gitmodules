@@ -1,0 +1,3 @@
+[submodule "BlockNoteReact"]
+	path = BlockNoteReact
+	url = https://github.com/TypeCellOS/BlockNote.git

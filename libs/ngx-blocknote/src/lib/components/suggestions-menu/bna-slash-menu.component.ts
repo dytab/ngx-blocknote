@@ -25,7 +25,7 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
   dict = computed(() => {
-    return this.ngxBlockNoteService.editor().dictionary;
+    return this.ngxBlockNoteService.editor()?.dictionary;
   });
 
   @HostListener('window:keydown', ['$event'])
@@ -54,7 +54,7 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
       return;
     } else if (event.key === 'Escape') {
       event.preventDefault();
-      this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
+      this.ngxBlockNoteService.editor()?.suggestionMenus.closeMenu();
       return;
     }
   }
@@ -72,8 +72,8 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   insertSelectedBlock() {
     const editor = this.ngxBlockNoteService.editor();
     const item = this.filteredSlashMenuItems()[this.selectedIndex];
-    editor.suggestionMenus.closeMenu();
-    editor.suggestionMenus.clearQuery();
+    editor?.suggestionMenus.closeMenu();
+    editor?.suggestionMenus.clearQuery();
     item.onItemClick();
     this.selectedIndex = 0;
   }
@@ -81,7 +81,7 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const cleanUpFn = this.ngxBlockNoteService
       .editor()
-      .suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
+      ?.suggestionMenus.onUpdate(this.triggerCharacter, (state) => {
         if (this.query() !== state.query) {
           this.query.set(state.query);
           this.selectedIndex = 0;
@@ -92,7 +92,9 @@ export class BnaSlashMenuComponent implements OnInit, OnDestroy {
         }
       });
     this.addCaptureEventForEnter();
-    this.cleanUpListeners.push(cleanUpFn);
+    if (cleanUpFn) {
+      this.cleanUpListeners.push(cleanUpFn);
+    }
   }
 
   ngOnDestroy() {

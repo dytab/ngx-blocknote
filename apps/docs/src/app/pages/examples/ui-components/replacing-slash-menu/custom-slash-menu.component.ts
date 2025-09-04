@@ -28,15 +28,16 @@ import { HlmButton } from '@spartan-ng/helm/button';
 export class CustomSlashMenuComponent {
   public ngxBlockNoteService = inject(NgxBlocknoteService);
 
-  customSlashItems = getDefaultSlashMenuItems(
-    this.ngxBlockNoteService.editor(),
-  );
+  editor = this.ngxBlockNoteService.editor();
+
+  customSlashItems = this.editor ? getDefaultSlashMenuItems(this.editor) : [];
 
   addItem($event: Event, item: { title: string; onItemClick: () => void }) {
     $event.preventDefault();
-    this.ngxBlockNoteService.editor().suggestionMenus.clearQuery();
+    if (!this.editor) return;
+    this.editor.suggestionMenus.clearQuery();
     item.onItemClick();
-    this.ngxBlockNoteService.editor().suggestionMenus.closeMenu();
-    this.ngxBlockNoteService.editor().focus();
+    this.editor.suggestionMenus.closeMenu();
+    this.editor.focus();
   }
 }

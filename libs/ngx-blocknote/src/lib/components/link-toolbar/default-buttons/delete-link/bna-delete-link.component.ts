@@ -19,6 +19,10 @@ export class BnaDeleteLinkComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
   unlink() {
-    this.ngxBlockNoteService.editor().linkToolbar.deleteLink();
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return;
+    }
+    editor.linkToolbar.deleteLink();
   }
 }

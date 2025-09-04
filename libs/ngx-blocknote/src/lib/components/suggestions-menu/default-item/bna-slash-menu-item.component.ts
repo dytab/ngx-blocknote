@@ -76,6 +76,7 @@ export class BnaSlashMenuItemComponent {
   onClick($event: Event) {
     $event.preventDefault();
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     editor.suggestionMenus.clearQuery();
     this.suggestionItem().onItemClick();
     editor.suggestionMenus.closeMenu();

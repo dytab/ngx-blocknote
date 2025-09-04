@@ -1,0 +1,12 @@
+@if (show()) {
+  <button
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start"
+    (click)="splitCell()"
+  >
+    {{ dict().table_handle.split_cell_menuitem }}
+  </button>
+}

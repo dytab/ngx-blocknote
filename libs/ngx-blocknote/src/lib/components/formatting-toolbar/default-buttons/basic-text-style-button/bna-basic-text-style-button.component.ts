@@ -16,9 +16,9 @@ import {
   lucideStrikethrough,
   lucideUnderline,
 } from '@ng-icons/lucide';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 
@@ -93,6 +93,7 @@ export class BnaBasicTextStyleButtonComponent {
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
+    if (!editor) return 'hidden';
     const basicTextStyleInSchema = checkBasicTextStyleInSchema(
       this.basicTextStyle(),
       editor,
@@ -112,16 +113,18 @@ export class BnaBasicTextStyleButtonComponent {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const selection = this.ngxBlockNoteService.selectedBlocks();
     const style = this.basicTextStyle();
-    return editor.getActiveStyles()[style];
+    return editor?.getActiveStyles()[style] || false;
   });
 
   basicTextStyleDict = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
-    return editor.dictionary.formatting_toolbar[this.basicTextStyle()];
+    return editor?.dictionary.formatting_toolbar[this.basicTextStyle()] || {};
   });
 
   toggleStyle(style: BasicTextStyle) {
-    this.ngxBlockNoteService.editor().focus();
-    this.ngxBlockNoteService.editor()?.toggleStyles({ [style]: true });
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
+    editor.focus();
+    editor.toggleStyles({ [style]: true });
   }
 }

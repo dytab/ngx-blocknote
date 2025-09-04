@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
@@ -19,10 +19,12 @@ import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 export class BnaEditLinkButtonComponent {
   private ngxBlockNoteService = inject(NgxBlocknoteService);
 
+  readonly dict = computed(() => this.ngxBlockNoteService.editor()!.dictionary);
+
   initialValue: Partial<{ text: string; url: string }> = {};
 
   constructor() {
-    this.ngxBlockNoteService.editor().linkToolbar.onUpdate((linkToolbar) => {
+    this.ngxBlockNoteService.editor()!.linkToolbar.onUpdate((linkToolbar) => {
       this.initialValue = { text: linkToolbar.text, url: linkToolbar.url };
     });
   }
