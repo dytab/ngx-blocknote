@@ -74,8 +74,12 @@ export class BnaColorStyleButtonComponent {
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
-    const textColorInSchema = checkColorInSchema('text', editor);
-    const backgroundColorInSchema = checkColorInSchema('background', editor);
+    let textColorInSchema;
+    let backgroundColorInSchema;
+    if (editor) {
+      textColorInSchema = checkColorInSchema('text', editor);
+      backgroundColorInSchema = checkColorInSchema('background', editor);
+    }
     if (!textColorInSchema && !backgroundColorInSchema) {
       return 'hidden';
     }
@@ -88,10 +92,10 @@ export class BnaColorStyleButtonComponent {
   });
 
   options: ColorOptions = this.getOptions();
-  dict = this.ngxBlockNoteService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor()?.dictionary;
 
   constructor() {
-    this.ngxBlockNoteService.editor().onSelectionChange(() => {
+    this.ngxBlockNoteService.editor()?.onSelectionChange(() => {
       this.options = this.getOptions();
     });
   }
@@ -100,29 +104,29 @@ export class BnaColorStyleButtonComponent {
     const editor = this.ngxBlockNoteService.editor();
     return {
       text: {
-        color: editor.getActiveStyles().textColor || 'default',
+        color: editor?.getActiveStyles().textColor || 'default',
         setColor: (color: string) => {
           //TODO: add check if color is in schema
           if (color === 'default') {
-            editor.removeStyles({ textColor: color });
+            editor?.removeStyles({ textColor: color });
           } else {
-            editor.addStyles({ textColor: color });
+            editor?.addStyles({ textColor: color });
           }
 
-          editor.focus();
+          editor?.focus();
         },
       },
       background: {
-        color: editor.getActiveStyles().backgroundColor || 'default',
+        color: editor?.getActiveStyles().backgroundColor || 'default',
         setColor: (color: string) => {
           //TODO: add check if color is in schema
           if (color === 'default') {
-            editor.removeStyles({ backgroundColor: color });
+            editor?.removeStyles({ backgroundColor: color });
           } else {
-            editor.addStyles({ backgroundColor: color });
+            editor?.addStyles({ backgroundColor: color });
           }
 
-          editor.focus();
+          editor?.focus();
         },
       },
     };

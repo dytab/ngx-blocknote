@@ -6,9 +6,9 @@ import {
 } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTrash } from '@ng-icons/lucide';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
@@ -39,26 +39,29 @@ export class BnaFileDeleteButtonComponent {
     >,
   );
 
-  fileBlock = computed(() =>
-    fileBlock(
-      this.ngxBlockNoteService.editor(),
-      this.ngxBlockNoteService.selectedBlocks(),
-    ),
-  );
+  fileBlock = computed(() => {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return null;
+    return fileBlock(editor, this.ngxBlockNoteService.selectedBlocks());
+  });
   _visibilityClass = computed(() => {
-    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
+    const editor = this.ngxBlockNoteService.editor();
+    const fileBlock = this.fileBlock();
+    if (!editor || !fileBlock) return 'hidden';
+    return showFileBlock(editor, fileBlock);
   });
   tooltip = computed(() => {
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return '';
     }
-    return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
+    return this.ngxBlockNoteService.editor()!.dictionary.formatting_toolbar
       .file_delete.tooltip[fileBlock.type];
   });
 
   deleteFile() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return;

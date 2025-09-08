@@ -12,11 +12,11 @@ import {
 } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTextCursorInput } from '@ng-icons/lucide';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
-import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
@@ -53,22 +53,25 @@ export class BnaFileCaptionButtonComponent {
   private formBuilder = inject(NonNullableFormBuilder);
 
   fileBlock = computed(() => {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return null;
     return fileBlock<
       DefaultBlockSchema,
       DefaultInlineContentSchema,
       DefaultStyleSchema
-    >(
-      this.ngxBlockNoteService.editor(),
-      this.ngxBlockNoteService.selectedBlocks(),
-    );
+    >(editor, this.ngxBlockNoteService.selectedBlocks());
   });
 
   _visibilityClass = computed(() => {
-    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return 'hidden';
+    const fileBlock = this.fileBlock();
+    if (!fileBlock) return 'hidden';
+    return showFileBlock(editor, fileBlock);
   });
 
   form = this.formBuilder.group({ caption: ['', Validators.required] });
-  dict = this.ngxBlockNoteService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor()?.dictionary || {};
 
   constructor() {
     effect(() => {
@@ -78,6 +81,7 @@ export class BnaFileCaptionButtonComponent {
 
   private patchFormValues() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
     const firstBlock = selectedBlocks[0];
     if (!firstBlock) {
@@ -91,6 +95,7 @@ export class BnaFileCaptionButtonComponent {
 
   submit() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     const caption = this.form.controls.caption.value;
     const fileBlock = this.fileBlock();
     if (!fileBlock) {

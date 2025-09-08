@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import {
   Block,
   DefaultBlockSchema,
@@ -26,6 +26,8 @@ export class BnaDeleteBlockItemComponent {
     >,
   );
 
+  dict = computed(() => this.ngxBlockNoteService.editor()?.dictionary);
+
   dragBlock?: Block<any, any, any>;
 
   constructor() {
@@ -46,7 +48,7 @@ export class BnaDeleteBlockItemComponent {
     const editor = this.ngxBlockNoteService.editor();
     const sideMenuFocusedBlock =
       this.ngxBlockNoteService.sideMenuFocusedBlock();
-    let selectedBlocks = useSelectedBlocks(editor);
+    let selectedBlocks = editor ? useSelectedBlocks(editor) : [];
     if (
       sideMenuFocusedBlock &&
       selectedBlocks.find((block) => block.id === sideMenuFocusedBlock.id) ===
@@ -55,8 +57,8 @@ export class BnaDeleteBlockItemComponent {
       //the current block where the side menu is opened is not in selection, then use this instead of selection
       selectedBlocks = [sideMenuFocusedBlock];
     }
-    editor.removeBlocks(selectedBlocks);
-    editor.focus();
-    editor.sideMenu.unfreezeMenu();
+    editor?.removeBlocks(selectedBlocks);
+    editor?.focus();
+    editor?.sideMenu.unfreezeMenu();
   }
 }

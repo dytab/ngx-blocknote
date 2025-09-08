@@ -17,8 +17,8 @@ export class BnaAddBlockButtonComponent {
   addNewBlock() {
     const editor = this.ngxBlockNoteService.editor();
     const currentBlock = this.ngxBlockNoteService.sideMenuFocusedBlock();
-    if (!currentBlock) return;
-    const insertedBlock = this.ngxBlockNoteService.editor().insertBlocks(
+    if (!currentBlock || !editor) return;
+    const insertedBlock = editor.insertBlocks(
       [
         {
           type: 'paragraph',

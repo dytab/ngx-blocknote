@@ -2,11 +2,11 @@ import { Component, computed, inject } from '@angular/core';
 import { BlockNoteEditor, BlockSchema, StyleSchema } from '@blocknote/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLink } from '@ng-icons/lucide';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
-import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { BnaLinkFormComponent } from '../../../link-toolbar/link-form/bna-link-form.component';
@@ -60,7 +60,7 @@ export class BnaCreateLinkComponent {
   _visibilityClass = computed(() => {
     const editor = this.ngxBlockNoteService.editor();
     const selectedBlocks = this.ngxBlockNoteService.selectedBlocks();
-    if (!checkLinkInSchema(editor)) {
+    if (!editor || !checkLinkInSchema(editor)) {
       return 'hidden';
     }
     for (const block of selectedBlocks) {
@@ -71,16 +71,22 @@ export class BnaCreateLinkComponent {
     return '';
   });
   initialValue = this.getInitialValue();
-  dict = this.ngxBlockNoteService.editor().dictionary;
+  dict = this.ngxBlockNoteService.editor()?.dictionary || {};
 
   constructor() {
-    this.ngxBlockNoteService.editor().onSelectionChange(() => {
-      this.initialValue = this.getInitialValue();
-    });
+    const editor = this.ngxBlockNoteService.editor();
+    if (editor) {
+      editor.onSelectionChange(() => {
+        this.initialValue = this.getInitialValue();
+      });
+    }
   }
 
   private getInitialValue() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) {
+      return { url: '', text: '' };
+    }
 
     return {
       url: editor.getSelectedLinkUrl(),

@@ -1,0 +1,15 @@
+@if (show()) {
+  <button
+    type="button"
+    hlmBtn
+    variant="ghost"
+    size="xs"
+    class="w-full justify-start gap-2"
+    (click)="toggleHeader()"
+  >
+    <span class="flex-1 text-left">{{ label() }}</span>
+    @if (checked()) {
+      <ng-icon hlm name="lucideCheck" />
+    }
+  </button>
+}

@@ -11,6 +11,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
 import { fileBlock } from '../../../../util/file-block.util';
+import { sanitizeUrl } from '../../../../util/sanitize-url.util';
 import { showFileBlock } from '../../../../util/show-file-block.util';
 
 @Component({
@@ -31,37 +32,46 @@ export class BnaFileDownloadButtonComponent {
     >,
   );
 
-  fileBlock = computed(() =>
-    fileBlock<
+  fileBlock = computed(() => {
+    const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return null;
+    return fileBlock<
       DefaultBlockSchema,
       DefaultInlineContentSchema,
       DefaultStyleSchema
-    >(
-      this.ngxBlockNoteService.editor(),
-      this.ngxBlockNoteService.selectedBlocks(),
-    ),
-  );
+    >(editor, this.ngxBlockNoteService.selectedBlocks());
+  });
   _visibilityClass = computed(() => {
-    return showFileBlock(this.ngxBlockNoteService.editor(), this.fileBlock());
+    const editor = this.ngxBlockNoteService.editor();
+    const fileBlock = this.fileBlock();
+    if (!editor || !fileBlock) return 'hidden';
+    return showFileBlock(editor, fileBlock);
   });
   tooltip = computed(() => {
     const fileBlock = this.fileBlock();
     if (!fileBlock) {
       return '';
     }
-    return this.ngxBlockNoteService.editor().dictionary.formatting_toolbar
+    return this.ngxBlockNoteService.editor()!.dictionary.formatting_toolbar
       .file_download.tooltip[fileBlock.type];
   });
 
   downloadFile() {
     const editor = this.ngxBlockNoteService.editor();
+    if (!editor) return;
     const fileBlock = this.fileBlock();
-    // TODO: check if download button is still needed when .resolveFileUrl() is undefined
-    if (editor.resolveFileUrl && fileBlock && fileBlock.props.url) {
+    if (fileBlock && fileBlock.props.url) {
       editor.focus();
-      editor
-        .resolveFileUrl(fileBlock.props.url)
-        .then((downloadUrl) => window.open(downloadUrl));
+      if (!editor.resolveFileUrl) {
+        const safe = sanitizeUrl(fileBlock.props.url, window.location.href);
+        window.open(safe);
+      } else {
+        editor
+          .resolveFileUrl(fileBlock.props.url)
+          .then((downloadUrl) =>
+            window.open(sanitizeUrl(downloadUrl, window.location.href)),
+          );
+      }
     }
   }
 }

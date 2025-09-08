@@ -1,8 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  effect,
   forwardRef,
   inject,
-  Input,
   input,
   OnChanges,
   OnInit,
@@ -69,6 +70,9 @@ type InitialContent<
   | undefined;
 
 @Component({
+  selector: 'bna-editor',
+  templateUrl: './bna-editor.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     BnaViewControllerDirective,
     BnaSideMenuControllerComponent,
@@ -107,8 +111,6 @@ type InitialContent<
       multi: true,
     },
   ],
-  selector: 'bna-editor',
-  templateUrl: './bna-editor.component.html',
 })
 export class BnaEditorComponent<
     BSchema extends BlockSchema = DefaultBlockSchema,
@@ -124,12 +126,15 @@ export class BnaEditorComponent<
   readonly options =
     input<BlockNoteEditorOptionsType<BSchema, ISchema, SSchema>>();
   readonly initialContent = input<InitialContent<BSchema, ISchema, SSchema>>();
+  readonly customEditor = input<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   contentChanged = output<Block<BSchema, ISchema, SSchema>[]>();
   selectedBlocks = output<Block<BSchema, ISchema, SSchema>[]>();
   editorReady = output<BlockNoteEditor<BSchema, ISchema, SSchema>>();
 
   private hasCustomEditor = false;
+  private _editor: BlockNoteEditor<BSchema, ISchema, SSchema> =
+    this.createEditor(undefined);
 
   suggestionMenuShown = signal(false);
   filePanelShown = signal(false);
@@ -140,40 +145,40 @@ export class BnaEditorComponent<
 
   private onChangeCallbackListeners: Array<() => void | undefined> = [];
 
-  @Input()
-  set editor(editor: BlockNoteEditor<BSchema, ISchema, SSchema>) {
-    this._editor = editor;
-    this.hasCustomEditor = true;
-    this.ngxBlockNoteService.setEditor(editor);
-    this.createEditorListeners(editor);
-  }
-
   get editor(): BlockNoteEditor<BSchema, ISchema, SSchema> {
     return this._editor;
   }
-
-  private _editor: BlockNoteEditor<BSchema, ISchema, SSchema> =
-    this.createEditor(undefined);
 
   firstTimeInitialized = false;
 
   constructor() {
     this.ngxBlockNoteService.setEditor(this.editor);
+
+    // Handle editor input changes with effect
+    effect(() => {
+      const customEditor = this.customEditor();
+      if (customEditor) {
+        this._editor = customEditor;
+        this.hasCustomEditor = true;
+        this.ngxBlockNoteService.setEditor(customEditor);
+        this.createEditorListeners(customEditor);
+      }
+    });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: any = () => {};
+  onChange: (value: Block<BSchema, ISchema, SSchema>[]) => void = () => {};
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouch: any = () => {};
+  onTouch: () => void = () => {};
 
   writeValue(initialContent: InitialContent<BSchema, ISchema, SSchema>): void {
     this.updateEditorsInitialContent(initialContent);
   }
-  registerOnChange(fn: unknown): void {
+  registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: unknown): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
@@ -184,7 +189,7 @@ export class BnaEditorComponent<
   ngOnChanges(changes: SimpleChanges) {
     const options = this.options();
     if (!this.hasCustomEditor && changes['options']) {
-      this.editor = this.createEditor(undefined);
+      this._editor = this.createEditor(undefined);
       this.editorReady.emit(this.editor);
       this.firstTimeInitialized = true;
 
