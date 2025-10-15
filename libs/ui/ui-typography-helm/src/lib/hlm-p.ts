@@ -12,5 +12,7 @@ export const hlmP = 'leading-7 [&:not(:first-child)]:mt-6';
 })
 export class HlmP {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
-  protected _computedClass = computed(() => hlm(hlmP, this.userClass()));
+  protected readonly _computedClass = computed(() =>
+    hlm(hlmP, this.userClass()),
+  );
 }

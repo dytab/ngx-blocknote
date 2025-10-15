@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { BrnTabs } from '@spartan-ng/brain/tabs';
 import { hlm } from '@spartan-ng/helm/utils';
-import { ClassValue } from 'clsx';
+import type { ClassValue } from 'clsx';
 
 @Component({
   selector: 'hlm-tabs',

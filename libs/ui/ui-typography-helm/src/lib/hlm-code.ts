@@ -13,5 +13,7 @@ export const hlmCode =
 })
 export class HlmCode {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
-  protected _computedClass = computed(() => hlm(hlmCode, this.userClass()));
+  protected readonly _computedClass = computed(() =>
+    hlm(hlmCode, this.userClass()),
+  );
 }

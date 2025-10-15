@@ -11,7 +11,7 @@ export type IconSize =
   | (Record<never, never> & string);
 
 @Directive({
-  selector: 'ng-icon[hlm]',
+  selector: 'ng-icon[hlmIcon], ng-icon[hlm]',
   host: {
     '[style.--ng-icon__size]': '_computedSize()',
   },
