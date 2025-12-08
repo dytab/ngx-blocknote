@@ -1,0 +1,10 @@
+{
+  "name": "@spartan-ng/helm/typography",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^20.1.0",
+    "@spartan-ng/helm/utils": "0.0.1",
+    "clsx": "^2.1.1"
+  },
+  "sideEffects": false
+}

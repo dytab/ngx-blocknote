@@ -1,0 +1,12 @@
+{
+  "name": "@spartan-ng/helm/toggle",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^20.1.0",
+    "@spartan-ng/brain": "^0.0.1-alpha.576",
+    "@spartan-ng/helm/utils": "0.0.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1"
+  },
+  "sideEffects": false
+}

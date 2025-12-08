@@ -79,7 +79,7 @@ const schema = BlockNoteSchema.create({
             <hlm-dialog>
               <button
                 hlmBtn
-                brnDialogTrigger
+                hlmDialogTrigger
                 variant="ghost"
                 size="sm"
                 class="justify-start w-full"

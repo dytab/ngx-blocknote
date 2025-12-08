@@ -1,7 +1,7 @@
 <button
   (click)="openDragMenu()"
   (dragend)="dragEnd()"
-  [brnMenuTriggerFor]="menu"
+  [hlmDropdownMenuTrigger]="menu"
   (dragstart)="dragStart($event)"
   draggable="true"
   type="button"
@@ -12,8 +12,8 @@
   <ng-icon hlm size="sm" [name]="'lucideGripVertical'" />
 </button>
 <ng-template #menu>
-  <hlm-menu class="shadow-3xl">
-    <hlm-menu-group>
+  <hlm-dropdown-menu class="shadow-3xl">
+    <hlm-dropdown-menu-group>
       <div #dragHandleMenuItems>
         <ng-content></ng-content>
       </div>
@@ -21,6 +21,6 @@
         <bna-delete-block-item />
         <bna-block-color-style />
       }
-    </hlm-menu-group>
-  </hlm-menu>
+    </hlm-dropdown-menu-group>
+  </hlm-dropdown-menu>
 </ng-template>

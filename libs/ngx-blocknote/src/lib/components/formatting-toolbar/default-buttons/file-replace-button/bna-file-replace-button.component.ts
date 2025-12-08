@@ -9,8 +9,8 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideImage } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
-import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
+
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
@@ -23,9 +23,7 @@ import { BnaFilePanelComponent } from '../../../file-panel/bna-file-panel.compon
   imports: [
     ReactiveFormsModule,
     HlmButton,
-    BrnMenuTrigger,
-    HlmMenuGroup,
-    HlmMenu,
+    HlmDropdownMenuImports,
     BnaFilePanelComponent,
     HlmTooltip,
     HlmTooltipTrigger,

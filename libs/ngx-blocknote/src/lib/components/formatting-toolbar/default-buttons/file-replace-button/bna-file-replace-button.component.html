@@ -5,7 +5,7 @@
     size="icon"
     variant="ghost"
     class="w-[30px] h-[30px]"
-    [brnMenuTriggerFor]="menu"
+    [hlmDropdownMenuTrigger]="menu"
     aria-describedby="file-replace-tooltip"
     hlmTooltipTrigger
   >
@@ -15,10 +15,10 @@
     <p>{{ tooltip() }}</p>
   </span>
   <ng-template #menu>
-    <hlm-menu>
-      <hlm-menu-group>
+    <hlm-dropdown-menu>
+      <hlm-dropdown-menu-group>
         <bna-file-panel />
-      </hlm-menu-group>
-    </hlm-menu>
+      </hlm-dropdown-menu-group>
+    </hlm-dropdown-menu>
   </ng-template>
 </hlm-tooltip>

@@ -14,15 +14,15 @@
     "@spartan-ng/brain": "^0.0.1-alpha.508",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^2.5.2",
+    "tailwind-merge": "^3.3.1",
+    "@angular/cdk": "~20.1.0",
     "rxjs": "~7.8.0"
   },
   "devDependencies": {},
   "peerDependencies": {
     "@angular/core": "~20.1.0",
     "@angular/common": "~20.1.0",
-    "@angular/forms": "~20.1.0",
-    "@angular/cdk": "~20.1.0"
+    "@angular/forms": "~20.1.0"
   },
   "peerDependenciesMeta": {
     "@angular/platform-browser": {
