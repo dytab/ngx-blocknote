@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/core": "^20.1.0",
-    "@angular/forms": "~20.1.0",
+    "@angular/forms": "20.3.9",
     "@spartan-ng/brain": "^0.0.1-alpha.576",
     "@spartan-ng/helm/utils": "0.0.1",
     "class-variance-authority": "^0.7.0",

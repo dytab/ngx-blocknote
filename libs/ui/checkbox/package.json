@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/core": "^20.1.0",
-    "@angular/cdk": "~20.1.0",
-    "@angular/forms": "~20.1.0",
+    "@angular/cdk": "20.2.9",
+    "@angular/forms": "20.3.9",
     "@ng-icons/core": ">=32.0.0 <34.0.0",
     "@ng-icons/lucide": ">=32.0.0 <34.0.0",
     "@spartan-ng/brain": "^0.0.1-alpha.576",

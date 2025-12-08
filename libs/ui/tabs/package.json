@@ -7,7 +7,7 @@
     "@spartan-ng/helm/utils": "0.0.1",
     "clsx": "^2.1.1",
     "class-variance-authority": "^0.7.0",
-    "@angular/cdk": "~20.1.0",
+    "@angular/cdk": "20.2.9",
     "@ng-icons/core": ">=32.0.0 <34.0.0",
     "@ng-icons/lucide": ">=32.0.0 <34.0.0",
     "@spartan-ng/helm/button": "0.0.1",
