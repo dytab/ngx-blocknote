@@ -7,7 +7,7 @@ const __dirname = dirname(__filename);
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  presets: [generated],
+  // presets: [require('@spartan-ng/brain/hlm-tailwind-preset.css')],
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),

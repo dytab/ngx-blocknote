@@ -31,7 +31,8 @@
       "@spartan-ng/helm/toggle": ["libs/ui/toggle/src/index.ts"],
       "@spartan-ng/helm/tooltip": ["libs/ui/tooltip/src/index.ts"],
       "@spartan-ng/helm/typography": ["libs/ui/typography/src/index.ts"],
-      "@spartan-ng/helm/utils": ["libs/ui/utils/src/index.ts"]
+      "@spartan-ng/helm/utils": ["libs/ui/utils/src/index.ts"],
+      "@spartan-ng/helm/dropdown-menu": ["libs/ui/dropdown-menu/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
