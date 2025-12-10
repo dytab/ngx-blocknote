@@ -2,8 +2,8 @@
   "name": "@spartan-ng/helm/icon",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^20.1.0",
-    "@ng-icons/core": ">=32.0.0 <34.0.0"
+    "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0"
   },
   "sideEffects": false
 }

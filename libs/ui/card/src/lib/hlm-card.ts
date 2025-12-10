@@ -4,7 +4,7 @@ import { type VariantProps, cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 
 export const cardVariants = cva(
-  'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-xs',
+  'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
   {
     variants: {},
     defaultVariants: {},

@@ -2,13 +2,8 @@
   "name": "@spartan-ng/helm/dropdown-menu",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^20.3.0",
-    "@ng-icons/core": ">=32.0.0 <33.0.0",
-    "@ng-icons/lucide": ">=32.0.0 <33.0.0",
-    "@spartan-ng/helm/utils": "0.0.1",
-    "clsx": "^2.1.1",
-    "@angular/cdk": "20.2.9",
-    "@spartan-ng/brain": "^0.0.1-alpha.576"
+    "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0"
   },
   "sideEffects": false
 }

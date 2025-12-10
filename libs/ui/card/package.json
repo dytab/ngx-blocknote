@@ -2,10 +2,8 @@
   "name": "@spartan-ng/helm/card",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^20.1.0",
-    "@spartan-ng/helm/utils": "0.0.1",
-    "clsx": "^2.1.1",
-    "class-variance-authority": "^0.7.0"
+    "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0"
   },
   "sideEffects": false
 }
