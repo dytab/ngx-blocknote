@@ -26,14 +26,18 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - name: lint & test
-        run: npx nx affected -t lint,test
+        run: npx nx run-many -t lint,test
         env:
           NX_PARALLEL: 2
+          NX_SKIP_NX_CACHE: true
+          NX_NO_CLOUD: true
 
       - name: build
         run: npx nx run-many -t build
         env:
           NX_PARALLEL: 2
+          NX_SKIP_NX_CACHE: true
+          NX_NO_CLOUD: true
 
       - name: Upload artifact
         if: ${{ github.ref == 'refs/heads/main' }}
