@@ -28,11 +28,11 @@ export default [
           checkVersionMismatches: true,
           ignoredDependencies: [
             '@spartan-ng/helm/button',
+            '@spartan-ng/helm/dropdown-menu',
             '@spartan-ng/helm/icon',
             '@spartan-ng/helm/input',
             '@spartan-ng/helm/tabs',
             '@spartan-ng/helm/tooltip',
-            '@spartan-ng/helm/menu',
             '@spartan-ng/helm/utils',
           ],
           ignoredFiles: [
