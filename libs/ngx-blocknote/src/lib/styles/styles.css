@@ -1,5 +1,3 @@
-@import '@spartan-ng/brain/hlm-tailwind-preset.css';
-
 @import './tailwind-base.css';
 @import './toolbar.css';
 @import './side-menu.css';
