@@ -8,7 +8,7 @@
   (mouseenter)="onMouseEnter()"
 >
   <div
-    class="border border-border h-[45px] w-[45px] rounded flex justify-center items-center flex-shrink-0"
+    class="border border-border h-[45px] w-[45px] rounded-sm flex justify-center items-center shrink-0"
   >
     <ng-icon hlm size="base" [name]="iconName()" class="" />
   </div>
@@ -16,7 +16,7 @@
     <p class="text-sm font-normal">{{ suggestionItem().title }}</p>
     <p class="text-xs text-muted-foreground">{{ suggestionItem().subtext }}</p>
   </div>
-  <div class="flex-grow-0 flex-shrink-0 bg-accent rounded p-1 text-xs">
+  <div class="grow-0 shrink-0 bg-accent rounded-sm p-1 text-xs">
     {{ suggestionItem().badge }}
   </div>
 </button>

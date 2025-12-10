@@ -2,7 +2,7 @@ import { Directive, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
-export const hlmP = 'leading-7 [&:not(:first-child)]:mt-6';
+export const hlmP = 'leading-7 not-first:mt-6';
 
 @Directive({
   selector: '[hlmP]',

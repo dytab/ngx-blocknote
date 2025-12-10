@@ -56,7 +56,7 @@ const schema = BlockNoteSchema.create({
     (editorReady)="onEditorReady($event)"
     ><bna-suggestions-menu-controller triggerCharacter="@">
       <div
-        class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
+        class="bg-background shadow-2xl shadow-neutral-500 rounded-sm p-1 flex flex-col"
       >
         @for (item of filteredItems(); track item.title) {
           <button
@@ -188,7 +188,7 @@ const schema = BlockNoteSchema.create({
     (onEditorReady)="onEditorReady($event)"
     ><bna-suggestions-menu-controller triggerCharacter="@">
       <div
-        class="bg-background shadow-2xl shadow-neutral-500 rounded p-1 flex flex-col"
+        class="bg-background shadow-2xl shadow-neutral-500 rounded-sm p-1 flex flex-col"
       >
         @for(item of filteredItems();track item.title){
         <button hlmBtn variant="ghost" size="sm" (mousedown)="addItem($event,item)">

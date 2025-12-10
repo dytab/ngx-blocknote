@@ -3,7 +3,7 @@ import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
 export const hlmCode =
-  'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold';
+  'relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold';
 
 @Directive({
   selector: '[hlmCode]',

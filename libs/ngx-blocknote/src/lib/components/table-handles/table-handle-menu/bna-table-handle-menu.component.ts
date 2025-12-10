@@ -8,7 +8,7 @@ import { BnaDeleteButtonComponent } from './default-buttons/delete-button/bna-de
   imports: [BnaDeleteButtonComponent, BnaAddButtonComponent],
   templateUrl: './bna-table-handle-menu.component.html',
   host: {
-    class: 'block bg-background shadow-xl p-2 rounded',
+    class: 'block bg-background shadow-xl p-2 rounded-sm',
   },
 })
 export class BnaTableHandleMenuComponent {

@@ -1,13 +1,30 @@
-@import '../../../../node_modules/@angular/cdk/overlay-prebuilt.css';
+@import '../../../../node_modules/@angular/cdk/overlay-prebuilt.css' layer(base);
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-/* You can add global styles to this file, and also import other style files */
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
-:root {
-  --font-sans: '';
+@layer utilities {
+  /* You can add global styles to this file, and also import other style files */
+
+  :root {
+    --font-sans: '';
+  }
 }
 @layer base {
   :root {

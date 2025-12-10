@@ -23,7 +23,7 @@ export class HlmDropdownMenuCheckboxIndicator {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected readonly _computedClass = computed(() =>
     hlm(
-      'pointer-events-none absolute left-2 flex size-3.5 items-center justify-center opacity-0 group-data-[checked]:opacity-100',
+      'pointer-events-none absolute left-2 flex size-3.5 items-center justify-center opacity-0 group-data-checked:opacity-100',
       this.userClass(),
     ),
   );

@@ -18,14 +18,14 @@ import type { ClassValue } from 'clsx';
     '[class]': '_computedClass()',
   },
   template: `
-    <ng-icon name="lucideCircle" class="text-[0.5rem] *:[svg]:fill-current" />
+    <ng-icon name="lucideCircle" class="text-[0.5rem] [svg]:*:fill-current" />
   `,
 })
 export class HlmDropdownMenuRadioIndicator {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected readonly _computedClass = computed(() =>
     hlm(
-      'pointer-events-none absolute left-2 flex size-3.5 items-center justify-center opacity-0 group-data-[checked]:opacity-100',
+      'pointer-events-none absolute left-2 flex size-3.5 items-center justify-center opacity-0 group-data-checked:opacity-100',
       this.userClass(),
     ),
   );

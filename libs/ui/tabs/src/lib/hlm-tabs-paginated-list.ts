@@ -52,7 +52,7 @@ import { listVariants } from './hlm-tabs-list';
 
     <div
       #tabListContainer
-      class="z-[1] flex grow overflow-hidden"
+      class="z-1 flex grow overflow-hidden"
       (keydown)="_handleKeydown($event)"
     >
       <div
@@ -107,7 +107,7 @@ export class HlmTabsPaginatedList extends BrnTabsPaginatedList {
 
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected readonly _computedClass = computed(() =>
-    hlm('relative flex flex-shrink-0 gap-1 overflow-hidden', this.userClass()),
+    hlm('relative flex shrink-0 gap-1 overflow-hidden', this.userClass()),
   );
 
   public readonly tabListClass = input<ClassValue>('', {
@@ -122,7 +122,7 @@ export class HlmTabsPaginatedList extends BrnTabsPaginatedList {
   });
   protected readonly _paginationButtonClass = computed(() =>
     hlm(
-      'relative z-[2] select-none disabled:cursor-default',
+      'relative z-2 select-none disabled:cursor-default',
       buttonVariants({ variant: 'ghost', size: 'icon' }),
       this.paginationButtonClass(),
     ),

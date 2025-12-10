@@ -15,7 +15,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
     />
     <p>Output (JSON)</p>
     <div
-      class="border border-black bg-background rounded min-h-20 w-full p-2 max-h-[400px] overflow-auto"
+      class="border border-black bg-background rounded-sm min-h-20 w-full p-2 max-h-[400px] overflow-auto"
     >
       <pre><code>{{ content }}</code></pre>
     </div>
