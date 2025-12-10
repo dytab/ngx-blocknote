@@ -11,7 +11,7 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
       class="relative flex h-fit w-full justify-center overflow-hidden pb-36 pt-24 xl:pt-36"
     >
       <div
-        class="z-20 flex w-full flex-col items-center justify-between gap-6 px-6 md:max-w-screen-md xl:max-w-[1440px] xl:flex-row"
+        class="z-20 flex w-full flex-col items-center justify-between gap-6 px-6 md:max-w-(--breakpoint-md) xl:max-w-[1440px] xl:flex-row"
       >
         <div
           class="relative flex h-fit flex-col items-center justify-center gap-6 text-center xl:w-[584px] xl:items-start xl:text-left"
@@ -30,10 +30,10 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
           <a hlmBtn variant="default" routerLink="/examples">Get Started</a>
         </div>
         <div
-          class="relative h-[36rem] w-full shrink-0 grow-0 rounded-lg sm:block xl:w-[584px]"
+          class="relative h-144 w-full shrink-0 grow-0 rounded-lg sm:block xl:w-[584px]"
         >
           <div
-            class="absolute h-full w-full -inset-0,5 bg-gradient-to-r from-purple-600 to-sky-400 rouned-lg blur opacity-75"
+            class="absolute h-full w-full -inset-0,5 bg-linear-to-r from-purple-600 to-sky-400 rouned-lg blur-sm opacity-75"
           ></div>
           <div hlmCard class="relative z-20 h-full w-full rounded-lg">
             <bna-basic-setup-example></bna-basic-setup-example>
@@ -42,7 +42,7 @@ import { BasicSetupExample } from './examples/basic/basic-setup/basic-setup.exam
       </div>
     </section>
     <section
-      class="relative flex h-fit w-full justify-center overflow-hidden pb-36 pt-24 xl:pt-36 border-b border-t border-border shadow-sm"
+      class="relative flex h-fit w-full justify-center overflow-hidden pb-36 pt-24 xl:pt-36 border-b border-t border-border shadow-xs"
     >
       <div class="flex flex-col justify-center items-center">
         <h2 class="${hlmH2}">Disclaimer</h2>

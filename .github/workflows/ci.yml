@@ -10,13 +10,13 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: 'npm'
           check-latest: 'true'
 
@@ -26,14 +26,18 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - name: lint & test
-        run: npx nx affected -t lint,test
+        run: npx nx run-many -t lint,test
         env:
           NX_PARALLEL: 2
+          NX_SKIP_NX_CACHE: true
+          NX_NO_CLOUD: true
 
       - name: build
         run: npx nx run-many -t build
         env:
           NX_PARALLEL: 2
+          NX_SKIP_NX_CACHE: true
+          NX_NO_CLOUD: true
 
       - name: Upload artifact
         if: ${{ github.ref == 'refs/heads/main' }}

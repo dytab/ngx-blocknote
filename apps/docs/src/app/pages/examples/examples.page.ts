@@ -6,7 +6,7 @@ import { exampleGroupedLinks } from './shared/examples';
 @Component({
   imports: [RouterOutlet, HlmButton, RouterLink, RouterLinkActive],
   host: {
-    class: 'block py-3 mx-auto max-w-[90rem]',
+    class: 'block py-3 mx-auto max-w-360',
   },
   template: ` <div
     class="flex flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)] md:gap-6 lg:gap-10 px-10"

@@ -5,7 +5,7 @@
     size="icon"
     variant="ghost"
     class="w-[30px] h-[30px]"
-    [brnMenuTriggerFor]="menu"
+    [hlmDropdownMenuTrigger]="menu"
     hlmTooltipTrigger
     aria-describedby="create-link-tooltip"
   >
@@ -19,10 +19,10 @@
   </span>
 
   <ng-template #menu>
-    <hlm-menu>
-      <hlm-menu-group class="px-2">
+    <hlm-dropdown-menu>
+      <hlm-dropdown-menu-group class="px-2">
         <bna-link-form [initialValue]="initialValue" />
-      </hlm-menu-group>
-    </hlm-menu>
+      </hlm-dropdown-menu-group>
+    </hlm-dropdown-menu>
   </ng-template>
 </hlm-tooltip>

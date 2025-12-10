@@ -10,8 +10,8 @@ import {
   DefaultStyleSchema,
 } from '@blocknote/core';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
-import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
+
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
 import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 import { NgxBlocknoteService } from '../../../../services/ngx-blocknote.service';
@@ -22,9 +22,7 @@ import { showFileBlock } from '../../../../util/show-file-block.util';
   selector: 'bna-file-rename-button',
   imports: [
     HlmButton,
-    BrnMenuTrigger,
-    HlmMenu,
-    HlmMenuGroup,
+    HlmDropdownMenuImports,
     ReactiveFormsModule,
     HlmTooltip,
     HlmTooltipTrigger,

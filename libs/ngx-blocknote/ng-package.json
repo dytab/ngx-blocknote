@@ -9,7 +9,6 @@
     "@ng-icons/core",
     "@ng-icons/lucide",
     "@spartan-ng/ui-checkbox-brain",
-    "@spartan-ng/ui-core",
     "@spartan-ng/ui-dialog-brain",
     "@spartan-ng/ui-menu-brain",
     "@spartan-ng/ui-tabs-brain",

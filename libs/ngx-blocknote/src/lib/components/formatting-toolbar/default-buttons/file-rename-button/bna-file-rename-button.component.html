@@ -7,7 +7,7 @@
     class="w-[30px] h-[30px]"
     hlmTooltipTrigger
     aria-describedby="file-rename-tooltip"
-    [brnMenuTriggerFor]="menu"
+    [hlmDropdownMenuTrigger]="menu"
   >
     A
   </button>
@@ -15,15 +15,15 @@
     <p>{{ tooltip() }}</p>
   </span>
   <ng-template #menu>
-    <hlm-menu>
-      <hlm-menu-group class="px-2">
+    <hlm-dropdown-menu>
+      <hlm-dropdown-menu-group class="px-2">
         <form (ngSubmit)="submit()" [formGroup]="form">
           <div class="flex gap-2 justify-center items-center min-w-[350px]">
             <div class="flex justify-center items-center w-[20px] h-[20px]">
               A
             </div>
             <input
-              class="bg-background w-full h-[32px] outline-none placeholder:italic placeholder:text-muted-foreground placeholder:font-normal"
+              class="bg-background w-full h-[32px] outline-hidden placeholder:italic placeholder:text-muted-foreground placeholder:font-normal"
               type="text"
               placeholder="Rename image"
               [formControl]="form.controls.name"
@@ -31,7 +31,7 @@
           </div>
           <button class="hidden">Save</button>
         </form>
-      </hlm-menu-group>
-    </hlm-menu>
+      </hlm-dropdown-menu-group>
+    </hlm-dropdown-menu>
   </ng-template>
 </hlm-tooltip>

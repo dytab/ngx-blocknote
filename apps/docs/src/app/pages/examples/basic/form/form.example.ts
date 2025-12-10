@@ -23,7 +23,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
     <bna-editor [formControl]="form.controls.editor" />
     <p>Form Value (JSON)</p>
     <div
-      class="border border-black bg-background rounded min-h-20 w-full p-2 max-h-[400px] overflow-auto"
+      class="border border-black bg-background rounded-sm min-h-20 w-full p-2 max-h-[400px] overflow-auto"
     >
       <pre><code>{{ form.value | json}}</code></pre>
     </div>
@@ -102,7 +102,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
     <bna-editor [formControl]="form.controls.editor" />
     <p>Form Value (JSON)</p>
     <div
-      class="border border-black bg-background rounded min-h-20 w-full p-2 max-h-[400px] overflow-auto"
+      class="border border-black bg-background rounded-sm min-h-20 w-full p-2 max-h-[400px] overflow-auto"
     >
       <pre><code>{{ form.value | json}}</code></pre>
     </div>

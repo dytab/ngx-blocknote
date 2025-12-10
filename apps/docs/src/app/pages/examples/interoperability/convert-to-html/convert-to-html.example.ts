@@ -14,7 +14,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
       (editorReady)="editorReady($event)"
     />
     <p>Output (HTML)</p>
-    <div class="border border-black bg-background rounded min-h-20 w-full p-2">
+    <div class="border border-black bg-background rounded-sm min-h-20 w-full p-2">
       {{ htmlString }}
     </div>
   `,
@@ -67,7 +67,7 @@ import { BnaEditorComponent } from '@dytab/ngx-blocknote';
       (editorReady)="editorReady($event)"
     />
     <p>Output (HTML)</p>
-    <div class="border border-black bg-background rounded min-h-20 w-full p-2">
+    <div class="border border-black bg-background rounded-sm min-h-20 w-full p-2">
       {{ htmlString }}
     </div>
   \`,

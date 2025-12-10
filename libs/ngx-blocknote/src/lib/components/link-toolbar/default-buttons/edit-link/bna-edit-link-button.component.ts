@@ -1,19 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
-import { HlmMenu, HlmMenuGroup } from '@spartan-ng/helm/menu';
+
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { NgxBlocknoteService } from '../../../../services';
 import { BnaLinkFormComponent } from '../../link-form/bna-link-form.component';
 
 @Component({
   selector: 'bna-edit-link-button',
-  imports: [
-    BnaLinkFormComponent,
-    HlmButton,
-    HlmMenu,
-    BrnMenuTrigger,
-    HlmMenuGroup,
-  ],
+  imports: [BnaLinkFormComponent, HlmButton, HlmDropdownMenuImports],
   templateUrl: './bna-edit-link-button.component.html',
 })
 export class BnaEditLinkButtonComponent {

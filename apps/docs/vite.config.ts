@@ -2,8 +2,8 @@
 
 import analog from '@analogjs/platform';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vite';
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
@@ -13,21 +13,14 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: '../../dist/apps/docs/client',
       reportCompressedSize: true,
-      commonjsOptions: { transformMixedEsModules: true },
-      target: ['esnext'],
+      target: ['es2020'],
     },
     server: {
       fs: {
         allow: ['.'],
       },
     },
-    ssr: {
-      noExternal: [
-        '@dytab/**',
-      ],
-    },
     plugins: [
-      tsconfigPaths(),
       analog({
         static: true,
         prerender: {
@@ -45,7 +38,6 @@ export default defineConfig(({ mode }) => {
         },
       }),
       nxViteTsPaths(),
-      splitVendorChunkPlugin(),
     ],
     test: {
       globals: true,

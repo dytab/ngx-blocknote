@@ -8,7 +8,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
   imports: [HlmButton],
   template: `
     <div
-      class="h-full flex flex-col overflow-auto border border-border bg-background shadow-lg shadow-border rounded p-1 min-w-[250px]"
+      class="h-full flex flex-col overflow-auto border border-border bg-background shadow-lg shadow-border rounded-sm p-1 min-w-[250px]"
     >
       @for (item of customSlashItems; track item.key) {
         <button

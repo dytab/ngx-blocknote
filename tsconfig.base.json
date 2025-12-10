@@ -18,26 +18,21 @@
     "baseUrl": ".",
     "paths": {
       "@dytab/ngx-blocknote": ["libs/ngx-blocknote/src/index.ts"],
-      "@spartan-ng/helm/button": ["libs/ui/ui-button-helm/src/index.ts"],
-      "@spartan-ng/helm/card": ["libs/ui/ui-card-helm/src/index.ts"],
-      "@spartan-ng/helm/checkbox": ["libs/ui/ui-checkbox-helm/src/index.ts"],
-      "@spartan-ng/helm/dialog": ["libs/ui/ui-dialog-helm/src/index.ts"],
-      "@spartan-ng/helm/form-field": [
-        "libs/ui/ui-form-field-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/icon": ["libs/ui/ui-icon-helm/src/index.ts"],
-      "@spartan-ng/helm/input": ["libs/ui/ui-input-helm/src/index.ts"],
       "@spartan-ng/helm/menu": ["libs/ui/ui-menu-helm/src/index.ts"],
-      "@spartan-ng/helm/scroll-area": [
-        "libs/ui/ui-scroll-area-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/tabs": ["libs/ui/ui-tabs-helm/src/index.ts"],
-      "@spartan-ng/helm/toggle": ["libs/ui/ui-toggle-helm/src/index.ts"],
-      "@spartan-ng/helm/tooltip": ["libs/ui/ui-tooltip-helm/src/index.ts"],
-      "@spartan-ng/helm/typography": [
-        "libs/ui/ui-typography-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/utils": ["libs/ui/ui-utils-helm/src/index.ts"]
+      "@spartan-ng/helm/button": ["libs/ui/button/src/index.ts"],
+      "@spartan-ng/helm/card": ["libs/ui/card/src/index.ts"],
+      "@spartan-ng/helm/checkbox": ["libs/ui/checkbox/src/index.ts"],
+      "@spartan-ng/helm/dialog": ["libs/ui/dialog/src/index.ts"],
+      "@spartan-ng/helm/dropdown-menu": ["libs/ui/dropdown-menu/src/index.ts"],
+      "@spartan-ng/helm/form-field": ["libs/ui/form-field/src/index.ts"],
+      "@spartan-ng/helm/icon": ["libs/ui/icon/src/index.ts"],
+      "@spartan-ng/helm/input": ["libs/ui/input/src/index.ts"],
+      "@spartan-ng/helm/scroll-area": ["libs/ui/scroll-area/src/index.ts"],
+      "@spartan-ng/helm/tabs": ["libs/ui/tabs/src/index.ts"],
+      "@spartan-ng/helm/toggle": ["libs/ui/toggle/src/index.ts"],
+      "@spartan-ng/helm/tooltip": ["libs/ui/tooltip/src/index.ts"],
+      "@spartan-ng/helm/typography": ["libs/ui/typography/src/index.ts"],
+      "@spartan-ng/helm/utils": ["libs/ui/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

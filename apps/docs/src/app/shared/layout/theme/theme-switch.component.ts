@@ -4,25 +4,12 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMonitor, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
-import {
-  HlmMenu,
-  HlmMenuItemCheckbox,
-  HlmMenuItemCheck,
-} from '@spartan-ng/helm/menu';
+
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { DarkMode, ThemeService } from './theme.service';
 
 @Component({
-  imports: [
-    BrnMenuTrigger,
-    HlmButton,
-    AsyncPipe,
-    HlmMenu,
-    HlmMenuItemCheck,
-    HlmMenuItemCheckbox,
-    NgIcon,
-    HlmIcon,
-  ],
+  imports: [HlmButton, AsyncPipe, HlmDropdownMenuImports, NgIcon, HlmIcon],
   providers: [provideIcons({ lucideMoon, lucideMonitor, lucideSun })],
   selector: 'bna-theme-switch',
   template: `
@@ -30,42 +17,42 @@ import { DarkMode, ThemeService } from './theme.service';
       size="sm"
       variant="ghost"
       align="end"
-      [brnMenuTriggerFor]="theme"
+      [hlmDropdownMenuTrigger]="theme"
       hlmBtn
     >
       <ng-icon hlm name="lucideMoon" size="sm" />
       <span class="sr-only">Open menu to change theme</span>
     </button>
     <ng-template #theme>
-      <hlm-menu class="w-40">
+      <hlm-dropdown-menu class="w-40">
         <button
-          hlmMenuItemCheckbox
+          hlmDropdownMenuCheckbox
           [checked]="(theme$ | async) === 'light'"
           (click)="setTheme('light')"
         >
-          <hlm-menu-item-check />
+          <hlm-dropdown-menu-checkbox-indicator />
           <ng-icon hlm name="lucideSun" size="sm" class="me-2" />
           Light
         </button>
         <button
-          hlmMenuItemCheckbox
+          hlmDropdownMenuCheckbox
           [checked]="(theme$ | async) === 'dark'"
           (click)="setTheme('dark')"
         >
-          <hlm-menu-item-check />
+          <hlm-dropdown-menu-checkbox-indicator />
           <ng-icon hlm name="lucideMoon" size="sm" class="me-2" />
           Dark
         </button>
         <button
-          hlmMenuItemCheckbox
+          hlmDropdownMenuCheckbox
           [checked]="(theme$ | async) === 'system'"
           (click)="setTheme('system')"
         >
-          <hlm-menu-item-check />
+          <hlm-dropdown-menu-checkbox-indicator />
           <ng-icon hlm name="lucideMonitor" size="sm" class="me-2" />
           System
         </button>
-      </hlm-menu>
+      </hlm-dropdown-menu>
     </ng-template>
   `,
 })

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgxBlockNoteTestingModule } from '../../../../../services';
 import { BnaDeleteButtonComponent } from './bna-delete-button.component';
 
@@ -8,7 +9,11 @@ describe('BnaDeleteButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BnaDeleteButtonComponent, NgxBlockNoteTestingModule],
+      imports: [
+        BrowserModule,
+        BnaDeleteButtonComponent,
+        NgxBlockNoteTestingModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BnaDeleteButtonComponent);
