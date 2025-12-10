@@ -99,7 +99,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
-    "happy-dom": "^17.4.4",
+    "happy-dom": "^20.0.11",
     "jest": "^30.0.2",
     "jest-environment-jsdom": "^30.0.2",
     "jest-preset-angular": "~15.0.0",
