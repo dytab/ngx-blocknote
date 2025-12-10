@@ -1,34 +1,54 @@
+/// <reference types="vitest" />
+
+import analog from '@analogjs/platform';
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { defineConfig } from 'vite';
-import angular from '@analogjs/vite-plugin-angular';
 
-export default defineConfig(({ mode }) => ({
-  root: __dirname,
-  cacheDir: '../../node_modules/.vite/libs/docs',
-  plugins: [angular()],
-  resolve: {
-    mainFields: ['module'],
-  },
-  build: {
-    target: ['esnext'],
-    sourcemap: true,
-    lib: {
-      // Library entry point
-      entry: 'src/public-api.ts',
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => {
+  return {
+    root: __dirname,
+    cacheDir: `../../node_modules/.vite`,
 
-      // Package output path, must contain fesm2022
-      fileName: `fesm2022/docs`,
-
-      // Publish as ESM package
-      formats: ['es'],
+    build: {
+      outDir: '../../dist/apps/docs/client',
+      reportCompressedSize: true,
+      target: ['es2020'],
     },
-    rollupOptions: {
-      // Add external libraries that should be excluded from the bundle
-      external: [/^@angular\/.*/, 'rxjs', 'rxjs/operators'],
-      output: {
-        // Produce a single file bundle
-        preserveModules: false,
+    server: {
+      fs: {
+        allow: ['.'],
       },
     },
-    minify: false,
-  },
-}));
+    plugins: [
+      analog({
+        static: true,
+        prerender: {
+          discover: true,
+          routes: ['/'],
+        },
+        nitro: {
+          logLevel: 3,
+          hooks: {
+            'prerender:generate': (route) => {
+              route.fileName = route.fileName?.replace('/ngx-blocknote', '');
+              return route;
+            },
+          },
+        },
+      }),
+      nxViteTsPaths(),
+    ],
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: ['src/test-setup.ts'],
+      include: ['**/*.spec.ts'],
+      reporters: ['default'],
+      passWithNoTests: true,
+    },
+    define: {
+      'import.meta.vitest': mode !== 'production',
+    },
+  };
+});
